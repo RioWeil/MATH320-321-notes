@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  9 MAY 2021 22:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  10 MAY 2021 00:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -781,33 +781,45 @@ LaTeX Info: Redefining \nameref on input line 4.
 \@outlinefile=\write6
 \openout6 = `notes.out'.
 
- (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch1.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch2.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch3.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch4.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch5.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch5.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch6.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch7.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch8.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch9.tex) [1
+ (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.toc
+LaTeX Font Info:    Try loading font information for U+msa on input line 2.
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 2.
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+))
+\tf@toc=\write7
+\openout7 = `notes.toc'.
+
+ [1
 Non-PDF special ignored!
 <special> papersize=614.295pt,794.96999pt
 
-{/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 30.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 30.
+{/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch1.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch2.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch3.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch4.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch5.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch6.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch7.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch8.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch9.tex) [2]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 33.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 33.
  (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 30.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 30.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 33.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 33.
 Package rerunfilecheck Info: File `notes.out' has not changed.
-(rerunfilecheck)             Checksum: FD79BEA5075735867A0E7FA071E48597;586.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 30.
+(rerunfilecheck)             Checksum: AC151C0BD68DFC6CE31858CE7987FAB4;621.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 33.
  ) 
 Here is how much of TeX's memory you used:
- 36524 strings out of 492616
- 779576 string characters out of 6129482
- 912720 words of memory out of 5000000
- 40025 multiletter control sequences out of 15000+600000
- 533588 words of font info for 28 fonts, out of 8000000 for 9000
+ 36560 strings out of 492616
+ 780366 string characters out of 6129482
+ 914718 words of memory out of 5000000
+ 40042 multiletter control sequences out of 15000+600000
+ 535902 words of font info for 38 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,5n,77p,1010b,466s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on "/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.pdf" (1 page, 46439 bytes).
+ 62i,8n,77p,1010b,466s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on "/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.pdf" (2 pages, 128344 bytes).
 PDF statistics:
- 75 PDF objects out of 1000 (max. 8388607)
- 67 compressed objects within 1 object stream
- 12 named destinations out of 1000 (max. 500000)
+ 124 PDF objects out of 1000 (max. 8388607)
+ 106 compressed objects within 2 object streams
+ 14 named destinations out of 1000 (max. 500000)
  93 words of extra memory for PDF output out of 10000 (max. 10000000)
 
