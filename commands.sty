@@ -15,23 +15,20 @@
 \usepackage{float}
 \usepackage{hyperref}
 \usepackage{fullpage}
+\usepackage{enumerate}
 \usepackage{tcolorbox}
 \tcbuselibrary{theorems}
 
 \renewcommand{\labelenumi}{(\alph{enumi})} % Use letters for enumerate
 % \DeclareMathOperator{\Sample}{Sample}
+
 \let\vaccent=\v % rename builtin command \v{} to \vaccent{}
-\usepackage{enumerate}
 \renewcommand{\v}[1]{\ensuremath{\mathbf{#1}}} % for vectors
 \newcommand{\gv}[1]{\ensuremath{\mbox{\boldmath$ #1 $}}} 
 % for vectors of Greek letters
 \newcommand{\uv}[1]{\ensuremath{\mathbf{\hat{#1}}}} % for unit vector
 \newcommand{\avg}[1]{\left< #1 \right>} % for average
-\newcommand{\pdc}[3]{\left( \frac{\partial #1}{\partial #2}
- \right)_{#3}} % for thermodynamic partial derivatives
-\let\baraccent=\= % rename builtin command \= to \baraccent
-\newcommand{\divides}{\phantom{i} \arrowvert \phantom{i}}
-\newcommand{\ndiv}{\nmid}
+
 \newcommand{\bicon}{\Leftrightarrow}
 \newcommand{\imply}{\Rightarrow}
 \newcommand{\sol}{\newline \emph{Solution.}}
@@ -45,7 +42,7 @@
 
 \renewcommand{\=}[1]{\stackrel{#1}{=}} % for putting numbers above
 
- %\dif is differential symbol
+%\dif is differential symbol
 %\od[n-th deriv]{f}{x}, n-th deriv can be left out for 1
 %\pd does same thing as above, for partial derivatives
 %adding t (ex. \tpd) will make it text style, d (ex. \dpd) will make it display style
@@ -60,35 +57,21 @@
 \providecommand{\NN}{\mathbb{N}}
 \providecommand{\ZZ}{\mathbb{Z}}
 \providecommand{\QQ}{\mathbb{Q}}
-\providecommand{\CC}
-{\mathbb{C}}
+\providecommand{\CC}{\mathbb{C}}
 \providecommand{\seq}{\subseteq}
 \providecommand{\e}{\epsilon}
-%
-%\newtheorem{prop}{Proposition}
-%\newtheorem{thm}{Theorem}[section]
-%\newtheorem{axiom}{Axiom}[section]
-%\newtheorem{p}{Problem}[section]
-%\usepackage{cancel}
-%\newtheorem{lem}{Lemma}[section]
-%\theoremstyle{definition}
-%\newtheorem{dfn}{Definition}
+
 \renewcommand*{\qedsymbol}{$\blacksquare$}
-%\newenvironment{s}
- % {\begin{proof}[Solution.]}
-  %{\end{proof}}  
-%\newenvironment{disproof}
- % {\begin{proof}[Disproof.]}
-  %{\end{proof}}  
-  \newtheorem{marker}{MARK}[section]
+
+\newtheorem{marker}{MARK}[section]
   
 \newtcbtheorem
   [use counter*=marker]% init options
   {definition}% name
   {Definition}% title
   {%
-    colback=green!5,
-    colframe=green!35!black,
+    colback=red!5,
+    colframe=red!35!black,
     fonttitle=\bfseries,
   }% options
   {def}% prefix
@@ -110,7 +93,7 @@
   {Lemma}% title
   {%
     colback=blue!5,
-    colframe=blue!35!black,
+    colframe=blue!75!black,
     fonttitle=\bfseries,
   }% options
   {lem}% prefix
@@ -125,36 +108,14 @@
     fonttitle=\bfseries,
   }% options
   {prop}% prefix	
-  
-      \newtcbtheorem
-  [use counter*=marker]% init options
-  {corollary}% name
-  {Corollary}% title
-  {%
-    colback=purple!5,
-    colframe=purple!35!black,
-    fonttitle=\bfseries,
-  }% options
-  {cor}% prefix	
-  
-      \newtcbtheorem
-  [use counter*=marker]% init options
-  {fact}% name
-  {Fact}% title
-  {%
-    colback=purple!5,
-    colframe=purple!35!black,
-    fonttitle=\bfseries,
-  }% options
-  {fct}% prefix	
-  
+
       \newtcbtheorem
   [use counter*=marker]% init options
   {example}% name
   {Example}% title
   {%
-    colback=red!5!white,
-    colframe=red!75!black,
+    colback=green!5!white,
+    colframe=green!35!black,
     fonttitle=\bfseries,
   }% options
   {exam}% prefix	
