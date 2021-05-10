@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  9 MAY 2021 22:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  9 MAY 2021 22:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -781,33 +781,33 @@ LaTeX Info: Redefining \nameref on input line 4.
 \@outlinefile=\write6
 \openout6 = `notes.out'.
 
- [1
+ (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch1.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch2.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch3.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch4.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch5.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch5.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch6.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch7.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch8.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch9.tex) [1
 Non-PDF special ignored!
 <special> papersize=614.295pt,794.96999pt
 
 {/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 19.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 19.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 30.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 30.
  (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 19.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 19.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 30.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 30.
 Package rerunfilecheck Info: File `notes.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 19.
+(rerunfilecheck)             Checksum: FD79BEA5075735867A0E7FA071E48597;586.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 30.
  ) 
 Here is how much of TeX's memory you used:
- 36474 strings out of 492616
- 778025 string characters out of 6129482
- 910720 words of memory out of 5000000
- 40014 multiletter control sequences out of 15000+600000
+ 36524 strings out of 492616
+ 779576 string characters out of 6129482
+ 912720 words of memory out of 5000000
+ 40025 multiletter control sequences out of 15000+600000
  533588 words of font info for 28 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,5n,77p,1010b,466s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on "/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.pdf" (1 page, 38705 bytes).
+Output written on "/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.pdf" (1 page, 46439 bytes).
 PDF statistics:
- 32 PDF objects out of 1000 (max. 8388607)
- 24 compressed objects within 1 object stream
- 2 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 75 PDF objects out of 1000 (max. 8388607)
+ 67 compressed objects within 1 object stream
+ 12 named destinations out of 1000 (max. 500000)
+ 93 words of extra memory for PDF output out of 10000 (max. 10000000)
 

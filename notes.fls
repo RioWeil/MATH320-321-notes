@@ -251,14 +251,34 @@ INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.out
 INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.out
 INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.out
 INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.out
+OUTPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.pdf
 INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.out
 INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.out
 OUTPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.out
-OUTPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.pdf
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/cm/cmti12.tfm
+INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch1.tex
+INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch1.tex
+INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch2.tex
+INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch2.tex
+INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch3.tex
+INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch3.tex
+INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch4.tex
+INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch4.tex
+INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch5.tex
+INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch5.tex
+INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch5.tex
+INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch5.tex
+INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch6.tex
+INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch6.tex
+INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch7.tex
+INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch7.tex
+INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch8.tex
+INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch8.tex
+INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch9.tex
+INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/ch9.tex
 INPUT /usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.aux
 INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.out
