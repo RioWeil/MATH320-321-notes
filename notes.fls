@@ -259,9 +259,9 @@ INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/cm/cmti12.tfm
-INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.toc
-INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.toc
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
+INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.toc
+INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.toc
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
