@@ -63,9 +63,9 @@
 
 \renewcommand*{\qedsymbol}{$\blacksquare$}
 
-\newtheorem{marker}{MARK}[section]
+\newtheorem{rudin}{MARK}[section]
   
-\newtcbtheorem[use counter*=marker]% init options
+\newtcbtheorem[use counter*=rudin]% init options
   {definition}% name
   {Definition}% title
   {%
@@ -75,15 +75,15 @@
   }% options
   {def}% prefix
  
-\newtcbtheorem[use counter*=marker]{theorem}{Theorem}{colback=blue!5, colframe=blue!35!black, fonttitle=\bfseries}{thm} 
-\newtcbtheorem[use counter*=marker]{lemma}{Lemma}{colback=blue!5, colframe=blue!75!black fonttitle=\bfseries}{lem}  
-\newtcbtheorem[use counter*=marker]{proposition}{Proposition}{colback=blue!5, colframe=blue!35!black, fonttitle=\bfseries}{prop}
-\newtcbtheorem[use counter*=marker]{example}{Example}{colback=green!5!white, colframe=green!35!black, fonttitle=\bfseries}{exam}	
+\newtcbtheorem[use counter*=rudin]{theorem}{Theorem}{colback=blue!5, colframe=blue!35!black, fonttitle=\bfseries}{thm} 
+\newtcbtheorem[use counter*=rudin]{lemma}{Lemma}{colback=blue!5, colframe=blue!75!black fonttitle=\bfseries}{lem}  
+\newtcbtheorem[use counter*=rudin]{proposition}{Proposition}{colback=blue!5, colframe=blue!35!black, fonttitle=\bfseries}{prop}
+\newtcbtheorem[use counter*=rudin]{example}{Example}{colback=green!5!white, colframe=green!35!black, fonttitle=\bfseries}{exam}	
 
-\newtcolorbox{ndef}{colback=red!5!black, colframe=red!75!black,fonttitle=\bfseries, title=Definition}
-\newtcolorbox{ntheorem}{colback=blue!5, colframe=blue!35!black, fonttitle=\bfseries, title=Definition}
-\newtcolorbox{nlemma}{colback=blue!5, colframe=blue!35!black, fonttitle=\bfseries, title=Lemma}
-\newtcolorbox{nproposition}{colback=blue!5, colframe=blue!35!black, fonttitle=\bfseries, title=Proposition}
-\newtcolorbox{nexample}{colback=blue!5, colframe=blue!35!black, fonttitle=\bfseries, title=Example}
+\newtcolorbox{ndef}[1]{colback=red!5!, colframe=red!75!black,fonttitle=\bfseries, title=Definition: #1}
+\newtcolorbox{ntheorem}[1]{colback=blue!5, colframe=blue!35!black, fonttitle=\bfseries, title=Definition}
+\newtcolorbox{nlemma}[1]{colback=blue!5, colframe=blue!35!black, fonttitle=\bfseries, title=Lemma: #1}
+\newtcolorbox{nproposition}[1]{colback=blue!5, colframe=blue!35!black, fonttitle=\bfseries, title=Proposition: #1}
+\newtcolorbox{nexample}[1]{colback=blue!5, colframe=blue!35!black, fonttitle=\bfseries, title=Example: #1}
 \newtcolorbox{nproof}{colback=gray!5!white, colframe=gray!75!black,fonttitle=\bfseries, title =  Proof}
 
