@@ -281,6 +281,7 @@ INPUT /usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch1.tex
 INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch1.tex
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
 INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch2.tex
 INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch2.tex
 INPUT /Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch3.tex
@@ -313,4 +314,5 @@ INPUT /usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.p
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb
+INPUT /usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb

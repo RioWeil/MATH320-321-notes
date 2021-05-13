@@ -48,12 +48,22 @@ We note that this example leads us to conclude that the rationals have certain "
 \begin{example}{Incompleteness of the Rationals}{1.1b}
     (b) Let $A = \set{p \in \QQ: p > 0, p^2 < 2}$, and $B = \set{p \in \QQ: p > 0, p^2 > 2}$. Then, $\forall p \in A, \exists q \in A$ such that $p < q$, and $\forall p \in B, \exists q \in B$ such that $q < p$. 
 \end{example}
-A visualization of the sets A/B is given below:
-\begin{figure}[h!]
+\begin{figure}[htbp]
+    \centering
     \begin{tikzpicture}
-
+        \draw[latex-latex, very thick] (-6, 0) -- (6,0) node[anchor=south] {$\QQ$};
+        \draw[] (0, 0) -- (0, -0.25) node[anchor=north] {0};
+        \foreach \i in {-5.7,-5.6,...,5.7}{ 
+        \draw[] (\i,0) -- (\i,-0.1);
+        }
+        \draw[] (1,0.1) node[anchor=south] {$\sqrt{2}$};
+        \draw[] (0.96,0) node[] {$)$};
+        \draw[] (1.04,0) node[] {$($};
+        \draw[] (-2.5, 0) node[anchor=south] {$A$};
+        \draw[] (3.5, 0) node[anchor=south] {$B$};
     \end{tikzpicture}
-    \caption{\textbf{(TODO)}}
+    \caption{Visualization of sets $A$ and $B$. We note that $\sqrt{2}$ has not been defined in our formalism yet, but from our prior mathematical intuition it would be what goes in the "hole" that the rationals have.}
+    \label{<label>}
 \end{figure}
 
 For the proof of this statement, we consider playing a 2 person game. One person is $\forall$, one person is $\exists$, and we consider if one person has a winning strategy. $\forall$ goes first, and then $\exists$ goes next, having seen the choice that $\forall$ has made. Then, we check if indeed $p < q$. If $p < q$, then $\exists$ wins. If $p \not< q$, then $\forall$ wins. 
@@ -66,9 +76,7 @@ For the proof of this statement, we consider playing a 2 person game. One person
     so $q > p$, completing the proof of the first part of the claim. The second part is left as an exercise (we note that the same $q$ can be used).
 \end{nproof}
 
-The number $q = \frac{2p+ 2}{2 + p}$ seems to be pulled out of a hat; let us discuss where this choice comes from.
-
-\textbf{(TODO: Discussion of secant lines/descent)}
+The number $q = \frac{2p+ 2}{2 + p}$ seems to be pulled out of a hat, but actually comes from a fairly geometric picture (the secant method of approximating roots). Discussion on this topic can be found here: \texttt{https://math.stackexchange.com/questions/141774/choice-of-q-in-baby-rudins-example-1-1}.
 
 \subsection{Ordered Sets}
 Over the next couple sections, we will be discussing certain properties of sets that will give us a better understanding of the real numbers, and allow us to construct them.
@@ -192,4 +200,4 @@ Note that A3/M3 show that $x + y + z$ and $x\cdot y\cdot z$ are well defined in 
     \end{align*}
     Which shows that the additive identity is unique. The remaining proofs are left as an exercise.
 \end{nproof}
-In Rudin, some easy (and familiar) consequences of the field axioms can be found in Propositions 1.14-1.16. Instead of repeating those here,
+In Rudin, some easy (and familiar) consequences of the field axioms can be found in Propositions 1.14-1.16. Instead of repeating those here, we will 
