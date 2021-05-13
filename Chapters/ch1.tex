@@ -73,9 +73,28 @@ The number $q = \frac{2p+ 2}{2 + p}$ seems to be pulled out of a hat; let us dis
 \subsection{Ordered Sets}
 Over the next couple sections, we will be discussing certain properties of sets that will give us a better understanding of the real numbers, and allow us to construct them.
 
+\setcounter{rudin}{4}
+
 \begin{definition}{Order}{1.5}
-    
+    An \textbf{order} $<$ on a set $S$ is a relation with the following properties:
+    \begin{enumerate}
+        \item For every pair $x, y \in S$, exactly one of $x < y$, $x = y$, or $y < x$ is true. 
+        \item For $x, y, z \in S$, if $x < y$ and $y < z$, then $x < z$. 
+    \end{enumerate}
+    A point on notation; We note that $x > y$ means $y < x$, and $x \leq y$ means $x < y$ or $x = y$. 
 \end{definition}
+
+\begin{definition}{Ordered Sets}{1.6}
+    An ordered set is a pair $(S, <)$. We may write just $S$ if the order can be inferred by the context.
+\end{definition}
+A familiar (and useful) set of examples is $S = \NN$ or $S = \ZZ$ or $S = \QQ$. For these three sets, we have that $x < y$ if $y-x$ is positive. For another example, consider the set $S$ of english words; then the order $<$ can be the dictionary/lexographic order. 
+
+\begin{definition}{Upper \& Lower Bounds}{1.7}
+    Let $S$ be an ordered set and $E \subset S$. $E$ is \textbf{bounded above} if there exists an element $\beta \in S$ such that $\forall x \in E$, $x \leq \beta$. Any such $\beta$ is an \textbf{upper bound} of $E$. Similarly, we say that $E$ is \textbf{bounded below} if there exists an element $\alpha \in S$ such that $\forall x \in E$, $\alpha \leq x$. In this case, $\alpha$ is a \textbf{lower bound} of $E$.
+\end{definition}
+As an example, one can take $S = \QQ$, $E = A = \set{p \in \QQ: p > 0, p^2 > 2}$ (as in Example \ref{exam:1.1b}). Here, $E$ is bounded above, with $\beta = 2$ as one possible upper bound. to see this is the case, consider that if $p \in E$:
+\[2 - p = \frac{4 - p^2}{2+p} > \frac{4-2}{2+p} > 0\]
+However, if we take $S = A$, $E = A$, then $E$ is not bounded above as we saw in the example. There is no upper bound of $A$ in $A$. In general, this example reveals the subtle point that "the upper bound of a set" is ill-defined; we need to specify $E \subset S$. 
 
 \subsection{The Least Upper Bound Property}
 
