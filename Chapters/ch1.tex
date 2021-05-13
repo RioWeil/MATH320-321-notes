@@ -155,7 +155,7 @@ We will show in the next theorem that these properties are actually equivalent; 
     Let $S$ be an ordered set. Then $S$ has the LUB property if and only if it has the GUB property. 
 \end{theorem}
 \begin{nproof}
-    $\boxed{\implies}$ Let
+    $\boxed{\implies}$ Let $S$ be an ordered set with the LUB property. Let $E \subset S$ with $E \neq \emptyset$, with $E$ bounded below. Let $L = \set{x \in S: x\text{ is a lower bound of $E$.}}$. $L \neq \emptyset$ as $E$ is bounded below (and hence has at least one lower bound). If $y \in E$, then $y$ is an upper bound for $L$. Since $E$ is nonempty, $L$ is therefore bounded above. Since $S$ has the LUB property, then $\sup(L)$ must exist. Let us call this $\alpha$. Then, $\alpha \leq x\ \forall x \in E$ (as if $\gamma < \alpha$, then $\gamma$ is not an upper bound of $L$ and hence $\gamma \neq E$). Hence, $\alpha$ is a lower bound for $E$ and hence $\alpha \in L$. Since $\alpha = \sup(L)$ and $\alpha$ is an upper bound for $L$, we have that $\alpha \geq \gamma\ \forall \gamma \in L$. Thus, $\alpha = \inf(E)$. 
 
     $\boxed{\impliedby}$ Left as an exercise. 
 \end{nproof}
