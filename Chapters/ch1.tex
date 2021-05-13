@@ -97,4 +97,16 @@ As an example, one can take $S = \QQ$, $E = A = \set{p \in \QQ: p > 0, p^2 > 2}$
 However, if we take $S = A$, $E = A$, then $E$ is not bounded above as we saw in the example. There is no upper bound of $A$ in $A$. In general, this example reveals the subtle point that "the upper bound of a set" is ill-defined; we need to specify $E \subset S$. 
 
 \subsection{The Least Upper Bound Property}
+\begin{definition}{Least Upper Bound \& Greatest Lower Bound}{1.8}
+    Let $S$ be an ordered set, and let $E \subset S$ with $E$ bounded above. If $\exists \alpha \in S$ such that:
+    \begin{enumerate}
+        \item $\alpha$ is an upper bound for $E$
+        \item If $\gamma < \alpha$, then $\gamma$ is not an upper bound for $E$
+    \end{enumerate} 
+    The $\alpha$ is the \textbf{least upper bound}, or \textbf{supermum} of $E$. This can be denoted as $\alpha = \sup(E)$. Analogously, the \textbf{greatest lower bound}, or \textbf{infimum} of E (denoted $\alpha = \inf(E)$) is an element $\alpha \in S$ (if it exists) such that:
+    \begin{enumerate}
+        \item $\alpha$ is a lower bound for $E$
+        \item If $\gamma > \alpha$, then $\gamma$ is not an upper bound of $E$. 
+    \end{enumerate}
+\end{definition}
 
