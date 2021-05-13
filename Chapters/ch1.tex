@@ -117,7 +117,43 @@ However, if we take $S = A$, $E = A$, then $E$ is not bounded above as we saw in
         Let $E \subset S$. Suppose that there exist $\alpha_1, \alpha_2$ such that $\alpha_1 = \sup(E)$ and $\alpha_2 = \sup(E)$. If $\alpha_1 < \alpha_2$, as $\alpha_1$ is an upper bound of $E$, this contradicts the fact that $\alpha_2$ is the least upper bound of $E$. We reach an identical contradiction if $\alpha_2 < \alpha_1$. Therefore we conclude that $\alpha_1 = \alpha_2$ and the supremum of $E$ is unique (if it exists). The proof for the infimum is analogous. 
 \end{nproof}
 
-\begin{example}{}{1.9}
-    
-\end{example}
+\begin{ntheorem}{Equivalence of maximum and supremum}
+    If $E \subset S$ has a maximum element $\alpha$ (that is, an element such that $x < \alpha$ for all $x \in E$) then $\alpha = \sup(E)$. Similarly, if $E$ has a minimum element $\alpha$, then $\alpha = \inf(E)$. The proof is left as an exercise. 
+\end{ntheorem}
 
+\begin{comment}
+\begin{nproof}
+    Let $E \subset S$ and $\alpha = \max(E)$. By definition $\alpha$ is an upper bound of $E$, and if $x < \alpha$ for some $x \in E$ then $x$ is not an upper bound of $E$ as it is not greater than $\alpha \in E$. The claim follows (with an identical proof for the minimum).
+\end{nproof}
+\end{comment}
+
+\begin{example}{}{1.9}
+    \begin{enumerate}
+        \item Consider again the sets $A, B \subset \QQ$ from example \ref{exam:1.1b}. $A$ is bounded above by any element in $B$, and the upper bounds of $A$ are exactly the elements of $B$. Since $B$ has no smallest member, $A$ does not have a least upper bound in $\QQ$.
+        \item Let $E_1, E_2 \subset \QQ$ such that $E_1 = \set{r: \QQ, r < 0}$ and $E_2 = \set{r: \QQ, r \leq 0}$. Then $\sup(E_1) = \sup(E_2) = 0$. Note that this example shows that the supremum can either be contained or not contained in the set; $0 \notin E_1$ but $0 \in E_2$. 
+        \item Let $E \subset \QQ$ such that $E = \set{\frac{1}{n}: n \in \NN}$. Then $\sup(E) = 1$ and $\inf(E) = 0$. This is proven below. 
+    \end{enumerate}
+\end{example}
+\begin{nproof}
+    $\sup(E) = 1$ immediately follows from the equivalence of the maximum and supremum as proven above. To see that $\inf(E) = 0$, first note that $0$ is a lower bound for $E$ as all of the elements of $E$ are positive. To see that it is the lower bound, take any $x > 0$. Then, we have that for any $n > \frac{1}{x}$, $\frac{1}{n} < x$ and hence $x$ is not an upper bound of $E$. This proves the claim.
+\end{nproof}
+
+\begin{definition}{The LUB/GUB Property}{1.10}
+    An ordered set $S$ has the \textbf{least upper bound property} if for every $E \subset S$, if $E \neq \emptyset$ and $E$ is bounded above, then $E$ has a least upper bound (that is, $\sup(E)$ exists in $S$). Similarly, an ordered set $S$ has the \textbf{greatest lower bound property} if for every $E \subset S$, if $E \neq \emptyset$ and $E$ is bounded below, then $E$ has a greatest lower bound.
+\end{definition}
+We will show in the next theorem that these properties are actually equivalent; before then, we briefly consider two examples.
+\begin{nexample}{$\ZZ$ and $\QQ$}
+    $\ZZ$ has the least upper bound property, while $\QQ$ does not. 
+\end{nexample}
+\begin{nproof}
+    For the first claim, consider any nonempty $E \subset \ZZ$ that is bounded above. Choose any $x \in E$. Since $\ZZ$ is bounded above, there exist finitely many elements that are greater than $x$. Take the maximum of these finitely many elements. This maximum is also the maximum of $E$, so it is the supremum of $E$. Therefore $\ZZ$ has the LUB property as claimed.
+    
+    The second claim immediately follows from Example \ref{exam:1.9}(a). 
+\end{nproof}
+
+\begin{theorem}{Equivalence of LUB/GUB properties}{1.11}
+    Let $S$ be an ordered set. Then $S$ has the LUB property if and only if it has the GUB property. 
+\end{theorem}
+\begin{nproof}
+    $\boxed{\implies}$
+\end{nproof}
