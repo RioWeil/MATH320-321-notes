@@ -33,11 +33,11 @@ Note that under this definition, $(1, 2)$ and $(2, 4)$ are different representat
 A natural question then becomes if the rationals are sufficient for doing all of real analysis. Certainly, it seems as we have a number system that is closed under all our basic arithmetic operations; but is this enough? For example, are we able to take limits just using the rationals? The answer turns out to be no (they are insufficient!) and the following example will serve as one illustration of this fact. 
 
 \begin{example}{Incompleteness of the Rationals}{1.1a}
-    (a) There exists no $p \in \QQ$ such that $p^2 = 2$.
+    There exists no $p \in \QQ$ such that $p^2 = 2$.
 \end{example}
 We proceed via proof by contradiction. Recall in that these types of proof, we start with a certain wrong assumption, follow a correct/true line of reasoning, reach an eventual absurdity, and therefore conclude that the original assumption was mistaken. 
 \begin{nproof}
-    Let us then suppose for the contradiction that there exists $p = \frac{m}{n}$ with $p^2 = 2$. We then have that not both $m, n$ are even, and hence at least one is odd. Then, we have that $2 = p^2 = \frac{m^2}{n^2}$ and hence $m^2 = 2n^2$, so $m^2$ is even, implying $m$ is even. So, let us write $m = 2k$ for $k \in \ZZ$. Then, $(2k)^2 = 4k^2 = 2n^2$, and hence $2k^2 = n^2$. Therefore, $n^2$ is even and hence $n$ is even. $m$ and $n$ are therefore both even, a contradiction. We conclude that no such $p$ exists.
+    Let us then suppose for the contradiction that there exists $p = \frac{m}{n}$ with $p^2 = 2$. We then have that not both $m, n$ are even, and hence at least one is odd. Then, we have that $2 = p^2 = \frac{m^2}{n^2}$ and hence $m^2 = 2n^2$, so $m^2$ is even, implying $m$ is even. So, let us write $m = 2k$ for $k \in \ZZ$. Then, $(2k)^2 = 4k^2 = 2n^2$, and hence $2k^2 = n^2$. Therefore, $n^2$ is even and hence $n$ is even. $m$ and $n$ are therefore both even, a contradiction. We conclude that no such $p$ exists. \qed
 \end{nproof}
 Why can we conclude that not both $m, n$ are even in the above proof? This is the case as if $m, n$ we both even, then we could write $m = 2m'$, $n = 2n'$ for some $m', n'$, and then $p = \frac{m}{n} = \frac{2m'}{2n'} = \frac{m'}{n'}$ which we can continue until either the numerator or denominator is odd. A natural question to consider is how to prove that this process of reducing fractions will eventually conclude. The resolution is to invoke the fundamental theorem of arithmetic, and write $m, n$ in terms of their unique prime factorization. We are then able to cancel out factors of 2 from the numerator/denominator until at least one is odd.
 
@@ -46,7 +46,7 @@ We note that this example leads us to conclude that the rationals have certain "
 \setcounter{rudin}{0}
 
 \begin{example}{Incompleteness of the Rationals}{1.1b}
-    (b) Let $A = \set{p \in \QQ: p > 0, p^2 < 2}$, and $B = \set{p \in \QQ: p > 0, p^2 > 2}$. Then, $\forall p \in A, \exists q \in A$ such that $p < q$, and $\forall p \in B, \exists q \in B$ such that $q < p$. 
+    Let $A = \set{p \in \QQ: p > 0, p^2 < 2}$, and $B = \set{p \in \QQ: p > 0, p^2 > 2}$. Then, $\forall p \in A, \exists q \in A$ such that $p < q$, and $\forall p \in B, \exists q \in B$ such that $q < p$. 
 \end{example}
 \begin{figure}[htbp]
     \centering
@@ -62,18 +62,18 @@ We note that this example leads us to conclude that the rationals have certain "
         \draw[] (-2.5, 0) node[anchor=south] {$A$};
         \draw[] (3.5, 0) node[anchor=south] {$B$};
     \end{tikzpicture}
-    \caption{Visualization of sets $A$ and $B$. We note that $\sqrt{2}$ has not been defined in our formalism yet, but from our prior mathematical intuition it would be what goes in the "hole" that the rationals have.}
+    \caption{Visualization of sets $A$ and $B$. We note that $\sqrt{2}$ has not been defined in our formalism yet, but from our prior mathematical intuition it would be what goes in the "hole" of the rationals.}
     \label{<label>}
 \end{figure}
 
 For the proof of this statement, we consider playing a 2 person game. One person is $\forall$, one person is $\exists$, and we consider if one person has a winning strategy. $\forall$ goes first, and then $\exists$ goes next, having seen the choice that $\forall$ has made. Then, we check if indeed $p < q$. If $p < q$, then $\exists$ wins. If $p \not< q$, then $\forall$ wins. 
 
 \begin{nproof}
-    (b) Let $p \in A$. Then, let $q = \frac{2p + 2}{2 + p}$. Since $p \in \QQ$, it follows that $2p + 2 \in \QQ$ and $2 + p \in \QQ$ so $q \in \QQ$. Furthermore, we have that $2p + 2 > 0$ and $2 + p > 0$, so $q > 0$. We also have that:
+    Let $p \in A$. Then, let $q = \frac{2p + 2}{2 + p}$. Since $p \in \QQ$, it follows that $2p + 2 \in \QQ$ and $2 + p \in \QQ$ so $q \in \QQ$. Furthermore, we have that $2p + 2 > 0$ and $2 + p > 0$, so $q > 0$. We also have that:
     \[q^2 = \frac{(2p+2)^2}{(2+p)^2} = 2 + \frac{2(p^2 - 2)}{(p+2)^2} < 2\]
     Where the inequality follows from the fact that $p^2 < 2$ and hence $(p^2 - 2) < 0$. It therefore follows that $q \in A$. Finally, we have that:
     \[q = p + \frac{2-p^2}{2+p} > p\]
-    so $q > p$, completing the proof of the first part of the claim. The second part is left as an exercise (we note that the same $q$ can be used).
+    so $q > p$, completing the proof of the first part of the claim. The second part is left as an exercise (we note that the same $q$ can be used). \qed
 \end{nproof}
 
 The number $q = \frac{2p+ 2}{2 + p}$ seems to be pulled out of a hat, but actually comes from a fairly geometric picture (the secant method of approximating roots). Discussion on this topic can be found here: \texttt{https://math.stackexchange.com/questions/141774/choice-of-q-in-baby-rudins-example-1-1}.
@@ -85,7 +85,7 @@ Over the next couple sections, we will be discussing certain properties of sets 
 
 \begin{definition}{Order}{1.5}
     An \textbf{order} $<$ on a set $S$ is a relation with the following properties:
-    \begin{enumerate}
+    \begin{enumerate}[(i)]
         \item For every pair $x, y \in S$, exactly one of $x < y$, $x = y$, or $y < x$ is true. 
         \item For $x, y, z \in S$, if $x < y$ and $y < z$, then $x < z$. 
     \end{enumerate}
@@ -107,12 +107,12 @@ However, if we take $S = A$, $E = A$, then $E$ is not bounded above as we saw in
 \subsection{The Least Upper Bound Property}
 \begin{definition}{Least Upper Bound \& Greatest Lower Bound}{1.8}
     Let $S$ be an ordered set, and let $E \subset S$ with $E$ bounded above. If $\exists \alpha \in S$ such that:
-    \begin{enumerate}
+    \begin{enumerate}[(i)]
         \item $\alpha$ is an upper bound for $E$
         \item If $\gamma < \alpha$, then $\gamma$ is not an upper bound for $E$
     \end{enumerate} 
     The $\alpha$ is the \textbf{least upper bound}, or \textbf{supermum} of $E$. This can be denoted as $\alpha = \sup(E)$. Analogously, the \textbf{greatest lower bound}, or \textbf{infimum} of E (denoted $\alpha = \inf(E)$) is an element $\alpha \in S$ (if it exists) such that:
-    \begin{enumerate}
+    \begin{enumerate}[(i)]
         \item $\alpha$ is a lower bound for $E$
         \item If $\gamma > \alpha$, then $\gamma$ is not an upper bound of $E$. 
     \end{enumerate}
@@ -122,7 +122,7 @@ However, if we take $S = A$, $E = A$, then $E$ is not bounded above as we saw in
     If the supremum/infimum of $E \subset S$ exist, they are unique.
 \end{ntheorem}
 \begin{nproof}
-        Let $E \subset S$. Suppose that there exist $\alpha_1, \alpha_2$ such that $\alpha_1 = \sup(E)$ and $\alpha_2 = \sup(E)$. If $\alpha_1 < \alpha_2$, as $\alpha_1$ is an upper bound of $E$, this contradicts the fact that $\alpha_2$ is the least upper bound of $E$. We reach an identical contradiction if $\alpha_2 < \alpha_1$. Therefore we conclude that $\alpha_1 = \alpha_2$ and the supremum of $E$ is unique (if it exists). The proof for the infimum is analogous. 
+        Let $E \subset S$. Suppose that there exist $\alpha_1, \alpha_2$ such that $\alpha_1 = \sup(E)$ and $\alpha_2 = \sup(E)$. If $\alpha_1 < \alpha_2$, as $\alpha_1$ is an upper bound of $E$, this contradicts the fact that $\alpha_2$ is the least upper bound of $E$. We reach an identical contradiction if $\alpha_2 < \alpha_1$. Therefore we conclude that $\alpha_1 = \alpha_2$ and the supremum of $E$ is unique (if it exists). The proof for the infimum is analogous. \qed
 \end{nproof}
 
 \begin{ntheorem}{Equivalence of maximum and supremum}
@@ -131,7 +131,7 @@ However, if we take $S = A$, $E = A$, then $E$ is not bounded above as we saw in
 
 \begin{comment}
 \begin{nproof}
-    Let $E \subset S$ and $\alpha = \max(E)$. By definition $\alpha$ is an upper bound of $E$, and if $x < \alpha$ for some $x \in E$ then $x$ is not an upper bound of $E$ as it is not greater than $\alpha \in E$. The claim follows (with an identical proof for the minimum).
+    Let $E \subset S$ and $\alpha = \max(E)$. By definition $\alpha$ is an upper bound of $E$, and if $x < \alpha$ for some $x \in E$ then $x$ is not an upper bound of $E$ as it is not greater than $\alpha \in E$. The claim follows (with an identical proof for the minimum). \qed
 \end{nproof}
 \end{comment}
 
@@ -143,7 +143,7 @@ However, if we take $S = A$, $E = A$, then $E$ is not bounded above as we saw in
     \end{enumerate}
 \end{example}
 \begin{nproof}
-    $\sup(E) = 1$ immediately follows from the equivalence of the maximum and supremum as proven above. To see that $\inf(E) = 0$, first note that $0$ is a lower bound for $E$ as all of the elements of $E$ are positive. To see that it is the lower bound, take any $x > 0$. Then, we have that for any $n > \frac{1}{x}$, $\frac{1}{n} < x$ and hence $x$ is not an upper bound of $E$. This proves the claim.
+    $\sup(E) = 1$ immediately follows from the equivalence of the maximum and supremum as proven above. To see that $\inf(E) = 0$, first note that $0$ is a lower bound for $E$ as all of the elements of $E$ are positive. To see that it is the lower bound, take any $x > 0$. Then, we have that for any $n > \frac{1}{x}$, $\frac{1}{n} < x$ and hence $x$ is not an upper bound of $E$. This proves the claim. \qed
 \end{nproof}
 
 \begin{definition}{The LUB/GUB Property}{1.10}
@@ -156,7 +156,7 @@ We will show in the next theorem that these properties are actually equivalent; 
 \begin{nproof}
     For the first claim, consider any nonempty $E \subset \ZZ$ that is bounded above. Choose any $x \in E$. Since $\ZZ$ is bounded above, there exist finitely many elements that are greater than $x$. Take the maximum of these finitely many elements. This maximum is also the maximum of $E$, so it is the supremum of $E$. Therefore $\ZZ$ has the LUB property as claimed.
     
-    The second claim immediately follows from Example \ref{exam:1.9}(a). 
+    The second claim immediately follows from Example \ref{exam:1.9}(a). \qed
 \end{nproof}
 
 \begin{theorem}{Equivalence of LUB/GUB properties}{1.11}
@@ -165,7 +165,7 @@ We will show in the next theorem that these properties are actually equivalent; 
 \begin{nproof}
     $\boxed{\implies}$ Let $S$ be an ordered set with the LUB property. Let $E \subset S$ with $E \neq \emptyset$, with $E$ bounded below. Let $L = \set{x \in S: x\text{ is a lower bound of $E$.}}$. $L \neq \emptyset$ as $E$ is bounded below (and hence has at least one lower bound). If $y \in E$, then $y$ is an upper bound for $L$. Since $E$ is nonempty, $L$ is therefore bounded above. Since $S$ has the LUB property, then $\sup(L)$ must exist. Let us call this $\alpha$. Then, $\alpha \leq x\ \forall x \in E$ (as if $\gamma < \alpha$, then $\gamma$ is not an upper bound of $L$ and hence $\gamma \neq E$). Hence, $\alpha$ is a lower bound for $E$ and hence $\alpha \in L$. Since $\alpha = \sup(L)$ and $\alpha$ is an upper bound for $L$, we have that $\alpha \geq \gamma\ \forall \gamma \in L$. Thus, $\alpha = \inf(E)$. 
 
-    $\boxed{\impliedby}$ Left as an exercise. 
+    $\boxed{\impliedby}$ Left as an exercise. \qed
 \end{nproof}
 
 \subsection{Fields and Ordered Fields}
@@ -198,6 +198,85 @@ Note that A3/M3 show that $x + y + z$ and $x\cdot y\cdot z$ are well defined in 
         \\ 0_1 + 0_2 &= 0_2 + 0_1 & \text{(A2)}
         \\ 0_2 &= 0_1 & \text{(Property of additive identity)}
     \end{align*}
-    Which shows that the additive identity is unique. The remaining proofs are left as an exercise.
+    Which shows that the additive identity is unique. The remaining proofs are left as an exercise. \qed
 \end{nproof}
-In Rudin, some easy (and familiar) consequences of the field axioms can be found in Propositions 1.14-1.16. Instead of repeating those here, we will 
+Some easy (and familiar) consequences of the field axioms can be found in Rudin 1.14-1.16. Instead of repeating those here, we will discuss some examples. 
+
+The rationals form a field (under the usual notions of addition/multiplication), but the integers do not, as there are no multiplicative inverses (e.g. there exists no integer $x \in \ZZ$ such that $2\cdot x = 1$). The simplest example of a field is $F = \set{0, 1}$, with the relations:
+\begin{align*}
+    0 + 0 = 0\quad 0\cdot0 = 1
+    \\ 0 + 1 = 0 \quad 0 \cdot 1 = 0
+    \\ 1 + 1 = 0 \quad 1 \cdot 1 = 1
+\end{align*}
+This field is often called $\mathbb{F}_2$ or $F_2$, and is useful in computer science (where bits can take on two states, 0 or 1). As a slight tangent, a byte (8 bits) can be considered an element of an 8-dimensional vector space over the field $\mathbb{F}_2$, where $+$ would be the XOR operator and $\cdot$ would be the AND operation. 
+
+A generalization of the above example is $\mathbb{F}_p$ or $F_p$, for a prime number $p$. This field would consist of the elements $0, 1, \ldots, p-1$. The addition and multiplication are carried out mod $p$. An interesting result is that in general, finite fields must have cardinality of some prime power. 
+
+Note that a field cannot have a single element; the field axioms (A4) and (M4) require the existence of distinct additive and multiplicative identities, which a singleton set cannot satisfy. 
+
+Although algebra is not the focus of this course, it may be interesting to briefly think about sets with less structure than a field. We start by considering a group. 
+
+\begin{ndef}{Groups}
+A \textbf{group} $G$ is a set with a binary operation $(a,b) \mapsto a\cdot b$ such that the following axioms are satisfied:
+\begin{enumerate}[(i)]
+    \item If $a, b \in G$, then $a\cdot b \in G$ (Closure)
+    \item For $a, b, c \in G$, $(a\cdot b)\cdot c = a\cdot(b\cdot c)$ (Associativity)
+    \item There exists $1 \in G$ such that $\forall x \in G$, $1 \cdot x = x$. (Identity)
+    \item $\forall x \in G$, there exists $y \in G$ such that $x \cdot y = 1$. (Inverse) 
+\end{enumerate}
+\end{ndef}
+We note that $\ZZ$ is a group under addition, but not under multiplication (due to lack of multiplicative inverses). We can also consider the set of 2x2 matrices with integer entries:
+\[G = \set{\m{a & b \\ c & d}: a, b, c, d \in \ZZ}\]
+$G$ is again a group under matrix addition, but not under matrix multiplication (as not every matrix in $G$ is invertible). If we restricted $G$ to be the set of $2x2$ invertible matrices, in this case it could form a group under matrix multiplication. A set with slightly more structure than a group (though not quite as structured as a field) is a ring:
+
+\begin{ndef}{Rings}
+    A \textbf{rings} $G$ is a set with two binary operations $(a,b) \mapsto a + b$ and $(a, b) \mapsto a \cdot b$ such that the following axioms are satisfied:
+    \begin{enumerate}[start=1, label={(A\arabic*):}]
+        \item If $x, y \in F$, then $x + y \in F$. (Closure under addition)
+        \item $x + y = y + x$ for all $x, y \in F$. (Commutativity of addition)
+        \item $(x+y) + z = x + (y + z)$ for all $x, y, z \in F$. (Associativity of addition)
+        \item $\exists 0 \in F$ such that $\forall x \in F$, $0 + x = x$. (Additive identity)
+        \item $\forall x \in F$, $\exists y$ such that $x + y = 0$. We can denote $y = -x$. (Additive inverse)
+        \end{enumerate}
+        \begin{enumerate}[start=1, label={(M\arabic*):}]
+            \item If $x, y \in F$, then $x\cdot y\in F$. (Closure under multiplication)
+            \stepcounter{enumi}
+            \item $(x\cdot y)\cdot z = x \cdot (y \cdot z)$ for all $x, y, z \in F$. (Associativity under multiplication)
+            \item $\exists 1 \in F$ such that $1 \neq 0$ and $\forall x \in F$, $1 \cdot x = x$. (Multiplicative identity)
+        \end{enumerate}
+        \begin{enumerate}[start=1, label={(D\arabic*):}]
+            \item $x \cdot (y + z) = x \cdot y + x \cdot z$, $\forall x, y, z \in F$. (Left distributivity)
+            \item $(y + z) \cdot x = y \cdot x + z \cdot x$, $\forall x, y, z \in F$. (Right distributivity)
+        \end{enumerate}
+\end{ndef}
+Rings have the same axioms as fields under addition, but multiplication is not necessarily commutative (this is why an additional distributivity axiom is added), and multiplicative inverses are not required. We note that $\ZZ$ and $G$ are both rings under their respective operations of addition and multiplication. 
+
+For the remainder of this course, we will really only be discussing fields; however, groups and rings will come up again and again in abstract algebra courses!
+
+
+
+\setcounter{rudin}{16}
+\begin{definition}{Ordered Field}{1.13}
+    An \textbf{Ordered field} is a field $F$ that is also an ordered set, such that the following axioms are satisfied:
+    \begin{enumerate}[(i)]
+        \item If $x, y, z \in F$ and $y < z$, then $x + y < x + z$.
+        \item If $x, y \in F$ and $x > 0, y > 0$, then $x\cdot y > 0$.
+    \end{enumerate}
+\end{definition}
+Some properties of ordered fields are discussed in Rudin 1.18. We will again refer the reader to the discussion in the textbook for these properties, and here consider some examples.
+
+$\QQ$ is an ordered field, with the familiar order of $a > b$ if $a - b > 0$. A question may arise if $\mathbb{F}_2$ is an ordered field. A priori fields do not have order, but is it possible to impose an order on this set such that it is an ordered field? The answer turns out to be no.
+
+\begin{proof}
+    It suffices to show that both possible orderings leads to a contradiction. Suppose $0 < 1$. Then, $1 = 0 + 1 < 1 + 1 = 0$ which is a contradiction. Suppose instead that $1 < 0$. Then, $0 = 1 + 1 < 1 + 0 = 1$ which again is a contradiction.
+\end{proof}
+
+\stepcounter{rudin}
+
+\begin{theorem}{Existence of $\RR$}{1.19}
+    There exists an ordered field $\RR$ which has the LUB property and contains $\QQ$ as a subfield. 
+\end{theorem}
+What does it mean for $\QQ$ to be a subfield? It means that there exists an injective function $\QQ \mapsto \RR$ that respects the properties of an ordered field. 
+
+This field $\RR$ happens to be exactly the set of real numbers we are familiar with. However, a natural question is ``what does it mean that there exsits a field?" It turns out that we can define the reals based on the definitions we have made already. One further question might be that could there not exists several fields with the above property; however, taking the appropriate view, we will find that there is a unqiue such field. 
+
