@@ -180,6 +180,16 @@ We will show in the next theorem that these properties are actually equivalent; 
     (D): $x \cdot (y + z) = x \cdot y + x \cdot z$, $\forall x, y, z \in F$. (Distributive law)
 \end{definition}
 Note that A3/M3 show that $x + y + z$ and $x\cdot y\cdot z$ are well defined in a mathematical sense; however, associativity may not hold for computers that do math with finite precision! 
-\begin{ntheorem}{Uniqueness}
+\begin{ntheorem}{Uniqueness of Identities and Inverses}
     The additive/multiplicative identities given by (A4)/(M4) and the additive/multiplicative inverses given by (A5)/(M5) are unique. 
 \end{ntheorem}
+\begin{nproof}
+    Let $F$ be an ordered field. Suppose that there exist $0_1, 0_2 \in F$ such that $0_1 + x= x$ and $0_2 + x = x$ for all $x \in F$. We then have that:
+    \begin{align*}
+        0_1 + 0_2 &= 0_1 + 0_2
+        \\ 0_1 + 0_2 &= 0_2 + 0_1 & \text{(A2)}
+        \\ 0_2 &= 0_1 & \text{(Property of additive identity)}
+    \end{align*}
+    Which shows that the additive identity is unique. The remaining proofs are left as an exercise.
+\end{nproof}
+In Rudin, some easy (and familiar) consequences of the field axioms can be found in Propositions 1.14-1.16. Instead of repeating those here,
