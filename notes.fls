@@ -221,6 +221,8 @@ INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/preprint/fullpage.sty
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/preprint/fullpage.sty
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/tools/enumerate.sty
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/tools/enumerate.sty
+INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/enumitem/enumitem.sty
+INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/enumitem/enumitem.sty
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/tools/verbatim.sty

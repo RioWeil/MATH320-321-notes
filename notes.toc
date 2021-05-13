@@ -2,11 +2,12 @@
 \contentsline {subsection}{\numberline {1.1}The Naturals, Integers, and Rationals}{2}{subsection.1.1}% 
 \contentsline {subsection}{\numberline {1.2}Ordered Sets}{4}{subsection.1.2}% 
 \contentsline {subsection}{\numberline {1.3}The Least Upper Bound Property}{5}{subsection.1.3}% 
-\contentsline {section}{\numberline {2}Basic Topology}{7}{section.2}% 
-\contentsline {section}{\numberline {3}Numerical Sequences and Series}{7}{section.3}% 
-\contentsline {section}{\numberline {4}Continuity}{7}{section.4}% 
-\contentsline {section}{\numberline {5}Differentiation}{7}{section.5}% 
-\contentsline {section}{\numberline {6}The Riemann-Stieltjes Integral}{7}{section.6}% 
-\contentsline {section}{\numberline {7}Sequences and Series of Functions}{7}{section.7}% 
-\contentsline {section}{\numberline {8}Some Special Functions}{7}{section.8}% 
-\contentsline {section}{\numberline {9}Functions of Several Variables}{7}{section.9}% 
+\contentsline {subsection}{\numberline {1.4}Fields and Ordered Fields}{7}{subsection.1.4}% 
+\contentsline {section}{\numberline {2}Basic Topology}{8}{section.2}% 
+\contentsline {section}{\numberline {3}Numerical Sequences and Series}{8}{section.3}% 
+\contentsline {section}{\numberline {4}Continuity}{8}{section.4}% 
+\contentsline {section}{\numberline {5}Differentiation}{8}{section.5}% 
+\contentsline {section}{\numberline {6}The Riemann-Stieltjes Integral}{8}{section.6}% 
+\contentsline {section}{\numberline {7}Sequences and Series of Functions}{8}{section.7}% 
+\contentsline {section}{\numberline {8}Some Special Functions}{8}{section.8}% 
+\contentsline {section}{\numberline {9}Functions of Several Variables}{8}{section.9}% 

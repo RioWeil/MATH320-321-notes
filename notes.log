@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  13 MAY 2021 09:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  13 MAY 2021 10:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -656,39 +656,47 @@ Package: fullpage 1999/02/23 1.1 (PWD)
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/tools/enumerate.sty
 Package: enumerate 2015/07/23 v3.00 enumerate extensions (DPC)
 \@enLab=\toks46
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2019/02/04 v3.8 Customized lists
+\labelindent=\skip61
+\enit@outerparindent=\dimen280
+\enit@toks=\toks47
+\enit@inbox=\box61
+\enit@count@id=\count296
+\enitdp@description=\count297
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
 Package: tcolorbox 2019/03/02 version 4.20 text color boxes
  (/usr/local/texlive/2019/texmf-dist/tex/latex/tools/verbatim.sty
 Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
-\every@verbatim=\toks47
-\verbatim@line=\toks48
+\every@verbatim=\toks48
+\verbatim@line=\toks49
 \verbatim@in@stream=\read3
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/environ/environ.sty
 Package: environ 2014/05/04 v0.3 A new way to define environments
- (/usr/local/texlive/2019/texmf-dist/tex/latex/trimspaces/trimspaces.sty
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/trimspaces/trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
-))
-(/usr/local/texlive/2019/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+)) (/usr/local/texlive/2019/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2018/08/19 v2.5f e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count296
+\etb@tempcnta=\count298
 )
-\tcb@titlebox=\box61
-\tcb@upperbox=\box62
-\tcb@lowerbox=\box63
-\tcb@phantombox=\box64
-\c@tcbbreakpart=\count297
-\c@tcblayer=\count298
-\tcolorbox@number=\count299
-\tcb@temp=\box65
+\tcb@titlebox=\box62
+\tcb@upperbox=\box63
+\tcb@lowerbox=\box64
+\tcb@phantombox=\box65
+\c@tcbbreakpart=\count299
+\c@tcblayer=\count300
+\tcolorbox@number=\count301
 \tcb@temp=\box66
 \tcb@temp=\box67
 \tcb@temp=\box68
+\tcb@temp=\box69
 \tcb@out=\write4
 \tcb@record@out=\write5
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/tcolorbox/tcbtheorems.code.tex
 Library (tcolorbox): 'tcbtheorems.code.tex' version '4.20'
 )
-\c@rudin=\count300
+\c@rudin=\count302
 ) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.aux)
 \openout1 = `notes.aux'.
 
@@ -708,17 +716,17 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 4.
 LaTeX Font Info:    ... okay on input line 4.
  (/usr/local/texlive/2019/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count301
-\scratchdimen=\dimen280
-\scratchbox=\box69
-\nofMPsegments=\count302
-\nofMParguments=\count303
-\everyMPshowfont=\toks49
-\MPscratchCnt=\count304
-\MPscratchDim=\dimen281
-\MPnumerator=\count305
-\makeMPintoPDFobject=\count306
-\everyMPtoPDFconversion=\toks50
+\scratchcounter=\count303
+\scratchdimen=\dimen281
+\scratchbox=\box70
+\nofMPsegments=\count304
+\nofMParguments=\count305
+\everyMPshowfont=\toks50
+\MPscratchCnt=\count306
+\MPscratchDim=\dimen282
+\MPnumerator=\count307
+\makeMPintoPDFobject=\count308
+\everyMPtoPDFconversion=\toks51
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
  (/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/grfext.sty
@@ -765,14 +773,14 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 ABD: EveryShipout initializing macros
-\AtBeginShipoutBox=\box70
+\AtBeginShipoutBox=\box71
 Package hyperref Info: Link coloring OFF on input line 4.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
  (/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count307
+\c@section@level=\count309
 )
 LaTeX Info: Redefining \ref on input line 4.
 LaTeX Info: Redefining \pageref on input line 4.
@@ -802,29 +810,29 @@ Non-PDF special ignored!
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
 l.68 
-     ] [4] [5]) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch2.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch3.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch4.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch5.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch6.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch7.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch8.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch9.tex) [6] [7]
+     ] [4] [5] [6]) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch2.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch3.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch4.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch5.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch6.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch7.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch8.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch9.tex) [7] [8]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 38.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 38.
  (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 38.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 38.
 Package rerunfilecheck Info: File `notes.out' has not changed.
-(rerunfilecheck)             Checksum: 3F8A668C48A46B08D06DBCA79908054A;763.
+(rerunfilecheck)             Checksum: A4E97BDEAA55FB57794AF85E7D751701;838.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 38.
  ) 
 Here is how much of TeX's memory you used:
- 36646 strings out of 492616
- 781896 string characters out of 6129482
- 921910 words of memory out of 5000000
- 40103 multiletter control sequences out of 15000+600000
+ 36978 strings out of 492616
+ 787405 string characters out of 6129482
+ 931521 words of memory out of 5000000
+ 40418 multiletter control sequences out of 15000+600000
  535902 words of font info for 38 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,11n,77p,1010b,512s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.pdf" (7 pages, 179175 bytes).
+Output written on "/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.pdf" (8 pages, 182751 bytes).
 PDF statistics:
- 191 PDF objects out of 1000 (max. 8388607)
- 166 compressed objects within 2 object streams
- 39 named destinations out of 1000 (max. 500000)
- 109 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 213 PDF objects out of 1000 (max. 8388607)
+ 187 compressed objects within 2 object streams
+ 52 named destinations out of 1000 (max. 500000)
+ 117 words of extra memory for PDF output out of 10000 (max. 10000000)
 

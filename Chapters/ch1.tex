@@ -159,3 +159,27 @@ We will show in the next theorem that these properties are actually equivalent; 
 
     $\boxed{\impliedby}$ Left as an exercise. 
 \end{nproof}
+
+\subsection{Fields and Ordered Fields}
+\begin{definition}{Fields}{1.12}
+    A field $F$ is a set with two binary operations, $+$ and $\cdot$ (addition and multiplication) such that the following axioms are satisfied:
+    \begin{enumerate}[start=1, label={(A\arabic*):}]
+    \item If $x, y \in F$, then $x + y \in F$. (Closure under addition)
+    \item $x + y = y + x$ for all $x, y \in F$. (Commutativity of addition)
+    \item $(x+y) + z = x + (y + z)$ for all $x, y, z \in F$. (Associativity of addition)
+    \item $\exists 0 \in F$ such that $\forall x \in F$, $0 + x = x$. (Additive identity)
+    \item $\forall x \in F$, $\exists y$ such that $x + y = 0$. We can denote $y = -x$. (Additive inverse)
+    \end{enumerate}
+    \begin{enumerate}[start=1, label={(M\arabic*):}]
+        \item If $x, y \in F$, then $x\cdot y\in F$. (Closure under multiplication)
+        \item $x \cdot y = y \cdot x$ for all $x, y \in F$.
+        \item $(x\cdot y)\cdot z = x \cdot (y \cdot z)$ for all $x, y, z \in F$. (Associativity under multiplication)
+        \item $\exists 1 \in F$ such that $1 \neq 0$ and $\forall x \in F$, $1 \cdot x = x$. (Multiplicative identity)
+        \item $\forall x \in F$, exists $y \in F$ such that $x \cdot y = 1$. We can denote $y = \frac{1}{x}$. (Multiplicative inverse)
+    \end{enumerate}
+    (D): $x \cdot (y + z) = x \cdot y + x \cdot z$, $\forall x, y, z \in F$. (Distributive law)
+\end{definition}
+Note that A3/M3 show that $x + y + z$ and $x\cdot y\cdot z$ are well defined in a mathematical sense; however, associativity may not hold for computers that do math with finite precision! 
+\begin{ntheorem}{Uniqueness}
+    The additive/multiplicative identities given by (A4)/(M4) and the additive/multiplicative inverses given by (A5)/(M5) are unique. 
+\end{ntheorem}
