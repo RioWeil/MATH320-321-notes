@@ -218,8 +218,9 @@ Although algebra is not the focus of this course, it may be interesting to brief
 
 \begin{ndef}{Groups}
 A \textbf{group} $G$ is a set with a binary operation $(a,b) \mapsto a\cdot b$ such that the following axioms are satisfied:
-\begin{enumerate}[(i)]
+\begin{enumerate}[start=1, label={(M\arabic*):}]
     \item If $a, b \in G$, then $a\cdot b \in G$ (Closure)
+    \stepcounter{enumi}
     \item For $a, b, c \in G$, $(a\cdot b)\cdot c = a\cdot(b\cdot c)$ (Associativity)
     \item There exists $1 \in G$ such that $\forall x \in G$, $1 \cdot x = x$. (Identity)
     \item $\forall x \in G$, there exists $y \in G$ such that $x \cdot y = 1$. (Inverse) 
@@ -279,4 +280,52 @@ $\QQ$ is an ordered field, with the familiar order of $a > b$ if $a - b > 0$. A 
 What does it mean for $\QQ$ to be a subfield? It means that there exists an injective function $\QQ \mapsto \RR$ that respects the properties of an ordered field. 
 
 This field $\RR$ happens to be exactly the set of real numbers we are familiar with. However, a natural question is ``what does it mean that there exsits a field?" It turns out that we can define the reals based on the definitions we have made already. One further question might be that could there not exists several fields with the above property; however, taking the appropriate view, we will find that there is a unqiue such field. 
+
+\subsection{Consequences of the LUB Property}
+We will use the least upper bound property and the fact that $\RR$ has $\QQ$ as a subfield to derive its properties.
+\begin{theorem}{Archimedian Property, Density of the Rationals/Irrationals}{1.20}
+    \begin{enumerate}
+        \item If $x, y \in \RR$ and $x > 0$, then $\exists n \in \NN$ such that $nx > y$.
+        \item If $x, y \in \RR$, and $x < y$, then $\exists p \in \QQ$ such that $x < p < y$. ($\QQ$ is dense in $\RR$)
+        \item If $x, y \in \RR$, and $x < y$, then $\exists \alpha \in \RR \setminus \QQ$ such that $x < \alpha < y$. ($\RR\setminus\QQ$ is dense in $\RR$)
+    \end{enumerate}
+\end{theorem}
+
+\begin{nproof}
+    (a) Let $A = \set{nx: n \in \NN}$. Suppose for the sake of contradiction that the conclusion was false; then $y$ is an upper bound of $A$. Then, $\alpha = \sup(A)$ exists by the LUB property of $\RR$. Since $x > 0$, we then have that $\alpha - x < \alpha$ by the property of an ordered field. Hence, $\alpha - x$ is not an upper bound for $A$. Therefore, there exists some $m \in \NN$ such that $mx > \alpha - x$. It then follows that $(m+1)x > \alpha$. We therefore have found $m+1 = k \in \NN$ such that $kx > \alpha$, contradicting $\alpha$ being the least upper bound of $A$. \qed
+\end{nproof}
+
+In order to prove (b) and (c), we first prove a stronger version of (a):
+\begin{nlemma}{Stronger Archimedian Property}
+    If $x, y \in \RR$ and $x > 0$, then there exists $n \in \ZZ$ such that $(n-1)x \leq y < nx$. 
+\end{nlemma}
+\begin{nproof}
+    Suppose $y \geq 0$. Let $A = \set{m \in \NN: y < mx} \subset \NN$. By Theorem \ref{thm:1.20} (a), we have that $A \neq \emptyset$. Every non-empty subset of $\NN$ has a smallest element, so let $n = \min(A)$. The claim holds for this $n$.
+    The case for $y < 0$ is left as an exercise. \qed
+\end{nproof}
+\begin{nproof}
+    (b) Since $y - x > 0$, by (a), $\exists n \in \NN$ such that $1 < n(y-x)$. Furthermore, by the Lemma we have that $\exists m \in \ZZ$ such that $m - 1 \leq nx < m$ and hence $m \leq nx + 1$. From these inequalities we obtain that $nx < m \leq nx + 1 < ny$, and therefore $x < \frac{m}{n} < y$ for some $m \in \ZZ$, $n \in \NN$. \qed
+\end{nproof}
+For the proof of part (c), we will use the result of Theorem \ref{thm:1.21} from the next section, specifically that there exists $s \in \RR \setminus \QQ$ such that $s > 0$ and $s^2 = 2$. We will call this $\sqrt{2}$.
+\begin{nproof}
+    (c) First, we have that $\sqrt{2} < 2$ as if $\sqrt{2} = 2$ then $(\sqrt{2})^2 = 2 = 2^2 = 4$ which is a contradiction, and if $\sqrt{2} > 2$ then $2 = \sqrt{2}\cdot \sqrt{2} > 2\cdot 2 = 4$ by Rudin 1.18 which is yet again a contradiction. Thus, $\frac{\sqrt{2}}{2} < 1$. 
+    
+    Let $x, y \in \RR$ such that $x < y$. By Theorem \ref{thm:1.20}(b), there exists $p, q \in \QQ$ such that $x < p < q < y$. Let $\alpha = p + \frac{\sqrt{2}}{2}(q - p)$. Then, we have that $p  <\alpha < p + 1(q-p) < q$ and hence $x < p < \alpha < q < y$.
+
+    If $\alpha \in \QQ$, then $\sqrt{2} = 2\left(\frac{\alpha-p}{q-p}\right) \in \QQ$, which is a contradiction, so it follows that $\alpha \in \RR \setminus \QQ$. \qed
+\end{nproof}
+
+\subsection{Integer Roots of the Reals}
+
+\begin{theorem}{Roots of real numbers}{1.21}
+
+\end{theorem}
+\subsection{Construction of the Reals}
+
+\subsection{The Complex Field}
+
+\subsection{The Cauchy-Shwartz Inequality}
+
+\subsection{Euclidean Space}
+
 
