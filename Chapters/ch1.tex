@@ -231,23 +231,23 @@ We note that $\ZZ$ is a group under addition, but not under multiplication (due 
 $G$ is again a group under matrix addition, but not under matrix multiplication (as not every matrix in $G$ is invertible). If we restricted $G$ to be the set of $2\times 2$ invertible matrices, in this case it could form a group under matrix multiplication. A set with slightly more structure than a group (though not quite as structured as a field) is a ring:
 
 \begin{ndef}{Rings}
-    A \textbf{rings} $G$ is a set with two binary operations $(a,b) \mapsto a + b$ and $(a, b) \mapsto a \cdot b$ such that the following axioms are satisfied:
+    A \textbf{ring} $R$ is a set with two binary operations $(a,b) \mapsto a + b$ and $(a, b) \mapsto a \cdot b$ such that the following axioms are satisfied:
     \begin{enumerate}[start=1, label={(A\arabic*):}]
-        \item If $x, y \in F$, then $x + y \in F$. (Closure under addition)
-        \item $x + y = y + x$ for all $x, y \in F$. (Commutativity of addition)
-        \item $(x+y) + z = x + (y + z)$ for all $x, y, z \in F$. (Associativity of addition)
-        \item $\exists 0 \in F$ such that $\forall x \in F$, $0 + x = x$. (Additive identity)
-        \item $\forall x \in F$, $\exists y$ such that $x + y = 0$. We can denote $y = -x$. (Additive inverse)
+        \item If $x, y \in R$, then $x + y \in R$. (Closure under addition)
+        \item $x + y = y + x$ for all $x, y \in R$. (Commutativity of addition)
+        \item $(x+y) + z = x + (y + z)$ for all $x, y, z \in R$. (Associativity of addition)
+        \item $\exists 0 \in R$ such that $\forall x \in R$, $0 + x = x$. (Additive identity)
+        \item $\forall x \in R$, $\exists y$ such that $x + y = 0$. We can denote $y = -x$. (Additive inverse)
         \end{enumerate}
         \begin{enumerate}[start=1, label={(M\arabic*):}]
-            \item If $x, y \in F$, then $x\cdot y\in F$. (Closure under multiplication)
+            \item If $x, y \in R$, then $x\cdot y\in R$. (Closure under multiplication)
             \stepcounter{enumi}
-            \item $(x\cdot y)\cdot z = x \cdot (y \cdot z)$ for all $x, y, z \in F$. (Associativity under multiplication)
-            \item $\exists 1 \in F$ such that $1 \neq 0$ and $\forall x \in F$, $1 \cdot x = x$. (Multiplicative identity)
+            \item $(x\cdot y)\cdot z = x \cdot (y \cdot z)$ for all $x, y, z \in R$. (Associativity under multiplication)
+            \item $\exists 1 \in R$ such that $1 \neq 0$ and $\forall x \in R$, $1 \cdot x = x$. (Multiplicative identity)
         \end{enumerate}
         \begin{enumerate}[start=1, label={(D\arabic*):}]
-            \item $x \cdot (y + z) = x \cdot y + x \cdot z$, $\forall x, y, z \in F$. (Left distributivity)
-            \item $(y + z) \cdot x = y \cdot x + z \cdot x$, $\forall x, y, z \in F$. (Right distributivity)
+            \item $x \cdot (y + z) = x \cdot y + x \cdot z$, $\forall x, y, z \in R$. (Left distributivity)
+            \item $(y + z) \cdot x = y \cdot x + z \cdot x$, $\forall x, y, z \in R$. (Right distributivity)
         \end{enumerate}
 \end{ndef}
 Rings have the same axioms as fields under addition, but multiplication is not necessarily commutative (this is why an additional distributivity axiom is added), and multiplicative inverses are not required. We note that $\ZZ$ and $G$ are both rings under their respective operations of addition and multiplication. 
