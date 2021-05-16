@@ -5,15 +5,15 @@
 \contentsline {subsection}{\numberline {1.4}Fields and Ordered Fields}{7}{subsection.1.4}% 
 \contentsline {subsection}{\numberline {1.5}Consequences of the LUB Property}{10}{subsection.1.5}% 
 \contentsline {subsection}{\numberline {1.6}Integer Roots of the Reals}{11}{subsection.1.6}% 
-\contentsline {subsection}{\numberline {1.7}Construction of the Reals}{11}{subsection.1.7}% 
-\contentsline {subsection}{\numberline {1.8}The Complex Field}{11}{subsection.1.8}% 
-\contentsline {subsection}{\numberline {1.9}The Cauchy-Shwartz Inequality}{11}{subsection.1.9}% 
-\contentsline {subsection}{\numberline {1.10}Euclidean Space}{11}{subsection.1.10}% 
-\contentsline {section}{\numberline {2}Basic Topology}{11}{section.2}% 
-\contentsline {section}{\numberline {3}Numerical Sequences and Series}{11}{section.3}% 
-\contentsline {section}{\numberline {4}Continuity}{11}{section.4}% 
-\contentsline {section}{\numberline {5}Differentiation}{11}{section.5}% 
-\contentsline {section}{\numberline {6}The Riemann-Stieltjes Integral}{11}{section.6}% 
-\contentsline {section}{\numberline {7}Sequences and Series of Functions}{11}{section.7}% 
-\contentsline {section}{\numberline {8}Some Special Functions}{11}{section.8}% 
-\contentsline {section}{\numberline {9}Functions of Several Variables}{11}{section.9}% 
+\contentsline {subsection}{\numberline {1.7}Construction of the Reals}{13}{subsection.1.7}% 
+\contentsline {subsection}{\numberline {1.8}The Complex Field}{13}{subsection.1.8}% 
+\contentsline {subsection}{\numberline {1.9}The Cauchy-Shwartz Inequality}{13}{subsection.1.9}% 
+\contentsline {subsection}{\numberline {1.10}Euclidean Space}{13}{subsection.1.10}% 
+\contentsline {section}{\numberline {2}Basic Topology}{13}{section.2}% 
+\contentsline {section}{\numberline {3}Numerical Sequences and Series}{13}{section.3}% 
+\contentsline {section}{\numberline {4}Continuity}{13}{section.4}% 
+\contentsline {section}{\numberline {5}Differentiation}{13}{section.5}% 
+\contentsline {section}{\numberline {6}The Riemann-Stieltjes Integral}{13}{section.6}% 
+\contentsline {section}{\numberline {7}Sequences and Series of Functions}{13}{section.7}% 
+\contentsline {section}{\numberline {8}Some Special Functions}{13}{section.8}% 
+\contentsline {section}{\numberline {9}Functions of Several Variables}{13}{section.9}% 

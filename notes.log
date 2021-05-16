@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  14 MAY 2021 10:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  15 MAY 2021 23:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -810,7 +810,7 @@ Non-PDF special ignored!
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
 l.78 
-     ] [4] [5] [6] [7] [8] [9] [10]) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch2.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch3.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch4.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch5.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch6.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch7.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch8.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch9.tex) [11]
+     ] [4] [5] [6] [7] [8] [9] [10] [11]) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch2.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch3.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch4.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch5.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch6.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch7.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch8.tex) (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/Chapters/ch9.tex) [12] [13]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 38.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 38.
  (/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.aux)
@@ -821,18 +821,18 @@ Package rerunfilecheck Info: File `notes.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 38.
  ) 
 Here is how much of TeX's memory you used:
- 37136 strings out of 492616
- 790128 string characters out of 6129482
- 932979 words of memory out of 5000000
- 40542 multiletter control sequences out of 15000+600000
+ 37145 strings out of 492616
+ 790206 string characters out of 6129482
+ 933977 words of memory out of 5000000
+ 40544 multiletter control sequences out of 15000+600000
  536416 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,12n,77p,1010b,719s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.pdf" (11 pages, 235100 bytes).
+Output written on "/Users/ryoheiweil/Desktop/2021 2022 Work/MATH320-321-Notes/notes.pdf" (13 pages, 242852 bytes).
 PDF statistics:
- 300 PDF objects out of 1000 (max. 8388607)
- 267 compressed objects within 3 object streams
- 84 named destinations out of 1000 (max. 500000)
+ 318 PDF objects out of 1000 (max. 8388607)
+ 283 compressed objects within 3 object streams
+ 91 named destinations out of 1000 (max. 500000)
  165 words of extra memory for PDF output out of 10000 (max. 10000000)
 

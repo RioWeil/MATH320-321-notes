@@ -228,7 +228,7 @@ A \textbf{group} $G$ is a set with a binary operation $(a,b) \mapsto a\cdot b$ s
 \end{ndef}
 We note that $\ZZ$ is a group under addition, but not under multiplication (due to lack of multiplicative inverses). We can also consider the set of 2x2 matrices with integer entries:
 \[G = \set{\m{a & b \\ c & d}: a, b, c, d \in \ZZ}\]
-$G$ is again a group under matrix addition, but not under matrix multiplication (as not every matrix in $G$ is invertible). If we restricted $G$ to be the set of $2x2$ invertible matrices, in this case it could form a group under matrix multiplication. A set with slightly more structure than a group (though not quite as structured as a field) is a ring:
+$G$ is again a group under matrix addition, but not under matrix multiplication (as not every matrix in $G$ is invertible). If we restricted $G$ to be the set of $2\times 2$ invertible matrices, in this case it could form a group under matrix multiplication. A set with slightly more structure than a group (though not quite as structured as a field) is a ring:
 
 \begin{ndef}{Rings}
     A \textbf{rings} $G$ is a set with two binary operations $(a,b) \mapsto a + b$ and $(a, b) \mapsto a \cdot b$ such that the following axioms are satisfied:
@@ -296,7 +296,7 @@ We will use the least upper bound property and the fact that $\RR$ has $\QQ$ as 
 \end{nproof}
 
 In order to prove (b) and (c), we first prove a stronger version of (a):
-\begin{nlemma}{Stronger Archimedian Property}
+\begin{nlemma}{}
     If $x, y \in \RR$ and $x > 0$, then there exists $n \in \ZZ$ such that $(n-1)x \leq y < nx$. 
 \end{nlemma}
 \begin{nproof}
@@ -316,10 +316,50 @@ For the proof of part (c), we will use the result of Theorem \ref{thm:1.21} from
 \end{nproof}
 
 \subsection{Integer Roots of the Reals}
-
+In this section, we will prove that $\sqrt{2}$ exists and is an irrational number, but we will not use the fact that $\RR \setminus \QQ$ is dense in $\RR$; this would of course be circular reasoning. The more general idea will be to prove that for any $n \in \NN$, there exists $y \in \RR$ such that $y = x^{1/n}$. Before this, we prove a lemma.
+\begin{nlemma}{}
+    If $0 < a < b$ and $n \in \NN$, then $0 < b^n - a^n \leq nb^{n-1}(b-a)$
+\end{nlemma}
+Note that a "Calculus proof" of this Lemma would be to let $f(x) = x^n$, and then
+\[f(b) - f(a) = f'(c)(b-a) = nc^{n-1}(b-a) \leq nb^{n-1}(b-a)\]
+Where we invoke the mean value theorem. But this obviously doesn't work as we have neither defined a derivative nor proven the mean value theorem. A proper proof would be:
+\begin{nproof}
+    Let $0 < a < b$. Then, we may factor $b^n - a^n$ such that:
+    \[b^n - a^n = (b-a)(b^{n-1} + ab^{n-2} + a^2b^{n-3} + \ldots + a^{n-2}b + a^{n-1})\]
+    The second factor is a sum of $n$ terms, each positive, and in between $0$ and $b^{n-1}$. ThereforE:
+    \[b^n - a^n \leq nb^{n-1}(b-a)\]
+    which proves the claim. \qed
+\end{nproof}
+We will now state the theorem formally:
 \begin{theorem}{Roots of real numbers}{1.21}
-
+    Let $x \in \RR$, $x > 0$, and $n \in \NN$. Then, there exists a unique $y \in \RR$ such that $y > 0$ and $y^n = x$. 
 \end{theorem}
+Note that somewhere in the proof, we will use the fact that $y \in \RR$; this statement doesn't hold for rationals (see Example \ref{exam:1.1a}) so some property of the reals must come into play somewhere.
+\begin{nproof}
+    If $n = 1$, then the unique solution is $y = x$; we may therefore assume that $n \geq 2$.
+    \\ \textbf{Uniqueness:} Suppose there exist two distinct numbers $y_1, y_2$ with $y_1 > 0, y_2 > 0$, and $y_1^n = y_2^n = x$. WLOG, suppose $0 < y_1 < y_2$. We then have that $0 < y_1^n < y_2^n$ which is a contradiction. 
+    \\ \textbf{Existence:} We prove existence in three steps.
+    \begin{enumerate}[1.]
+        \item We show that $E \neq \emptyset$. Let $E = \set{t \in \RR: t > 0, t^n < x}$. If $x < 1$, then $x^n < x$, so $x \in E$. If $x \geq 1$, then $\left(\frac{1}{2}\right)^n < \frac{1}{2} < x$, so $\frac{1}{2} \in E$. Therefore, $E \neq \emptyset$.
+        \item We show that $E$ is bounded above and has a supremum in $\RR$. If $t > 1 + x$, then it follows that $t^n > t > x$, so $t \neq E$. Hence, $1 + x$ is an upper bound of $E$. By Theorem \ref{thm:1.19} (the LUB property of $\RR$), it follows that $\sup(E) \in \RR$ exists. 
+        \item We show that $y = \sup(E)$ satisfies $y^n = x$. As $\RR$ is an ordered field, one of $y^n < x$, $y^n = x$, or $y^n > x$ must be true; we show that the first and third are impossible.
+        \begin{enumerate}
+            \item Suppose $y^n < x$. We will obtain a contradiction by finding $h > 0$ such that $(y+h)^n < x$. (Why is this a contradiction? $y+ h > y$, so if $(y+h)^n < x$, then $y + h \in E$, contradicting the fact that $y + h$ would be an upper bound of $E$). WLOG, suppose that $h < 1$. By the above Lemma, we have that:
+            \[(y+h)^n - y^n \leq n(y+h)^{n-1}h \leq n(y+1)^{n-1}h\]
+            By choosing $h$ sufficiently small, that is:
+            \[h < \min\set{1, \frac{x-y^n}{n(y+1)^{n-1}}}\]
+            Then $n(y+1)^{n-1}h < x^n - y^n$ from which it follows that $(y+h)^n - y^n < x^n - y^n$ and so $y+h < x$, which is the desired contradiction.
+            \item Suppose $y^n > x$. We will obtain a contradivction by finding $h > 0$ such that $(y-h)^n > x$. If this is true, then $y-h$ is an upper bound for $E$, contradicting the fact that $y$ is the least upper bound for $E$. WLOG suppose that $h < 0$. Again applying the Lemma, we have that:
+            \[y^n - (y-h)^n \leq ny^{n-1}h\]
+            By choosing $h$ sufficiently small, that is:
+            \[h < \min\set{1, \frac{y^n-x}{ny^{n-1}}}\]
+            It then follows that:
+            \[y^n - (y-h)^n \leq ny^{n-1}h < y^n - x\]
+            and hence $(y-h)^n > x$, which is the desired contradiction.
+        \end{enumerate} 
+    \end{enumerate}
+    \qed
+\end{nproof}
 \subsection{Construction of the Reals}
 
 \subsection{The Complex Field}
