@@ -63,7 +63,7 @@ We note that this example leads us to conclude that the rationals have certain "
         \draw[] (3.5, 0) node[anchor=south] {$B$};
     \end{tikzpicture}
     \caption{Visualization of sets $A$ and $B$. We note that $\sqrt{2}$ has not been defined in our formalism yet, but from our prior mathematical intuition it would be what goes in the "hole" of the rationals.}
-    \label{<label>}
+    \label{fig1}
 \end{figure}
 
 For the proof of this statement, we consider playing a 2 person game. One person is $\forall$, one person is $\exists$, and we consider if one person has a winning strategy. $\forall$ goes first, and then $\exists$ goes next, having seen the choice that $\forall$ has made. Then, we check if indeed $p < q$. If $p < q$, then $\exists$ wins. If $p \not< q$, then $\forall$ wins. 
@@ -300,7 +300,7 @@ In order to prove (b) and (c), we first prove a stronger version of (a):
     If $x, y \in \RR$ and $x > 0$, then there exists $n \in \ZZ$ such that $(n-1)x \leq y < nx$. 
 \end{nlemma}
 \begin{nproof}
-    Suppose $y \geq 0$. Let $A = \set{m \in \NN: y < mx} \subset \NN$. By Theorem \ref{thm:1.20} (a), we have that $A \neq \emptyset$. Every non-empty subset of $\NN$ has a smallest element, so let $n = \min(A)$. The claim holds for this $n$.
+    Suppose $y \geq 0$. Let $A = \set{m \in \NN: y < mx} \subset \NN$. By Theorem \ref{thm:1.20} (a), we have that $A \neq \emptyset$. Every non-empty subset of $\NN$ has a smallest element (to see this, let $x \in A$, and define $A' = \set{y \in A: y \leq x}$. This is finite and nonempty and so has a smallest element, and the minimum element of this set will also be a lower bound and hence the minimum element of all of $A$), so let $n = \min(A)$. The claim holds for this $n$.
     The case for $y < 0$ is left as an exercise. \qed
 \end{nproof}
 \begin{nproof}
@@ -355,12 +355,37 @@ Note that somewhere in the proof, we will use the fact that $y \in \RR$; this st
             \[h < \min\set{1, \frac{y^n-x}{ny^{n-1}}}\]
             It then follows that:
             \[y^n - (y-h)^n \leq ny^{n-1}h < y^n - x\]
-            and hence $(y-h)^n > x$, which is the desired contradiction.
+            and hence $(y-h)^n > x$, which is the desired contradiction. \qed
         \end{enumerate} 
     \end{enumerate}
-    \qed
 \end{nproof}
 \subsection{Construction of the Reals}
+Theorem \ref{thm:1.19} says that there exists an ordered field that contains $\QQ$ as a subfield. We now go about proving this statement. This is a fairly technical construction, and at times we will omit details. For the full proof, refer to the Appendix of Chapter 1 in Rudin.
+\begin{nblank}{Step 1}
+    The members of $\RR$ will be proper subsets of $\QQ$, called cuts. $\RR = \set{\text{all cuts}}$. 
+    \begin{ndef}{Cuts}
+        A cut is a proper subset $\alpha \subsetneq \QQ$ with the three properties:
+        \begin{enumerate}[(i)]
+            \item $\alpha \neq \emptyset$
+            \item If $p \in \alpha$, then $q \in \alpha \; \forall q < p$. 
+            \item If $p \in \alpha$, then $\exists r \in \alpha$ such that $p < r$. 
+        \end{enumerate}
+    \end{ndef}
+\end{nblank}
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \draw[latex-latex, very thick] (-6, 0) -- (6,0) node[anchor=south] {$\QQ$};
+        \foreach \i in {-5.7,-5.6,...,0.9}{ 
+        \draw[] (\i,0) -- (\i,-0.1);
+        }
+        \draw[] (1,0.1) node[anchor=south] {$\downarrow$};
+        \draw[] (0.96,0) node[] {$)$};
+        \draw[] (-2.5, 0) node[anchor=south] {$\alpha$};
+    \end{tikzpicture}
+    \caption{Visualization of a cut $\alpha$. The real number being described of this cut can be thought of as the number at the right boundary (the arrow).}
+    \label{fig2} 
+\end{figure}
 
 \subsection{The Complex Field}
 

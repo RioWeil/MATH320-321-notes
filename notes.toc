@@ -5,7 +5,7 @@
 \contentsline {subsection}{\numberline {1.4}Fields and Ordered Fields}{7}{subsection.1.4}% 
 \contentsline {subsection}{\numberline {1.5}Consequences of the LUB Property}{10}{subsection.1.5}% 
 \contentsline {subsection}{\numberline {1.6}Integer Roots of the Reals}{11}{subsection.1.6}% 
-\contentsline {subsection}{\numberline {1.7}Construction of the Reals}{13}{subsection.1.7}% 
+\contentsline {subsection}{\numberline {1.7}Construction of the Reals}{12}{subsection.1.7}% 
 \contentsline {subsection}{\numberline {1.8}The Complex Field}{13}{subsection.1.8}% 
 \contentsline {subsection}{\numberline {1.9}The Cauchy-Shwartz Inequality}{13}{subsection.1.9}% 
 \contentsline {subsection}{\numberline {1.10}Euclidean Space}{13}{subsection.1.10}% 
