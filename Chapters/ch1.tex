@@ -360,12 +360,13 @@ Note that somewhere in the proof, we will use the fact that $y \in \RR$; this st
     \end{enumerate}
 \end{nproof}
 \subsection{Construction of the Reals}
-Theorem \ref{thm:1.19} says that there exists an ordered field that contains $\QQ$ as a subfield. We now go about proving this statement. This is a fairly technical construction, and at times we will omit details. For the full proof, refer to the Appendix of Chapter 1 in Rudin.
-\begin{nblank}{Step 1}
+Theorem \ref{thm:1.19} says that there exists an ordered field that contains $\QQ$ as a subfield. We now go about proving this statement. The construction is fairly technical and hence will be carried out in multiple steps. Some of the steps are left as exercises (one can refer to Rudin for the fully complete construction).
+
+\begin{nblank}{Step 1: Defining the elements of $\RR$}
     The members of $\RR$ will be proper subsets of $\QQ$, called cuts. $\RR = \set{\text{all cuts}}$. 
     \begin{ndef}{Cuts}
         A cut is a proper subset $\alpha \subsetneq \QQ$ with the three properties:
-        \begin{enumerate}[(i)]
+        \begin{enumerate}[(I)]
             \item $\alpha \neq \emptyset$
             \item If $p \in \alpha$, then $q \in \alpha \; \forall q < p$. 
             \item If $p \in \alpha$, then $\exists r \in \alpha$ such that $p < r$. 
@@ -387,6 +388,25 @@ Theorem \ref{thm:1.19} says that there exists an ordered field that contains $\Q
     \label{fig2} 
 \end{figure}
 
+\begin{nblank}{Step 2: $\RR$ is an ordered set}
+    We define $\alpha < \beta$ to mean $\alpha \subsetneq \beta$. We show that this makes $\RR$ into an ordered set. First checking transitivity, we have that if $\alpha < \beta$ and $\beta < \gamma$ then $\alpha < \gamma$ by the fact that set inclusion is transitive. Furthermore, at most one of $\alpha < \beta$, $\alpha = \beta$, and $\beta < \alpha$ hold; to see this is the case, suppose the first two fail. Then, $\alpha \nsubseteq \beta$. Hence, $\exists p \in \alpha$ with $p \notin \beta$. If $q \in \beta$, $q < p$  and hence $q \in \alpha$ by (II), so $\beta \subset \alpha$, and since $\beta \neq \alpha$ it follows that $\beta \subsetneq \alpha$. 
+\end{nblank}
+
+\begin{nblank}{Step 3: $\RR$ has the LUB property}
+    We show that $\RR$ has the LUB property. To see this is the case, let $A \subset \RR$ with $A \neq \emptyset$, and suppose that there exists $\beta \in \RR$ that is an upper bound for $A$. We will now define $\gamma = \bigcup_{\alpha \in A}\alpha$ and prove that $\gamma \in \RR$ and $\gamma = \sup A$ (hence $A$ has a supremum and $\RR$ has the LUB property).
+
+    Since $A \neq \emptyset$, $\exists \alpha_0 \in A$, and since $\alpha_0 \neq \emptyset$ (as it is a cut) and $\alpha \subset \gamma$, it follows that $\gamma \neq \emptyset$. Next, we have that $\gamma \subset \beta$, since $\alpha \subset \beta$ for every $\alpha \in A$, and hence $\gamma \neq \QQ$, that is, $\gamma \subsetneq \QQ$. Hence $\gamma$ satisfies property (I) of a cut. 
+
+    Take $p \in \gamma$. Then $p \in \alpha_1$ for some $\alpha_1 \in A$. If $q < p$, then $q \in \alpha$ (as $\alpha$ is a cut) so $q \in \gamma$, satisfying property (II).
+
+    Next, choose $r \in \alpha_1$ such that $r > p$, then $r \in \gamma$ (as $\alpha_1 \subset \gamma$) and hence $\gamma$ satisfies property (III). Hence $\gamma$ is a cut, and $\gamma \in \RR$.
+
+    Finally, we show that $\gamma = \sup A$. Clearly, $\alpha \leq \gamma$ for all $\alpha \in A$, as $\gamma = \bigcup_{\alpha \in A}\alpha$, so $\gamma$ is an upper boun dof $A$. To show that it is the least upper bound, let $\delta < \gamma$ be a cut. Then, $\exists s \in \gamma$ such that $s \notin \delta$. Therefore, $\exists \alpha_2 \in A$ such that $s \in \alpha_2$; hence $\delta < \alpha_2$, so $\delta$ is not an upper bound for $A$, giving the desired result. 
+\end{nblank}
+
+\begin{nblank}{Step 4: $\RR$ }
+    
+\end{nblank}
 \subsection{The Complex Field}
 
 \subsection{The Cauchy-Shwartz Inequality}
