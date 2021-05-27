@@ -278,7 +278,7 @@ $\QQ$ is an ordered field, with the familiar order of $a > b$ if $a - b > 0$. A 
 \begin{theorem}{Existence of $\RR$}{1.19}
     There exists an ordered field $\RR$ which has the LUB property and contains $\QQ$ as a subfield. 
 \end{theorem}
-\noindent What does it mean for $\QQ$ to be a subfield? It means that there exists an injective function $\QQ \mapsto \RR$ that respects the properties of an ordered field. 
+\noindent What does it mean for $\QQ$ to be a subfield? It means that there exists an injective function $\QQ \mapsto \RR$ that respects the properties of an ordered field.
 
 This field $\RR$ happens to be exactly the set of real numbers we are familiar with. However, a natural question is ``what does it mean that there exsits a field?" It turns out that we can define the reals based on the definitions we have made already. One further question might be that could there not exists several fields with the above property; however, taking the appropriate view, we will find that there is a unqiue such field. 
 
@@ -389,6 +389,9 @@ Theorem \ref{thm:1.19} says that there exists an ordered field that contains $\Q
     \caption{Visualization of a cut $\alpha$. The real number being described of this cut can be thought of as the number at the right boundary (the arrow).}
     \label{fig2} 
 \end{figure}
+\noindent In a sense, a cut gives us a way of discussing the real numbers (in the way we are familiar with them already) without referring to them directly; much like we could formally define/refer to rationals as equivalence classes of ordered pairs.  
+
+\noindent As a note, we could very well define cuts to be bounded below rather than above, and the following construction would still work out.
 
 \begin{nblank}{Step 2: $\RR$ is an ordered set}
     We define $\alpha < \beta$ to mean $\alpha \subsetneq \beta$. We show that this makes $\RR$ into an ordered set. First checking transitivity, we have that if $\alpha < \beta$ and $\beta < \gamma$ then $\alpha < \gamma$ by the fact that set inclusion is transitive. Furthermore, at most one of $\alpha < \beta$, $\alpha = \beta$, and $\beta < \alpha$ hold; to see this is the case, suppose the first two fail. Then, $\alpha \nsubseteq \beta$. Hence, $\exists p \in \alpha$ with $p \notin \beta$. If $q \in \beta$, $q < p$  and hence $q \in \alpha$ by (II), so $\beta \subset \alpha$, and since $\beta \neq \alpha$ it follows that $\beta \subsetneq \alpha$. 
@@ -426,7 +429,8 @@ Theorem \ref{thm:1.19} says that there exists an ordered field that contains $\Q
 
     As a remark, note that $0^* < \alpha \iff -\alpha < 0^*$.
 \end{nblank}
-\noindent Next we will define multiplication on $\RR$. A first attempt would be $\alpha \cdot \beta = \set{s \cdot t: s\in \alpha, t \in \beta}$. However, this doesn't work because we would not retain negative numbers. 
+\noindent Next we will define multiplication on $\RR$. A first attempt would be $\alpha \cdot \beta = \set{s \cdot t: s\in \alpha, t \in \beta}$. However, this definition is incosistent with negative numbers from what we require multiplication to accomplish. $-1 \cdot -1$ would fail to be a cut (it would not contain any negative numbers and hence fail criteria (II)) and $-1 \cdot 1$ would yield the entirety of the rationals (again not a cut!)
+
 \begin{nblank}{Step 6: Positive Multiplication on $\RR$}
     \begin{ndef}{Positive Reals}
         We define $\RR^+ = \set{\alpha \in \RR: \alpha > 0^*}$
@@ -463,7 +467,23 @@ Theorem \ref{thm:1.19} says that there exists an ordered field that contains $\Q
 \noindent Note that later on in the course, we will construct the real numbers in a different fashion; by considering Cauchy sequences modulo an equivalence relation. Also note that from here on out, it will suffice to have the standard/traditional picture of a "real number" in mind (i.e. infinite decimal expansions) and we will not have to really think about the real numbers as cuts; this was just necessary for the formal construction.
 
 \subsection{The Complex Field}
-
+\setcounter{rudin}{23}
+\begin{definition}{The Complex Numbers}{1.24}
+    We define the set of complex numbers to be $\CC = \set{(a, b): a, b \in \RR}$. For $x = (a, b) \in \CC$ and $y = (c, d) \in \CC$, we write $x = y$ if and only if $a = c$ and $b = d$ (note that this is a very different notion of equality compared to the rationals). We define the zero element to be $(0, 0)$ and the one element to be $(1, 0)$. We define addition of complex numbers such that:
+    \begin{align*}
+        x + y = (a, b) + (c, d) = (a + c, b + d)
+    \end{align*}
+    And multiplication of complex numbers such that:
+    \begin{align*}
+        x\cdot y = (a, b)\cdot (c, d) = (ac - ba, ad + bc)
+    \end{align*}
+\end{definition}
+\begin{theorem}{$\CC$ is a field}{1.25}
+    The operations of $+$ and $\cdot$, as well as the zero/one elements defined above turn $\CC$ into a field. 
+\end{theorem}
+\begin{nproof}
+    It suffices to verify the field axioms (A1)-(A5), (M1)-(M5), and (D). We will here show (M3), (M4), and (M5) and leave the rest as exercises. 
+\end{nproof}
 \subsection{The Cauchy-Shwartz Inequality}
 
 \subsection{Euclidean Space}
