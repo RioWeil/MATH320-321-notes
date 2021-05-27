@@ -1,1 +1,8 @@
 .DS_Store
+notes.aux
+notes.fdb_latexmk
+notes.fls
+notes.log
+notes.out
+notes.synctex.gz
+notes.toc
