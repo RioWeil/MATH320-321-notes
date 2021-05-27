@@ -6,14 +6,14 @@
 \contentsline {subsection}{\numberline {1.5}Consequences of the LUB Property}{10}{subsection.1.5}% 
 \contentsline {subsection}{\numberline {1.6}Integer Roots of the Reals}{11}{subsection.1.6}% 
 \contentsline {subsection}{\numberline {1.7}Construction of the Reals}{12}{subsection.1.7}% 
-\contentsline {subsection}{\numberline {1.8}The Complex Field}{14}{subsection.1.8}% 
-\contentsline {subsection}{\numberline {1.9}The Cauchy-Shwartz Inequality}{14}{subsection.1.9}% 
-\contentsline {subsection}{\numberline {1.10}Euclidean Space}{14}{subsection.1.10}% 
-\contentsline {section}{\numberline {2}Basic Topology}{14}{section.2}% 
-\contentsline {section}{\numberline {3}Numerical Sequences and Series}{14}{section.3}% 
-\contentsline {section}{\numberline {4}Continuity}{14}{section.4}% 
-\contentsline {section}{\numberline {5}Differentiation}{14}{section.5}% 
-\contentsline {section}{\numberline {6}The Riemann-Stieltjes Integral}{14}{section.6}% 
-\contentsline {section}{\numberline {7}Sequences and Series of Functions}{14}{section.7}% 
-\contentsline {section}{\numberline {8}Some Special Functions}{14}{section.8}% 
-\contentsline {section}{\numberline {9}Functions of Several Variables}{14}{section.9}% 
+\contentsline {subsection}{\numberline {1.8}The Complex Field}{16}{subsection.1.8}% 
+\contentsline {subsection}{\numberline {1.9}The Cauchy-Shwartz Inequality}{16}{subsection.1.9}% 
+\contentsline {subsection}{\numberline {1.10}Euclidean Space}{16}{subsection.1.10}% 
+\contentsline {section}{\numberline {2}Basic Topology}{16}{section.2}% 
+\contentsline {section}{\numberline {3}Numerical Sequences and Series}{16}{section.3}% 
+\contentsline {section}{\numberline {4}Continuity}{16}{section.4}% 
+\contentsline {section}{\numberline {5}Differentiation}{16}{section.5}% 
+\contentsline {section}{\numberline {6}The Riemann-Stieltjes Integral}{16}{section.6}% 
+\contentsline {section}{\numberline {7}Sequences and Series of Functions}{16}{section.7}% 
+\contentsline {section}{\numberline {8}Some Special Functions}{16}{section.8}% 
+\contentsline {section}{\numberline {9}Functions of Several Variables}{16}{section.9}% 
