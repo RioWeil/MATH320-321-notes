@@ -482,7 +482,7 @@ Theorem \ref{thm:1.19} says that there exists an ordered field that contains $\Q
     The operations of $+$ and $\cdot$, as well as the zero/one elements defined above turn $\CC$ into a field. 
 \end{theorem}
 \begin{nproof}
-    It suffices to verify the field axioms (A1)-(A5), (M1)-(M5), and (D). We will here show (M3), (M4), and (M5) and leave the rest as exercises. 
+    It suffices to verify the field axioms (A1)-(A5), (M1)-(M5), and (D) as discussed in \ref{def:1.12}. We will here show (M3), (M4), and (M5) and leave the rest as exercises. 
     \begin{enumerate}[start=3, label={(M\arabic*):}]
     \item Let $x, y, z \in \CC$. We show that $(x\cdot y)\cdot z = x \cdot (y \cdot z)$. Let $x = (a, b), y = (c, d)$, and $z = (e, f)$. We then have that:
     \begin{align*}
@@ -490,10 +490,52 @@ Theorem \ref{thm:1.19} says that there exists an ordered field that contains $\Q
         \\ &= ((ac-bd)e - (ad+bc)f, (ac-bd)f + (ad+bc)e)
     \end{align*}
     We also have that:
-    
+    \begin{align*}
+        x \cdot(y\cdot z) &= (a, b)\cdot(ce - df, cf + de)
+        \\ &= (a(ce-df) - b(cf+de), a(cf+de) + b(ce-df))
+        \\ &= (ace - adf - bcf - bde, acf + ade + bce - bdf)
+        \\ &= ((ac-bd)e - (ad+bc)f, (ac-bd)f + (ad+bc)e)
+    \end{align*}
+    So the claim is proven.
+    \item $(a, b)(1, 0) = (a \cdot 1 - b \cdot 0, a \cdot 0 + b \cdot 1) = (a, b)$
+    \item Let $x \in \CC$ such that $x \neq 0$. Then, $x = (a, b)$ where either $a \neq 0$ or $b \neq 0$ or both. Hence, $a^2 + b^2 > 0$. Then, let $\frac{1}{x} = (\frac{a}{a^2 + b^2}, -\frac{b}{a^2+b^2})$. We then have that:
+    \begin{align*}
+        x\frac{1}{x} &= (a, b)\left(\frac{a}{a^2 + b^2}, -\frac{b}{a^2+b^2}\right)
+        \\ &= \left(a\frac{a}{a^2 + b^2} - b\left(-\frac{b}{a^2+b^2}\right), a\left(-\frac{b}{a^2+b^2}\right) + b\left(\frac{a}{a^2+b^2}\right)\right)
+        \\ &= \left(\frac{a^2 +b^2}{a^2 + b^2}, -\frac{ab}{a^2+b^2} + \frac{ab}{a^2+b^2}\right)
+        \\ &= (1, 0)
+    \end{align*}
+    Which proves the claim. \qed
     \end{enumerate}
-    
 \end{nproof}
+\noindent Much like $\QQ$ was a subfield of $\RR$, $\RR$ is a subfield of $\CC$, and there exists a map $\phi$ from $\RR$ to $\CC$ that respects the field axioms, namely:
+\begin{align*}
+    \fullfunction{\phi}{\RR}{\CC}{x}{(x, 0)}
+\end{align*}
+The theorem below shows that $\phi$ preserves the field structure:
+\begin{theorem}{}{1.26}
+    For $a, b \in \RR$ we have that $(a, 0) + (b, 0) = (a + b, 0)$ and $(a, 0)(b, 0) = (ab, 0)$.
+\end{theorem}
+\begin{definition}{i}{1.27}
+    $i = (0, 1)$. 
+\end{definition}
+\begin{theorem}{}{1.28}
+    $i^2 = -1$. 
+\end{theorem}
+\begin{theorem}{}{1.29}
+    If $a, b \in \RR$, then $(a, b) = a + bi$. 
+\end{theorem}
+\begin{nproof}
+    Below are the trivial proofs for the above three theorems. 
+    \begin{align*}
+        (a, 0) + (b, 0) = (a + b, 0 + 0) = (a + b, 0)
+        \\ (a, 0)\cdot(b, 0) = (a\cdot b - 0 \cdot 0, a \cdot 0 + 0 \cdot b) = (ab, 0)
+        \\ i^2 = i\cdot i = (0, 1) \cdot (0, 1) = (-1, 0) = -1
+        \\ a + bi = (a, 0) + b(0, 1) = (a, 0) + (0, b) = (a, b)
+    \end{align*}
+\end{nproof}
+
+
 \subsection{The Cauchy-Shwartz Inequality}
 
 \subsection{Euclidean Space}
