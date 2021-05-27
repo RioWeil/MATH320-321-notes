@@ -1,8 +1,8 @@
 .DS_Store
-notes.aux
-notes.fdb_latexmk
-notes.fls
-notes.log
-notes.out
-notes.synctex.gz
-notes.toc
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
