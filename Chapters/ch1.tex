@@ -536,13 +536,84 @@ The theorem below shows that $\phi$ preserves the field structure:
 \end{nproof}
 
 \begin{definition}{Real/Imaginary Parts and Complex Conjugates}{1.30}
-
+Let $z = a + bi \in \CC$. Then, $\Re(z) = a$ is the real part of $z$ and $\Im(z) = b$ is the imaginary part of $z$. The complex conjugate of $z$, denoted by $\bar{z}$, is defined as $\bar{z} = a - bi$. 
 \end{definition}
+
+\begin{theorem}{Conjugate Properties}{1.31}
+    Let $z, w \in \CC$. It then follows that:
+    \begin{enumerate}
+        \item $\overline{z + w} = \bar{z} + \bar{w}$.
+        \item $\overline{zw} = \bar{z} \cdot \bar{w}$.
+        \item $z + \bar{z} = 2\Re(z)$, $z - \bar{z} = 2i\Im(z)$.
+        \item $z\bar{z}$ is real and positive (except when $z = 0$).
+    \end{enumerate}
+\end{theorem}
+
+\begin{nproof}
+    We prove (d). We have that:
+    \begin{align*}
+        z\bar{z} = (a + bi)(a-bi) = a^2 + b^2 
+    \end{align*}
+    $a^2 + b^2 \geq 0$, and $a^2 + b^2 = 0 \iff a = 0, b = 0$ which proves the claim. \qed
+\end{nproof}
+
+\begin{definition}{Absolute Value}{1.32}
+    We define the absolute value $\abs{z}$ of a complex number $z$ as $\abs{z} = \sqrt{z\bar{z}}$. Note that if $a \in \RR$ and $z = (a, 0)$, then
+    \begin{align*}
+        \abs{z} = \sqrt{a^2} =
+        \begin{cases}
+            a & \text{if $a \geq 0$}
+            \\ -a & \text{if $a < 0$}
+        \end{cases}
+    \end{align*}
+    Hence if $a \in \RR$, we can define $\abs{a} = \abs{(a, 0)}$. 
+\end{definition}
+
+\begin{definition}{Absolute Value Properties}{1.33}
+    Let $z, w \in \CC$.
+    \begin{enumerate}
+        \item $\abs{z} \geq 0$, $\abs{z} = 0 \iff z = 0$. 
+        \item $\abs{\bar{z}} = \abs{z}$.
+        \item $\abs{z}\abs{w} = \abs{zw}$.
+        \item $\abs{\Re(z)} \leq \abs{z}$, $\abs{\Im(z)} \leq \abs{z}$.
+        \item $\abs{z + w} \leq \abs{z} + \abs{w}$.
+    \end{enumerate}
+\end{definition}
+\begin{nproof}
+    We prove (d) and (e). Let $z, w \in \CC$, with $z = a + bi$. For (d) we have that $\Re(z) = a$, so \begin{align*}
+        \abs{\Re(a)} = \sqrt{a^2} \leq \sqrt{a^2 + b^2} = \abs{z}
+    \end{align*}
+    And an equivalent proof follows for $\Im(z)$. For (e), we have that:
+    \begin{align*}
+        \abs{z + w}^2 &= (z + w)(\overline{z + w})
+        \\ &= z\bar{z} + z\bar{w} + w\bar{z} + w\bar{w}
+        \\ &= \abs{z}^2 + 2\Re(z\bar{w}) + \abs{w}^2
+        \\ &\leq \abs{z}^2 + 2\abs{\Re(z\bar{w})} + \abs{y}^2 & \text{($\abs{x} > x$)}
+        \\ &= \abs{z}^2 + 2\abs{z\bar{w}} + \abs{w}^2 & \text{(1.33(d))}
+        \\ &= \abs{z}^2 + 2\abs{z}\abs{\bar{w}} + \abs{w}^2 & \text{(1.33(c))}
+        \\ &= \abs{z}^2 + 2\abs{z}\abs{w} + \abs{w}^2 & \text{(1.33(b))}
+        \\ &= (\abs{z} + \abs{w})^2
+    \end{align*}
+The claim follows by taking square roots on both sides. \qed
+\end{nproof}
 
 
 
 \subsection{The Cauchy-Shwartz Inequality}
+Recall the summation notation:
+\begin{align*}
+    x_1 + x_2 + \ldots + x_n = \sum_{j=1}^{n}x_i
+\end{align*}
+\stepcounter{rudin}
+\begin{theorem}{Cauchy-Shwartz Inequality}{1.35}
+    Let $a_1, \ldots, a_n, b_1, \ldots, b_n \in \CC$. We then have that:
+    \begin{align*}
+        \abs{\sum_{j=1}^na_j\bar{b}_j}^2 \leq \left(\sum_{j=1}^n\abs{a_j}^2\right)\left(\sum_{j=1}^n\abs{b_j}^2\right)
+    \end{align*}
+\end{theorem}
+\noindent Note that in the above theorem, both the RHS and the LHS are real numbers (check!) so the equality makes sense (recall that there is no order on $\CC$; in fact, it is impossible to define one). 
 
+A geometric interpretation of the above inequality is as follows. Let $\v{a}, \v{b}$ be vectors in $\CC^n$. Then, $\avg{\v{a}, \v{b}} = \sum_{j=1}^na_j\bar{b}_j$ is the inner product of $\v{a}$ and $\v{b}$. Then, the inequality says that $\abs{\avg{\v{a}, \v{b}}}^2 \leq \avg{\v{a}, \v{a}}\cdot\avg{\v{b}, \v{b}}$. 
 \subsection{Euclidean Space}
 
 
