@@ -94,7 +94,7 @@ Over the next couple sections, we will be discussing certain properties of sets 
 \end{definition}
 
 \begin{definition}{Ordered Sets}{1.6}
-    An ordered set is a pair $(S, <)$. We may write just $S$ if the order can be inferred by the context.
+    An \textbf{ordered set} is a pair $(S, <)$. We may write just $S$ if the order can be inferred by the context.
 \end{definition}
 \noindent A familiar (and useful) set of examples is $S = \NN$ or $S = \ZZ$ or $S = \QQ$. For these three sets, we have that $x < y$ if $y-x$ is positive. For another example, consider the set $S$ of english words; then the order $<$ can be the dictionary/lexographic order. 
 
@@ -127,14 +127,12 @@ Over the next couple sections, we will be discussing certain properties of sets 
 \end{nproof}
 
 \begin{ntheorem}{Equivalence of maximum and supremum}
-    If $E \subset S$ has a maximum element $\alpha$ (that is, an element such that $x < \alpha$ for all $x \in E$) then $\alpha = \sup(E)$. Similarly, if $E$ has a minimum element $\alpha$, then $\alpha = \inf(E)$. The proof is left as an exercise. 
+    If $E \subset S$ has a maximum element $\alpha$ (that is, an element such that $x < \alpha$ for all $x \in E$) then $\alpha = \sup(E)$. Similarly, if $E$ has a minimum element $\alpha$, then $\alpha = \inf(E)$.
 \end{ntheorem}
 
-\begin{comment}
 \begin{nproof}
     Let $E \subset S$ and $\alpha = \max(E)$. By definition $\alpha$ is an upper bound of $E$, and if $x < \alpha$ for some $x \in E$ then $x$ is not an upper bound of $E$ as it is not greater than $\alpha \in E$. The claim follows (with an identical proof for the minimum). \qed
 \end{nproof}
-\end{comment}
 
 \begin{example}{}{1.9}
     \begin{enumerate}
@@ -171,7 +169,7 @@ Over the next couple sections, we will be discussing certain properties of sets 
 
 \subsection{Fields and Ordered Fields}
 \begin{definition}{Fields}{1.12}
-    A field $F$ is a set with two binary operations, $+$ and $\cdot$ (addition and multiplication) such that the following axioms are satisfied:
+    A \textbf{field} $F$ is a set with two binary operations, $+$ and $\cdot$ (addition and multiplication) such that the following axioms are satisfied:
     \begin{enumerate}[start=1, label={(A\arabic*):}]
     \item If $x, y \in F$, then $x + y \in F$. (Closure under addition)
     \item $x + y = y + x$ for all $x, y \in F$. (Commutativity of addition)
@@ -367,7 +365,7 @@ Theorem \ref{thm:1.19} says that there exists an ordered field that contains $\Q
 \begin{nblank}{Step 1: Defining the elements of $\RR$}
     The members of $\RR$ will be proper subsets of $\QQ$, called cuts. $\RR = \set{\text{all cuts}}$. 
     \begin{ndef}{Cuts}
-        A cut is a proper subset $\alpha \subsetneq \QQ$ with the three properties:
+        A \textbf{cut} is a proper subset $\alpha \subsetneq \QQ$ with the three properties:
         \begin{enumerate}[(I)]
             \item $\alpha \neq \emptyset$
             \item If $p \in \alpha$, then $q \in \alpha \; \forall q < p$. 
@@ -469,7 +467,7 @@ Theorem \ref{thm:1.19} says that there exists an ordered field that contains $\Q
 \subsection{The Complex Field}
 \setcounter{rudin}{23}
 \begin{definition}{The Complex Numbers}{1.24}
-    We define the set of complex numbers to be $\CC = \set{(a, b): a, b \in \RR}$. For $x = (a, b) \in \CC$ and $y = (c, d) \in \CC$, we write $x = y$ if and only if $a = c$ and $b = d$ (note that this is a very different notion of equality compared to the rationals). We define the zero element to be $(0, 0)$ and the one element to be $(1, 0)$. We define addition of complex numbers such that:
+    We define the set of \textbf{complex numbers} to be $\set{(a, b): a, b \in \RR}$, denoted by $\CC$. For $x = (a, b) \in \CC$ and $y = (c, d) \in \CC$, we write $x = y$ if and only if $a = c$ and $b = d$ (note that this is a very different notion of equality compared to the rationals). We define the zero element to be $(0, 0)$ and the one element to be $(1, 0)$. We define addition of complex numbers such that:
     \begin{align*}
         x + y = (a, b) + (c, d) = (a + c, b + d)
     \end{align*}
@@ -536,7 +534,7 @@ The theorem below shows that $\phi$ preserves the field structure:
 \end{nproof}
 
 \begin{definition}{Real/Imaginary Parts and Complex Conjugates}{1.30}
-Let $z = a + bi \in \CC$. Then, $\Re(z) = a$ is the real part of $z$ and $\Im(z) = b$ is the imaginary part of $z$. The complex conjugate of $z$, denoted by $\bar{z}$, is defined as $\bar{z} = a - bi$. 
+Let $z = a + bi \in \CC$. Then, $\Re(z) = a$ is the \textbf{real part} of $z$ and $\Im(z) = b$ is the \textbf{imaginary part} of $z$. The \textbf{complex conjugate} of $z$, denoted by $\bar{z}$, is defined as $\bar{z} = a - bi$. 
 \end{definition}
 
 \begin{theorem}{Conjugate Properties}{1.31}
@@ -558,7 +556,7 @@ Let $z = a + bi \in \CC$. Then, $\Re(z) = a$ is the real part of $z$ and $\Im(z)
 \end{nproof}
 
 \begin{definition}{Absolute Value}{1.32}
-    We define the absolute value $\abs{z}$ of a complex number $z$ as $\abs{z} = \sqrt{z\bar{z}}$. Note that if $a \in \RR$ and $z = (a, 0)$, then
+    We define the \textbf{absolute value} $\abs{z}$ of a complex number $z$ as $\abs{z} = \sqrt{z\bar{z}}$. Note that if $a \in \RR$ and $z = (a, 0)$, then
     \begin{align*}
         \abs{z} = \sqrt{a^2} =
         \begin{cases}
@@ -569,7 +567,7 @@ Let $z = a + bi \in \CC$. Then, $\Re(z) = a$ is the real part of $z$ and $\Im(z)
     Hence if $a \in \RR$, we can define $\abs{a} = \abs{(a, 0)}$. 
 \end{definition}
 
-\begin{definition}{Absolute Value Properties}{1.33}
+\begin{theorem}{Absolute Value Properties}{1.33}
     Let $z, w \in \CC$.
     \begin{enumerate}
         \item $\abs{z} \geq 0$, $\abs{z} = 0 \iff z = 0$. 
@@ -578,7 +576,7 @@ Let $z = a + bi \in \CC$. Then, $\Re(z) = a$ is the real part of $z$ and $\Im(z)
         \item $\abs{\Re(z)} \leq \abs{z}$, $\abs{\Im(z)} \leq \abs{z}$.
         \item $\abs{z + w} \leq \abs{z} + \abs{w}$.
     \end{enumerate}
-\end{definition}
+\end{theorem}
 \begin{nproof}
     We prove (d) and (e). Let $z, w \in \CC$, with $z = a + bi$. For (d) we have that $\Re(z) = a$, so \begin{align*}
         \abs{\Re(a)} = \sqrt{a^2} \leq \sqrt{a^2 + b^2} = \abs{z}
@@ -630,8 +628,66 @@ A geometric interpretation of the above inequality is as follows. Let $\v{a}, \v
 \end{nproof}
 
 \subsection{Euclidean Space}
-\begin{definition}{$\RR^k$}{1.36}
+\begin{definition}{Euclidean k-space}{1.36}
     If $k \in \NN$, define $\RR^k$ as the set of $k$-tuples of real numbers:
+    \begin{align*}
+        \RR^k = \set{\v{x} = (x_1, x_2, \ldots, x_k): x_1, x_2, \ldots, x_k \in \RR}
+    \end{align*}
+    We can then define vector addition as:
+    \begin{align*}
+        \v{x} + \v{y} = (x_1 + y_1, x_2 + y_2, \ldots, x_k + y_k)
+    \end{align*}
+    And scalar multiplication (for $\alpha \in \RR$) to be:
+    \begin{align*}
+        \alpha\v{x} = (\alpha x_1, \alpha x_2, \ldots, \alpha x_k)
+    \end{align*}
+    These operations make $\RR^k$ into a vector space over the real field. We can define the inner product over $\RR^k$ to be:
+    \begin{align*}
+        (\v{x}, \v{y}) = \v{x} \cdot \v{y} = \sum_{j=1}^k x_jy_j
+    \end{align*}
+    This allows us to define the norm of $\v{x}$ to be:
+    \begin{align*}
+        \abs{\v{x}} = \sqrt{\v{x} \cdot \v{x}} = \left(\sum_{j=1}^n x_j^2\right)^{1/2}
+    \end{align*}
+    $\RR^k$ with the above inner product and norm is called \textbf{Euclidean k-space}.
 \end{definition}
+\noindent We briefly remark that the above inner product we defined agrees with the inner product we defined over $\CC^k$. 
+
+\begin{theorem}{Norm Properties}{1.37}
+    Let $\v{x}, \v{y}, \v{z} \in \RR^k$, and $\alpha \in \RR$. Then:
+    \begin{enumerate}
+        \item $\abs{\v{x}} \geq 0$
+        \item $\abs{\v{x}} = 0 \iff \v{x} = (0, \ldots, 0)$. This is often denoted as $\v{0}$, the "zero vector". 
+        \item $\abs{\alpha\v{x}} = \abs{\alpha}\abs{\v{x}}$
+        \item $\abs{\v{x} \cdot \v{y}} \leq \abs{\v{x}}\abs{\v{y}}$ 
+        \item $\abs{\v{x} + \v{y}} \leq \abs{\v{x}} + \abs{\v{y}}$
+        \item $\abs{\v{x} - \v{z}} \leq \abs{\v{x} - \v{y}} + \abs{\v{y} - \v{z}}$
+    \end{enumerate}
+\end{theorem}
+\noindent (e) and (f) are often called "triangle inequalities"; a visual intuition for these inequalities is given in the following figure:
+\newpage 
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+    \draw[black, thick] (0, 0) node[anchor=north] {$\v{z}$} -- (2, 2) node[anchor=south] {$\v{y}$}  -- (-2, 2) node[anchor=south] {$\v{x}$} -- (0, 0);
+    \draw[] (1.6, 1) node[anchor=north] {$\abs{\v{y} - \v{z}}$};
+    \draw[] (-1.6, 1) node[anchor=north] {$\abs{\v{x} - \v{z}}$};
+    \draw[] (0, 2) node[anchor=south]  {$\abs{\v{x} - \v{y}}$};
+    \end{tikzpicture}
+    \caption{Visual picture for Theorem \ref{thm:1.37}(f), drawn in $\RR^2$. Suppose we started at $\v{x}$ and wanted the shortest path to $\v{z}$; we could try walking directly to $\v{z}$, or we could try walking somewhere else first ($\v{y}$) and then to $\v{z}$. However, the theorem tells us that the direct path will always be shorter in Euclidean space.}
+    \label{<label>}
+\end{figure}
+\noindent Note that equality in part (f) arises if and only if $\v{y}$ lies on the line segment between $\v{x}$ and $\v{z}$.
+\begin{nproof}
+    (a)-(c) are immediate, and (d) immediately follows from Theorem \ref{thm:1.35} (Cauchy-Shwartz). For (e), we have that:
+    \begin{align*}
+        \abs{\v{x} + \v{y}}^2 &= (\v{x} + \v{y})(\v{x} + \v{y})
+        \\ &= \abs{\v{x}}^2 + 2\v{x}\cdot\v{y} + \abs{\v{y}}^2
+        \\ &\leq \abs{\v{x}}^2 + \abs{2\v{x}\cdot\v{y}} + \abs{\v{y}}^2
+        \\ &\leq \abs{\v{x}}^2 + 2\abs{\v{x}}\abs{\v{y}} + \abs{\v{y}}^2 \quad \text{(1.37(d))}
+        \\ &= (\abs{\v{x}} + \abs{\v{y}})^2
+    \end{align*}
+    And the claim follows by taking square roots on both sides. For (f), substitute $\v{x} \mapsto \v{x} - \v{y}$ and $\v{y} \mapsto \v{y} - \v{z}$ into (e). \qed
+\end{nproof}
 
 
