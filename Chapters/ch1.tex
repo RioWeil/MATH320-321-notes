@@ -614,6 +614,24 @@ Recall the summation notation:
 \noindent Note that in the above theorem, both the RHS and the LHS are real numbers (check!) so the equality makes sense (recall that there is no order on $\CC$; in fact, it is impossible to define one). 
 
 A geometric interpretation of the above inequality is as follows. Let $\v{a}, \v{b}$ be vectors in $\CC^n$. Then, $\avg{\v{a}, \v{b}} = \sum_{j=1}^na_j\bar{b}_j$ is the inner product of $\v{a}$ and $\v{b}$. Then, the inequality says that $\abs{\avg{\v{a}, \v{b}}}^2 \leq \avg{\v{a}, \v{a}}\cdot\avg{\v{b}, \v{b}}$. 
+\begin{nproof}
+    Define $A = \sum_{j=1}^n\abs{a_j}^2$, $B = \sum_{j=1}^n\abs{b_j}^2$, and $C = \sum_{j=1}^na_j\bar{b}_j$. If $B = 0$ (that is, all of the $b_j$s are zero) then the LHS/RHS are both zero and we are done. So, let us assume that $B > 0$. Let $\lambda \in \CC$, and we then have that:
+    \begin{align*}
+        0 &\leq \sum_{j=1}^n\abs{a_j + \lambda b_j}^2 \\ &= \sum_{j=1}^n(a_j + \lambda b_j)(\bar{a}_j + \bar{\lambda}\bar{b}_j)
+        \\ &= \sum_{j=1}^n\abs{a_j}^2 + \bar{\lambda}\sum_{j=1}^na_j\bar{b}_j + \lambda\sum_{j=1}^n\bar{a}_jb_j + \abs{\lambda}^2\sum_{j=1}^n\abs{b_j}^2
+        \\ &= A + \bar{\lambda}C + \lambda\bar{C} + \abs{\lambda}^2B
+    \end{align*}
+    This inequality holds for any $\lambda$; it therefore holds for $\lambda = -\frac{C}{B}$, so:
+    \begin{align*}
+        0 &\leq A - \frac{\bar{C}}{B}C - \frac{C}{B}\bar{C} + \frac{C\bar{C}}{B^2}B
+        \\ &= A - \frac{\abs{C}^2}{B}
+    \end{align*}
+    So we therefore obtain that $\abs{C}^2 \leq AB$ which is the desired inequality. \qed
+\end{nproof}
+
 \subsection{Euclidean Space}
+\begin{definition}{$\RR^k$}{1.36}
+    If $k \in \NN$, define $\RR^k$ as the set of $k$-tuples of real numbers:
+\end{definition}
 
 
