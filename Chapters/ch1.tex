@@ -215,8 +215,9 @@ Note that a field cannot have a single element; the field axioms (A4) and (M4) r
 
 Although algebra is not the focus of this course, it may be interesting to briefly think about sets with less structure than a field. We start by considering a group. 
 
-\begin{ndef}{Groups}
-A \textbf{group} $G$ is a set with a binary operation $(a,b) \mapsto a\cdot b$ such that the following axioms are satisfied:
+\phantom{i}
+
+\noindent A \textbf{group} $G$ is a set with a binary operation $(a,b) \mapsto a\cdot b$ such that the following axioms are satisfied:
 \begin{enumerate}[start=1, label={(M\arabic*):}]
     \item If $a, b \in G$, then $a\cdot b \in G$ (Closure)
     \stepcounter{enumi}
@@ -224,36 +225,33 @@ A \textbf{group} $G$ is a set with a binary operation $(a,b) \mapsto a\cdot b$ s
     \item There exists $1 \in G$ such that $\forall x \in G$, $1 \cdot x = x$. (Identity)
     \item $\forall x \in G$, there exists $y \in G$ such that $x \cdot y = 1$. (Inverse) 
 \end{enumerate}
-\end{ndef}
-\noindent We note that $\ZZ$ is a group under addition, but not under multiplication (due to lack of multiplicative inverses). We can also consider the set of 2x2 matrices with integer entries:
+
+We note that $\ZZ$ is a group under addition, but not under multiplication (due to lack of multiplicative inverses). We can also consider the set of 2x2 matrices with integer entries:
 \[G = \set{\m{a & b \\ c & d}: a, b, c, d \in \ZZ}\]
 $G$ is again a group under matrix addition, but not under matrix multiplication (as not every matrix in $G$ is invertible). If we restricted $G$ to be the set of $2\times 2$ invertible matrices, in this case it could form a group under matrix multiplication. A set with slightly more structure than a group (though not quite as structured as a field) is a ring:
+\newpage 
+\noindent A \textbf{ring} $R$ is a set with two binary operations $(a,b) \mapsto a + b$ and $(a, b) \mapsto a \cdot b$ such that the following axioms are satisfied:
+\begin{enumerate}[start=1, label={(A\arabic*):}]
+    \item If $x, y \in R$, then $x + y \in R$. (Closure under addition)
+    \item $x + y = y + x$ for all $x, y \in R$. (Commutativity of addition)
+    \item $(x+y) + z = x + (y + z)$ for all $x, y, z \in R$. (Associativity of addition)
+    \item $\exists 0 \in R$ such that $\forall x \in R$, $0 + x = x$. (Additive identity)
+    \item $\forall x \in R$, $\exists y$ such that $x + y = 0$. We can denote $y = -x$. (Additive inverse)
+    \end{enumerate}
+    \begin{enumerate}[start=1, label={(M\arabic*):}]
+        \item If $x, y \in R$, then $x\cdot y\in R$. (Closure under multiplication)
+        \stepcounter{enumi}
+        \item $(x\cdot y)\cdot z = x \cdot (y \cdot z)$ for all $x, y, z \in R$. (Associativity under multiplication)
+        \item $\exists 1 \in R$ such that $1 \neq 0$ and $\forall x \in R$, $1 \cdot x = x$. (Multiplicative identity)
+    \end{enumerate}
+    \begin{enumerate}[start=1, label={(D\arabic*):}]
+        \item $x \cdot (y + z) = x \cdot y + x \cdot z$, $\forall x, y, z \in R$. (Left distributivity)
+        \item $(y + z) \cdot x = y \cdot x + z \cdot x$, $\forall x, y, z \in R$. (Right distributivity)
+    \end{enumerate}
 
-\begin{ndef}{Rings}
-    A \textbf{ring} $R$ is a set with two binary operations $(a,b) \mapsto a + b$ and $(a, b) \mapsto a \cdot b$ such that the following axioms are satisfied:
-    \begin{enumerate}[start=1, label={(A\arabic*):}]
-        \item If $x, y \in R$, then $x + y \in R$. (Closure under addition)
-        \item $x + y = y + x$ for all $x, y \in R$. (Commutativity of addition)
-        \item $(x+y) + z = x + (y + z)$ for all $x, y, z \in R$. (Associativity of addition)
-        \item $\exists 0 \in R$ such that $\forall x \in R$, $0 + x = x$. (Additive identity)
-        \item $\forall x \in R$, $\exists y$ such that $x + y = 0$. We can denote $y = -x$. (Additive inverse)
-        \end{enumerate}
-        \begin{enumerate}[start=1, label={(M\arabic*):}]
-            \item If $x, y \in R$, then $x\cdot y\in R$. (Closure under multiplication)
-            \stepcounter{enumi}
-            \item $(x\cdot y)\cdot z = x \cdot (y \cdot z)$ for all $x, y, z \in R$. (Associativity under multiplication)
-            \item $\exists 1 \in R$ such that $1 \neq 0$ and $\forall x \in R$, $1 \cdot x = x$. (Multiplicative identity)
-        \end{enumerate}
-        \begin{enumerate}[start=1, label={(D\arabic*):}]
-            \item $x \cdot (y + z) = x \cdot y + x \cdot z$, $\forall x, y, z \in R$. (Left distributivity)
-            \item $(y + z) \cdot x = y \cdot x + z \cdot x$, $\forall x, y, z \in R$. (Right distributivity)
-        \end{enumerate}
-\end{ndef}
 \noindent Rings have the same axioms as fields under addition, but multiplication is not necessarily commutative (this is why an additional distributivity axiom is added), and multiplicative inverses are not required. We note that $\ZZ$ and $G$ are both rings under their respective operations of addition and multiplication. 
 
-For the remainder of this course, we will really only be discussing fields; however, groups and rings will come up again and again in abstract algebra courses!
-
-
+For the remainder of this course, we will really only be discussing fields; however, they will be the objects of interest in abstract algebra courses!
 
 \setcounter{rudin}{16}
 \begin{definition}{Ordered Field}{1.13}
