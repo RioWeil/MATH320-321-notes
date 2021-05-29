@@ -532,6 +532,15 @@ The theorem below shows that $\phi$ preserves the field structure:
         \\ a + bi = (a, 0) + b(0, 1) = (a, 0) + (0, b) = (a, b)
     \end{align*}
 \end{nproof}
+\noindent A slightly odd question may be to ask whether $\CC$ is a subfield of $\RR$, i.e. does there exist $\psi: \CC \mapsto \RR$ such that $\psi(a + b) = \psi(a) + \psi(b)$ and $\psi(a\cdot b) = \psi(a) \cdot \psi(b)$. As we will prove in Chapter 2, we do have that $\abs{\CC} = \abs{\RR^2} = \abs{\RR}$ (where $\abs{}$ denotes cardinality of the set, to be defined shortly), so there does exist a bijection (i.e. a function that is both injective/one-to-one and surjective/onto) between the two sets.
+
+As a Lemma, we have that the only injective function $f: \QQ \mapsto \RR$ that satisfies $f(a+b) = f(a) + f(b)$ and $f(a\cdot b) = f(a)\cdot f(b)$ is $f(x) = x$. The proof of this is left as a homework problem (HW2). Therefore, it follows that the only injective function $g: \QQ \times \set{0} \mapsto \RR$ (where $\times$ denotes the Cartesian product) is given by $g((x, 0)) = x$. We now give a proof that $\CC$ is not a subfield of $\RR$. 
+
+\begin{proof}
+    Suppose then for the sake of contradiction that there exists an injective function $\psi: \QQ \times \set{0, 1} \mapsto \RR$. Such a function then must satisfy$\psi(i \cdot i) = \psi(-1) = -1$, and $\psi(i \cdot i) = \psi(i) \cdot \psi(i) = \psi((0, 1))\cdot \psi((0, 1)) = 0 \cdot 0 = 0$ which is a contradiction. Hence, no such injection exists from $\QQ \times \set{0, 1}$ to $\RR$ and hence no such injection could exist from $\CC$ ($\RR^2$) to $\RR$. Hence $\CC$ is not a subfield of $\RR$. 
+\end{proof}
+
+
 
 \begin{definition}{Real/Imaginary Parts and Complex Conjugates}{1.30}
 Let $z = a + bi \in \CC$. Then, $\Re(z) = a$ is the \textbf{real part} of $z$ and $\Im(z) = b$ is the \textbf{imaginary part} of $z$. The \textbf{complex conjugate} of $z$, denoted by $\bar{z}$, is defined as $\bar{z} = a - bi$. 
@@ -626,6 +635,7 @@ A geometric interpretation of the above inequality is as follows. Let $\v{a}, \v
     \end{align*}
     So we therefore obtain that $\abs{C}^2 \leq AB$ which is the desired inequality. \qed
 \end{nproof}
+\noindent A natural question given any inequality is when does equality hold; the answer turns out to be if the vectors are linearly independent, that is, at least one of $\v{a} = \alpha \v{b}$ and $\v{b} = \beta \v{a}$ ($\alpha, \beta \in \CC$) hold. Note that we only require one of the two relations to hold; in the case that one of $\v{a}, \v{b}$ are $\v{0}$ (the vector of all zeros) both equalities cannot be true. It is left as a homework problem to verify equality in the Cauchy-Shwartz inequality if and only if at least one of the two conditions holds (HW3). 
 
 \subsection{Euclidean Space}
 \begin{definition}{Euclidean k-space}{1.36}
@@ -651,7 +661,7 @@ A geometric interpretation of the above inequality is as follows. Let $\v{a}, \v
     \end{align*}
     $\RR^k$ with the above inner product and norm is called \textbf{Euclidean k-space}.
 \end{definition}
-\noindent We briefly remark that the above inner product we defined agrees with the inner product we defined over $\CC^k$. 
+\noindent We briefly remark that the above inner product we defined agrees with the inner product we defined over $\CC^k$; we can identify $r \in \RR$ with $(r, 0) \in \CC$, and hence recognize that $\RR^k \subseteq \CC^k$ where the imaginary part of each coordinate is zero. Then, for the inner product we get the exact same result, as $\bar{b}_j = b_j$ for any complex numbers with imaginary part zero. From this we can conclude that the Cauchy-Shwartz inequality also holds in $\RR^k$. 
 
 \begin{theorem}{Norm Properties}{1.37}
     Let $\v{x}, \v{y}, \v{z} \in \RR^k$, and $\alpha \in \RR$. Then:
