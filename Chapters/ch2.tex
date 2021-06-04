@@ -5,8 +5,49 @@ This chapter is split into two portions; the first looks at counting, what it me
 Let us then begin with our discussion of counting. If we consider counting how many bananas there are on a table (say there are 10 bananas), then what we are formally doing is establishing a correspondence between each ball on the table with an element in the set $\set{1, \ldots, 10}$. When we refer to the number of elements in a set, it will be good to keep in mind that we are establishing functions between sets. Although we have been discussing functions with some frequency in the course already, we give a definition below for completeness. 
 
 \begin{definition}{Functions}{2.1}
-    Let $A, B$ be sets. Then, a map that associates each element $x \in A$ with a unique element denoted as $f(x) \in B$ is a \textbf{function} $f: A \rightarrow B$. We then define $A$ as the domain of $f$ and the set $\set{f(x): x \in A}$ as the range.
+    Let $A, B$ be sets. Then, a map that associates each element $x \in A$ with a unique element denoted as $f(x) \in B$ is a \textbf{function} $f: A \rightarrow B$. We then define $A$ as the \textbf{domain} of $f$ and the set $\set{f(x): x \in A}$ as the \textbf{range}. For $E \subseteq A$, we call $f(E) = \set{f(x): x \in E}$ the \textbf{image} of $E$ under $f$. 
 \end{definition}
+
+\begin{definition}{Injective/Surjective Functions}{2.2}
+    Let $f: A \mapsto B$ be a function. If for $x_1, x_2 \in A$ we have that $f(x_1) = f(x_2) \implies x_1 = x_2$ (or equivalently, $x_1 \neq x_2 \implies f(x_1) \neq f(x_2)$), then we say that $f$ is \textbf{injective}, or \textbf{one-to-one}. If for all $y \in B$ there exists $x \in A$ such that $y = f(x)$, then we say that $f$ is \textbf{surjective}, or \textbf{onto}. If a function is both injective and surjective, it is \textbf{bijective}.
+\end{definition}
+\noindent Intuitively, we can think of injectivity as implying each element in $B$ being reached at most once, and surjectivity implying that each element in $B$ is reached at least once. 
+
+\begin{definition}{Cardinality \& Equivalence}{2.3}
+    Let $A, B$ be sets. We say that $A, B$ have the same \textbf{cardinality} if there exists $f: A \mapsto B$ such that $f$ is bijective. We can denote this as $A \sim B$ where $\sim$ indicates an \textbf{equivalence relation}. An equivalence relation has three properties:
+    \begin{enumerate}
+        \item Reflexivity: $A \sim A$.
+        \item Symmetry: If $A \sim B$ then $B \sim A$.
+        \item Transitivity: If $A \sim B$ and $B \sim C$ then $A \sim C$.
+    \end{enumerate}
+\end{definition}
+
+\noindent We get (a) from each set having a bijection to itself (i.e. the identity function), (b) from the fact that if there exists a bijection $f: A \mapsto B$, then there must exist an inverse $f^{-1}: B \mapsto A$, and (c) from if there exist bijections $f: A \mapsto B$ and $g: B \mapsto C$ then the composition $g \circ f: A \mapsto C$ will also be a bijection. 
+
+\begin{definition}{Countability}{2.4}
+    First, we denote $J_n = \set{1, 2, 3, \ldots, n}$ and $J = \NN = \set{1, 2, 3, \ldots}$. Let $A$ be a set. We say that $A$ is \textbf{finite} if it has a finite number of elements, that is, there exists $n \in \NN$ such that $A \sim J_n$. A set $A$ is \textbf{infinite} if it is not finite, and we cannot put $A$ in bijection with $J_n$ for any $n \in \NN$. We say that $A$ is \textbf{countable}if $A \sim \NN$, and \textbf{uncountable} otherwise. 
+\end{definition}
+
+\begin{example}{}{2.5}
+    $\ZZ$ is countable. To see this, consider the function:
+    \begin{align*}
+        f = \begin{cases}
+            \frac{n}{2} & \text{$n$ is even}
+            \\ -\frac{n-1}{2} & \text{$n$ is odd}
+            \end{cases}
+    \end{align*}
+    $f$ is a bijection (check!) and hence $\NN \sim \ZZ$. 
+\end{example}
+\noindent The above example serves as a bit of a warning sign. Even though $\NN \subsetneq \ZZ$ and $\ZZ$ has ``more elements'', we still find that the two sets have the same cardinality. 
+\setcounter{rudin}{7}
+
+\begin{theorem}{}{2.8}
+    A subset of a countable set is either finite or countable.
+\end{theorem}
+\begin{nproof}
+    (Sketch) The countability of $A$ implies that $A = \set{a_1, a_2, a_3, a_4, a_5 \ldots}$ (in other words, we can enumerate the elements using $\NN$). Let $S \subseteq A$. Then, $S = \set{a_1, \cancel{a_2}, a_3, a_4, \cancel{a_5}, \ldots}$, that is, $A$ with some (or none) of the elements removed. Now, we can rename all the elements with $a_1, a_2, \ldots$; what we have left is again an enumeration, so it is yet again (at most) countable.
+\end{nproof}
+
 
 \subsection{Uncountable Sets}
 \subsection{Topology of Metric Spaces}
