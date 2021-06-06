@@ -661,6 +661,16 @@ A geometric interpretation of the above inequality is as follows. Let $\v{a}, \v
 \end{definition}
 \noindent We briefly remark that the above inner product we defined agrees with the inner product we defined over $\CC^k$; we can identify $r \in \RR$ with $(r, 0) \in \CC$, and hence recognize that $\RR^k \subseteq \CC^k$ where the imaginary part of each coordinate is zero. Then, for the inner product we get the exact same result, as $\bar{b}_j = b_j$ for any complex numbers with imaginary part zero. From this we can conclude that the Cauchy-Shwartz inequality also holds in $\RR^k$. 
 
+Note that although the field $\CC$ is $\RR^2$ with multiplication defined as in Definition \ref{def:1.24}, in general vector multiplication on $\RR^n$ is not well defined. That is, we cannot make $\RR^n$ into a field in general; though we can make it into a vector space, which has slightly less structure.
+
+One possibly familiar notion of vector multiplication in $\RR^3$ is the cross product. For $\v{x} = (x_1, x_2, x_3)$ and $\v{y} = (y_1, y_2, y_3)$, the cross product is defined as:
+\begin{align*}
+    \v{x} \times \v{y} = (x_2y_3 - x_3y_2, x_3y_1 - x_1y_3, x_1y_2 - x_2y_1)
+\end{align*}
+However, the cross product does not satisfy properties that would be necessary to make $\RR^3$ a field. For one, it is not commutative, but anticommutative; $\v{x} \times \v{y} = -\v{y} \times \v{x}$. One might ask whether vectors in $\RR^3$ have well-defind inverses, but even before that, there does not exist an identity vector in $\RR^3$ under the cross product! In fact, $\RR^3$ under vector addition and cross product multiplication can be viewed as a noncommutative ring without an identity. 
+
+Note that there is a more general notion of a ``wedge product'' between vectors in $\RR^n$. We are in a sense very ``lucky'' that in $\RR^3$, the wedge product of two vectors returns another vector in $\RR^3$. 
+
 \begin{theorem}{Norm Properties}{1.37}
     Let $\v{x}, \v{y}, \v{z} \in \RR^k$, and $\alpha \in \RR$. Then:
     \begin{enumerate}
@@ -673,7 +683,6 @@ A geometric interpretation of the above inequality is as follows. Let $\v{a}, \v
     \end{enumerate}
 \end{theorem}
 \noindent (e) and (f) are often called "triangle inequalities"; a visual intuition for these inequalities is given in the following figure:
-\newpage 
 \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
@@ -685,6 +694,7 @@ A geometric interpretation of the above inequality is as follows. Let $\v{a}, \v
     \caption{Visual picture for Theorem \ref{thm:1.37}(f), drawn in $\RR^2$. Suppose we started at $\v{x}$ and wanted the shortest path to $\v{z}$; we could try walking directly to $\v{z}$, or we could try walking somewhere else first ($\v{y}$) and then to $\v{z}$. However, the theorem tells us that the direct path will always be shorter in Euclidean space.}
     \label{<label>}
 \end{figure}
+
 \noindent Note that equality in part (f) arises if and only if $\v{y}$ lies on the line segment between $\v{x}$ and $\v{z}$.
 \begin{nproof}
     (a)-(c) are immediate, and (d) immediately follows from Theorem \ref{thm:1.35} (Cauchy-Shwartz). For (e), we have that:
