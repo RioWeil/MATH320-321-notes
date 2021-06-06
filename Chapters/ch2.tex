@@ -5,7 +5,7 @@ This chapter is split into two portions; the first looks at counting, what it me
 Let us then begin with our discussion of counting. If we consider counting how many bananas there are on a table (say there are 10 bananas), then what we are formally doing is establishing a correspondence between each ball on the table with an element in the set $\set{1, \ldots, 10}$. When we refer to the number of elements in a set, it will be good to keep in mind that we are establishing functions between sets. Although we have been discussing functions with some frequency in the course already, we give a definition below for completeness. 
 
 \begin{definition}{Functions}{2.1}
-    Let $A, B$ be sets. Then, a map that associates each element $x \in A$ with a unique element denoted as $f(x) \in B$ is a \textbf{function} $f: A \rightarrow B$. We then define $A$ as the \textbf{domain} of $f$ and the set $\set{f(x): x \in A}$ as the \textbf{range}. For $E \subseteq A$, we call $f(E) = \set{f(x): x \in E}$ the \textbf{image} of $E$ under $f$. 
+    Let $A, B$ be sets. Then, a map that associates each element $x \in A$ with a unique element denoted as $f(x) \in B$ is a \textbf{function} $f: A \rightarrow B$. We then define $A$ as the \textbf{domain} of $f$ and the set $\set{f(x): x \in A}$ as the \textbf{range}. For $E \subseteq A$, we call $f(E) = \set{f(x): x \in E}$ the \textbf{image} of $E$ under $f$. For $F \subseteq B$, we call $f^{-1}(B) = \set{x \in A: f(x) \in B}$ the \textbf{preimage} of $F$. 
 \end{definition}
 
 \begin{definition}{Injective/Surjective Functions}{2.2}
@@ -20,6 +20,7 @@ Let us then begin with our discussion of counting. If we consider counting how m
         \item Symmetry: If $A \sim B$ then $B \sim A$.
         \item Transitivity: If $A \sim B$ and $B \sim C$ then $A \sim C$.
     \end{enumerate}
+    As a point of notation, $\abs{S}$ denotes the cardinality of the set $S$. 
 \end{definition}
 
 \noindent We get (a) from each set having a bijection to itself (i.e. the identity function), (b) from the fact that if there exists a bijection $f: A \mapsto B$, then there must exist an inverse $f^{-1}: B \mapsto A$, and (c) from if there exist bijections $f: A \mapsto B$ and $g: B \mapsto C$ then the composition $g \circ f: A \mapsto C$ will also be a bijection. 
@@ -47,6 +48,49 @@ Let us then begin with our discussion of counting. If we consider counting how m
 \begin{nproof}
     (Sketch) The countability of $A$ implies that $A = \set{a_1, a_2, a_3, a_4, a_5 \ldots}$ (in other words, we can enumerate the elements using $\NN$). Let $S \subseteq A$. Then, $S = \set{a_1, \cancel{a_2}, a_3, a_4, \cancel{a_5}, \ldots}$, that is, $A$ with some (or none) of the elements removed. Now, we can rename all the elements with $a_1, a_2, \ldots$; what we have left is again an enumeration, so it is yet again (at most) countable.
 \end{nproof}
+\noindent One potentially useful fact is that if we have a set $S$ and a function $f: \NN \mapsto S$ such that $f$ is surjective, then $S$ is at most countable. 
+
+\begin{proof}
+    Let $T = \set{n \in \NN: f(n) \neq f(m), \forall m = 1, 2, \ldots, m}$. We restrict $f: T \mapsto S$, then $f$ is injective by constructive. It is still surjective, hence $T \sim S$. Since $T \subset \NN$, by Theorem \ref{thm:2.8}, $S$ is finite or countable.
+\end{proof}
+
+\setcounter{rudin}{11}
+
+\begin{theorem}{}{2.12}
+    Let $E_1, E_2, \ldots$ be countable sets (i.e. we have a countable number of countable sets). Define $S = \bigcup_{n=1}^{\infty} E_n$. Then, $S$ is countable. 
+\end{theorem}
+\begin{nproof}
+    Write $E_n = \set{x_{n}^1, x_{n}^2, x_{n}^3, \ldots}$ (which we can do as each of the $E_n$s are countable). Then, we form an array:
+    \begin{center}
+    \begin{tikzpicture}
+        \matrix[matrix of math nodes,inner sep=1pt,row sep=1em,column sep=1em] (M)
+        {
+            E_1 & = & x_{1}^{1} & x_{1}^{2} & x_{1}^{3}  & \cdots \\
+            E_2 & = & x_{2}^{1} & x_{2}^{2} & x_{2}^{3}  & \cdots \\
+            E_3 & = & x_{3}^{1} & x_{3}^{2} & x_{3}^{3}  & \cdots \\
+            \cdots \\
+        }
+        ;
+        \draw[->] (M-1-3.south west) -- (M-1-3.north east);
+        \draw[->] (M-2-3.south west) -- (M-1-4.north east);
+        \draw[->] (M-3-3.south west) -- (M-1-5.north east);
+        \draw[->] (M-1-3.south west) -- (M-1-3.north east);
+        \draw[->] (M-3-4.south west) -- (M-2-5.north east);
+        \draw[->] (M-3-5.south west) -- (M-3-5.north east);
+    \end{tikzpicture}
+    \end{center}
+    Then, we can re-number the elements along the diagonal lines (i.e. $x_1^1, x_2^1, x_1^2, x_3^1, x_2^2, x_1^3, \ldots$). This new enumeration corresponds to a countable set. From there, we let $T \subseteq \NN$ be the remaining labels in the enumeration after removing the repeated elements from the sequence. Then, $T \sim S$, and hence $S$ is at most countable. $S$ cannot be finite as $E_1 \subseteq S$ and $E_1$ is not finite. Hence $S$ is countable. \qed
+\end{nproof}
+
+\begin{corollary}{}{2.13}
+    \begin{itemize}
+        \item If $A$ is countable, the set of n-tuples of $(a_1, \ldots a_n)$ is also countable for any $n \in \NN$.  
+        \item $\QQ$ is countable.
+    \end{itemize}
+\end{corollary}
+\noindent We defined $\QQ$ as pairs of integers, but by the first part of the corollary (which follows immediately by application of Theorem \ref{thm:2.12}) $\ZZ^2$ (the set of pairs of integers) has equal cardinality to $\ZZ$, and since $\QQ$ is a subset of the set of pairs of integers, $\QQ$ is countable. 
+
+From the discussion of today, we have established that $\abs{\NN} = \abs{\ZZ} = \abs{\QQ}$. Does $\RR$ also have equal cardinality to these sets? The answer turns out to be no, as we will see shortly. 
 
 
 \subsection{Uncountable Sets}
