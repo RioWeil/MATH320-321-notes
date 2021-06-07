@@ -692,12 +692,11 @@ Note that there is a more general notion of a ``wedge product'' between vectors 
     \draw[] (0, 2) node[anchor=south]  {$\abs{\v{x} - \v{y}}$};
     \end{tikzpicture}
     \caption{Visual picture for Theorem \ref{thm:1.37}(f), drawn in $\RR^2$. Suppose we started at $\v{x}$ and wanted the shortest path to $\v{z}$; we could try walking directly to $\v{z}$, or we could try walking somewhere else first ($\v{y}$) and then to $\v{z}$. However, the theorem tells us that the direct path will always be shorter in Euclidean space.}
-    \label{<label>}
+    \label{fig3}
 \end{figure}
 
 \noindent Note that equality in part (f) arises if and only if $\v{y}$ lies on the line segment between $\v{x}$ and $\v{z}$.
 
-Though we discuss the Euclidean norm here, it may also be of interest to consider/discuss other possible norms. 
 \begin{nproof}
     (a)-(c) are immediate, and (d) immediately follows from Theorem \ref{thm:1.35} (Cauchy-Shwartz). For (e), we have that:
     \begin{align*}
@@ -710,4 +709,32 @@ Though we discuss the Euclidean norm here, it may also be of interest to conside
     And the claim follows by taking square roots on both sides. For (f), substitute $\v{x} \mapsto \v{x} - \v{y}$ and $\v{y} \mapsto \v{y} - \v{z}$ into (e). \qed
 \end{nproof}
 
+Though we discuss the Euclidean norm here, it may also be of interest to consider/discuss other norms. One example is the $L_1$ norm (c.f. the norm discussed in Definition \ref{def:1.36}, which is the $L_2$ norm), which is the sum of the absolute values of each of the components. For $\v{x} = (x_1, x_2, \ldots, x_n)$ and $\v{y} = (y_1, y_2, \ldots, y_n)$ we have that:
+\begin{align*}
+    \abs{\v{x}}_1 = \abs{x_1} + \abs{x_2} + \ldots + \abs{x_n}, \quad \abs{\v{x} - \v{y}}_{1} = \abs{x_1 - y_1} + \abs{x_2 - y_2} + \ldots + \abs{x_n - y_n}
+\end{align*}
+The $L_1$ norm is often called the ``Taxicab norm'' or the ``Manhattan norm'' as the way it quantifies distance is akin to walking in discrete NSEW chunks; much like a taxi running through a grid-like New York City!
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+    \draw[black, thick] (-3, 0) node[anchor=north] {$(0, 0)$} -- (1, 0) node[anchor=north] {$(x_1, 0)$}  -- (1, 2) node[anchor=south] {$\v{x} = (x_1, x_2)$} -- (-3, 0);
+    \draw[] (-1, 0) node[anchor=north] {$\abs{x_1}$};
+    \draw[] (1, 1) node[anchor=west] {$\abs{x_2}$};
+    \draw[] (-2, 1.2) node[anchor=south]  {$\abs{\v{x}}_2 = \sqrt{x_1^2 + x_2^2}$};
+    \draw[] (3.5, 1) node {$\abs{\v{x}}_{1} = \abs{x_1} + \abs{x_2}$};
+    \end{tikzpicture}
+    \caption{Visual comparison of the $L_1$ and $L_2$ norms in $\RR^2$.}
+    \label{fig4}
+\end{figure}
+\noindent We are free to generalize this notion to the $L_n$ norm, and we may also define the $L_{\infty}$ norm, which for $\v{x} \in \RR^n$ is defined as:
+\begin{align*}
+    \abs{\v{x}}_\infty = \max_i \abs{x_i}
+\end{align*}
+In general for any $\v{x} \in \RR^n$, we have that $\abs{x}_1 \geq \abs{x}_2 \geq \abs{x}_3 \geq \ldots \geq \abs{x}_\infty$. 
 
+It is notable that we can generalize these norms to the cases where we have infinite components:
+\begin{align*}
+    \norm{\v{x}}_p = \left(\sum_{i = 1}^\infty \abs{x_i}^p\right)^{1/p}, \quad 
+    \|f\|_{p} \equiv\left(\int_{S}|f|^{p} \mathrm{~d} \mu\right)^{1 / p}<\infty
+\end{align*}
+Which allow us to define norms for function spaces. However, a detailed discussion of these are beyond the scope of this course (to be covered in a later course in functional analysis!) Moreover, we haven't even defined what an infinite sum or integral are yet, which we will get to in later chapters. 
