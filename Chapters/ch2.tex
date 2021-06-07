@@ -1,3 +1,4 @@
+\newpage
 \section{Basic Topology}
 \subsection{Finite and Countable Sets}
 This chapter is split into two portions; the first looks at counting, what it means for us to say that two sets have the same number of elements, and concludes with a classic theorem of Cantor concerning uncountable sets. The second part looks at the topology of metric spaces, before moving onto the topology of the real numbers. 
@@ -29,7 +30,14 @@ Let us then begin with our discussion of counting. If we consider counting how m
     First, we denote $J_n = \set{1, 2, 3, \ldots, n}$ and $J = \NN = \set{1, 2, 3, \ldots}$. Let $A$ be a set. We say that $A$ is \textbf{finite} if it has a finite number of elements, that is, there exists $n \in \NN$ such that $A \sim J_n$. A set $A$ is \textbf{infinite} if it is not finite, and we cannot put $A$ in bijection with $J_n$ for any $n \in \NN$. We say that $A$ is \textbf{countable}if $A \sim \NN$, and \textbf{uncountable} otherwise. 
 \end{definition}
 
-\noindent Note that the above 
+\noindent Note that the above definition gives us a useful notion for what sets we can consider countable; if we can enumerate a set with the naturals, this yields a bijection with $\NN$ and hence the set must be countable. 
+
+We here give some additional properties concerning cardinalities of sets, which may be useful:
+\begin{itemize}
+    \item $\abs{A} \leq \abs{B} \iff \exists f: A \mapsto B \text{ such that $f$ is injective}$
+    \item $\abs{A} \geq \abs{B} \iff \exists f: A \mapsto B \text{ such that $f$ is surjective}$
+    \item $\abs{A} \leq \abs{B} \text{ and } \abs{A} \geq \abs{B} \implies \abs{A} = \abs{B}$
+\end{itemize}
 
 \begin{example}{}{2.5}
     $\ZZ$ is countable. To see this, consider the function:
@@ -41,7 +49,7 @@ Let us then begin with our discussion of counting. If we consider counting how m
     \end{align*}
     $f$ is a bijection (check!) and hence $\NN \sim \ZZ$. 
 \end{example}
-\noindent The above example serves as a bit of a warning sign. Even though $\NN \subsetneq \ZZ$ and $\ZZ$ has ``more elements'', we still find that the two sets have the same cardinality. 
+\noindent The above example serves as a bit of a warning sign. Even though $\NN \subsetneq \ZZ$ and $\ZZ$ has ``more elements'', we still find that the two sets have the same cardinality. A similar example is given by $\NN$ and the set of all even natural numbers (which we may denote $2\NN$); the bijection $f(n): n \mapsto 2n$ between these two sets shows that $\NN \sim 2\NN$, even though $2\NN$ is a strict subset of $\NN$. 
 \setcounter{rudin}{7}
 
 \begin{theorem}{}{2.8}
@@ -92,8 +100,20 @@ Let us then begin with our discussion of counting. If we consider counting how m
 \end{corollary}
 \noindent We defined $\QQ$ as pairs of integers, but by the first part of the corollary (which follows immediately by application of Theorem \ref{thm:2.12}) $\ZZ^2$ (the set of pairs of integers) has equal cardinality to $\ZZ$, and since $\QQ$ is a subset of the set of pairs of integers, $\QQ$ is countable. 
 
-From the discussion of today, we have established that $\abs{\NN} = \abs{\ZZ} = \abs{\QQ}$. Does $\RR$ also have equal cardinality to these sets? The answer turns out to be no, as we will see shortly. 
-
+From the discussion of today, we have established that $\abs{\NN} = \abs{\ZZ} = \abs{\QQ}$. Does $\RR$ also have equal cardinality to these sets? Do infinite sets in general have the same cardinality? The answer turns out to be no for both of these questions. We will answer the first question in the next lecture (when we discuss Cantor diagonalization, a highlight of the course), but we can discuss the second statement now. First, we make a definition:
+\begin{ndef}{Power Sets}
+    Let $A$ be a set. Then, the power set of $A$, denoted $\mathcal{P}(A)$, is the set of all subsets of $A$. 
+\end{ndef}
+\noindent An interesting theorem then follows:
+\begin{ntheorem}{Power Set Cardinality}
+    Let $A$ be a set. Then, $\abs{A} < \abs{\mathcal{P}(A)}$.
+\end{ntheorem}
+\begin{nproof}
+    Suppose for the sake of contradiction that there exists a surjection $f: A\rightarrow \pset{A}$ (this would imply that $\abs{A} \geq \abs{\pset{A}}$, so by showing this is false, we obtain the desired result). Then, each element $x \in A$ gets mapped to some subset of $A$. We either have that $x$ belongs to the subset that it gets mapped to, or it doesn't. Therefore, we can define a new subset $B \subseteq A$, such that:
+    \[B = \set{x\in A: x \notin f(x)}\]
+    In other words, the set of all $x$s that are not in the subset that they get mapped to by $f$. Since $f$ is surjective, there must be an element $y \in A$ such that $f(y) = B$. One of $y \in B$, $y \notin B$ must be true. If $y \in B$, by construction of $B$ we have that $y$ is not in the subset that it gets mapped to by $f$, which is a contradiction. If $y \notin B$, by definition of $B$, $y \in B$ as it is not in the subset that it gets mapped to, yet again a contradiction. Therefore, we conclude that no $y \in A$ exists such that $f(y) = B$, and hence, no surjective $f$ exists such that $f: A \rightarrow \pset{A}$. Hence, $\abs{A} < \abs{\pset{A}}$
+\end{nproof}
+\noindent An interesting consequence of this theorem is that for a countable set $A$, we then have that $\mathcal{P}(A)$ is an infinite set which has greater cardinality! For example, $\abs{\NN} < \abs{\mathcal{P}(\NN)}$. Moreover, this gives rise to an infinite number of cardinalities in ascending order; $\abs{\NN} < \abs{\pset{\NN}} < \abs{\pset{\pset{\NN}}} < \cdots$ and so on.
 
 \subsection{Uncountable Sets}
 \subsection{Topology of Metric Spaces}
