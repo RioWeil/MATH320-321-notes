@@ -726,13 +726,12 @@ The $L_1$ norm is often called the ``Taxicab norm'' or the ``Manhattan norm'' as
     \caption{Visual comparison of the $L_1$ and $L_2$ norms in $\RR^2$.}
     \label{fig4}
 \end{figure}
+
 \noindent We are free to generalize this notion to the $L_n$ norm, and we may also define the $L_{\infty}$ norm, which for $\v{x} \in \RR^n$ is defined as:
 \begin{align*}
     \abs{\v{x}}_\infty = \max_i \abs{x_i}
 \end{align*}
-In general for any $\v{x} \in \RR^n$, we have that $\abs{x}_1 \geq \abs{x}_2 \geq \abs{x}_3 \geq \ldots \geq \abs{x}_\infty$. 
-
-It is notable that we can generalize these norms to the cases where we have infinite components:
+In general for any $\v{x} \in \RR^n$, we have that $\abs{x}_1 \geq \abs{x}_2 \geq \abs{x}_3 \geq \ldots \geq \abs{x}_\infty$. We note that we that we can generalize these norms to the cases where we have infinite components:
 \begin{align*}
     \norm{\v{x}}_p = \left(\sum_{i = 1}^\infty \abs{x_i}^p\right)^{1/p}, \quad 
     \|f\|_{p} \equiv\left(\int_{S}|f|^{p} \mathrm{~d} \mu\right)^{1 / p}<\infty
