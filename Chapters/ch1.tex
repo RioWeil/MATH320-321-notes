@@ -2,19 +2,19 @@
 \subsection{The Naturals, Integers, and Rationals}
 We begin by a review of number systems which are already familiar.
 
-\begin{ndef}{The Natural Numbers}
+\begin{ndef}{: The Natural Numbers}
     The \textbf{Naturals}, denoted by $\NN$, is the set $\set{1, 2, 3, \ldots}$.
 \end{ndef}
 
 \noindent For $x, y, \in \NN$, we have that $x + y \in \NN$ and $xy \in \NN$, so the naturals are closed under addition and multiplication. However, we note that it is not closed under subtraction; take for example $2 - 4 = -2 \notin \NN$.
 
-\begin{ndef}{The Integers}
+\begin{ndef}{: The Integers}
     The \textbf{Integers}, denoted by $\ZZ$, is the set $\set{\ldots, -3, -2, -1, 0, 1, 2, 3, \ldots}$.
 \end{ndef}
 
 \noindent The integers are closed under addition, multiplication, and subtraction. However, it is not closed under division; for example, $1/2 \notin \ZZ$. 
 
-\begin{ndef}{The Rationals (informal)}
+\begin{ndef}{: The Rationals (informal)}
     The \textbf{Rationals}, denoted by $\QQ$, can be defined as $\set{\frac{m}{n}: m \in \ZZ, n \in \NN}$, where $\frac{m_1}{n_1}$ and $\frac{m_2}{n_2}$ are identified if $m_1n_2 = m_2n_1$.
 \end{ndef}
 
@@ -22,7 +22,7 @@ We begin by a review of number systems which are already familiar.
 
 If this is not the case, it may help to define the rational numbers more rigorously/formally (even if the definition may be slightly harder to parse). As a second attempt at a definition, we can say that $\QQ$ is the set of ordered pairs $\set{(m, n): m \in \ZZ, n \in \NN}$. However, this is not quite enough as we need a notion of equivalence between two rational numbers (e.g. $(1, 2) = (2, 4)$). Hence, a complete and rigorous definition would be:
 
-\begin{ndef}{The Rationals (formal)}
+\begin{ndef}{: The Rationals (formal)}
     The \textbf{Rationals}, denoted by $\QQ$, is the set $\set{(m, n): m \in \ZZ, n \in \NN}/\sim$ where $(m_1, n_1) \sim (m_2, n_2)$ if $m_1n_2 = m_2n_1$.
 \end{ndef}
 \noindent Under the formal definition, the rationals are a set of equivalence classes of ordered pairs, under the equivalence relation $\sim$. We note that the rationals are closed under addition, subtraction, multiplication, and division.
@@ -119,14 +119,14 @@ Over the next couple sections, we will be discussing certain properties of sets 
     \end{enumerate}
 \end{definition}
 
-\begin{ntheorem}{Uniqueness of supremum/infimum}
+\begin{ntheorem}{}
     If the supremum/infimum of $E \subset S$ exist, they are unique.
 \end{ntheorem}
 \begin{nproof}
         Let $E \subset S$. Suppose that there exist $\alpha_1, \alpha_2$ such that $\alpha_1 = \sup(E)$ and $\alpha_2 = \sup(E)$. If $\alpha_1 < \alpha_2$, as $\alpha_1$ is an upper bound of $E$, this contradicts the fact that $\alpha_2$ is the least upper bound of $E$. We reach an identical contradiction if $\alpha_2 < \alpha_1$. Therefore we conclude that $\alpha_1 = \alpha_2$ and the supremum of $E$ is unique (if it exists). The proof for the infimum is analogous. \qed
 \end{nproof}
 
-\begin{ntheorem}{Equivalence of maximum and supremum}
+\begin{ntheorem}{}
     If $E \subset S$ has a maximum element $\alpha$ (that is, an element such that $x < \alpha$ for all $x \in E$) then $\alpha = \sup(E)$. Similarly, if $E$ has a minimum element $\alpha$, then $\alpha = \inf(E)$.
 \end{ntheorem}
 
@@ -149,7 +149,7 @@ Over the next couple sections, we will be discussing certain properties of sets 
     An ordered set $S$ has the \textbf{least upper bound property} if for every $E \subset S$, if $E \neq \emptyset$ and $E$ is bounded above, then $E$ has a least upper bound (that is, $\sup(E)$ exists in $S$). Similarly, an ordered set $S$ has the \textbf{greatest lower bound property} if for every $E \subset S$, if $E \neq \emptyset$ and $E$ is bounded below, then $E$ has a greatest lower bound.
 \end{definition}
 \noindent We will show in the next theorem that these properties are actually equivalent; before then, we briefly consider two examples.
-\begin{nexample}{$\ZZ$ and $\QQ$}
+\begin{nexample}{}
     $\ZZ$ has the least upper bound property, while $\QQ$ does not. 
 \end{nexample}
 \begin{nproof}
@@ -158,7 +158,7 @@ Over the next couple sections, we will be discussing certain properties of sets 
     The second claim immediately follows from Example \ref{exam:1.9}(a). \qed
 \end{nproof}
 
-\begin{theorem}{Equivalence of LUB/GUB properties}{1.11}
+\begin{theorem}{}{1.11}
     Let $S$ be an ordered set. Then $S$ has the LUB property if and only if it has the GUB property. 
 \end{theorem}
 \begin{nproof}
@@ -187,7 +187,7 @@ Over the next couple sections, we will be discussing certain properties of sets 
     (D): $x \cdot (y + z) = x \cdot y + x \cdot z$, $\forall x, y, z \in F$. (Distributive law)
 \end{definition}
 \noindent Note that A3/M3 show that $x + y + z$ and $x\cdot y\cdot z$ are well defined in a mathematical sense; however, associativity may not hold for computers that do math with finite precision! 
-\begin{ntheorem}{Uniqueness of Identities and Inverses}
+\begin{ntheorem}{}
     The additive/multiplicative identities given by (A4)/(M4) and the additive/multiplicative inverses given by (A5)/(M5) are unique. 
 \end{ntheorem}
 \begin{nproof}
@@ -280,7 +280,7 @@ This field $\RR$ happens to be exactly the set of real numbers we are familiar w
 
 \subsection{Consequences of the LUB Property}
 We will use the least upper bound property and the fact that $\RR$ has $\QQ$ as a subfield to derive its properties.
-\begin{theorem}{Archimedian Property, Density of the Rationals/Irrationals}{1.20}
+\begin{theorem}{Archimedian Property, Density of Rationals/Irrationals in $\RR$}{1.20}
     \begin{enumerate}
         \item If $x, y \in \RR$ and $x > 0$, then $\exists n \in \NN$ such that $nx > y$.
         \item If $x, y \in \RR$, and $x < y$, then $\exists p \in \QQ$ such that $x < p < y$. ($\QQ$ is dense in $\RR$)
@@ -292,7 +292,7 @@ We will use the least upper bound property and the fact that $\RR$ has $\QQ$ as 
     (a) Let $A = \set{nx: n \in \NN}$. Suppose for the sake of contradiction that the conclusion was false; then $y$ is an upper bound of $A$. Then, $\alpha = \sup(A)$ exists by the LUB property of $\RR$. Since $x > 0$, we then have that $\alpha - x < \alpha$ by the property of an ordered field. Hence, $\alpha - x$ is not an upper bound for $A$. Therefore, there exists some $m \in \NN$ such that $mx > \alpha - x$. It then follows that $(m+1)x > \alpha$. We therefore have found $m+1 = k \in \NN$ such that $kx > \alpha$, contradicting $\alpha$ being the least upper bound of $A$. \qed
 \end{nproof}
 
-\noindent In order to prove (b) and (c), we first prove a stronger version of (a):
+\noindent In order to prove (b) and (c), we first prove a stronger version of 1.20(a):
 
 \begin{nlemma}{}
     If $x, y \in \RR$ and $x > 0$, then there exists $n \in \ZZ$ such that $(n-1)x \leq y < nx$. 
@@ -329,7 +329,7 @@ Where we invoke the mean value theorem. But this obviously doesn't work as we ha
     which proves the claim. \qed
 \end{nproof}
 \noindent We will now state the theorem formally:
-\begin{theorem}{Roots of real numbers}{1.21}
+\begin{theorem}{Integer Roots of the Reals}{1.21}
     Let $x \in \RR$, $x > 0$, and $n \in \NN$. Then, there exists a unique $y \in \RR$ such that $y > 0$ and $y^n = x$. 
 \end{theorem}
 \noindent Note that somewhere in the proof, we will use the fact that $y \in \RR$; this statement doesn't hold for rationals (see Example \ref{exam:1.1a}) so some property of the reals must come into play somewhere.
@@ -362,7 +362,7 @@ Theorem \ref{thm:1.19} says that there exists an ordered field that contains $\Q
 
 \begin{nblank}{Step 1: Defining the elements of $\RR$}
     The members of $\RR$ will be proper subsets of $\QQ$, called cuts. $\RR = \set{\text{all cuts}}$. 
-    \begin{ndef}{Cuts}
+    \begin{ndef}{: Cuts}
         A \textbf{cut} is a proper subset $\alpha \subsetneq \QQ$ with the three properties:
         \begin{enumerate}[(I)]
             \item $\alpha \neq \emptyset$
@@ -406,10 +406,10 @@ Theorem \ref{thm:1.19} says that there exists an ordered field that contains $\Q
 \end{nblank}
 
 \begin{nblank}{Step 4: Addition on $\RR$}
-    \begin{ndef}{Addition}
+    \begin{ndef}{: Addition}
         If $\alpha, \beta \in \RR$, we define $\alpha + \beta = \set{s + t: s \in \alpha, t \in \beta}$. Showing that this is a cut is left as an exercise.
     \end{ndef}
-    \begin{ndef}{Zero}
+    \begin{ndef}{: Zero}
         $0^* = \set{s \in \QQ}$. Showing that this is a cut is left as an exercise.
     \end{ndef}
 
@@ -428,22 +428,22 @@ Theorem \ref{thm:1.19} says that there exists an ordered field that contains $\Q
 \noindent Next we will define multiplication on $\RR$. A first attempt would be $\alpha \cdot \beta = \set{s \cdot t: s\in \alpha, t \in \beta}$. However, this definition is incosistent with negative numbers from what we require multiplication to accomplish. $-1 \cdot -1$ would fail to be a cut (it would not contain any negative numbers and hence fail criteria (II)) and $-1 \cdot 1$ would yield the entirety of the rationals (again not a cut!)
 
 \begin{nblank}{Step 6: Positive Multiplication on $\RR$}
-    \begin{ndef}{Positive Reals}
+    \begin{ndef}{: Positive Reals}
         We define $\RR^+ = \set{\alpha \in \RR: \alpha > 0^*}$
     \end{ndef}
     \begin{ndef}{Multiplication of Positive Reals}
         If $\alpha, \beta \in \RR^+$, we define $\alpha \cdot \beta = \set{r \cdot s: r \in \alpha, r> 0, s \in \beta, s > 0} \cup \set{t \in \QQ, t \leq 0}$. Equivalently, $\alpha \cdot \beta = \set{p \in \QQ:  \leq r \cdot s: r \in \alpha, r > 0, s \in \beta, s > 0}$. We leave it as an exercise to show that $\alpha \cdot \beta \in \RR$, and moreover, $\alpha \cdot \beta \in \RR^+$. Showing this second fact proves ordered field property (ii).
     \end{ndef}
-    \begin{ndef}{One}
+    \begin{ndef}{: One}
         $1^* = \set{r \in \QQ: r < 1}$. We again leave showing $1^* \in \RR^+$ as an exercise. 
     \end{ndef}
 \end{nblank}
 
 \begin{nblank}{Step 7: Multiplication on all of $\RR$}
-    \begin{ndef}{Multiplication by zero}
+    \begin{ndef}{: Multiplication by zero}
         $\alpha \cdot 0^* = 0^* = 0^* \cdot \alpha$
     \end{ndef}
-    \begin{ndef}{Multiplication}
+    \begin{ndef}{: Multiplication}
         We define general multiplication as below, where the $\cdot$ on the RHS represents the multiplication of positive reals as outlined in Step 5. 
         \begin{align*}
             \alpha \cdot \beta = 
@@ -474,7 +474,7 @@ Theorem \ref{thm:1.19} says that there exists an ordered field that contains $\Q
         x\cdot y = (a, b)\cdot (c, d) = (ac - ba, ad + bc)
     \end{align*}
 \end{definition}
-\begin{theorem}{$\CC$ is a field}{1.25}
+\begin{theorem}{}{1.25}
     The operations of $+$ and $\cdot$, as well as the zero/one elements defined above turn $\CC$ into a field. 
 \end{theorem}
 \begin{nproof}
@@ -544,7 +544,7 @@ As a Lemma, we have that the only injective function $f: \QQ \mapsto \RR$ that s
 Let $z = a + bi \in \CC$. Then, $\Re(z) = a$ is the \textbf{real part} of $z$ and $\Im(z) = b$ is the \textbf{imaginary part} of $z$. The \textbf{complex conjugate} of $z$, denoted by $\bar{z}$, is defined as $\bar{z} = a - bi$. 
 \end{definition}
 
-\begin{theorem}{Conjugate Properties}{1.31}
+\begin{theorem}{}{1.31}
     Let $z, w \in \CC$. It then follows that:
     \begin{enumerate}
         \item $\overline{z + w} = \bar{z} + \bar{w}$.
@@ -574,7 +574,7 @@ Let $z = a + bi \in \CC$. Then, $\Re(z) = a$ is the \textbf{real part} of $z$ an
     Hence if $a \in \RR$, we can define $\abs{a} = \abs{(a, 0)}$. 
 \end{definition}
 
-\begin{theorem}{Absolute Value Properties}{1.33}
+\begin{theorem}{}{1.33}
     Let $z, w \in \CC$.
     \begin{enumerate}
         \item $\abs{z} \geq 0$, $\abs{z} = 0 \iff z = 0$. 
@@ -671,7 +671,7 @@ However, the cross product does not satisfy properties that would be necessary t
 
 Note that there is a more general notion of a ``wedge product'' between vectors in $\RR^n$. We are in a sense very ``lucky'' that in $\RR^3$, the wedge product of two vectors returns another vector in $\RR^3$. 
 
-\begin{theorem}{Norm Properties}{1.37}
+\begin{theorem}{}{1.37}
     Let $\v{x}, \v{y}, \v{z} \in \RR^k$, and $\alpha \in \RR$. Then:
     \begin{enumerate}
         \item $\abs{\v{x}} \geq 0$
