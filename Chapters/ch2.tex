@@ -92,7 +92,7 @@ We here give some additional properties concerning cardinalities of sets, which 
     Then, we can re-number the elements along the diagonal lines (i.e. $x_{11}, x_{21}, x_{12}, x_{31}, x_{22}, x_{13}, \ldots$). This new enumeration corresponds to a countable set. From there, we let $T \subseteq \NN$ be the remaining labels in the enumeration after removing the repeated elements from the sequence. Then, $T \sim S$, and hence $S$ is at most countable. $S$ cannot be finite as $E_1 \subseteq S$ and $E_1$ is not finite. Hence $S$ is countable. \qed
 \end{nproof}
 
-\begin{corollary}{}{2.13}
+\begin{corollary}{$\QQ$ is Countable.}{2.13}
     \begin{itemize}
         \item If $A$ is countable, the set of n-tuples of $(a_1, \ldots a_n)$ is also countable for any $n \in \NN$.  
         \item $\QQ$ is countable.
@@ -101,11 +101,11 @@ We here give some additional properties concerning cardinalities of sets, which 
 \noindent We defined $\QQ$ as pairs of integers, but by the first part of the corollary (which follows immediately by application of Theorem \ref{thm:2.12}) $\ZZ^2$ (the set of pairs of integers) has equal cardinality to $\ZZ$, and since $\QQ$ is a subset of the set of pairs of integers, $\QQ$ is countable. 
 
 From the discussion of today, we have established that $\abs{\NN} = \abs{\ZZ} = \abs{\QQ}$. Does $\RR$ also have equal cardinality to these sets? Do infinite sets in general have the same cardinality? The answer turns out to be no for both of these questions. We will answer the first question in the next lecture (when we discuss Cantor diagonalization, a highlight of the course), but we can discuss the second statement now. First, we make a definition:
-\begin{ndef}{Power Sets}
+\begin{ndef}{: Power Sets}
     Let $A$ be a set. Then, the \textbf{power set} of $A$, denoted $\mathcal{P}(A)$, is the set of all subsets of $A$. 
 \end{ndef}
 \noindent An interesting theorem then follows:
-\begin{ntheorem}{Power Set Cardinality}
+\begin{ntheorem}{: Power Set Cardinality}
     Let $A$ be a set. Then, $\abs{A} < \abs{\mathcal{P}(A)}$.
 \end{ntheorem}
 \begin{nproof}
@@ -116,7 +116,7 @@ From the discussion of today, we have established that $\abs{\NN} = \abs{\ZZ} = 
 \noindent An interesting consequence of this theorem is that for a countable set $A$, we then have that $\mathcal{P}(A)$ is an infinite set which has greater cardinality! For example, $\abs{\NN} < \abs{\mathcal{P}(\NN)}$. Moreover, this gives rise to an infinite number of cardinalities in ascending order; $\abs{\NN} < \abs{\pset{\NN}} < \abs{\pset{\pset{\NN}}} < \cdots$ and so on.
 
 \subsection{Uncountable Sets}
-\begin{theorem}{}{2.14}
+\begin{theorem}{Existence of Uncountable Sets}{2.14}
 Let $A = \set{(b_1, b_2, \ldots), b_n \in \set{0, 1}}$ be the set of binary sequences. Then, $A$ is uncountable. 
 \end{theorem}
 \begin{nproof}
@@ -140,7 +140,7 @@ Let $A = \set{(b_1, b_2, \ldots), b_n \in \set{0, 1}}$ be the set of binary sequ
 \end{nproof}
 \noindent The above proof is a very famous argument, invented by the mathematician George Cantor. The discovery that there exist sets with greater cardinality than $\NN$ was initially quite controversial in the math community!
 
-\begin{ncorollary}{}{}
+\begin{ncorollary}{: $\RR$ is Uncountable}{}
     $\mathcal{P}(\NN)$ (the power set of $\NN$) is uncountable. $\RR$ is uncountable.
 \end{ncorollary}
 \begin{nproof}
@@ -204,9 +204,13 @@ In our investigation of topology, we will try to better understand distances bet
         \item In $\RR$, $N_r(p)$ is the interval $(p - r, p + r)$ about midpoint $p$.
         \item In $\RR^2$, $N_r(p)$ is the open disk about center $p$. 
         \item In $\RR^3$, $N_r(p)$ is the open ball about center $p$.
-        \item In $\RR^n$, $N_r(p)$ are open hyperballs about center $p$. 
+        \item In $\RR^n$, $N_r(p)$ is the open hyperball about center $p$. 
     \end{itemize}
 \end{nexample}
+\setcounter{rudin}{16}
+\begin{definition}{Interior Points}{2.17e}
+    Let $E \subseteq X$. Then, $p$ is an interior point of $S$ if there is a neighbourhood $N_r(p)$ such that $N \subseteq E$. 
+\end{definition}
 
 \subsection{Closure and Relative Topology}
 \subsection{Compactness}
