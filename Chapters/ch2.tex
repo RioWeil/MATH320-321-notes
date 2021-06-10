@@ -193,8 +193,20 @@ In our investigation of topology, we will try to better understand distances bet
     \end{tikzpicture}
     
     \caption{A graph-theoretic example of a metric space. Let $X = \set{1, 2, 3, 4, 5, 6}$. Then, for $x, y \in X$, let $d(x, y)$ be the number of edges if the shortest path between $x$ and $y$. Properties (a), (b) of a metric are immediately satisfied, and (c) follows from the property of the shortest path.}
-    \label{<label>}
+    \label{fig5}
 \end{figure}
+
+\begin{definition}{Neighbourhoods}{2.17a}
+    A neighbourhood in a metric space $X$ is a set $N_r(p) = \set{q \in X: d(p, q) < r}$ with $r > 0$. 
+\end{definition}
+\begin{nexample}{}
+    \begin{itemize}
+        \item In $\RR$, $N_r(p)$ is the interval $(p - r, p + r)$ about midpoint $p$.
+        \item In $\RR^2$, $N_r(p)$ is the open disk about center $p$. 
+        \item In $\RR^3$, $N_r(p)$ is the open ball about center $p$.
+        \item In $\RR^n$, $N_r(p)$ are open hyperballs about center $p$. 
+    \end{itemize}
+\end{nexample}
 
 \subsection{Closure and Relative Topology}
 \subsection{Compactness}
