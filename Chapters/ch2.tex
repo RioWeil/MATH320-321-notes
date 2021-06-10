@@ -70,14 +70,14 @@ We here give some additional properties concerning cardinalities of sets, which 
     Let $E_1, E_2, \ldots$ be countable sets (i.e. we have a countable number of countable sets). Define $S = \bigcup_{n=1}^{\infty} E_n$. Then, $S$ is countable. 
 \end{theorem}
 \begin{nproof}
-    Write $E_n = \set{x_{n}^1, x_{n}^2, x_{n}^3, \ldots}$ (which we can do as each of the $E_n$s are countable). Then, we form an array:
+    Write $E_n = \set{x_{n1}, x_{n2}, x_{n3}, \ldots}$ (which we can do as each of the $E_n$s are countable). Then, we form an array:
     \begin{center}
     \begin{tikzpicture}
         \matrix[matrix of math nodes,inner sep=1pt,row sep=1em,column sep=1em] (M)
         {
-            E_1 & = & x_{1}^{1} & x_{1}^{2} & x_{1}^{3}  & \cdots \\
-            E_2 & = & x_{2}^{1} & x_{2}^{2} & x_{2}^{3}  & \cdots \\
-            E_3 & = & x_{3}^{1} & x_{3}^{2} & x_{3}^{3}  & \cdots \\
+            E_1 & = & x_{11} & x_{12} & x_{13}  & \cdots \\
+            E_2 & = & x_{21} & x_{22} & x_{23}  & \cdots \\
+            E_3 & = & x_{31} & x_{32} & x_{33}  & \cdots \\
             \cdots \\
         }
         ;
@@ -89,7 +89,7 @@ We here give some additional properties concerning cardinalities of sets, which 
         \draw[->] (M-3-5.south west) -- (M-3-5.north east);
     \end{tikzpicture}
     \end{center}
-    Then, we can re-number the elements along the diagonal lines (i.e. $x_1^1, x_2^1, x_1^2, x_3^1, x_2^2, x_1^3, \ldots$). This new enumeration corresponds to a countable set. From there, we let $T \subseteq \NN$ be the remaining labels in the enumeration after removing the repeated elements from the sequence. Then, $T \sim S$, and hence $S$ is at most countable. $S$ cannot be finite as $E_1 \subseteq S$ and $E_1$ is not finite. Hence $S$ is countable. \qed
+    Then, we can re-number the elements along the diagonal lines (i.e. $x_{11}, x_{21}, x_{12}, x_{31}, x_{22}, x_{13}, \ldots$). This new enumeration corresponds to a countable set. From there, we let $T \subseteq \NN$ be the remaining labels in the enumeration after removing the repeated elements from the sequence. Then, $T \sim S$, and hence $S$ is at most countable. $S$ cannot be finite as $E_1 \subseteq S$ and $E_1$ is not finite. Hence $S$ is countable. \qed
 \end{nproof}
 
 \begin{corollary}{}{2.13}
@@ -111,12 +111,56 @@ From the discussion of today, we have established that $\abs{\NN} = \abs{\ZZ} = 
 \begin{nproof}
     Suppose for the sake of contradiction that there exists a surjection $f: A\rightarrow \pset{A}$ (this would imply that $\abs{A} \geq \abs{\pset{A}}$, so by showing this is false, we obtain the desired result). Then, each element $x \in A$ gets mapped to some subset of $A$. We either have that $x$ belongs to the subset that it gets mapped to, or it doesn't. Therefore, we can define a new subset $B \subseteq A$, such that:
     \[B = \set{x\in A: x \notin f(x)}\]
-    In other words, the set of all $x$s that are not in the subset that they get mapped to by $f$. Since $f$ is surjective, there must be an element $y \in A$ such that $f(y) = B$. One of $y \in B$, $y \notin B$ must be true. If $y \in B$, by construction of $B$ we have that $y$ is not in the subset that it gets mapped to by $f$, which is a contradiction. If $y \notin B$, by definition of $B$, $y \in B$ as it is not in the subset that it gets mapped to, yet again a contradiction. Therefore, we conclude that no $y \in A$ exists such that $f(y) = B$, and hence, no surjective $f$ exists such that $f: A \rightarrow \pset{A}$. Hence, $\abs{A} < \abs{\pset{A}}$
+    In other words, the set of all $x$s that are not in the subset that they get mapped to by $f$. Since $f$ is surjective, there must be an element $y \in A$ such that $f(y) = B$. One of $y \in B$, $y \notin B$ must be true. If $y \in B$, by construction of $B$ we have that $y$ is not in the subset that it gets mapped to by $f$, which is a contradiction. If $y \notin B$, by definition of $B$, $y \in B$ as it is not in the subset that it gets mapped to, yet again a contradiction. Therefore, we conclude that no $y \in A$ exists such that $f(y) = B$, and hence, no surjective $f$ exists such that $f: A \rightarrow \pset{A}$. Hence, $\abs{A} < \abs{\pset{A}}$. \qed
 \end{nproof}
 \noindent An interesting consequence of this theorem is that for a countable set $A$, we then have that $\mathcal{P}(A)$ is an infinite set which has greater cardinality! For example, $\abs{\NN} < \abs{\mathcal{P}(\NN)}$. Moreover, this gives rise to an infinite number of cardinalities in ascending order; $\abs{\NN} < \abs{\pset{\NN}} < \abs{\pset{\pset{\NN}}} < \cdots$ and so on.
 
 \subsection{Uncountable Sets}
+\begin{theorem}{}{2.14}
+Let $A = \set{(b_1, b_2, \ldots), b_n \in \set{0, 1}}$ be the set of binary sequences. Then, $A$ is uncountable. 
+\end{theorem}
+\begin{nproof}
+    It suffices to show that every countable subset of $A$ is a proper subset of $A$. Let $E \subset A$ be countable, and let $E = \set{S^{(1)}, S^{(2)}, S^{(3)}, \ldots}$. To show that $E$ is a proper subset, we show that there exists a sequence $S \in A \setminus E$. To construct such an $S$, let us put the elements of $E$ in an array. 
+    \begin{center}
+        \begin{tikzpicture}
+            \matrix[matrix of math nodes,inner sep=1pt,row sep=1em,column sep=1em] (M)
+            {
+                S^{(1)} & = & \boxed{b_{1}^{1}} & b_{2}^{1} & b_{3}^{1} &  \cdots \\
+                S^{(2)} & = & b_{1}^{2} & \boxed{b_{2}^{2}} & b_{3}^{2} & \cdots \\
+                S^{(3)} & = & b_{1}^{3} & b_{2}^{3} & \boxed{b_{3}^{3}}  & \cdots \\
+            };
+        \end{tikzpicture}
+    \end{center}
+    Then, define:
+    \[\tilde{b}_n^n = \begin{cases}
+        1 & \text{if $b_n^n = 0$}
+        \\ 0 & \text{if $b_n^n = 1$}
+    \end{cases}\]
+    I.e. $\tilde{b}_n^n$ is the bit flip of $b_n^n$. Then, let $S = (\tilde{b}_1^1, \tilde{b}_2^2, \tilde{b}_3^3, \ldots)$, that is, $S$ is the sequence of bit-flipped diagonal elements of the original array. By construction, $S \neq S^{(k)}$ as for any $S^{(k)} \in E$ as $S$ differs at the $k$th position. Hence, $S \notin E$ and therefore $E \subsetneq A$. \qed
+\end{nproof}
+\begin{ncorollary}{}{}
+    $\mathcal{P}(\NN)$ (the power set of $\NN$) is uncountable. $\RR$ is uncountable.
+\end{ncorollary}
+\begin{nproof}
+    Although we showed that $\mathcal{P}(\NN)$ was uncountable last lecture, we show this in an alternative way by considering a bijection between $\mathcal{P}(\NN)$ and the set $A$ of binary sequences. To do this, consider that we can associate a subset $T \subset \NN$, $T \in \mathcal{P}(\NN)$ with the sequence corresponding to:
+    \begin{align*}
+        b_n = \begin{cases}
+            1 & \text{if $n \in T$}
+            \\ 0 & \text{if $n \notin T$}
+        \end{cases}
+    \end{align*}
+    Since $A$ is uncountable, it follows that $\mathcal{P}(\NN)$ is uncountable. The second statement in the corollary follows (roughly) by considering $\RR$ represented in binary, though this requires more justification than what we present here (we will show below that a subset of $\RR$ is uncountable). \qed
+\end{nproof}
+\begin{ntheorem}{}{}
+    $[0, 1] \subset \RR$ is uncountable.
+\end{ntheorem}
+\begin{nproof}
+    (Sketch) We construct a bijection from $[0, 1]$ to $A$. Let $x \in [0,1]$, and let $b_1$ be the largest integer such that $N_1 = \frac{b_1}{2} \leq x$. Then, let $b_2 \in \set{0, 1}$ be the largest integer such that $N_2 = \frac{b_1}{2} + \frac{b_2}{2^2} \leq x$. We can continue dividing $[0,1]$ in half in this way, approximating $x$ by powers of 2 (a decimal expansion in binary). Then, let $E(x) = \set{N_1, N_2, N_3, \ldots}$. By construction, $E(x)$ is bounded above by $x$ and nonempty. Hence, $\sup(E(x))$ exists and is unique, and in fact is equal to $x$ (note that we are in essence constructing an "infinite series" where the sequence of partial sums is increasing and bounded, approaching $x$ from the left). Doing this we can associate $(b_1, b_2, b_3, \ldots) \in A$ with every number $x \in [0, 1]$ and therefore $[0, 1] \sim A$. Hence $[0, 1]$ is uncountable. \qed
+\end{nproof}
+
 \subsection{Topology of Metric Spaces}
+In our investigation of topology, we will try to better understand distances between and neighbourhoods of points. Distance is a familiar notion that we already have, and we will formalize this notion in the context of a metric space.
+
 \subsection{Closure and Relative Topology}
 \subsection{Compactness}
 \subsection{Compactness in \texorpdfstring{$\RR^k$}{TEXT} and the Cantor Set}
