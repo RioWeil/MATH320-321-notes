@@ -33,9 +33,9 @@ Note that under this definition, $(1, 2)$ and $(2, 4)$ are different representat
 
 A natural question then becomes if the rationals are sufficient for doing all of real analysis. Certainly, it seems as we have a number system that is closed under all our basic arithmetic operations; but is this enough? For example, are we able to take limits just using the rationals? The answer turns out to be no (they are insufficient!) and the following example will serve as one illustration of this fact. 
 
-\begin{nexample}{ 1.1(a): Incompleteness of the Rationals}{\label{exam:1.1a}}
+\begin{example}{Incompleteness of the Rationals}{1.1a}
     There exists no $p \in \QQ$ such that $p^2 = 2$.
-\end{nexample}
+\end{example}
 \noindent We proceed via proof by contradiction. Recall in that these types of proof, we start with a certain wrong assumption, follow a correct/true line of reasoning, reach an eventual absurdity, and therefore conclude that the original assumption was mistaken. 
 \begin{nproof}
     Let us then suppose for the contradiction that there exists $p = \frac{m}{n}$ with $p^2 = 2$. We then have that not both $m, n$ are even, and hence at least one is odd. Then, we have that $2 = p^2 = \frac{m^2}{n^2}$ and hence $m^2 = 2n^2$, so $m^2$ is even, implying $m$ is even. So, let us write $m = 2k$ for $k \in \ZZ$. Then, $(2k)^2 = 4k^2 = 2n^2$, and hence $2k^2 = n^2$. Therefore, $n^2$ is even and hence $n$ is even. $m$ and $n$ are therefore both even, a contradiction. We conclude that no such $p$ exists. \qed
@@ -46,9 +46,9 @@ We note that this example leads us to conclude that the rationals have certain "
 
 \setcounter{rudin}{0}
 
-\begin{nexample}{ 1.1(b): Incompleteness of the Rationals}{\label{exam:1.1b}}
+\begin{example}{Incompleteness of the Rationals}{1.1b}
     Let $A = \set{p \in \QQ: p > 0, p^2 < 2}$, and $B = \set{p \in \QQ: p > 0, p^2 > 2}$. Then, $\forall p \in A, \exists q \in A$ such that $p < q$, and $\forall p \in B, \exists q \in B$ such that $q < p$. 
-\end{nexample}
+\end{example}
 \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
