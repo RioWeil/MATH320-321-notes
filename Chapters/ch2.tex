@@ -196,9 +196,12 @@ In our investigation of topology, we will try to better understand distances bet
     \label{fig5}
 \end{figure}
 
-\begin{ndef}{ 2.17(a): Neighbourhoods}{\label{def:2.17a}}
+
+\setcounter{rudin}{17}
+\begin{definition}{Neighbourhoods}{2.18a}
     A neighbourhood in a metric space $X$ is a set $N_r(p) = \set{q \in X: d(p, q) < r}$ with $r > 0$. 
-\end{ndef}
+\end{definition}
+
 \begin{nexample}{}
     \begin{itemize}
         \item In $\RR$, $N_r(p)$ is the interval $(p - r, p + r)$ about midpoint $p$.
@@ -207,13 +210,43 @@ In our investigation of topology, we will try to better understand distances bet
         \item In $\RR^n$, $N_r(p)$ is the open hyperball about center $p$. 
     \end{itemize}
 \end{nexample}
-\setcounter{rudin}{16}
-\begin{ndef}{ 2.17(e): Interior Points}{\label{def:2.17e}}
-    Let $E \subseteq X$. Then, $p$ is an interior point of $S$ if there is a neighbourhood $N_r(p)$ such that $N \subseteq E$. 
-\end{ndef}
-\ref{def:2.17a}
-\ref{def:2.17e}
+\setcounter{rudin}{17}
 
+\begin{definition}{Interior Points}{2.18e}
+    Let $E \subseteq X$. Then, $p$ is an interior point of $S$ if there is a neighbourhood $N_r(p)$ such that $N \subseteq E$. 
+\end{definition}
+\noindent Intuitively, an interior point of $E$ is a point that is not on the boundary of $E$. As an example, in $\RR^n$, if $E = \set{y: \abs{x - y} \leq 1}$, then the interior points of $E$ (which we can denote as $E^\circ$) are $E^\circ = \set{y: \abs{x - y} < 1}$. The idea is that there is always some finite distance to the boundary, so we can always fit a (perhaps small) open ball in. But this doesn't hold at the boundary!
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        
+    \end{tikzpicture}
+    
+    
+    \caption{A visualation of an interior point. A set $E \subset \RR^2$ is pictured. $p_1$ is an interior point as there exists $N_r(p_1) \subset E$. $p_2$ is not an interior point as there does not exist a neighbourhood of $p_2$ that is entirely contained in $E$ (it is on the boundary). }
+    \label{fig6}
+\end{figure}
+
+\setcounter{rudin}{17}
+\begin{definition}{Open Sets}{2.18f}
+    A set $E \subseteq X$ is open if every point of $E$ is an interior point of $E$. 
+\end{definition}
+
+\begin{theorem}{}{2.19}
+    Every neighbourhood is an open set.
+\end{theorem}
+\begin{nproof}
+    Consider a neighbourhood $E = N_r(p) \subseteq X$. 
+\end{nproof}
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        
+    \end{tikzpicture}
+    
+    \caption{Visualization of the Sets in Theorem \ref{thm:2.19}}
+    \label{fig7}
+\end{figure}
 \subsection{Closure and Relative Topology}
 \subsection{Compactness}
 \subsection{Compactness in \texorpdfstring{$\RR^k$}{TEXT} and the Cantor Set}
