@@ -199,7 +199,7 @@ In our investigation of topology, we will try to better understand distances bet
 
 \setcounter{rudin}{17}
 \begin{definition}{Neighbourhoods}{2.18a}
-    A neighbourhood in a metric space $X$ is a set $N_r(p) = \set{q \in X: d(p, q) < r}$ with $r > 0$. 
+    A \textbf{neighbourhood} in a metric space $X$ is a set $N_r(p) = \set{q \in X: d(p, q) < r}$ with $r > 0$. 
 \end{definition}
 
 \begin{nexample}{}
@@ -213,40 +213,150 @@ In our investigation of topology, we will try to better understand distances bet
 \setcounter{rudin}{17}
 
 \begin{definition}{Interior Points}{2.18e}
-    Let $E \subseteq X$. Then, $p$ is an interior point of $S$ if there is a neighbourhood $N_r(p)$ such that $N \subseteq E$. 
+    Let $E \subseteq X$. Then, $p$ is an \textbf{interior point} of $S$ if there is a neighbourhood $N_r(p)$ such that $N \subseteq E$. 
 \end{definition}
 \noindent Intuitively, an interior point of $E$ is a point that is not on the boundary of $E$. As an example, in $\RR^n$, if $E = \set{y: \abs{x - y} \leq 1}$, then the interior points of $E$ (which we can denote as $E^\circ$) are $E^\circ = \set{y: \abs{x - y} < 1}$. The idea is that there is always some finite distance to the boundary, so we can always fit a (perhaps small) open ball in. But this doesn't hold at the boundary!
 \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
-        
+        \draw[] (-2, -2) -- (-2, 2) -- (2 ,2) -- (2, -2) -- (-2, -2);
+        \draw[red, thick, fill = white!60!red] (-1.5, -1.5) -- (-1.5, 1.5) -- (1.5, 1.5) -- (1.5, -1.5) -- (-1.5, -1.5);
+        \draw[blue, dotted, thick, fill = white!60!blue] (0, 0) circle (15pt);
+        \draw[fill] (1.5, 1.5) circle (1pt);
+        \draw[fill] (0, 0) circle (1pt);
+        \node[right] at (0, 0) {$p_1$};
+        \node[right] at (1.5, 1.5) {$p_2$};
+        \node[] at (1.25, -1.25) {$E$};
+        \node[right] at (2, -1.85) {$X$};
     \end{tikzpicture}
-    
-    
-    \caption{A visualation of an interior point. A set $E \subset \RR^2$ is pictured. $p_1$ is an interior point as there exists $N_r(p_1) \subset E$. $p_2$ is not an interior point as there does not exist a neighbourhood of $p_2$ that is entirely contained in $E$ (it is on the boundary). }
+    \caption{A visualation of an interior point. A set $E \subset X$ is pictured. $p_1$ is an interior point as there exists $N_r(p_1) \subset E$. $p_2$ is not an interior point as there does not exist a neighbourhood of $p_2$ that is entirely contained in $E$ (it is on the boundary). }
     \label{fig6}
 \end{figure}
 
 \setcounter{rudin}{17}
 \begin{definition}{Open Sets}{2.18f}
-    A set $E \subseteq X$ is open if every point of $E$ is an interior point of $E$. 
+    A set $E \subseteq X$ is \textbf{open} if every point of $E$ is an interior point of $E$. 
 \end{definition}
 
 \begin{theorem}{}{2.19}
     Every neighbourhood is an open set.
 \end{theorem}
 \begin{nproof}
-    Consider a neighbourhood $E = N_r(p) \subseteq X$. 
+    Consider a neighbourhood $E = N_r(p) \subseteq X$. Let $q \in E$. We will show that $q$ is an interior point of $E$. Choose $s < r - d(p, q)$. Then, let $x \in N_s(q)$. By the triangle inequality:
+    \begin{align*}
+        d(x, p) \leq d(x, q) + d(q, p) < s + d(q, p) < r - d(p, q) + d(p, q) = r.
+    \end{align*}
+    Hence, $d(x, p) < r$ and it follows that $x \in N_r(p)$. Hence, $N_s(q) \subset N_r(p)$ and $q$ is an interior point of $E$. \qed
 \end{nproof}
+
 \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
-        
+        \draw[red, dotted, thick, fill = white!60!red] (0, 0) circle (55pt);
+        \draw[fill] (0, 0) circle (1pt);
+        \node[right] at (0, 0) {$p$};
+        \node[right] at (0, 0.95) {$r$};
+        \draw[<->] (0, 0.05) -- (0, 1.9);
+        \draw[blue, dotted, thick, fill = white!60!blue] (0, -0.875) circle (18pt);
+        \draw[fill] (0, -0.875) circle (1pt);
+        \node[right] at (0, -0.875) {$q$};
+        \draw[<->] (0,-0.925) -- (0, -1.5);
+        \node[right] at (0, -1.2) {$s$};
+        \draw[fill] (-0.25, -0.6) circle (1pt);
+        \node[right] at (-0.25, -0.6) {$x$};
     \end{tikzpicture}
-    
-    \caption{Visualization of the Sets in Theorem \ref{thm:2.19}}
+    %\node[right] at (1.9, 0) {$N_r(p)$};
+    %\node[right] at (0.6, -0.875) {$N_s(q)$};
+    \caption{Visualization of the Sets/Points in Theorem \ref{thm:2.19}}
     \label{fig7}
 \end{figure}
+
+\setcounter{rudin}{17}
+\begin{definition}{Limit Points/Isolated Points}{2.18b}
+    Let $E \subseteq X$ and $p \in X$. Then, $p$ is a \textbf{limit point} of $E$ if every neighbourhood of $p$ contains $q \in E$, $q \neq p$. If $p \in E$ and $p$ is not a limit point of $E$, then $p$ is an \textbf{isolated point} of $E$. 
+\end{definition}
+\begin{nexample}{}{}
+    Let $E = \set{\frac{1}{n}: n \in \NN}$. Then, $\frac{1}{2}$ is not a limit point of $E$, as for $r < \frac{1}{4}$ $N_r(\frac{1}{2})$ does not contain any other points of $E$. On the other hand, $0$ is a limit point of $E$. For any neighbourhood $N_r(0)$ of $0$, $\frac{1}{N} \in N_r(0)$ for $N > \frac{1}{r}$. Note that $0$ is the only limit point of $E$, and is not contained in $E$ (indeed, there is no requirement that a limit point be contained in the set). 
+\end{nexample}
+
+\setcounter{rudin}{19}
+
+\begin{theorem}{}{2.20}
+    If $p$ is a limit point of $E$, then every neighbourhood of $p$ contains an infinite number of $q \in E$. 
+\end{theorem}
+
+\begin{nproof}
+    (Sketch) Let $r_1 = 1$. Then, there exists $q_1 \in N_{r_1}(p)$ such that $q_1 \in E$ and $q_1 \neq p$ as $p$ is a limit point of $E$ by assumption. Let $r_2 = d(q_1, p)$. Then, there exists $q_2 \in N_{r_2}(p)$ such that $q_2 \in E$ and $q_2 \neq p$. We can repeat this process to get a (countably infinite) sequence of distinct points $q \in N_{r_1}(p)$, which proves the claim. \qed 
+\end{nproof}
+
+\begin{ncorollary}{}{}
+    If $E \subseteq X$ is finite, then $E$ has no limit points.
+\end{ncorollary}
+
+\setcounter{rudin}{17}
+\begin{definition}{Closed Sets}{2.18d}
+    A set $E \subseteq X$ is closed if every limit point of $E$ is in $E$. 
+\end{definition}
+\noindent Note that with the above Corollary, we find that every finite set is (trivially) closed.
+
+\setcounter{rudin}{17}
+\begin{definition}{Complement}{2.18g}
+    Let $E \subseteq X$. Then, the complement of $E$, denoted $E^c$ is $E^c = \set{x \in X: x \notin E}$. 
+\end{definition}
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \draw[] (-1, -1) -- (1, -1) -- (1, 1) -- (-1, 1) -- (-1, -1);
+        \draw[blue, thick, fill = white!60!blue] (-1, 0) -- (-1, -1) -- (1, -1) -- (1, 1) -- (0, 1) -- (0, 0) -- (-1, 0);
+        \draw[red, thick, fill = white!60!red] (-1, 0) -- (0, 0) -- (0, 1) -- (-1, 1) -- (-1, 0);
+        \node at (-0.5, 0.5) {$E$};
+        \node at (0.5, -0.5) {$E^c$};
+        \node[right] at (1, -0.85) {$X$};
+    \end{tikzpicture}
+    
+    \caption{Visualization of a set $E$ and its complement.}
+    \label{fig8}
+\end{figure}
+
+\setcounter{rudin}{22}
+\begin{theorem}{}{2.23}
+    A set $E \subseteq X$ is open if and only if $E^c$ is closed.
+\end{theorem}
+\noindent Note that this theorem does not imply that all sets are closed or open; it is possible to have a set that is neither closed or open (such as $[0, 1) \subset \RR$) and then its complement (with the former example, $(-\infty, 0) \cup [1, \infty]$) which is also neither closed nor open. As an additional note, we have that $X$ (the entire metric space) and $\emptyset$ are both open and closed (which we may affectionately label as ``clopen'').
+
+\begin{nproof}
+    \boxed{\implies} Assume $E$ is open. If $E^c$ has no limit points, it is trivially closed, so suppose that there exists a limit point $x$ of $E^c$. Suppose for the sake of contradiction that $x \notin E^c$. Then, $x \in E$. As $E$ is open, $x$ is an interior point of $E$, so there exists a neighbourhood $N_r(x) \subseteq E$. In particular, $N_r(x) \cap E^c = \emptyset$, contradicting the fact that $x$ is a limit point of $E^c$. Hence, $x \in E^c$ and $E^c$ is closed.
+
+    \boxed{\impliedby} Assume $E^c$ is closed. Let $x \in E$. In particular, $x \notin E^c$, so $x$ is not a limit point of $E^c$. So, there exists a neighbourhood $N_r(x)$ which contains no point of $E^c$, i.e. $N_r(x) \cap E^c = \emptyset$. It follows that $N_r(x) \subseteq E$, and hence $x$ is an interior point of $E$. This argument applies to all points of $E$, hence $E$ is open. \qed
+\end{nproof}
+
+\begin{ncorollary}{}{}
+    A set $F \subseteq X$ is closed if and only if $F^c$ is open.
+\end{ncorollary}
+\noindent Let $F = E^c$ in Theorem \ref{thm:2.23} to realize the above Corollary.
+
+\begin{theorem}{}{2.24}
+    \begin{enumerate}
+        \item For any collection $\set{E_\alpha}$ of open sets, $\bigcup_\alpha E_\alpha$ is open.
+        \item For any collection $\set{F_\alpha}$ of closed sets, $\bigcap_\alpha F_\alpha$ is closed.
+        \item For any finite collection $E_1, \ldots, E_n$ of open sets, $\bigcap_{i=1}^n E_i$ is open.
+        \item For any finite collection $F_1, \ldots, F_n$ of closed sets, $\bigcup_{i=1}^n F_i$ is closed.
+    \end{enumerate}
+\end{theorem}
+\noindent A point of notation; $\set{E_\alpha}$ can be finite, countable, or uncountable; the indices $\alpha$ are taken from an index set $A$ which can be chosen to be of any cardinality. 
+\begin{nproof}
+    \begin{enumerate}
+        \item Suppose all sets in $\set{E_\alpha}$ are closed. Let $x \in \bigcup_{\alpha}E_\alpha$. Then, there exists $\alpha_0$ such that $x \in E_{\alpha_0}$. Since $E_{\alpha_0}$ is open, there exists a neighbourhood $N_r(x)$ of $x$ such that $N_r(x) \subseteq E_{\alpha_0} \subseteq \bigcup_{\alpha} E_\alpha$. Hence, $\bigcup_{\alpha} E_\alpha$ is open.
+        \item Suppose all sets in $\set{F_\alpha}$ are open. To show that $\bigcap_\alpha F_\alpha$ is closed, we show that $\left(\bigcap_\alpha F_\alpha\right)^c$ is open (by Theorem \ref{thm:2.23}). We have that $\left(\bigcap_\alpha F_\alpha\right)^c = \bigcup_\alpha F_\alpha^c$. As all $F_\alpha^c$ are open, by part (a) we have that $\bigcup_\alpha F_\alpha^c$ is also open. Hence $\bigcap_\alpha F_\alpha$ is closed.
+        \item Suppose $E_1,\ldots, E_n$ are open. Let $x \in \bigcap_{i=1}^n E_i$, and then we have that $x \in E_i$ for all $i \in \set{1, \ldots, n}$. Hence, there exists $r_i$ such that $N_{r_i}(x) \subseteq E_i$ as each of the $E_i$s are open. Let $r = \min\set{r_1, \ldots, r_n}$ and then we have that $N_r(x) \subseteq N_{r_i}(x) \subseteq E_i$ for all $E_i$. Therefore, $N_r(x) \subseteq \bigcap_{i=1}^n E_i$ and $\bigcap_{i=1}^n E_i$ is open.
+        \item Suppose $F_1, \ldots, F_n$ are closed. By Theorem \ref{thm:2.23} we have that $\bigcup_{i=1}^n F_i$ is closed if and only if $\left(\bigcup_{i=1}^n F_i\right)^c = \bigcap_{i=1}^n F_i^c$ is open. Since all $F_i^c$s are open, by part (c) $\bigcap_{i=1}^n F_i^c$ is open, and hence $\bigcup_{i=1}^n F_i$ is closed. \qed
+    \end{enumerate}
+\end{nproof}
+
+\begin{example}{}{2.25}
+    We consider some examples to see why the finiteness of the collections in parts (c)/(d) of the theorem are essential. Suppose $E_n = \left(-\frac{1}{n}, \frac{1}{n}\right) \subset \RR$. These sets form a countably infinite collection of subsets of $\RR$. We then consider that $\bigcap_{n=1}^\infty E_n = \set{0}$, which is not open; showing that openness is not preserved under infinite intersections. Next, consider $F_n = [0, 1-\frac{1}{n}] \subset \RR$, which form a countably infinite collection of closed sets in $\RR$. We then have that $\bigcup_{n=1}^\infty F_n = [0, 1)$ which is not closed as $0$ is not an interior point of the set. Hence, closedness is not preserved under infinite unions. 
+\end{example}
+
 \subsection{Closure and Relative Topology}
 \subsection{Compactness}
 \subsection{Compactness in \texorpdfstring{$\RR^k$}{TEXT} and the Cantor Set}
