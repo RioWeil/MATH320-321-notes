@@ -233,6 +233,7 @@ In our investigation of topology, we will try to better understand distances bet
     \label{fig6}
 \end{figure}
 
+\newpage 
 \setcounter{rudin}{17}
 \begin{definition}{Open Sets}{2.18f}
     A set $E \subseteq X$ is \textbf{open} if every point of $E$ is an interior point of $E$. 
@@ -257,6 +258,7 @@ In our investigation of topology, we will try to better understand distances bet
         \node[right] at (0, 0) {$p$};
         \node[right] at (0, 0.95) {$r$};
         \draw[<->] (0, 0.05) -- (0, 1.9);
+        \node[left] at (1.9, 0) {$E$};
         \draw[blue, dotted, thick, fill = white!60!blue] (0, -0.875) circle (18pt);
         \draw[fill] (0, -0.875) circle (1pt);
         \node[right] at (0, -0.875) {$q$};
@@ -264,6 +266,9 @@ In our investigation of topology, we will try to better understand distances bet
         \node[right] at (0, -1.2) {$s$};
         \draw[fill] (-0.25, -0.6) circle (1pt);
         \node[right] at (-0.25, -0.6) {$x$};
+        \draw[] (-2.5, -2.5) -- (-2.5, 2.5) -- (2.5, 2.5) -- (2.5, -2.5) -- (-2.5, -2.5);
+        \node[right] at (2.5, -2.35) {$X$};
+
     \end{tikzpicture}
     %\node[right] at (1.9, 0) {$N_r(p)$};
     %\node[right] at (0.6, -0.875) {$N_s(q)$};
