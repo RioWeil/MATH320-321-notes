@@ -100,6 +100,8 @@ We here give some additional properties concerning cardinalities of sets, which 
 \end{corollary}
 \noindent We defined $\QQ$ as pairs of integers, but by the first part of the corollary (which follows immediately by application of Theorem \ref{thm:2.12}) $\ZZ^2$ (the set of pairs of integers) has equal cardinality to $\ZZ$, and since $\QQ$ is a subset of the set of pairs of integers, $\QQ$ is countable. 
 
+Another way we can formalize this argument: if we let $X_t = \set{\frac{m}{n}: m \in \ZZ, n \in \NN, \abs{m} \leq t, n \leq t}$, then we have that $\abs{X_t}$ is at most $t\cdot (2t+1)$ (the first term being the choises for $n$, the second term being the choices for $m$). Of course, the cardinality of $X_t$ is actually less than that as we would have to remove repeats. Nontheless, we have that $\QQ = \bigcap_{t=1}^\infty X_t$ and hence $\QQ$ would be countable by Theorem $\ref{thm:2.12}$. 
+
 From the discussion of today, we have established that $\abs{\NN} = \abs{\ZZ} = \abs{\QQ}$. Does $\RR$ also have equal cardinality to these sets? Do infinite sets in general have the same cardinality? The answer turns out to be no for both of these questions. We will answer the first question in the next lecture (when we discuss Cantor diagonalization, a highlight of the course), but we can discuss the second statement now. First, we make a definition:
 \begin{ndef}{: Power Sets}
     Let $A$ be a set. Then, the \textbf{power set} of $A$, denoted $\mathcal{P}(A)$, is the set of all subsets of $A$. 
@@ -159,6 +161,17 @@ Let $A = \set{(b_1, b_2, \ldots), b_n \in \set{0, 1}}$ be the set of binary sequ
 \begin{nproof}
     (Sketch) We construct a bijection from $[0, 1]$ to $A$. Let $x \in [0,1]$, and let $b_1$ be the largest integer such that $N_1 = \frac{b_1}{2} \leq x$. Then, let $b_2 \in \set{0, 1}$ be the largest integer such that $N_2 = \frac{b_1}{2} + \frac{b_2}{2^2} \leq x$. We can continue dividing $[0,1]$ in half in this way, approximating $x$ by powers of 2 (a decimal expansion in binary). Then, let $E(x) = \set{N_1, N_2, N_3, \ldots}$. By construction, $E(x)$ is bounded above by $x$ and nonempty. Hence, $\sup(E(x))$ exists and is unique, and in fact is equal to $x$ (note that we are in essence constructing an "infinite series" where the sequence of partial sums is increasing and bounded, approaching $x$ from the left). Doing this we can associate $(b_1, b_2, b_3, \ldots) \in A$ with every number $x \in [0, 1]$ and therefore $[0, 1] \sim A$. Hence $[0, 1]$ is uncountable. \qed
 \end{nproof}
+\noindent It might be worth investigating why a more naive approach to the above argument may fail. Let $D$ be the sets of all decanary sequences, i.e. all sequeces of the form $(d_1, d_2, d_3, \ldots)$ where $d_n \in \set{n \in \ZZ, 0 \leq n \leq 9}$. Then, it might be tempting to say that the function:
+\begin{align*}
+    \fullfunction{f}{D}{[0, 1]}{(d_1, d_2, d_3, \ldots)}{0.d_1d_2d_3\ldots}
+\end{align*}
+Is a bijection; however, it is actually not the case! To see this, consider that $0.1000\ldots = 0.0999\ldots$. The sequences $(1, 0, 0, 0, \ldots)$ and $(0, 9, 9, 9, \ldots)$ are distinct, but the real number they would map to would be the same. This map is not an injection but a surjection. To show that $\RR$ is uncountable, we require an injection from $D$ to $[0, 1]$. So instead, what we have done with the above proof is map the set of binary sequences $B$ to $[0, 1]$:
+\begin{align*}
+    \fullfunction{g}{B}{[0, 1]}{(b_1, b_2, b_3, \ldots)}{\sum_{j=1}^\infty b_j 3^{-j} = \sup\set{\sum_{j=1}^N b_j3^{-j}: N \in \NN}}
+\end{align*}
+Note that in general, an infinite sum is not equal to the supremum of its partial sums (as a counterexample, consider the sum with first term 1, the second term -1, and all the remaining terms 0; evidently the value of the infinite sum is 0, but the supremum of the partial sums would be 1.) We will define an infinite sum more generally in chapter 3, but in our case here, this definition suffices as in the case where all terms of the sum are non-negative, the supremum of the partial sums is indeed the value of the infinite sum. We leave it as an exercise to show that $g$ is an injection. Also, one neat remark; the above set is equivalent to the Cantor set, which we will more formally define/discuss in Chapter 2. 
+
+We take note a theorem that if $Y$ is a set, and there exists $X \subseteq Y$ such that $X$ is in bijective correspondence with an uncountable set, then $Y$ is also uncountable. Thus we can use the above theorem to conclude that $\RR$ is uncountable.
 
 \subsection{Topology of Metric Spaces}
 In our investigation of topology, we will try to better understand distances between and neighbourhoods of points. To do so, we first introduce the notion of a metric space.
@@ -196,6 +209,7 @@ In our investigation of topology, we will try to better understand distances bet
     \label{fig5}
 \end{figure}
 
+\noindent It may be of interest to consider other possible metrics. The discrete metric is defined such that $d(x, y) = 1$ if $x \neq y$ and $d(x, x) = 0$. The L1 Norm is defined such that $d(f, g) = \int_0^1 \abs{f(x) - g(x)} dx$ where $f, g$ are functions. In an inner product space, we have that $d(v, w) = \norm{v - w} = \avg{v-w, v-w}^{1/2}$; if $v, w$ are functions, then we have that $d(v, w) = \left(\int_0^1\abs{v(x) - w(x)}^2 dx\right)^{1/2}$. In analysis, we are often interested in the notion of things being \textunderscore{close} to other things (e.g. with limits, continuity) so a notion of distance is extremely important to define.
 
 \setcounter{rudin}{17}
 \begin{definition}{Neighbourhoods}{2.18a}
@@ -210,6 +224,7 @@ In our investigation of topology, we will try to better understand distances bet
         \item In $\RR^n$, $N_r(p)$ is the open hyperball about center $p$. 
     \end{itemize}
 \end{nexample}
+\noindent As another example, consider that in $\ZZ$, $N_1(0) = \set{0}, N_{3/2} = \set{-1, 0, 1}$ and $N_2(0) = \set{-1, 0, 1}$.
 \setcounter{rudin}{17}
 
 \begin{definition}{Interior Points}{2.18e}
@@ -327,7 +342,7 @@ In our investigation of topology, we will try to better understand distances bet
 \begin{theorem}{}{2.23}
     A set $E \subseteq X$ is open if and only if $E^c$ is closed.
 \end{theorem}
-\noindent Note that this theorem does not imply that all sets are closed or open; it is possible to have a set that is neither closed or open (such as $[0, 1) \subset \RR$) and then its complement (with the former example, $(-\infty, 0) \cup [1, \infty]$) which is also neither closed nor open. As an additional note, we have that $X$ (the entire metric space) and $\emptyset$ are both open and closed (which we may affectionately label as ``clopen'').
+\noindent Note that this theorem does not imply that all sets are closed or open; it is possible to have a set that is neither closed or open (such as $[0, 1) \subset \RR$) and then its complement (with the former example, $(-\infty, 0) \cup [1, \infty)$) which is also neither closed nor open (indeed, most sets are neither closed nor open). As an additional note, we have that $X$ (the entire metric space) and $\emptyset$ are both open and closed (which we may affectionately label as ``clopen'').
 
 \begin{nproof}
     \boxed{\implies} Assume $E$ is open. If $E^c$ has no limit points, it is trivially closed, so suppose that there exists a limit point $x$ of $E^c$. Suppose for the sake of contradiction that $x \notin E^c$. Then, $x \in E$. As $E$ is open, $x$ is an interior point of $E$, so there exists a neighbourhood $N_r(x) \subseteq E$. In particular, $N_r(x) \cap E^c = \emptyset$, contradicting the fact that $x$ is a limit point of $E^c$. Hence, $x \in E^c$ and $E^c$ is closed.
@@ -363,5 +378,75 @@ In our investigation of topology, we will try to better understand distances bet
 \end{example}
 
 \subsection{Closure and Relative Topology}
+As a review of some definitions of the previous section, we call a set open if every point of the set is an interior point, and closed if it contains all of its limit points. A complement of an open set is closed and vise versa. We also note that openness is preserved under infinite unions and finite intersections, and closedness is preserved under infinite intersections and finite unions. 
+
+\begin{definition}{Closure}{2.26}
+    Let $X$ be a metric space. Let $E \subseteq X$, and denote $E'$ as the set of all limit points of $E$. Then, the set $\overline{E} = E \cup E'$ is the \textbf{closure} of $E$.
+\end{definition}
+
+\begin{theorem}{}{2.27}
+    \begin{enumerate}
+        \item $\overline{E}$ is closed.
+        \item $E = \overline{E}$ if and only if $E$ is closed.
+        \item $\overline{E} \subseteq F$ for every closed set $F \subseteq X$ such that $E \subseteq F$.
+    \end{enumerate}
+\end{theorem}
+\begin{nproof}
+    \begin{enumerate}
+        \item Let $p \in \overline{E}^c = E^c \cap (E')^c$. Then, $p \notin E$, and furthermore $p \notin E'$ so $p$ is not a limit point of $E$. Hence, there exists a neighbourhood $N_r(p)$ such that $N_r(p) \cap E = \emptyset$. Moreover, no point of $N_r(p)$ is in $E'$ (if there existed $q \in E'$ such that $q \in N_r(p)$, then there would exist some $N_{r'}(q)$ (which contains points of $E$) such that $N_{r'}(q) \subseteq N_r(p)$ which contradicts the fact that $N_r(p)$ contains no points of $E$). Hence, $N_r(p) \subseteq E^c \cap (E')^c = \overline{E}^c$. Hence, $\overline{E}^c$ is open and $\overline{E}$ is closed.
+        \item $\boxed{\implies}$ If $E = \overline{E}$, then $E$ is closed by (a).
+        
+        $\boxed{\impliedby}$ If $E$ is closed, then $E$ contains all of its limit points, so $\overline{E} = E \cup E' \subseteq E$. By definition $\overline{E} \supseteq E$, so $E = \overline{E}$. 
+        \item Let $E \subseteq F$ with $F$ closed. Then, $F' \subseteq F$. Also, $E' \subseteq F'$. So, by (b) we have $F = \overline{F} = F \cup F' \supseteq E \cup E' = \overline{E}$. \qed
+    \end{enumerate}
+\end{nproof}
+
+\noindent We will soon define the notion of being relatively open, but before doing so, we consider a motivating example.
+
+\begin{figure}[htbp]
+    \centering
+        \begin{tikzpicture}
+            \draw[<->,very thick] (-2,0)--(2,0);
+            \draw[<->,very thick] (0,-2)--(0,2); 
+            \node[] at (0.5,0) {$($};
+            \node[above] at (0.5, 0.1) {$a$};
+            \node[] at (1.5,0) {$)$};
+            \node[above] at (1.5, 0.1) {$b$};
+            \node[] at (1.6, 1.6) {$\RR^2$};
+        \end{tikzpicture}
+    \caption{The interval $(a, b)$ embedded in $\RR^2$.}
+    \label{fig9}
+\end{figure}
+In $\RR$, we know $(a, b)$ to be in an open set. However, embedded in $\RR^2$, $(a, b)$ has no interior points; any neighbourhood about any $x \in (a, b)$ extends into the plane and will inevitably contain points $y \in \RR^2$, $y \notin (a, b)$. Hence, $(a, b)$ is open as a subset of $\RR$, but not as a subset of $\RR^2$. 
+
+\setcounter{rudin}{28}
+\begin{definition}{Relative Openness}{2.29}
+    Let $E \subseteq Y \subseteq X$. Then, $E$ is \textbf{relatively open} with respect to $Y$ if it is an open set in the metric space $Y$.
+\end{definition}
+\noindent However, we note that the above definition is not very useful. Is there a better notion of relative openness? Going back to our prior example, consider that $(a, b)$ can be viewed as the intersection of an open disk with $\RR$. This gives an equivalent definition!
+\begin{figure}[htbp]
+    \centering
+        \begin{tikzpicture}
+            \draw[<->,very thick] (-2,0)--(2,0);
+            \draw[<->,very thick] (0,-2)--(0,2);
+            \draw[fill = black] (0.5, 0) circle (1pt);
+            \node[above] at (0.4, 0.1) {$a$};
+            \draw[fill = black] (1.5, 0) circle (1pt);
+            \node[above] at (1.6, 0.1) {$b$};
+            \node[] at (1.6, 1.6) {$\RR^2$};
+            \draw[dotted, fill = white!60!black, fill opacity=0.3] (1, 0) circle (14.5pt);
+        \end{tikzpicture}
+    \caption{The interval $(a, b)$ can be viewed as the intersection of $\RR$ with the open disk $N = \set{(x, y) \in \RR^2: \sqrt{(x - \frac{b+a}{2})^2 + y^2} < \frac{b-a}{2}}$, giving rise to a more useful notion of relative openness.}
+    \label{fig10}
+\end{figure}
+\begin{theorem}{}{2.30}
+    Let $E \subseteq Y \subseteq X$. Then, $E$ is open relative to $Y$ if and only if there exists an open set $G \subseteq X$ such that $E = G \cap Y$. 
+\end{theorem}
+\begin{nproof}
+    \boxed{\implies} Let $p \in E$. Then, there exists a neighbourhood $N_r^Y(p) \subseteq E$ (Note that here, $N_r^Y(p) = \set{y \in Y: d(p, y) < r}$). By Theorem \ref{thm:2.24}, we have that $G = \bigcup_{p \in E} N_{r_{p}}^X(p)$ is open. Then, we have that $G \cap Y = \bigcup_{p \in E} N_{r_p}^X(p) \cap Y = \bigcup_{p \in E} N_{r_p}^Y(p) = E$.
+    
+    \boxed{\impliedby} Suppose $G \subseteq X$ is open and $E = G \cap Y$. Let $p \in E$. Then, there exists a neighbourhood $N_r^X(p) \subseteq G$ as $G$ is open, so $N_r^Y(p) = N_r^X(p) \cap Y \subseteq G \cap Y = E$. Hence, $p$ is an interior point of $E$ in the metric space of $Y$, and hence $E$ is relatively open in $Y$. \qed
+\end{nproof}
+
 \subsection{Compactness}
 \subsection{Compactness in \texorpdfstring{$\RR^k$}{TEXT} and the Cantor Set}
