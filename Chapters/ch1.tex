@@ -42,7 +42,7 @@ A natural question then becomes if the rationals are sufficient for doing all of
 \end{nproof}
 \noindent Why can we conclude that not both $m, n$ are even in the above proof? This is the case as if $m, n$ we both even, then we could write $m = 2m'$, $n = 2n'$ for some $m', n'$, and then $p = \frac{m}{n} = \frac{2m'}{2n'} = \frac{m'}{n'}$ which we can continue until either the numerator or denominator is odd. A natural question to consider is how to prove that this process of reducing fractions will eventually conclude. The resolution is to invoke the fundamental theorem of arithmetic, and write $m, n$ in terms of their unique prime factorization. We are then able to cancel out factors of 2 from the numerator/denominator until at least one is odd.
 
-We note that this example leads us to conclude that the rationals have certain "holes" in them. This is concerning, as there are sequences of rational numbers that tend to $\sqrt{2}$. Conversely, its not as concerning that there is no rational number $x$ such that $x^2 = -1$, as there is no such sequence of rational numbers that is "close to" $i$ (note that both $\sqrt{2}$ and $i$ have not yet been defined, but this will come shortly).
+We note that this example leads us to conclude that the rationals have certain ``holes'' in them. This is concerning, as there are sequences of rational numbers that tend to $\sqrt{2}$. Conversely, its not as concerning that there is no rational number $x$ such that $x^2 = -1$, as there is no such sequence of rational numbers that is "close to" $i$ (note that both $\sqrt{2}$ and $i$ have not yet been defined, but this will come shortly).
 
 \setcounter{rudin}{0}
 
@@ -318,7 +318,7 @@ In this section, we will prove that $\sqrt{2}$ exists and is an irrational numbe
 \begin{nlemma}{}
     If $0 < a < b$ and $n \in \NN$, then $0 < b^n - a^n \leq nb^{n-1}(b-a)$
 \end{nlemma}
-\noindent Note that a "Calculus proof" of this Lemma would be to let $f(x) = x^n$, and then
+\noindent Note that a ``Calculus proof'' of this Lemma would be to let $f(x) = x^n$, and then
 \[f(b) - f(a) = f'(c)(b-a) = nc^{n-1}(b-a) \leq nb^{n-1}(b-a)\]
 Where we invoke the mean value theorem. But this obviously doesn't work as we have neither defined a derivative nor proven the mean value theorem. A proper proof would be:
 \begin{nproof}
@@ -675,14 +675,14 @@ Note that there is a more general notion of a ``wedge product'' between vectors 
     Let $\v{x}, \v{y}, \v{z} \in \RR^k$, and $\alpha \in \RR$. Then:
     \begin{enumerate}
         \item $\abs{\v{x}} \geq 0$
-        \item $\abs{\v{x}} = 0 \iff \v{x} = (0, \ldots, 0)$. This is often denoted as $\v{0}$, the "zero vector". 
+        \item $\abs{\v{x}} = 0 \iff \v{x} = (0, \ldots, 0)$. This is often denoted as $\v{0}$, the ``zero vector''. 
         \item $\abs{\alpha\v{x}} = \abs{\alpha}\abs{\v{x}}$
         \item $\abs{\v{x} \cdot \v{y}} \leq \abs{\v{x}}\abs{\v{y}}$ 
         \item $\abs{\v{x} + \v{y}} \leq \abs{\v{x}} + \abs{\v{y}}$
         \item $\abs{\v{x} - \v{z}} \leq \abs{\v{x} - \v{y}} + \abs{\v{y} - \v{z}}$
     \end{enumerate}
 \end{theorem}
-\noindent (e) and (f) are often called "triangle inequalities"; a visual intuition for these inequalities is given in the following figure:
+\noindent (e) and (f) are often called ``triangle inequalities''; a visual intuition for these inequalities is given in the following figure:
 \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
