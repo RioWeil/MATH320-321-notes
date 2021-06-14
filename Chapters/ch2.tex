@@ -479,9 +479,76 @@ In $\RR$, we know $(a, b)$ to be in an open set. However, embedded in $\RR^2$, $
     A subset $K \subset X$ is compact if every open cover of $K$ has a finite subcover. Explicitly, if $\set{G_\alpha}$ is an open cover of $K$, then there exist indices $\alpha_1, \ldots, \alpha_n$ such that $K \subset G_{\alpha_1} \cup \ldots \cup G_{\alpha_n}$. 
 \end{definition}
 \noindent While the above definition might seem strange/esoteric, it turns out to be very useful and important to analysis. We saw in the last lecture that open sets in a sense do not behave ``nicely''; a given set could be open with respect to a subspace $Y$ but not to $X$ (and we had to introduce the notion of relative openness to take care of this fact). Compactness behaves more nicely, as we will see with the following theorem.
+
 \begin{theorem}{}{2.33}
     Suppose $K \subset Y \subset X$. Then, $K$ is compact with respect to $X$ if and only if $K$ is compact with respect to $Y$.
 \end{theorem}
 
+\noindent While openness depends on the choice of subspace, this theorem states that compactness is independent of what subspace we choose to look at. It is in a sense an intrinsic property of the set.
+
+\begin{nproof}
+    \boxed{\implies} Suppose $K$ is compact with respect to $X$. Let $\set{V_\alpha}$ be an open (in $Y$) cover  of $K$. Then, by Theorem \ref{thm:2.30} we have that there exists $\set{G_\alpha}$ of open sets in $X$ such that $V_\alpha = G_\alpha \cap Y$. Then, $\set{G_\alpha}$ is an open (in $X$) cover of $K$, and hence there exists a finite subcover $K \subset \bigcup_{i=1}^n G_{\alpha_i}$. Then, we have that $K \subset \bigcup_{i=1}^n (G_{\alpha_i} \cap Y) = \bigcup_{i=1}^n V_{\alpha_i}$ which is a finite (sub)cover of $K$ in $Y$. Hence, $K$ is compact with respect to $Y$.
+    
+    \boxed{\impliedby} Suppose $K$ is compact with respect to $Y$. Let $\set{G_\alpha}$ be an open (in $X$) cover of $K$. Let $V_\alpha = G_\alpha \cap Y$. These are relatively open in $Y$ by Theorem \ref{thm:2.30}, and $\set{V_\alpha}$ still cover $K$. Hence, as $K$ is compact in $Y$, there exists a finite subcover $K \subset \bigcup_{i=1}^n V_{\alpha_i} \subset \bigcup_{i=1}^n G_{\alpha_i}$. Therefore, we have found a finite subcover in $X$, so $K$ is compact in $X$. \qed
+\end{nproof}
+
+\begin{theorem}{}{2.34}
+    Let $K \subset X$ be compact. Then, $K$ is closed.
+\end{theorem}
+
+\noindent A priori, it might seem like the notions of compactness and closedness are quite different, but this theorem shows that they are indeed quite closely related.
+
+\begin{nproof}
+    We show that $K^c$ is open. Let $p \in K^c$. For any $q \in K$. Let $r_{q} = \frac{1}{2}d(p, q)$, and define $W_q = N_{r_q}(q)$. So, taking the collection $\set{W_q}$ we have that $\bigcup_{q \in K} W_q$ is an open cover (as it clearly contains every $q \in K$). $K$ is compact, so there exists a finite subcover $\bigcup_{i=1}^n W_{q_i}$. Then, let $r = \min\set{r_{q_1}, \ldots, r_{q_n}}$. Then, $N_r(p) \subset K^c$, hence $p$ is an interior point of $K^c$. Therefore $K^c$ is open, and $K$ is closed by Theorem \ref{thm:2.23}. \qed
+\end{nproof}
+
+\begin{theorem}{}{2.35}
+    If $F \subset X$ is closed, $K \subset X$ is compact, and $F \subset K$, then $F$ is compact.
+\end{theorem}
+
+\begin{nproof}
+    Let $\set{V_\alpha}$ be an open cover of $F$. Then, $\set{V_\alpha} \cup F^c$ is an open cover of $K$ ($F^c$ is open as $F$ is closed). Hence, as $K$ is compact, there exists a finite subcover. Dropping $F^c$ (if it is part of the finite subcover of $K$), we obtain a finite subcover of $F$. Hence, $F$ is compact. \qed
+\end{nproof}
+
+\begin{ncorollary}{}{}
+    If $F \subset X$ is closed and $K \subset X$ is compact, then $F \subset K$ is compact. In other words, compactness is preserved under intersection (with closed sets).
+\end{ncorollary}
+
+\begin{nproof}
+    If $K$ is compact, it is closed by Theorem \ref{thm:2.34}. $F \cap K$ is closed by Theorem \ref{thm:2.24}, and since $F \cap K \subset K$, by Theorem \ref{thm:2.35} $F \cap K$ is compact. \qed
+\end{nproof}
+\noindent In a previous course, we may have introduced the definition that compact sets are closed and bounded. Here, we started with a significantly different definition, and work up to prove the Heine-Borel Theorem (coming soon!) which tells us that compactness is equivalent to being closed and bounded in $\RR^k$. 
+
+\begin{theorem}{}{2.36}
+    Let $\set{K_\alpha}$ is a collection of compact sets such that $\bigcap_{i=1}^n K_{\alpha_{i}} \neq \emptyset$ for any subcollection/any choice of indices $\alpha_1, \ldots, \alpha_n$. Then, $\bigcap_\alpha K_\alpha \neq \emptyset$.
+\end{theorem}
+\begin{nproof}
+    Suppose for the sake of contradiction that the assumptions hold but $\bigcap_\alpha K_\alpha \neq \emptyset$. Pick $\alpha_0$. Then, $K_{\alpha_0} \cap (\bigcap_{\alpha \neq \alpha_0} K_\alpha) = \emptyset$. Hence, $K_{\alpha_0} \subset \left(\bigcap_{\alpha \neq \alpha_0} K_\alpha \right)^c = \bigcup_{\alpha \neq \alpha_0} K_\alpha^c$. Hence, $\set{K_\alpha^c}$ is an open cover of $K_{\alpha_0}$. $K_{\alpha_0}$ is compact, so there exists a finite subcover $\bigcup_{i=1}^n K_{\alpha_i}^c = \left(\bigcap_{i=1}^n K_{\alpha_i}\right)^c$. But then we have that $K_{\alpha_0} \cap \left(\bigcap_{i=1}^n K_{\alpha_i}\right) = \emptyset$, which is a contradiction as a finite intersection should be nonempty by assumption. \qed
+\end{nproof}
+
+\begin{ncorollary}{}{}
+    Let $\set{K_1, K_2, \ldots}$ be a collection of nonempty and compact sets such that $K_{i+1} \subset K_i$. Then, $\bigcap_{i=1}^\infty K_i \neq \emptyset$.
+\end{ncorollary}
+\begin{nproof}
+    If $n_1 < \ldots < n_m$, then $\bigcap_{i=1}^m K_{n_i} = K_{n_m} \neq \emptyset$. Then, $\bigcap_{i=1}^\infty K_{n_i} \neq \emptyset$ by the above theorem. \qed
+\end{nproof}
+
+\begin{theorem}{}{2.37}
+    Let $K$ be compact and $E \subset K$ be an infinite set. Then, $E$ has a limit point in $K$.
+\end{theorem}
+\begin{nproof}
+    Suppose for the sake of contradiction that no point of $K$ is a limit point of $E$. Then, for all $q \in K$, then there exists $V_q = N_{r_q}(q)$ such that:
+    \begin{align*}
+        V_q \cap E = \begin{cases}
+            \set{q} & \text{if $q \in E$}
+            \\ \emptyset & \text{if $q \notin E$}
+        \end{cases}
+    \end{align*}
+    Trivially, $\set{V_q}$ is an open cover of $K$. So, there exists a finite subcover $\set{V_q}_{i=1}^n$ of $K$. So:
+    \begin{align*}
+        E \subset K \cap E \subset \left(\bigcup_{i=1}^n V_{q_i}\right) \cap E = \bigcup_{i=1}^n(V_{q_1} \cup E)
+    \end{align*}
+    But the RHS is a finite set, contradicting the assumption that $E$ is infinite. \qed
+\end{nproof}
 
 \subsection{Compactness in \texorpdfstring{$\RR^k$}{TEXT} and the Cantor Set}
