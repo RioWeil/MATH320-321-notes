@@ -6,7 +6,7 @@ This chapter is split into two portions; the first looks at counting, what it me
 Let us then begin with our discussion of counting. If we consider counting how many bananas there are on a table (say there are 10 bananas), then what we are formally doing is establishing a correspondence between each ball on the table with an element in the set $\set{1, \ldots, 10}$. When we refer to the number of elements in a set, it will be good to keep in mind that we are establishing functions between sets. Although we have been discussing functions with some frequency in the course already, we give a definition below for completeness. 
 
 \begin{definition}{Functions}{2.1}
-    Let $A, B$ be sets. Then, a map that associates each element $x \in A$ with a unique element denoted as $f(x) \in B$ is a \textbf{function} $f: A \rightarrow B$. We then define $A$ as the \textbf{domain} of $f$ and the set $\set{f(x): x \in A}$ as the \textbf{range}. For $E \subseteq A$, we call $f(E) = \set{f(x): x \in E}$ the \textbf{image} of $E$ under $f$. For $F \subseteq B$, we call $f^{-1}(B) = \set{x \in A: f(x) \in B}$ the \textbf{preimage} of $F$. 
+    Let $A, B$ be sets. Then, a map that associates each element $x \in A$ with a unique element denoted as $f(x) \in B$ is a \textbf{function} $f: A \rightarrow B$. We then define $A$ as the \textbf{domain} of $f$ and the set $\set{f(x): x \in A}$ as the \textbf{range}. For $E \subset A$, we call $f(E) = \set{f(x): x \in E}$ the \textbf{image} of $E$ under $f$. For $F \subset B$, we call $f^{-1}(B) = \set{x \in A: f(x) \in B}$ the \textbf{preimage} of $F$. 
 \end{definition}
 
 \begin{definition}{Injective/Surjective Functions}{2.2}
@@ -56,7 +56,7 @@ We here give some additional properties concerning cardinalities of sets, which 
     A subset of a countable set is either finite or countable.
 \end{theorem}
 \begin{nproof}
-    (Sketch) The countability of $A$ implies that $A = \set{a_1, a_2, a_3, a_4, a_5 \ldots}$ (in other words, we can enumerate the elements using $\NN$). Let $S \subseteq A$. Then, $S = \set{a_1, \cancel{a_2}, a_3, a_4, \cancel{a_5}, \ldots}$, that is, $A$ with some (or none) of the elements removed. Now, we can rename all the elements with $a_1, a_2, \ldots$; what we have left is again an enumeration, so it is yet again (at most) countable.
+    (Sketch) The countability of $A$ implies that $A = \set{a_1, a_2, a_3, a_4, a_5 \ldots}$ (in other words, we can enumerate the elements using $\NN$). Let $S \subset A$. Then, $S = \set{a_1, \cancel{a_2}, a_3, a_4, \cancel{a_5}, \ldots}$, that is, $A$ with some (or none) of the elements removed. Now, we can rename all the elements with $a_1, a_2, \ldots$; what we have left is again an enumeration, so it is yet again (at most) countable.
 \end{nproof}
 \noindent One potentially useful fact is that if we have a set $S$ and a function $f: \NN \mapsto S$ such that $f$ is surjective, then $S$ is at most countable. 
 
@@ -89,7 +89,7 @@ We here give some additional properties concerning cardinalities of sets, which 
         \draw[->] (M-3-5.south west) -- (M-3-5.north east);
     \end{tikzpicture}
     \end{center}
-    Then, we can re-number the elements along the diagonal lines (i.e. $x_{11}, x_{21}, x_{12}, x_{31}, x_{22}, x_{13}, \ldots$). This new enumeration corresponds to a countable set. From there, we let $T \subseteq \NN$ be the remaining labels in the enumeration after removing the repeated elements from the sequence. Then, $T \sim S$, and hence $S$ is at most countable. $S$ cannot be finite as $E_1 \subseteq S$ and $E_1$ is not finite. Hence $S$ is countable. \qed
+    Then, we can re-number the elements along the diagonal lines (i.e. $x_{11}, x_{21}, x_{12}, x_{31}, x_{22}, x_{13}, \ldots$). This new enumeration corresponds to a countable set. From there, we let $T \subset \NN$ be the remaining labels in the enumeration after removing the repeated elements from the sequence. Then, $T \sim S$, and hence $S$ is at most countable. $S$ cannot be finite as $E_1 \subset S$ and $E_1$ is not finite. Hence $S$ is countable. \qed
 \end{nproof}
 
 \begin{corollary}{$\QQ$ is Countable.}{2.13}
@@ -111,7 +111,7 @@ From the discussion of today, we have established that $\abs{\NN} = \abs{\ZZ} = 
     Let $A$ be a set. Then, $\abs{A} < \abs{\mathcal{P}(A)}$.
 \end{ntheorem}
 \begin{nproof}
-    Suppose for the sake of contradiction that there exists a surjection $f: A\rightarrow \pset{A}$ (this would imply that $\abs{A} \geq \abs{\pset{A}}$, so by showing this is false, we obtain the desired result). Then, each element $x \in A$ gets mapped to some subset of $A$. We either have that $x$ belongs to the subset that it gets mapped to, or it doesn't. Therefore, we can define a new subset $B \subseteq A$, such that:
+    Suppose for the sake of contradiction that there exists a surjection $f: A\rightarrow \pset{A}$ (this would imply that $\abs{A} \geq \abs{\pset{A}}$, so by showing this is false, we obtain the desired result). Then, each element $x \in A$ gets mapped to some subset of $A$. We either have that $x$ belongs to the subset that it gets mapped to, or it doesn't. Therefore, we can define a new subset $B \subset A$, such that:
     \[B = \set{x\in A: x \notin f(x)}\]
     In other words, the set of all $x$s that are not in the subset that they get mapped to by $f$. Since $f$ is surjective, there must be an element $y \in A$ such that $f(y) = B$. One of $y \in B$, $y \notin B$ must be true. If $y \in B$, by construction of $B$ we have that $y$ is not in the subset that it gets mapped to by $f$, which is a contradiction. If $y \notin B$, by definition of $B$, $y \in B$ as it is not in the subset that it gets mapped to, yet again a contradiction. Therefore, we conclude that no $y \in A$ exists such that $f(y) = B$, and hence, no surjective $f$ exists such that $f: A \rightarrow \pset{A}$. Hence, $\abs{A} < \abs{\pset{A}}$. \qed
 \end{nproof}
@@ -171,7 +171,7 @@ Is a bijection; however, it is actually not the case! To see this, consider that
 \end{align*}
 Note that in general, an infinite sum is not equal to the supremum of its partial sums (as a counterexample, consider the sum with first term 1, the second term -1, and all the remaining terms 0; evidently the value of the infinite sum is 0, but the supremum of the partial sums would be 1.) We will define an infinite sum more generally in chapter 3, but in our case here, this definition suffices as in the case where all terms of the sum are non-negative, the supremum of the partial sums is indeed the value of the infinite sum. We leave it as an exercise to show that $g$ is an injection. Also, one neat remark; the above set is equivalent to the Cantor set, which we will more formally define/discuss in Chapter 2. 
 
-We take note a theorem that if $Y$ is a set, and there exists $X \subseteq Y$ such that $X$ is in bijective correspondence with an uncountable set, then $Y$ is also uncountable. Thus we can use the above theorem to conclude that $\RR$ is uncountable.
+We take note a theorem that if $Y$ is a set, and there exists $X \subset Y$ such that $X$ is in bijective correspondence with an uncountable set, then $Y$ is also uncountable. Thus we can use the above theorem to conclude that $\RR$ is uncountable.
 
 \subsection{Topology of Metric Spaces}
 In our investigation of topology, we will try to better understand distances between and neighbourhoods of points. To do so, we first introduce the notion of a metric space.
@@ -184,7 +184,7 @@ In our investigation of topology, we will try to better understand distances bet
     \end{enumerate}
 \end{definition}
 \begin{example}{}{2.16}
-    $\NN, \QQ, \RR, \RR^n, \CC$ are all metric spaces with $d(x, y) = \abs{x - y}$. Any subset $Y \subseteq X$ of a metric space is also a metric space, with the same metric. 
+    $\NN, \QQ, \RR, \RR^n, \CC$ are all metric spaces with $d(x, y) = \abs{x - y}$. Any subset $Y \subset X$ of a metric space is also a metric space, with the same metric. 
 \end{example}
 \noindent Another example of a metric space is given below; note that this example can be generalized, in that any connected graph can be made into a metric space. 
 \begin{figure}[htbp]
@@ -228,7 +228,7 @@ In our investigation of topology, we will try to better understand distances bet
 \setcounter{rudin}{17}
 
 \begin{definition}{Interior Points}{2.18e}
-    Let $E \subseteq X$. Then, $p$ is an \textbf{interior point} of $S$ if there is a neighbourhood $N_r(p)$ such that $N \subseteq E$. 
+    Let $E \subset X$. Then, $p$ is an \textbf{interior point} of $S$ if there is a neighbourhood $N_r(p)$ such that $N \subset E$. 
 \end{definition}
 \noindent Intuitively, an interior point of $E$ is a point that is not on the boundary of $E$. As an example, in $\RR^n$, if $E = \set{y: \abs{x - y} \leq 1}$, then the interior points of $E$ (which we can denote as $E^\circ$) are $E^\circ = \set{y: \abs{x - y} < 1}$. The idea is that there is always some finite distance to the boundary, so we can always fit a (perhaps small) open ball in. But this doesn't hold at the boundary!
 \begin{figure}[htbp]
@@ -251,14 +251,14 @@ In our investigation of topology, we will try to better understand distances bet
 \newpage 
 \setcounter{rudin}{17}
 \begin{definition}{Open Sets}{2.18f}
-    A set $E \subseteq X$ is \textbf{open} if every point of $E$ is an interior point of $E$. 
+    A set $E \subset X$ is \textbf{open} if every point of $E$ is an interior point of $E$. 
 \end{definition}
 
 \begin{theorem}{}{2.19}
     Every neighbourhood is an open set.
 \end{theorem}
 \begin{nproof}
-    Consider a neighbourhood $E = N_r(p) \subseteq X$. Let $q \in E$. We will show that $q$ is an interior point of $E$. Choose $s < r - d(p, q)$. Then, let $x \in N_s(q)$. By the triangle inequality:
+    Consider a neighbourhood $E = N_r(p) \subset X$. Let $q \in E$. We will show that $q$ is an interior point of $E$. Choose $s < r - d(p, q)$. Then, let $x \in N_s(q)$. By the triangle inequality:
     \begin{align*}
         d(x, p) \leq d(x, q) + d(q, p) < s + d(q, p) < r - d(p, q) + d(p, q) = r.
     \end{align*}
@@ -285,15 +285,13 @@ In our investigation of topology, we will try to better understand distances bet
         \node[right] at (2.5, -2.35) {$X$};
 
     \end{tikzpicture}
-    %\node[right] at (1.9, 0) {$N_r(p)$};
-    %\node[right] at (0.6, -0.875) {$N_s(q)$};
     \caption{Visualization of the Sets/Points in Theorem \ref{thm:2.19}}
     \label{fig7}
 \end{figure}
 
 \setcounter{rudin}{17}
 \begin{definition}{Limit Points/Isolated Points}{2.18b}
-    Let $E \subseteq X$ and $p \in X$. Then, $p$ is a \textbf{limit point} of $E$ if every neighbourhood of $p$ contains $q \in E$, $q \neq p$. If $p \in E$ and $p$ is not a limit point of $E$, then $p$ is an \textbf{isolated point} of $E$. 
+    Let $E \subset X$ and $p \in X$. Then, $p$ is a \textbf{limit point} of $E$ if every neighbourhood of $p$ contains $q \in E$, $q \neq p$. If $p \in E$ and $p$ is not a limit point of $E$, then $p$ is an \textbf{isolated point} of $E$. 
 \end{definition}
 \begin{nexample}{}{}
     Let $E = \set{\frac{1}{n}: n \in \NN}$. Then, $\frac{1}{2}$ is not a limit point of $E$, as for $r < \frac{1}{4}$ $N_r(\frac{1}{2})$ does not contain any other points of $E$. On the other hand, $0$ is a limit point of $E$. For any neighbourhood $N_r(0)$ of $0$, $\frac{1}{N} \in N_r(0)$ for $N > \frac{1}{r}$. Note that $0$ is the only limit point of $E$, and is not contained in $E$ (indeed, there is no requirement that a limit point be contained in the set). 
@@ -310,18 +308,18 @@ In our investigation of topology, we will try to better understand distances bet
 \end{nproof}
 
 \begin{ncorollary}{}{}
-    If $E \subseteq X$ is finite, then $E$ has no limit points.
+    If $E \subset X$ is finite, then $E$ has no limit points.
 \end{ncorollary}
 
 \setcounter{rudin}{17}
 \begin{definition}{Closed Sets}{2.18d}
-    A set $E \subseteq X$ is closed if every limit point of $E$ is in $E$. 
+    A set $E \subset X$ is closed if every limit point of $E$ is in $E$. 
 \end{definition}
 \noindent Note that with the above Corollary, we find that every finite set is (trivially) closed.
 
 \setcounter{rudin}{17}
 \begin{definition}{Complement}{2.18g}
-    Let $E \subseteq X$. Then, the complement of $E$, denoted $E^c$ is $E^c = \set{x \in X: x \notin E}$. 
+    Let $E \subset X$. Then, the complement of $E$, denoted $E^c$ is $E^c = \set{x \in X: x \notin E}$. 
 \end{definition}
 \begin{figure}[htbp]
     \centering
@@ -340,18 +338,18 @@ In our investigation of topology, we will try to better understand distances bet
 
 \setcounter{rudin}{22}
 \begin{theorem}{}{2.23}
-    A set $E \subseteq X$ is open if and only if $E^c$ is closed.
+    A set $E \subset X$ is open if and only if $E^c$ is closed.
 \end{theorem}
 \noindent Note that this theorem does not imply that all sets are closed or open; it is possible to have a set that is neither closed or open (such as $[0, 1) \subset \RR$) and then its complement (with the former example, $(-\infty, 0) \cup [1, \infty)$) which is also neither closed nor open (indeed, most sets are neither closed nor open). As an additional note, we have that $X$ (the entire metric space) and $\emptyset$ are both open and closed (which we may affectionately label as ``clopen'').
 
 \begin{nproof}
-    \boxed{\implies} Assume $E$ is open. If $E^c$ has no limit points, it is trivially closed, so suppose that there exists a limit point $x$ of $E^c$. Suppose for the sake of contradiction that $x \notin E^c$. Then, $x \in E$. As $E$ is open, $x$ is an interior point of $E$, so there exists a neighbourhood $N_r(x) \subseteq E$. In particular, $N_r(x) \cap E^c = \emptyset$, contradicting the fact that $x$ is a limit point of $E^c$. Hence, $x \in E^c$ and $E^c$ is closed.
+    \boxed{\implies} Assume $E$ is open. If $E^c$ has no limit points, it is trivially closed, so suppose that there exists a limit point $x$ of $E^c$. Suppose for the sake of contradiction that $x \notin E^c$. Then, $x \in E$. As $E$ is open, $x$ is an interior point of $E$, so there exists a neighbourhood $N_r(x) \subset E$. In particular, $N_r(x) \cap E^c = \emptyset$, contradicting the fact that $x$ is a limit point of $E^c$. Hence, $x \in E^c$ and $E^c$ is closed.
 
-    \boxed{\impliedby} Assume $E^c$ is closed. Let $x \in E$. In particular, $x \notin E^c$, so $x$ is not a limit point of $E^c$. So, there exists a neighbourhood $N_r(x)$ which contains no point of $E^c$, i.e. $N_r(x) \cap E^c = \emptyset$. It follows that $N_r(x) \subseteq E$, and hence $x$ is an interior point of $E$. This argument applies to all points of $E$, hence $E$ is open. \qed
+    \boxed{\impliedby} Assume $E^c$ is closed. Let $x \in E$. In particular, $x \notin E^c$, so $x$ is not a limit point of $E^c$. So, there exists a neighbourhood $N_r(x)$ which contains no point of $E^c$, i.e. $N_r(x) \cap E^c = \emptyset$. It follows that $N_r(x) \subset E$, and hence $x$ is an interior point of $E$. This argument applies to all points of $E$, hence $E$ is open. \qed
 \end{nproof}
 
 \begin{ncorollary}{}{}
-    A set $F \subseteq X$ is closed if and only if $F^c$ is open.
+    A set $F \subset X$ is closed if and only if $F^c$ is open.
 \end{ncorollary}
 \noindent Let $F = E^c$ in Theorem \ref{thm:2.23} to realize the above Corollary.
 
@@ -366,9 +364,9 @@ In our investigation of topology, we will try to better understand distances bet
 \noindent A point of notation; $\set{E_\alpha}$ can be finite, countable, or uncountable; the indices $\alpha$ are taken from an index set $A$ which can be chosen to be of any cardinality. 
 \begin{nproof}
     \begin{enumerate}
-        \item Suppose all sets in $\set{E_\alpha}$ are closed. Let $x \in \bigcup_{\alpha}E_\alpha$. Then, there exists $\alpha_0$ such that $x \in E_{\alpha_0}$. Since $E_{\alpha_0}$ is open, there exists a neighbourhood $N_r(x)$ of $x$ such that $N_r(x) \subseteq E_{\alpha_0} \subseteq \bigcup_{\alpha} E_\alpha$. Hence, $\bigcup_{\alpha} E_\alpha$ is open.
+        \item Suppose all sets in $\set{E_\alpha}$ are closed. Let $x \in \bigcup_{\alpha}E_\alpha$. Then, there exists $\alpha_0$ such that $x \in E_{\alpha_0}$. Since $E_{\alpha_0}$ is open, there exists a neighbourhood $N_r(x)$ of $x$ such that $N_r(x) \subset E_{\alpha_0} \subset \bigcup_{\alpha} E_\alpha$. Hence, $\bigcup_{\alpha} E_\alpha$ is open.
         \item Suppose all sets in $\set{F_\alpha}$ are open. To show that $\bigcap_\alpha F_\alpha$ is closed, we show that $\left(\bigcap_\alpha F_\alpha\right)^c$ is open (by Theorem \ref{thm:2.23}). We have that $\left(\bigcap_\alpha F_\alpha\right)^c = \bigcup_\alpha F_\alpha^c$. As all $F_\alpha^c$ are open, by part (a) we have that $\bigcup_\alpha F_\alpha^c$ is also open. Hence $\bigcap_\alpha F_\alpha$ is closed.
-        \item Suppose $E_1,\ldots, E_n$ are open. Let $x \in \bigcap_{i=1}^n E_i$, and then we have that $x \in E_i$ for all $i \in \set{1, \ldots, n}$. Hence, there exists $r_i$ such that $N_{r_i}(x) \subseteq E_i$ as each of the $E_i$s are open. Let $r = \min\set{r_1, \ldots, r_n}$ and then we have that $N_r(x) \subseteq N_{r_i}(x) \subseteq E_i$ for all $E_i$. Therefore, $N_r(x) \subseteq \bigcap_{i=1}^n E_i$ and $\bigcap_{i=1}^n E_i$ is open.
+        \item Suppose $E_1,\ldots, E_n$ are open. Let $x \in \bigcap_{i=1}^n E_i$, and then we have that $x \in E_i$ for all $i \in \set{1, \ldots, n}$. Hence, there exists $r_i$ such that $N_{r_i}(x) \subset E_i$ as each of the $E_i$s are open. Let $r = \min\set{r_1, \ldots, r_n}$ and then we have that $N_r(x) \subset N_{r_i}(x) \subset E_i$ for all $E_i$. Therefore, $N_r(x) \subset \bigcap_{i=1}^n E_i$ and $\bigcap_{i=1}^n E_i$ is open.
         \item Suppose $F_1, \ldots, F_n$ are closed. By Theorem \ref{thm:2.23} we have that $\bigcup_{i=1}^n F_i$ is closed if and only if $\left(\bigcup_{i=1}^n F_i\right)^c = \bigcap_{i=1}^n F_i^c$ is open. Since all $F_i^c$s are open, by part (c) $\bigcap_{i=1}^n F_i^c$ is open, and hence $\bigcup_{i=1}^n F_i$ is closed. \qed
     \end{enumerate}
 \end{nproof}
@@ -381,23 +379,23 @@ In our investigation of topology, we will try to better understand distances bet
 As a review of some definitions of the previous section, we call a set open if every point of the set is an interior point, and closed if it contains all of its limit points. A complement of an open set is closed and vise versa. We also note that openness is preserved under infinite unions and finite intersections, and closedness is preserved under infinite intersections and finite unions. 
 
 \begin{definition}{Closure}{2.26}
-    Let $X$ be a metric space. Let $E \subseteq X$, and denote $E'$ as the set of all limit points of $E$. Then, the set $\overline{E} = E \cup E'$ is the \textbf{closure} of $E$.
+    Let $X$ be a metric space. Let $E \subset X$, and denote $E'$ as the set of all limit points of $E$. Then, the set $\overline{E} = E \cup E'$ is the \textbf{closure} of $E$.
 \end{definition}
 
 \begin{theorem}{}{2.27}
     \begin{enumerate}
         \item $\overline{E}$ is closed.
         \item $E = \overline{E}$ if and only if $E$ is closed.
-        \item $\overline{E} \subseteq F$ for every closed set $F \subseteq X$ such that $E \subseteq F$.
+        \item $\overline{E} \subset F$ for every closed set $F \subset X$ such that $E \subset F$.
     \end{enumerate}
 \end{theorem}
 \begin{nproof}
     \begin{enumerate}
-        \item Let $p \in \overline{E}^c = E^c \cap (E')^c$. Then, $p \notin E$, and furthermore $p \notin E'$ so $p$ is not a limit point of $E$. Hence, there exists a neighbourhood $N_r(p)$ such that $N_r(p) \cap E = \emptyset$. Moreover, no point of $N_r(p)$ is in $E'$ (if there existed $q \in E'$ such that $q \in N_r(p)$, then there would exist some $N_{r'}(q)$ (which contains points of $E$) such that $N_{r'}(q) \subseteq N_r(p)$ which contradicts the fact that $N_r(p)$ contains no points of $E$). Hence, $N_r(p) \subseteq E^c \cap (E')^c = \overline{E}^c$. Hence, $\overline{E}^c$ is open and $\overline{E}$ is closed.
+        \item Let $p \in \overline{E}^c = E^c \cap (E')^c$. Then, $p \notin E$, and furthermore $p \notin E'$ so $p$ is not a limit point of $E$. Hence, there exists a neighbourhood $N_r(p)$ such that $N_r(p) \cap E = \emptyset$. Moreover, no point of $N_r(p)$ is in $E'$ (if there existed $q \in E'$ such that $q \in N_r(p)$, then there would exist some $N_{r'}(q)$ (which contains points of $E$) such that $N_{r'}(q) \subset N_r(p)$ which contradicts the fact that $N_r(p)$ contains no points of $E$). Hence, $N_r(p) \subset E^c \cap (E')^c = \overline{E}^c$. Hence, $\overline{E}^c$ is open and $\overline{E}$ is closed.
         \item $\boxed{\implies}$ If $E = \overline{E}$, then $E$ is closed by (a).
         
-        $\boxed{\impliedby}$ If $E$ is closed, then $E$ contains all of its limit points, so $\overline{E} = E \cup E' \subseteq E$. By definition $\overline{E} \supseteq E$, so $E = \overline{E}$. 
-        \item Let $E \subseteq F$ with $F$ closed. Then, $F' \subseteq F$. Also, $E' \subseteq F'$. So, by (b) we have $F = \overline{F} = F \cup F' \supseteq E \cup E' = \overline{E}$. \qed
+        $\boxed{\impliedby}$ If $E$ is closed, then $E$ contains all of its limit points, so $\overline{E} = E \cup E' \subset E$. By definition $\overline{E} \supseteq E$, so $E = \overline{E}$. 
+        \item Let $E \subset F$ with $F$ closed. Then, $F' \subset F$. Also, $E' \subset F'$. So, by (b) we have $F = \overline{F} = F \cup F' \supseteq E \cup E' = \overline{E}$. \qed
     \end{enumerate}
 \end{nproof}
 
@@ -421,7 +419,7 @@ In $\RR$, we know $(a, b)$ to be in an open set. However, embedded in $\RR^2$, $
 
 \setcounter{rudin}{28}
 \begin{definition}{Relative Openness}{2.29}
-    Let $E \subseteq Y \subseteq X$. Then, $E$ is \textbf{relatively open} with respect to $Y$ if it is an open set in the metric space $Y$.
+    Let $E \subset Y \subset X$. Then, $E$ is \textbf{relatively open} with respect to $Y$ if it is an open set in the metric space $Y$.
 \end{definition}
 \noindent However, we note that the above definition is not very useful. Is there a better notion of relative openness? Going back to our prior example, consider that $(a, b)$ can be viewed as the intersection of an open disk with $\RR$. This gives an equivalent definition!
 \begin{figure}[htbp]
@@ -440,13 +438,50 @@ In $\RR$, we know $(a, b)$ to be in an open set. However, embedded in $\RR^2$, $
     \label{fig10}
 \end{figure}
 \begin{theorem}{}{2.30}
-    Let $E \subseteq Y \subseteq X$. Then, $E$ is open relative to $Y$ if and only if there exists an open set $G \subseteq X$ such that $E = G \cap Y$. 
+    Let $E \subset Y \subset X$. Then, $E$ is open relative to $Y$ if and only if there exists an open set $G \subset X$ such that $E = G \cap Y$. 
 \end{theorem}
 \begin{nproof}
-    \boxed{\implies} Let $p \in E$. Then, there exists a neighbourhood $N_r^Y(p) \subseteq E$ (Note that here, $N_r^Y(p) = \set{y \in Y: d(p, y) < r}$). By Theorem \ref{thm:2.24}, we have that $G = \bigcup_{p \in E} N_{r_{p}}^X(p)$ is open. Then, we have that $G \cap Y = \bigcup_{p \in E} N_{r_p}^X(p) \cap Y = \bigcup_{p \in E} N_{r_p}^Y(p) = E$.
+    \boxed{\implies} Let $p \in E$. Then, there exists a neighbourhood $N_r^Y(p) \subset E$ (Note that here, $N_r^Y(p) = \set{y \in Y: d(p, y) < r}$). By Theorem \ref{thm:2.24}, we have that $G = \bigcup_{p \in E} N_{r_{p}}^X(p)$ is open. Then, we have that $G \cap Y = \bigcup_{p \in E} N_{r_p}^X(p) \cap Y = \bigcup_{p \in E} N_{r_p}^Y(p) = E$.
     
-    \boxed{\impliedby} Suppose $G \subseteq X$ is open and $E = G \cap Y$. Let $p \in E$. Then, there exists a neighbourhood $N_r^X(p) \subseteq G$ as $G$ is open, so $N_r^Y(p) = N_r^X(p) \cap Y \subseteq G \cap Y = E$. Hence, $p$ is an interior point of $E$ in the metric space of $Y$, and hence $E$ is relatively open in $Y$. \qed
+    \boxed{\impliedby} Suppose $G \subset X$ is open and $E = G \cap Y$. Let $p \in E$. Then, there exists a neighbourhood $N_r^X(p) \subset G$ as $G$ is open, so $N_r^Y(p) = N_r^X(p) \cap Y \subset G \cap Y = E$. Hence, $p$ is an interior point of $E$ in the metric space of $Y$, and hence $E$ is relatively open in $Y$. \qed
 \end{nproof}
 
 \subsection{Compactness}
+\begin{definition}{Open Covers}{2.31}
+    An open cover of a subset $E \subset X$ is a collection $\set{G_\alpha}$ of open sets of $X$ such that $E \subset \bigcup_{\alpha} G_\alpha$.
+\end{definition}
+\noindent Note that the open cover can be either a finite or infinite (countable or uncountable) collection.
+\begin{figure}[htbp]
+    \centering
+        \begin{tikzpicture}
+            \draw[red, thick, fill = white!60!red] (0, 0) circle (45pt);
+            \node[left] at (1.5, 0) {$E$};
+            \draw[] (-2.5, -2.5) -- (-2.5, 2.5) -- (2.5, 2.5) -- (2.5, -2.5) -- (-2.5, -2.5);
+            \node[right] at (2.5, -2.35) {$X$};
+            \draw[dotted, fill = white!60!black, fill opacity=0.3] (0, 1) circle (30pt);
+            \draw[dotted, fill = white!60!black, fill opacity=0.3] (1.5, 0) circle (20pt);
+            \draw[dotted, fill = white!60!black, fill opacity=0.3] (1.1, 0.6) circle (18pt);
+            \draw[dotted, fill = white!60!black, fill opacity=0.3] (0, 1) circle (30pt);
+            \draw[dotted, fill = white!60!black, fill opacity=0.3] (-1, -1) circle (38pt);
+            \draw[dotted, fill = white!60!black, fill opacity=0.3] (-1, 1) circle (20pt);
+            \draw[dotted, fill = white!60!black, fill opacity=0.3] (-1.5, 0.5) circle (10pt);
+            \draw[dotted, fill = white!60!black, fill opacity=0.3] (0, 0) circle (19pt);
+            \draw[dotted, fill = white!60!black, fill opacity=0.3] (1, -0.5) circle (25pt);
+            \draw[dotted, fill = white!60!black, fill opacity=0.3] (0.2, -1.3) circle (17pt);
+
+    
+        \end{tikzpicture}
+    \caption{Visualization of a set $E$ and a collection of open disks that form a (finite) open cover of $E$.}
+    \label{fig11}
+\end{figure}
+
+\begin{definition}{Compactness}{2.32}
+    A subset $K \subset X$ is compact if every open cover of $K$ has a finite subcover. Explicitly, if $\set{G_\alpha}$ is an open cover of $K$, then there exist indices $\alpha_1, \ldots, \alpha_n$ such that $K \subset G_{\alpha_1} \cup \ldots \cup G_{\alpha_n}$. 
+\end{definition}
+\noindent While the above definition might seem strange/esoteric, it turns out to be very useful and important to analysis. We saw in the last lecture that open sets in a sense do not behave ``nicely''; a given set could be open with respect to a subspace $Y$ but not to $X$ (and we had to introduce the notion of relative openness to take care of this fact). Compactness behaves more nicely, as we will see with the following theorem.
+\begin{theorem}{}{2.33}
+    Suppose $K \subset Y \subset X$. Then, $K$ is compact with respect to $X$ if and only if $K$ is compact with respect to $Y$.
+\end{theorem}
+
+
 \subsection{Compactness in \texorpdfstring{$\RR^k$}{TEXT} and the Cantor Set}
