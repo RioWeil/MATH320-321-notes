@@ -312,6 +312,18 @@ In our investigation of topology, we will try to better understand distances bet
 \end{ncorollary}
 
 \setcounter{rudin}{17}
+\begin{definition}{Dense Sets}{2.18j}
+    $E \subset X$ is dense in $X$ if every point of $X$ is a limit point of $E$, or a point of $E$.
+\end{definition}
+\noindent By consequence of Theorem \ref{thm:1.20}, we have that $\QQ$ is dense in $\RR$ and $\RR \setminus \QQ$ is dense in $\RR$. As a general method to show that a set is dense in another set, take $x \in X \setminus E$, and show $x$ must be a limit point of $E$.
+
+\setcounter{rudin}{17}
+\begin{definition}{Bounded Sets}{2.18i}
+    $E \subset X$ is bounded if there exists $M \in \RR$ and a point $q \in X$ such that $d(p, q) < M$ for all $p \in E$.
+\end{definition}
+\noindent For example, $(0, 1), [0, 1], [0, 1] \times [0, 1]$ are bounded, and $(0, \infty), \NN, \RR$ are unbounded (with the usual metric on $\RR$). 
+
+\setcounter{rudin}{17}
 \begin{definition}{Closed Sets}{2.18d}
     A set $E \subset X$ is closed if every limit point of $E$ is in $E$. 
 \end{definition}
@@ -404,8 +416,8 @@ As a review of some definitions of the previous section, we call a set open if e
 \begin{figure}[htbp]
     \centering
         \begin{tikzpicture}
-            \draw[<->,very thick] (-2,0)--(2,0);
-            \draw[<->,very thick] (0,-2)--(0,2); 
+            \draw[latex-latex,very thick] (-2,0)--(2,0);
+            \draw[latex-latex,very thick] (0,-2)--(0,2); 
             \node[] at (0.5,0) {$($};
             \node[above] at (0.5, 0.1) {$a$};
             \node[] at (1.5,0) {$)$};
@@ -425,8 +437,8 @@ In $\RR$, we know $(a, b)$ to be in an open set. However, embedded in $\RR^2$, $
 \begin{figure}[htbp]
     \centering
         \begin{tikzpicture}
-            \draw[<->,very thick] (-2,0)--(2,0);
-            \draw[<->,very thick] (0,-2)--(0,2);
+            \draw[latex-latex,very thick] (-2,0)--(2,0);
+            \draw[latex-latex,very thick] (0,-2)--(0,2);
             \draw[fill = black] (0.5, 0) circle (1pt);
             \node[above] at (0.4, 0.1) {$a$};
             \draw[fill = black] (1.5, 0) circle (1pt);
@@ -517,7 +529,6 @@ In $\RR$, we know $(a, b)$ to be in an open set. However, embedded in $\RR^2$, $
 \begin{nproof}
     If $K$ is compact, it is closed by Theorem \ref{thm:2.34}. $F \cap K$ is closed by Theorem \ref{thm:2.24}, and since $F \cap K \subset K$, by Theorem \ref{thm:2.35} $F \cap K$ is compact. \qed
 \end{nproof}
-\noindent In a previous course, we may have introduced the definition that compact sets are closed and bounded. Here, we started with a significantly different definition, and work up to prove the Heine-Borel Theorem (coming soon!) which tells us that compactness is equivalent to being closed and bounded in $\RR^k$. 
 
 \begin{theorem}{}{2.36}
     Let $\set{K_\alpha}$ is a collection of compact sets such that $\bigcap_{i=1}^n K_{\alpha_{i}} \neq \emptyset$ for any subcollection/any choice of indices $\alpha_1, \ldots, \alpha_n$. Then, $\bigcap_\alpha K_\alpha \neq \emptyset$.
@@ -550,5 +561,60 @@ In $\RR$, we know $(a, b)$ to be in an open set. However, embedded in $\RR^2$, $
     \end{align*}
     But the RHS is a finite set, contradicting the assumption that $E$ is infinite. \qed
 \end{nproof}
+\noindent In a previous course, we may have introduced the definition that compact sets are closed and bounded. Here, we started with a significantly different definition, and work up to prove the Heine-Borel Theorem (coming soon!) which tells us that compactness is equivalent to being closed and bounded in $\RR^k$. Before we move onto this discussion, we may find it useful to consider some examples of sets which are not compact. 
+
+$[1, \infty)$ is not compact as we could consider the open cover $\set{N_1(n): n \in \NN}$, which has no finite subcover. For the sake of contradiction, suppose such a finite subcover existed. Then, there exists some maximum $m$ for which there would be a neighbourhood around in this subcover. Then, all real numbers greater than $m+1$ would not be in this subcover, which is a contradiction. In a similar way, we can show that $\RR, \RR^2$ are not compact. 
+
+Another interesting example to consider is $(0, 1)$. To see that this interval is not compact, consider the open cover $\set{N_{1/2^n}(\frac{1}{n}): n \in \NN}$. Suppose for the sake of contradiction that a finite subcover exists. Then, there exists some minimum $\frac{1}{m}$ for which there is a neighbourhood around; we then have that all points $x \in (0,1)$, $x < \frac{1}{m} - \frac{1}{2^m}$ are not contained in the subcover, a contradiction. Hence $(0, 1)$ is not compact.
+
+From the Heine-Borel theorem, it is clear here that the former 3 examples fail due to the sets being open, and the last example fails due to the set not being closed. Let us now move onto proving this theorem!
 
 \subsection{Compactness in \texorpdfstring{$\RR^k$}{TEXT} and the Cantor Set}
+
+\begin{theorem}{}{2.38}
+    Let $I_n = [a_n, b_n] \subset \RR$ such that $I_{n+1} \subset I_n$ for all $n$. Then, $\bigcap_{i=1}^\infty I_i \neq \emptyset$. 
+\end{theorem}
+\noindent This theorem is very reminiscent of Theorem \ref{thm:2.37}. However, we cannot apply it directly as we do not know if $[a, b]$ is compact (though we will show that this is indeed the case by the end of the lecture, we want to avoid circular reasoning)!
+\begin{figure}[htbp]
+    \centering
+        \begin{tikzpicture}
+            \draw[latex-latex, very thick] (-6, 0) -- (6,0) node[anchor=south] {$\RR$};
+            \node[] at (-5, 0) {$[$};
+            \node[below] at (-5, -0.2) {$a_1$};
+            \node[] at (5, 0) {$]$};
+            \node[below] at (5, -0.15) {$b_1$};
+            \node[] at (-3, 0) {$[$};
+            \node[below] at (-3, -0.2) {$a_2$};
+            \node[] at (3, 0) {$]$};
+            \node[below] at (3, -0.15) {$b_2$};
+            \node[] at (-1, 0) {$[$};
+            \node[below] at (-1, -0.2) {$a_3$};
+            \node[] at (1, 0) {$]$};
+            \node[below] at (1, -0.15) {$b_3$};
+            \node[] at (-0.25, 0) {$[$};
+            \node[below] at (-0.25, -0.2) {$a_4$};
+            \node[] at (0.25, 0) {$]$};
+            \node[below] at (0.25, -0.15) {$b_4$};
+        \end{tikzpicture}
+    \caption{Visualization of the first few sets $I_n$ in Theorem \ref{thm:2.38}. Note that this is just an example, and the sets do not need to by ``symmetrically shrinking'' around a point as pictured.}
+    \label{fig12}
+\end{figure}
+
+\begin{nproof}
+    We have that $a_n \leq a_{n + m} \leq a_{n + m} \leq b_n$ for all $n, m \in \NN$. Let $E = \set{a_1, a_2, \ldots}$. $E$ is nonempty and bounded by any $b_n$, so by the least upper bound property of $\RR$, there exists $x = \sup E \in \RR$. We then have that $a_n \leq x \leq b_n$ for all $n$ as x is the least upper bound. Hence, $x \in I_n$ for all $n$, and hence $x \in \bigcap_{i=1}^\infty I_i$. We conclude that $\bigcap_{i=1}^\infty I_i \neq \emptyset$. \qed
+\end{nproof}
+
+\begin{ndef}{: k-cells}{}
+    A $k$-cell is $I \subset \RR^k$ such that $I = \set{(x_1, x_2, \ldots x_k) \in \RR^k: a_j \leq x_j \leq b_j}$ for some $\set{a_1, \ldots a_j, b_1, \ldots b_j}$.
+\end{ndef}
+\noindent A $k$-cell can be viewed as the generalization of a rectangle for $\RR^k$.
+
+\begin{theorem}{}{2.39}
+    Theorem \ref{thm:2.38} holds for general $k$-cells.
+\end{theorem}
+\noindent The above theorem follows naturally by applying Theorem \ref{thm:2.38} to each coordinate.
+
+\begin{theorem}{Heine-Borel}{2.40}
+    Let $I \subset \RR^k$ be a $k$-cell. Then, $I$ is compact.
+\end{theorem}
+
