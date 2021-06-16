@@ -618,3 +618,33 @@ From the Heine-Borel theorem, it is clear here that the former 3 examples fail d
     Let $I \subset \RR^k$ be a $k$-cell. Then, $I$ is compact.
 \end{theorem}
 
+\begin{nproof}
+    Lt $\set{G_\alpha}$ be an open cover of $I = I_0$. Suppose for the sake of contradiction that $\set{G_\alpha}$ has no finite subcover. Let $c_j = \frac{1}{2}(a_j + b_j)$. Splitting up $I_0$ along each coordinate (i.e. $[a_j, c_j], [c_j, b_j]$) we obtain $2^k$ $k$-cells $Q_i$, with $I_0 = \bigcup_{i=1}^{2^k}Q_i$. At least one of these $Q_n$s has no finite subcover by assumption. Call this $I_1$. Then, repeat the same division process using $I_1$ (and so on). This yields a sequence of $k$-cells $I_0, I_1, I_2, \ldots$. This sequence has the following properties:
+    \begin{enumerate}
+        \item $I_0 \supset I_1 \supset I_2 \supset \ldots$
+        \item None of $I_n$s have a finite subcover from $\set{G_\alpha}$ by construction.
+        \item Let $\delta = \sqrt{\sum_{j=1}^k (b_j - a_j)^2}$ be the diameter of $I$. Then, for $x, y \in I_n$, $\abs{x - y} < 2^{-n}\delta$. 
+    \end{enumerate}
+    By (a) and Theorem \ref{thm:2.39}, we have that there exists $\v{x}^*$ such that $\v{x}^* \in \bigcap_{n=1}^\infty I_n \subset I$. There exists $\alpha_0$ such that $\v{x} \in G_{\alpha_0}$, and as $G_{\alpha_0}$ is open, there exists some $r > 0$ such that $N_r(\v{x}^*) \subset G_{\alpha_0}$. By (c), we have that $I_n \subset N_{2^{-n+1}\delta}(\v{x}^*)$. For sufficiently large $n$, $I_n \subset  N_{2^{-n+1}\delta}(\v{x}^*) \subset N_r(\v{x}^*) \subset G_{\alpha_0}$, but this contradicts (b). Hence, there must exist a finite subcover of $\set{G_\alpha}$ for $I$. 
+\end{nproof}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \draw[thick] (-2, -2) -- (-2, 2) -- (2, 2) -- (2, -2) -- (-2, -2);
+        \draw[thick] (0, 2) -- (0, -2);
+        \draw[thick] (2, 0) -- (-2, 0);
+        \filldraw[fill = white!60!black, opacity = 0.3] (-2, 0) -- (0, 0) -- (0, 2) -- (2, 2) -- (2, -2) -- (-2, -2) -- (-2, 0);
+        \draw[thick] (-1, 2) -- (-1, 0);
+        \draw[thick] (-2, 1) -- (0, 1);
+        \filldraw[fill = white!60!black, opacity = 0.3] (-2, 2) -- (0, 2) -- (0, 0) -- (-1, 0) -- (-1, 1) -- (-2, 1) -- (-2, 2);
+
+        \node[text = red, fill = white, draw] at (0, 0) {$I_0$};
+        \node[text = red, fill = white, draw] at (-1, 1) {$I_1$};
+        \node[text = red] at (-1.5, 0.5) {$I_2$};
+        
+    \end{tikzpicture}
+    \caption{Visualization of the division process (first three iterations shown) in the proof of Theorem \ref{thm:2.40}, for $I \subset \RR^2$.}
+    \label{<label>}
+\end{figure}
+
