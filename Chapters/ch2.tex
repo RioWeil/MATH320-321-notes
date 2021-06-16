@@ -460,7 +460,7 @@ In $\RR$, we know $(a, b)$ to be in an open set. However, embedded in $\RR^2$, $
 
 \subsection{Compactness}
 \begin{definition}{Open Covers}{2.31}
-    An open cover of a subset $E \subset X$ is a collection $\set{G_\alpha}$ of open sets of $X$ such that $E \subset \bigcup_{\alpha} G_\alpha$.
+    An \textbf{open cover} of a subset $E \subset X$ is a collection $\set{G_\alpha}$ of open sets of $X$ such that $E \subset \bigcup_{\alpha} G_\alpha$.
 \end{definition}
 \noindent Note that the open cover can be either a finite or infinite (countable or uncountable) collection.
 \begin{figure}[htbp]
@@ -488,7 +488,7 @@ In $\RR$, we know $(a, b)$ to be in an open set. However, embedded in $\RR^2$, $
 \end{figure}
 
 \begin{definition}{Compactness}{2.32}
-    A subset $K \subset X$ is compact if every open cover of $K$ has a finite subcover. Explicitly, if $\set{G_\alpha}$ is an open cover of $K$, then there exist indices $\alpha_1, \ldots, \alpha_n$ such that $K \subset G_{\alpha_1} \cup \ldots \cup G_{\alpha_n}$. 
+    A subset $K \subset X$ is \textbf{compact} if every open cover of $K$ has a finite subcover. Explicitly, if $\set{G_\alpha}$ is an open cover of $K$, then there exist indices $\alpha_1, \ldots, \alpha_n$ such that $K \subset G_{\alpha_1} \cup \ldots \cup G_{\alpha_n}$. 
 \end{definition}
 \noindent While the above definition might seem strange/esoteric, it turns out to be very useful and important to analysis. We saw in the last lecture that open sets in a sense do not behave ``nicely''; a given set could be open with respect to a subspace $Y$ but not to $X$ (and we had to introduce the notion of relative openness to take care of this fact). Compactness behaves more nicely, as we will see with the following theorem.
 
@@ -523,7 +523,7 @@ In $\RR$, we know $(a, b)$ to be in an open set. However, embedded in $\RR^2$, $
 \end{nproof}
 
 \begin{ncorollary}{}{}
-    If $F \subset X$ is closed and $K \subset X$ is compact, then $F \subset K$ is compact. In other words, compactness is preserved under intersection (with closed sets).
+    If $F \subset X$ is closed and $K \subset X$ is compact, then $F \cap K$ is compact. In other words, compactness is preserved under intersection (with closed sets).
 \end{ncorollary}
 
 \begin{nproof}
@@ -605,7 +605,7 @@ From the Heine-Borel theorem, it is clear here that the former 3 examples fail d
 \end{nproof}
 
 \begin{ndef}{: k-cells}{}
-    A $k$-cell is $I \subset \RR^k$ such that $I = \set{(x_1, x_2, \ldots x_k) \in \RR^k: a_j \leq x_j \leq b_j}$ for some $\set{a_1, \ldots a_j, b_1, \ldots b_j}$.
+    A \textbf{k-cell} is $I \subset \RR^k$ such that $I = \set{(x_1, x_2, \ldots x_k) \in \RR^k: a_j \leq x_j \leq b_j}$ for some $\set{a_1, \ldots a_j, b_1, \ldots b_j}$.
 \end{ndef}
 \noindent A $k$-cell can be viewed as the generalization of a rectangle for $\RR^k$.
 
@@ -614,7 +614,7 @@ From the Heine-Borel theorem, it is clear here that the former 3 examples fail d
 \end{theorem}
 \noindent The above theorem follows naturally by applying Theorem \ref{thm:2.38} to each coordinate.
 
-\begin{theorem}{Heine-Borel}{2.40}
+\begin{theorem}{}{2.40}
     Let $I \subset \RR^k$ be a $k$-cell. Then, $I$ is compact.
 \end{theorem}
 
@@ -625,7 +625,7 @@ From the Heine-Borel theorem, it is clear here that the former 3 examples fail d
         \item None of $I_n$s have a finite subcover from $\set{G_\alpha}$ by construction.
         \item Let $\delta = \sqrt{\sum_{j=1}^k (b_j - a_j)^2}$ be the diameter of $I$. Then, for $x, y \in I_n$, $\abs{x - y} < 2^{-n}\delta$. 
     \end{enumerate}
-    By (a) and Theorem \ref{thm:2.39}, we have that there exists $\v{x}^*$ such that $\v{x}^* \in \bigcap_{n=1}^\infty I_n \subset I$. There exists $\alpha_0$ such that $\v{x} \in G_{\alpha_0}$, and as $G_{\alpha_0}$ is open, there exists some $r > 0$ such that $N_r(\v{x}^*) \subset G_{\alpha_0}$. By (c), we have that $I_n \subset N_{2^{-n+1}\delta}(\v{x}^*)$. For sufficiently large $n$, $I_n \subset  N_{2^{-n+1}\delta}(\v{x}^*) \subset N_r(\v{x}^*) \subset G_{\alpha_0}$, but this contradicts (b). Hence, there must exist a finite subcover of $\set{G_\alpha}$ for $I$. 
+    By (a) and Theorem \ref{thm:2.39}, we have that there exists $\v{x}^*$ such that $\v{x}^* \in \bigcap_{n=1}^\infty I_n \subset I$. There exists $\alpha_0$ such that $\v{x} \in G_{\alpha_0}$, and as $G_{\alpha_0}$ is open, there exists some $r > 0$ such that $N_r(\v{x}^*) \subset G_{\alpha_0}$. By (c), we have that $I_n \subset N_{2^{-n+1}\delta}(\v{x}^*)$. For sufficiently large $n$, $I_n \subset  N_{2^{-n+1}\delta}(\v{x}^*) \subset N_r(\v{x}^*) \subset G_{\alpha_0}$, but this contradicts (b). Hence, there must exist a finite subcover of $\set{G_\alpha}$ for $I$. \qed
 \end{nproof}
 
 \begin{figure}[htbp]
@@ -645,6 +645,72 @@ From the Heine-Borel theorem, it is clear here that the former 3 examples fail d
         
     \end{tikzpicture}
     \caption{Visualization of the division process (first three iterations shown) in the proof of Theorem \ref{thm:2.40}, for $I \subset \RR^2$.}
-    \label{<label>}
+    \label{fig13}
 \end{figure}
 
+\begin{theorem}{Heine-Borel}{2.41}
+    If a set in $\RR^k$ has the following three properties, then it has the other two.
+    \begin{enumerate}
+        \item $E$ is bounded and closed.
+        \item $E$ is compact.
+        \item Every infinite subset of $E$ has at least one limit point in $E$
+    \end{enumerate}
+    In particular, the equivalence of (a) and (b) is what is commonly referred to as the Heine-Borel theorem.
+\end{theorem}
+\begin{nproof}
+    $\boxed{\text{(a)} \implies \text{(b)}}$ If $E$ is bounded, then there exists a $k$-cell $I$ such that $E \subset I$. $I$ is compact by Theorem \ref{thm:2.40}, and since $E$ is closed, by Theorem \ref{thm:2.35} we have that $E$ is compact.
+
+    $\boxed{\text{(b)} \implies \text{(c)}}$ See Theorem \ref{thm:2.37}.
+
+    $\boxed{\text{(c)} \implies \text{(a)}}$ Suppose first for the sake of contradiction that $E$ is not bounded. Then, $E$ has an infinite subset $S = \set{\v{x}_1,\v{x}_2, \ldots}$ with $\abs{\v{x}_n} > n$ for all $n$. Hence, $S$ has no limit points in $\RR^k$, and therefore no limit points in $E$. But this contradicts (c).
+
+    Suppose next that $E$ is not closed. Then, there exists $\v{x}_0 \in \RR^k$ which is a limit point of $E$ but is not in $E$. Form $S = \set{x_1, x_2, \ldots} \subset E$ with $\abs{x_n - x_0} < \frac{1}{n}$ for all $n$. We now show that $S$ has no limit point in $\RR^k$ except for $\v{x}_0$. To see this, let $\v{y} \in \RR^k, \v{y} \neq \v{x}_0$. Then:
+    \begin{align*}
+        \abs{\v{x}_n - \v{y}} \geq \abs{\v{x}_0 - \v{y}} - \abs{\v{x}_n - \v{x}_0} \geq \abs{\v{x}_0 - \v{y}} - \frac{1}{n} \geq \abs{\v{x}_0 - \v{y}} - \frac{n}{2}\abs{\v{x}_0 - \v{y}} =  \frac{1}{2}\abs{\v{x}_0 - \v{y}}
+    \end{align*}
+    Where the last inequality holds for sufficiently large $n$. As every neighbourhood of $\v{y}$ must contain an infinite number of points in $S$ if $\v{y}$ is to be a limit point of $S$ (Theorem \ref{thm:2.20}) we find that $\v{y}$ is not a limit point of $S$. Hence, $S$ has no limit point in $E$, again contradicting (c). We conclude that $E$ must be bounded and closed. \qed
+\end{nproof}
+
+\begin{theorem}{Weierstrauss}{2.42}
+    Suppose $E \subset \RR^k$ is bounded and infinite. Then, $E$ has a limit point in $\RR^k$.
+\end{theorem}
+\begin{nproof}
+    Since $E$ is bounded, $E \subset I \subset \RR^k$ for some $k$-cell $I$. By Theorem \ref{thm:2.40} $E$ is compact, so by Theorem \ref{thm:2.37} $E$ has a limit point in $I$ (and hence in $\RR^k$). \qed
+\end{nproof}
+
+\noindent Having proven the landmark (Heine-Borel) theorem of this section, we close this chapter with discussion of perfect sets and the Cantor set.
+\setcounter{rudin}{17}
+\begin{definition}{Perfect Sets}{2.18h}
+    A set $P \subset X$ is \textbf{perfect} if $P$ is closed and every point of $P$ is a limit point of $P$. 
+\end{definition}
+
+\setcounter{rudin}{42}
+\begin{theorem}{}{2.43}
+    Let $P \subset \RR^k$ be nonempty and perfect. Then, $P$ is uncountable.
+\end{theorem}
+\begin{nproof}
+    
+\end{nproof}
+
+\begin{ncorollary}{}{}
+    Every interval $[a, b]$ is uncountable. It follows that $\RR$ is uncountable.
+\end{ncorollary}
+
+\begin{definition}{The Cantor Set}{2.44}
+    
+\end{definition}
+
+\begin{figure}[htbp]
+    \centering
+    
+    \caption{Visualization of the first few sets $E_0, E_1, E_2$ used in the construction of the Cantor set.}
+    \label{fig14}
+\end{figure}
+
+\begin{ntheorem}{}{}
+    The Cantor set is uncountable. Moreover, it is perfect.
+\end{ntheorem}
+
+\begin{nproof}
+
+\end{nproof}
