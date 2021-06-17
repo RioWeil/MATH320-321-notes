@@ -689,7 +689,13 @@ From the Heine-Borel theorem, it is clear here that the former 3 examples fail d
     Let $P \subset \RR^k$ be nonempty and perfect. Then, $P$ is uncountable.
 \end{theorem}
 \begin{nproof}
-    
+    Since $P$ has limit points, it is not finite by Theorem \ref{thm:2.20}. Assume for the sake of contradiction that $P$ is countable. Then, $P = \set{\v{x}_1, \v{x}_2, \ldots}$. Let $V_1 = N_r(\v{x_1})$ be any neighbourhood of $\v{x}_1$. Suppose we construct $B_n$ such that $V_n \cap P \neq \emptyset$ (note that we don't assume that $\v{x}_n \in V_n$, just that some point $\v{p} \in P$ is in $V_n$). Since $P$ is perfect, we may construct $V_{n+1}$ such that:
+    \begin{enumerate}[(i)]
+        \item $\overline{V}_{n+1} \subset V_n$
+        \item $\v{x}_n \notin \overline{V}_{n+1}$
+        \item $V_{n+1} \cap P \neq \emptyset$
+    \end{enumerate}
+    Note that $\overline{V}_{n}$ is closed and bounded, and hence is compact by Theorem \ref{thm:2.41}. Hence, by the corollary to Theorem \ref{thm:2.35} we have that $K_n = \overline{V}_n \cap P$ is also compact. By (ii), we have that $\v{x}_n \notin \bigcap_{n=1}^\infty K_n$, and this holds for all $n \in \NN$. Hence, $P \cap \bigcap_{n=1}^\infty K_n = \emptyset$, but $K_n \subset P$, so it follows that $\bigcap_{n=1}^\infty K_n = \emptyset$. But $K_n$ is non-empty, compact, and $K_{n+1} \subset K_n$, so this contradicts the corollary to Theorem \ref{thm:2.36}. We conclude that $P$ is uncountable. \qed
 \end{nproof}
 
 \begin{ncorollary}{}{}
@@ -697,20 +703,66 @@ From the Heine-Borel theorem, it is clear here that the former 3 examples fail d
 \end{ncorollary}
 
 \begin{definition}{The Cantor Set}{2.44}
-    
+    Let $E_0 = [0, 1]$. Then, remove the middle third (that is, $(\frac{1}{3}, \frac{2}{3})$) to obtain $E_1 = [0, \frac{1}{3}]\cup[\frac{2}{3}, 1]$. Then remove the middle thirds of each of these parts to get $E_2 = [0, \frac{1}{9}]\cup[\frac{2}{9}, \frac{1}{3}]\cup[\frac{2}{3}, \frac{7}{9}]\cup[\frac{8}{9}, 1]$. This yields a sequence of sets $E_0 \supset E_1 \supset E_2 \supset E_3 \supset \ldots$.
+
+    Then, we may define the \textbf{Cantor set} as $P = \bigcap_{n=1}^\infty E_n$. 
 \end{definition}
+\noindent Although we will rigorously define a measure in this course, each $E_n$ in the above construction is the union of $2^n$ intervals of measure $\frac{1}{3^n}$, for a total measure of $\frac{2^n}{3^n}$ for each $E_n$. Taking the limit of $n \rightarrow \infty$, we can therefore see that the Cantor set has measure zero. However, the Cantor set is uncountable (as we will see shortly), making it an example of an uncountable set of measure zero.
 
 \begin{figure}[htbp]
     \centering
+    \begin{tikzpicture}
+        \draw[latex-latex, very thick] (-6, 1) -- (6,1) node[anchor=west] {$E_0$};
+        \node[] at (-5, 1) {$[$};
+        \node[below] at (-5, 0.8) {$0$};
+        \node[] at (5, 1) {$]$};
+        \node[below] at (5, 0.8) {$1$};
+        \draw[latex-latex, very thick] (-6, 0) -- (6, 0) node[anchor=west] {$E_1$};
+        \node[] at (-5, 0) {$[$};
+        \node[below] at (-5, -0.2) {$0$};
+        \node[] at (-1.67, 0) {$]$};
+        \node[below] at (-1.67, -0.1) {$\frac{1}{3}$};
+        \node[] at (1.67, 0) {$[$};
+        \node[below] at (1.67, -0.1) {$\frac{2}{3}$};
+        \node[] at (5, 0) {$]$};
+        \node[below] at (5, -0.2) {$1$};
+        \draw[latex-latex, very thick] (-6, -1) -- (6,-1) node[anchor=west] {$E_2$};
+        \node[] at (-5, -1) {$[$};
+        \node[below] at (-5, -1.2) {$0$};
+        \node[] at (-3.89, -1) {$]$};
+        \node[below] at (-3.89, -1.1) {$\frac{1}{9}$};
+        \node[] at (-2.78, -1) {$[$};
+        \node[below] at (-2.78, -1.1) {$\frac{2}{9}$};
+        \node[] at (-1.67, -1) {$]$};
+        \node[below] at (-1.67, -1.1) {$\frac{1}{3}$};
+        \node[] at (1.67, -1) {$[$};
+        \node[below] at (1.67, -1.1) {$\frac{2}{3}$};
+        \node[] at (2.78, -1) {$]$};
+        \node[below] at (2.78, -1.1) {$\frac{7}{9}$};
+        \node[] at (3.89, -1) {$[$};
+        \node[below] at (3.89, -1.1) {$\frac{8}{9}$};
+        \node[] at (5, -1) {$]$};
+        \node[below] at (5, -1.2) {$1$};
+    \end{tikzpicture}
     
     \caption{Visualization of the first few sets $E_0, E_1, E_2$ used in the construction of the Cantor set.}
     \label{fig14}
 \end{figure}
 
 \begin{ntheorem}{}{}
+    The Cantor set contains no interval $(a, b)$.
+\end{ntheorem}
+\begin{nproof}
+    (Sketch) Any interval $(a, b)$ contains some interval $\left(\frac{3k+1}{3^m}, \frac{3k+2}{3^m}\right)$ which are all removed in the construction of the set. \qed
+\end{nproof}
+\noindent If the Cantor set contains no intervals, then how is it uncountable? It might help to consider that by construction, the endpoints of each $E_n$ belong to $P$; in the limit, this yields an uncountable number of points contained in $P$. 
+
+\begin{ntheorem}{}{}
     The Cantor set is uncountable. Moreover, it is perfect.
 \end{ntheorem}
 
-\begin{nproof}
 
+\begin{nproof}
+    Let $X \in P$ and $S$ be an interval such that $x \in S$. Let $I_n$ be the interval of $E_n$ containing $x$. The length of $I_n$ is given by $\frac{1}{3^n}$. For sufficiently large $n$, $I_n \subset S$. Let $x_n$ be an endpoint of $I_n$ such that $x_n \neq x$. By construction, $x_n \in P$, and hence $x$ is a limit point of $P$ by construction. Additionally, $P$ is closed by Theorem \ref{thm:2.24} as it is an infinite intersection of closed sets. Hence $P$ is perfect, and by Theorem \ref{thm:2.43} it is uncountable. \qed
 \end{nproof}
+
