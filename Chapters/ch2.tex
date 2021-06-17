@@ -530,6 +530,26 @@ In $\RR$, we know $(a, b)$ to be in an open set. However, embedded in $\RR^2$, $
     If $K$ is compact, it is closed by Theorem \ref{thm:2.34}. $F \cap K$ is closed by Theorem \ref{thm:2.24}, and since $F \cap K \subset K$, by Theorem \ref{thm:2.35} $F \cap K$ is compact. \qed
 \end{nproof}
 
+\noindent In a previous course, we may have introduced the definition that compact sets are closed and bounded. Here, we started with a significantly different definition, and work up to prove the Heine-Borel Theorem (coming soon!) which tells us that compactness is equivalent to being closed and bounded in $\RR^k$. Before we move onto such further properties and theorems of compact sets, we may find it useful to consider some examples of sets that are and are not compact.
+
+The singleton set $\set{x}$ is compact in any metric space (out of any open cover, simply pick a single open set that contains $x$; this yields the desired subcover). Moreover, any finite set is compact in any topology (consider that for any open cover of a set of $n$ elements, we can just choose at most $n$ open sets corresponding to each element to form our finite subcover).
+
+Next, consider any infinite set $Y$ in a metric space $X$ with the discrete metric:
+\begin{align*}
+    d(x, y) = \begin{cases}
+        0 & \text{if $x = y$}
+        \\ 1 & \text{if $x \neq y$}
+    \end{cases}
+\end{align*}
+Then is $Y \subset X$ compact? The answer is no; consider the open cover of singleton sets, $U = \set{\set{x}: x \in Y}$. First, note that this is indeed an open cover, as $\set{x}$ is open in $X$; consider that $N_r(x) \subset \set{x}$ if $r < 1$, and hence $x$ is an interior point of $\set{x}$, making it open. However, there exists no finite subcover of this open cover as we need to pick an infinite number of singletons to cover each point in $Y$. 
+
+
+$[1, \infty) \subset \RR$ is not compact as we could consider the open cover $\set{N_1(n): n \in \NN}$, which has no finite subcover. For the sake of contradiction, suppose such a finite subcover existed. Then, there exists some maximum $m$ for which there would be a neighbourhood around in this subcover. Then, all real numbers greater than $m+1$ would not be in this subcover, which is a contradiction. In a similar way, we can show that $\RR \subset \RR, \RR^2 \subset \RR^2$ are not compact. 
+
+Another interesting example to consider is $(0, 1)$. To see that this interval is not compact, consider the open cover $\set{(\frac{1}{n}, 1): n \in \NN}$. This open cover has no finite subcover. Suppose for the sake of contradiction that a finite subcover existed. Then, there would be some minimum $\frac{1}{N}$ such that $(\frac{1}{N}, 1)$ would be in the subcover. But then no $0 < x < \frac{1}{N}$ would be contained in the subcover, which is a contradiction.
+
+From the Heine-Borel theorem, it is clear here that $[1, \infty), \RR, \RR^2$ fail due to the sets being unbounded, and the $(0, 1)$ fails due to the set not being closed. We will now move onto a sequence of Theorems that will eventually lead to Heine-Borel (the climax of this chapter)!
+
 \begin{theorem}{}{2.36}
     Let $\set{K_\alpha}$ is a collection of compact sets such that $\bigcap_{i=1}^n K_{\alpha_{i}} \neq \emptyset$ for any subcollection/any choice of indices $\alpha_1, \ldots, \alpha_n$. Then, $\bigcap_\alpha K_\alpha \neq \emptyset$.
 \end{theorem}
@@ -561,13 +581,6 @@ In $\RR$, we know $(a, b)$ to be in an open set. However, embedded in $\RR^2$, $
     \end{align*}
     But the RHS is a finite set, contradicting the assumption that $E$ is infinite. \qed
 \end{nproof}
-\noindent In a previous course, we may have introduced the definition that compact sets are closed and bounded. Here, we started with a significantly different definition, and work up to prove the Heine-Borel Theorem (coming soon!) which tells us that compactness is equivalent to being closed and bounded in $\RR^k$. Before we move onto this discussion, we may find it useful to consider some examples of sets which are not compact. 
-
-$[1, \infty)$ is not compact as we could consider the open cover $\set{N_1(n): n \in \NN}$, which has no finite subcover. For the sake of contradiction, suppose such a finite subcover existed. Then, there exists some maximum $m$ for which there would be a neighbourhood around in this subcover. Then, all real numbers greater than $m+1$ would not be in this subcover, which is a contradiction. In a similar way, we can show that $\RR, \RR^2$ are not compact. 
-
-Another interesting example to consider is $(0, 1)$. To see that this interval is not compact, consider the open cover $\set{N_{1/2^n}(\frac{1}{n}): n \in \NN}$. Suppose for the sake of contradiction that a finite subcover exists. Then, there exists some minimum $\frac{1}{m}$ for which there is a neighbourhood around; we then have that all points $x \in (0,1)$, $x < \frac{1}{m} - \frac{1}{2^m}$ are not contained in the subcover, a contradiction. Hence $(0, 1)$ is not compact.
-
-From the Heine-Borel theorem, it is clear here that the former 3 examples fail due to the sets being open, and the last example fails due to the set not being closed. Let us now move onto proving this theorem!
 
 \subsection{Compactness in \texorpdfstring{$\RR^k$}{TEXT} and the Cantor Set}
 
