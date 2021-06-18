@@ -7,7 +7,7 @@ We begin by formally defining a sequence.
 \end{ndef}
 \noindent We now discuss the notion of convergence of a sequence. Intuitively, we can equate convergence with the notion of points getting closer together.
 \begin{definition}{Convergence of Sequences}{3.1}
-    A sequence $\set{p_n}_{n=1}^\infty$ convergence to $p \in X$ if for all $\e > 0$, there exists $N \in \NN$ such that $n \geq N$ implies $d(p_n, p) < \e$. In this case, we say that $\set{p_n}$ converges to $p$, or that $p$ is the limit of $\set{p_n}$, and denote this as $p_n \rightarrow p$ or $\lim_{n \rightarrow \infty} p_n = p$. If $\set{p_n}$ does not converge, we say it diverges.
+    A sequence $\set{p_n}_{n=1}^\infty$ \textbf{converges} to $p \in X$ if for all $\e > 0$, there exists $N \in \NN$ such that $n \geq N$ implies $d(p_n, p) < \e$. In this case, we say that $\set{p_n}$ converges to $p$, or that $p$ is the limit of $\set{p_n}$, and denote this as $p_n \rightarrow p$ or $\lim_{n \rightarrow \infty} p_n = p$. If $\set{p_n}$ does not converge, we say it \textbf{diverges}.
 \end{definition}
 \noindent To phrase this definition in another way, we fix some $\e > 0$, and then we have that all points in the sequence past some $N \in \NN$ are contained in the neighbourhood $N_\e(p)$. In practice, it can be difficult to apply this definition of convergence if we don't know what the limiting $p$ is, as the definition implicitly uses the value of the limit. We will later discuss another definition of convergence (in $\RR^k$) that does not use the value of the limit.
 \begin{figure}[htbp]
@@ -138,7 +138,74 @@ We begin by formally defining a sequence.
         \item Taking $\alpha = 0$ in (d), the claim follows by setting $\abs{x} = \frac{1}{1+p} < 1$ (as $p > 0$) and recognizing that $x_n \rightarrow 0 \iff \abs{x^n} = \abs{x}^n \rightarrow 0$. \qed
     \end{enumerate}
 \end{tcolorbox}
+
 \subsection{Subsequences}
+
+\setcounter{rudin}{1}
+\begin{theorem}{}{3.2}
+    Let $\set{p_n}$ be a sequence in $X$.
+    \begin{enumerate}
+        \item $p_n \rightarrow p$ in $X$ if and only if for all $r > 0$, $N_r(p)$ contains all but finitely many points of $\set{p_n}$.
+        \item If $p_n \rightarrow p$ and $p_n \rightarrow p'$ then $p = p'$. In other words, the limit is unique.
+        \item If $\set{p_n}$ is convergent, then it is bounded (that is, for any $q \in X$ there exists $M \in \RR$ such that $d(q, p_n) \leq M$ for all $n \in \NN$).
+        \item If $E \subset X$ has a limit point $p$, then there exists $\set{p_n}$ in $E$ such that $p_n \rightarrow p$. 
+    \end{enumerate}
+\end{theorem}
+\begin{nproof}
+    \begin{enumerate}
+        \item The claim follows immediately from the definition of convergence; for any $r = \e > 0$, there exists $N \in \NN$ such that $N_r(p)$ contains $\set{p_n: n \geq N}$.
+        \item There exist $N_1, N_2$ such that $d(p, p_{n_1}) < \frac{\e}{2}$ if $n_1 \geq N_1$ and $d(p, p_{n_2}) < \frac{\e}{2}$ if $n_2 \geq N_2$. Then for $n \geq N = \max{N_1, N_2}$ we have (using the triangle inequality) that:
+        \begin{align*}
+            d(p, p') \leq d(p, p_n) + d(p_n, p') < \frac{\e}{2} + \frac{\e}{2} = \e
+        \end{align*}
+        Since $\e$ is arbitrary, $d(p, p') = 0$ and hence $p = p'$.
+    \end{enumerate}
+\end{nproof}
+
+\begin{tcolorbox}[colback=gray!5!white, colframe=gray!75!black,fonttitle=\bfseries, title = Proof (Continued)]
+    \begin{enumerate}
+        \setcounter{enumi}{2}
+        \item If $p_n \rightarrow p$, there exists $N$ such that $d(p_n, p) < 1$ for all $n \geq N$. Set:
+        \begin{align*}
+            r = \max\set{1, d(p_1, p), d(p_2, p), \ldots ,d(p_{N-1}, p)}
+        \end{align*}
+        For any $q \in X$, we then have that:
+        \begin{align*}
+            d(q, p_n) \leq d(q, p) + d(p, p_n) \leq d(q, p) + r
+        \end{align*}
+        so the claim follows with $M = r + d(q, p) + 1$.
+        \item Pick $p_n \in E$ such that $d(p_n, p) < \frac{1}{n}$. Let $\e > 0$, and $N > \frac{1}{\e}$. Then, $n \geq N$ implies $\frac{1}{n} \leq \frac{1}{N} < \e$ and hence $d(p_n, p) < \e$ for all $n \geq N$, and hence $p_n \rightarrow p$ as desired. \qed
+    \end{enumerate}
+\end{tcolorbox}
+
+\setcounter{rudin}{4}
+\begin{definition}{Subsequences}{3.5}
+    Given $\set{p_n}$ and $n_1 < n_2 < n_3 < \ldots$, we say that $\set{p_{n_j}}$ is a \textbf{subsequence} of $\set{p_n}$.
+\end{definition}
+
+\noindent We first consider some examples. Let $p_n = n$. Then some valid subsequences of $\set{p_n}$ are $\set{1, 2, 3, 4, 5, \ldots}$ (the original sequence), $\set{1, 3, 5, 7, \ldots}$ (the odds), $\set{2, 3, 5, 7, 11, 13, \ldots}$ (the primes). Next, let $p_n = i^n$. We have that $\set{p_n} = \set{i, -1, -i, 1, i, -1, -i, 1, \ldots}$ which is clearly divergent. However, the subsequences $\set{i, i, i, \ldots}$, $\set{-1, -1, -1, \ldots}$, $\set{-i, -i, -i, \ldots}$ and $\set{1, 1, 1, \ldots}$ are all convergent! It is hence possible for a divergent sequence to have a convergent subsequence.
+
+\begin{nlemma}{}{}
+    If $p_n \rightarrow p$, then every subsequence of $\set{p_n}$ converges to $p$. 
+\end{nlemma}
+
+\begin{nproof}
+    Suppose $p_n \rightarrow p$ and let $\set{p_{n_j}}$ be a subsequence of $p_n$. Let $\e > 0$. Then, there exists some $N \in \NN$ such that $d(p, p_n) < \e$ if $n \geq N$. Hence, $d(p, p_{n_j}) < \e$ if $n_j \geq N$ and hence $p_{n_j} \rightarrow p$. \qed
+\end{nproof}
+
+\begin{theorem}{}{3.6}
+    \begin{enumerate}
+        \item If $\set{p_n} \subset X$ with $X$ compact, then $\set{p_n}$ has a convergenct subsequence.
+        \item If $\set{p_n} \subset \RR^k$ and $\set{p_n}$ is bounded, then $\set{p_n}$ has a convergent subsequence.
+    \end{enumerate}
+\end{theorem}
+\begin{nproof}
+    \begin{enumerate}
+        \item Let $E$ be the range of $\set{p_n}$. If $E$ is finite, then there exists $x \in X$ and $n_1 < n_2 < n_3 < \ldots$ such that $p_{n_j} = x$ for all $j$. Therefore $p_{n_j} \rightarrow x$ and we are done. If $E$ is infinite, then by compactness, $E \subset X$ has a limit point in $X$ by Theorem \ref{thm:2.37}. By Theorem \ref{thm:3.2}(d) there exists a sequence $\set{p_{n_j}}$ in $E$ such that $p_{n_j} \rightarrow p$.
+        \item By Theorem \ref{thm:2.41}, $E$ (being bounded) lies in a compact subset of $\RR^k$. We then apply (a). \qed
+    \end{enumerate}
+\end{nproof}
+
 \subsection{Cauchy Sequences and Completeness}
 \subsection{Limsup and Liminf}
 \subsection{Series}
