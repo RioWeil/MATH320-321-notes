@@ -35,13 +35,109 @@ We begin by formally defining a sequence.
 
 \stepcounter{rudin}
 \begin{theorem}{}{3.3}
-    Suppose $\set{s_n}, \set{t_n}$ are complex sequences that converge, with $\linf{n} s_n \rightarrow s$ and $\linf{n} t_n \rightarrow t$. Then:
+    Suppose $\set{s_n}, \set{t_n}$ are complex sequences that converge, with $\linf s_n \rightarrow s$ and $\linf t_n \rightarrow t$. Then:
     \begin{enumerate}
-        \item $\linf{n}(s_n + t_n) = s + t$.
-        \item $\linf{n} cs_n = cs$ and $\linf{n} (c + s_n) = c + s_n$ for all $c \in \CC$.
-        \item $\linf{n}
+        \item $\linf(s_n + t_n) = s + t$.
+        \item $\linf cs_n = cs$ and $\linf (c + s_n) = c + s$ for all $c \in \CC$.
+        \item $\linf s_nt_n = st$
+        \item $\linf \frac{1}{s_n} = \frac{1}{s}$ provided $s \neq 0$ and $s_n \neq 0$ for all $n$.
     \end{enumerate}
 \end{theorem}
+\begin{nproof}
+    \begin{enumerate}
+        \item Let $\e > 0$. There exist $N_1, N_2 \in \NN$ such that $\abs{s_{n_1} - s} < \frac{\e}{2}$ for $n_1 \geq N_1$ and $\abs{t_{n_2} - t} < \frac{\e}{2}$ for $n_2 \geq N_2$. Take $N = \max{N_1, N_2}$, and using the triangle inequality, it follows that for $n \geq N$:
+        \begin{align*}
+            \abs{(s_n + t_n) - (s + t)} \leq \abs{s_n - s} + \abs{t_n - t} < \frac{\e}{2} + \frac{\e}{2} = \e
+        \end{align*} 
+        We conclude that $\linf (s_n + t_n) = s + t$. 
+        \item Let $\e > 0$. If $c = 0$ then the first sequence trivially converges to $0$, so suppose that $c \neq 0$. There exists $N$ such that $\abs{s_n - s} < \frac{\e}{\abs{c}}$ for $n \geq N$, so it follows that:
+        \begin{align*}
+            \abs{cs_n - cs} = \abs{c}\abs{s_n - s} < \abs{c}\frac{\e}{\abs{c}} = \e.
+        \end{align*} For the second identity, we have that $c_n \rightarrow c$ for any constant sequence $c_n = c$ so we may apply (a).
+        \item Let $\e > 0$. There exist $N_1, N_2$ such that $\abs{s_{n_1} - s} < \sqrt{2}$ for $n_1 \geq N_1$ and $\abs{t_{n_2} - t} < \sqrt{2}$ for $n_2 \geq N_2$. We then consider that:
+        \begin{align*}
+        s_nt_n - st = (s_n - s)(t_n - t) + s(t_n - t) + t(s_n - s)
+        \end{align*}
+        For $n \geq N = \max{N_1, N_2}$, we have that:
+        \begin{align*}
+            (s_n - s)(t_n - t) < \e
+        \end{align*}
+        And we hence observe that $\linf (s_n - s)(t_n - t) = 0$. We can then use (a) and (b) to find that:
+        \begin{align*}
+            \linf s(t_n - t) = 0, \quad \linf t(s_n - s) = 0
+        \end{align*}
+        So we conclude that $\linf (s_nt_n - st) = 0$ and hence $s_nt_n \rightarrow st$.
+        \item Choose $m$ such that $\abs{s_n - s} < \frac{1}{2}\abs{s}$ if $n \geq m$. We then have that $\abs{s_n} > \frac{1}{2}\abs{s}$ for $n \geq m$. Let $\e > )0$. Then, there exists $N$ with $N > m$ such that for $n \geq N$:
+        \begin{align*}
+            \abs{s_n - s} < \frac{1}{2}\abs{s}^2\e
+        \end{align*}
+        Hence, for $n \geq N$:
+        \begin{align*}
+            \abs{\frac{1}{s_n} - \frac{1}{s}} = \abs{\frac{s_n - s}{s_ns}} < \frac{2}{\abs{s}^2}\abs{s_n - s} < \e
+        \end{align*}
+        \qed
+    \end{enumerate}
+\end{nproof}
+
+\begin{nlemma}{: Squeeze Lemma}{}
+    Let $\set{x_n}$, $\set{s_n}$ be real-valued sequences. Then, if $0 \leq x_n \leq s_n$ for all $n$, and $\linf s_n = 0$, then $\linf x_n = 0$.
+\end{nlemma}
+\begin{nproof}
+    Let $\e > 0$. Choose $N \in \NN$ such that $n \geq N$ implies $0 \leq s_n < \e$. Then, we have that for $n \geq N$, $0 \leq x_n \leq s_n < \e$ and hence $x_n \rightarrow 0$ as claimed. \qed
+\end{nproof}
+
+\setcounter{rudin}{19}
+\begin{theorem}{}{3.20}
+    \begin{enumerate}
+        \item Let $p > 0$. Then, $\linf \frac{1}{n^p} = 0$.
+        \item Let $p > 0$. Then, $\linf \sqrt[n]{p} = 1$.
+        \item $\linf \sqrt[n]{n} = 1$.
+        \item Let $p > 0$ and $\alpha \in \RR$. Then, $\linf \frac{n^\alpha}{(1+p)^n} = 0$.
+        \item Let $\abs{x} < 1$. Then, $\linf x^n = 0$. 
+    \end{enumerate}
+\end{theorem}
+\begin{nproof}
+    \begin{enumerate}
+        \item Let $\e > 0$. Choose $N$ such that $\frac{1}{N^p} < \e$, namely $N > \left(\frac{1}{\e}\right)^{1/p}$. Then, for $n \geq N$, $\frac{1}{n^p} < \frac{1}{N^p} < \e$. 
+        
+        \item If $p = 1$, the sequence is constant and the conclusion immediate. 
+        
+        If $p > 1$, then let $x_n = \sqrt[n]{p} - 1$. We then have that:
+        \begin{align*}
+            p = (x_n + 1)^n = \sum_{k=0}^n \binom{n}{k}x_n^k \geq nx_n
+        \end{align*}
+        Where the second equality follows from the binomial theorem (where $\binom{n}{k} = \frac{n!}{k!(n-k)!}$), and the inequality follows by considering that we just keep the $k = 1$ term (and the series is non-negative). Hence, we have that $x_n \leq \frac{p}{n}$, and $x_n \rightarrow 0$ by (a). 
+        
+        If $p < 1$, then let $q = \frac{1}{p} > 1$. Then, $\sqrt[n]{q} \rightarrow 1$ by the argument above. By Theorem \ref{thm:3.3}(d), we then have that $\sqrt[n]{p} = \frac{1}{\sqrt[n]{q}} \rightarrow \frac{1}{1} = 1$.
+        
+        \item Let $x_n = \sqrt[n]{n} - 1$. Then, we have that:
+        \begin{align*}
+            n = (x_n + 1)^n = \sum_{k=0}^n\binom{n}{k}x_n^k \geq \frac{n(n-1)}{2}x_n^2
+        \end{align*}
+        Where the inequality follows from keeping the $k = 2$ term only. We then have that $x_n \leq \sqrt{\frac{2}{n-1}}$ and hence $x_n \rightarrow 0$ by the Squeeze Lemma.
+    \end{enumerate}
+\end{nproof}
+
+\begin{tcolorbox}[colback=gray!5!white, colframe=gray!75!black,fonttitle=\bfseries, title = Proof (Continued)]
+    \begin{enumerate}
+        \setcounter{enumi}{3}
+        \item We want to show $\frac{n^\alpha}{(1+p)^n} \rightarrow 0$; we therefore want an upper bound on the expression, and hence a lower bound on $(1+p)^n$. Applying the Binomial Theorem we have that:
+        \begin{align*}
+            (1+p)^n = \sum_{k=0}^n\binom{n}{k}p^k = \left((n)(n-1)(n-2)\cdots(n-k+1)\right)\frac{p^k}{n!}
+        \end{align*}
+        Now, we pick $k > \alpha$. For $2n > k$, we then have that:
+        \begin{align*}
+            (1+p)^n \geq \left(\frac{n}{2}\right)^k\frac{p^k}{k!}
+        \end{align*}
+        We therefore have that:
+        \begin{align*}
+            \frac{n^\alpha}{(1+p)^k} \leq \frac{2^kk!}{p^k}n^{\alpha - k} \rightarrow 0
+        \end{align*}
+        And the claim follows by the Squeeze Lemma.
+        
+        \item Taking $\alpha = 0$ in (d), the claim follows by setting $\abs{x} = \frac{1}{1+p} < 1$ (as $p > 0$) and recognizing that $x_n \rightarrow 0 \iff \abs{x^n} = \abs{x}^n \rightarrow 0$. \qed
+    \end{enumerate}
+\end{tcolorbox}
 \subsection{Subsequences}
 \subsection{Cauchy Sequences and Completeness}
 \subsection{Limsup and Liminf}
