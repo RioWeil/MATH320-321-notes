@@ -683,6 +683,12 @@ From the Heine-Borel theorem, it is clear here that $[1, \infty), \RR, \RR^2$ fa
     \end{align*}
     Where the last inequality holds for sufficiently large $n$. As every neighbourhood of $\v{y}$ must contain an infinite number of points in $S$ if $\v{y}$ is to be a limit point of $S$ (Theorem \ref{thm:2.20}) we find that $\v{y}$ is not a limit point of $S$. Hence, $S$ has no limit point in $E$, again contradicting (c). We conclude that $E$ must be bounded and closed. \qed
 \end{nproof}
+\noindent We have already shown that compactness implies closed in any metric space (see Theorem \ref{thm:2.34}). It also turns out that compactness implies boundedness in any metric space, as well!
+\begin{proof}
+    Let $E \subset X$ be compact. Suppose for the sake of contradiction that $E$ was unbounded. Pick any $x_0 \in E$, then $E$ is unbounded, so $\left(N_n(x_0)\right)^c \cap E \neq \emptyset$ for all $n \in \NN$. But, $E \subset \bigcup_{n \in \NN} N_n(x_0)$, and hence $\set{N_n(x_0)}$ forms an (infinite) subcover of $E$. By the compactness of $E$, there exists a finite subcover; but then, there is a maximal radius neighbourhood of $x_0$ that is contained in this subcover. However, this neighbourhood would not contain all $x \in E$ as $E$ is unbounded, which is a contradiction.
+\end{proof}
+\noindent From this, we have shown that compact implies closed and bounded in any metric space (i.e. the forwards direction of Heine-Borel holds in general). The converse is not always true, however. For one example, consider any infinite set $E$ in a metric space equipped with the discrete metric. $E$ is closed, since $E$ has no limit points (the neighbourhood of radius $r \leq 1$ around any point contains no other point of $E$). $E$ is bounded as a neighbourhood of radius $r > 1$ around any point contains all points of $E$. However, as we have discussed previously, $E$ is not compact. Another example would be $\RR^\infty$ (i.e. the set of all infinite sequences of real numbers), but the argument for this is left as homework (HW5). 
+
 
 \begin{theorem}{Weierstrauss}{2.42}
     Suppose $E \subset \RR^k$ is bounded and infinite. Then, $E$ has a limit point in $\RR^k$.
