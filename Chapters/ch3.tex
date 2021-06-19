@@ -73,6 +73,11 @@ This of course is a strikingly different picture for $\RR$ with the standard met
             \linf s(t_n - t) = 0, \quad \linf t(s_n - s) = 0
         \end{align*}
         So we conclude that $\linf (s_nt_n - st) = 0$ and hence $s_nt_n \rightarrow st$.
+    \end{enumerate}
+\end{nproof}
+\begin{nproofcont}
+    \begin{enumerate}
+        \setcounter{enumi}{3}
         \item Choose $m$ such that $\abs{s_n - s} < \frac{1}{2}\abs{s}$ if $n \geq m$. We then have that $\abs{s_n} > \frac{1}{2}\abs{s}$ for $n \geq m$. Let $\e > )0$. Then, there exists $N$ with $N > m$ such that for $n \geq N$:
         \begin{align*}
             \abs{s_n - s} < \frac{1}{2}\abs{s}^2\e
@@ -83,7 +88,7 @@ This of course is a strikingly different picture for $\RR$ with the standard met
         \end{align*}
         \qed
     \end{enumerate}
-\end{nproof}
+\end{nproofcont}
 
 \begin{nlemma}{: Squeeze Lemma}{}
     Let $\set{x_n}$, $\set{s_n}$ be real-valued sequences. Then, if $0 \leq x_n \leq s_n$ for all $n$, and $\linf s_n = 0$, then $\linf x_n = 0$.
@@ -115,18 +120,12 @@ This of course is a strikingly different picture for $\RR$ with the standard met
         Where the second equality follows from the binomial theorem (where $\binom{n}{k} = \frac{n!}{k!(n-k)!}$), and the inequality follows by considering that we just keep the $k = 1$ term (and the series is non-negative). Hence, we have that $x_n \leq \frac{p}{n}$, and $x_n \rightarrow 0$ by (a). 
         
         If $p < 1$, then let $q = \frac{1}{p} > 1$. Then, $\sqrt[n]{q} \rightarrow 1$ by the argument above. By Theorem \ref{thm:3.3}(d), we then have that $\sqrt[n]{p} = \frac{1}{\sqrt[n]{q}} \rightarrow \frac{1}{1} = 1$.
-        
+
         \item Let $x_n = \sqrt[n]{n} - 1$. Then, we have that:
         \begin{align*}
             n = (x_n + 1)^n = \sum_{k=0}^n\binom{n}{k}x_n^k \geq \frac{n(n-1)}{2}x_n^2
         \end{align*}
         Where the inequality follows from keeping the $k = 2$ term only. We then have that $x_n \leq \sqrt{\frac{2}{n-1}}$ and hence $x_n \rightarrow 0$ by the Squeeze Lemma.
-    \end{enumerate}
-\end{nproof}
-
-\begin{tcolorbox}[colback=gray!5!white, colframe=gray!75!black,fonttitle=\bfseries, title = Proof (Continued)]
-    \begin{enumerate}
-        \setcounter{enumi}{3}
         \item We want to show $\frac{n^\alpha}{(1+p)^n} \rightarrow 0$; we therefore want an upper bound on the expression, and hence a lower bound on $(1+p)^n$. Applying the Binomial Theorem we have that:
         \begin{align*}
             (1+p)^n = \sum_{k=0}^n\binom{n}{k}p^k = \left((n)(n-1)(n-2)\cdots(n-k+1)\right)\frac{p^k}{n!}
@@ -143,7 +142,7 @@ This of course is a strikingly different picture for $\RR$ with the standard met
         
         \item Taking $\alpha = 0$ in (d), the claim follows by setting $\abs{x} = \frac{1}{1+p} < 1$ (as $p > 0$) and recognizing that $x_n \rightarrow 0 \iff \abs{x^n} = \abs{x}^n \rightarrow 0$. \qed
     \end{enumerate}
-\end{tcolorbox}
+\end{nproof}
 
 \subsection{Subsequences}
 
@@ -165,12 +164,7 @@ This of course is a strikingly different picture for $\RR$ with the standard met
             d(p, p') \leq d(p, p_n) + d(p_n, p') < \frac{\e}{2} + \frac{\e}{2} = \e
         \end{align*}
         Since $\e$ is arbitrary, $d(p, p') = 0$ and hence $p = p'$.
-    \end{enumerate}
-\end{nproof}
 
-\begin{tcolorbox}[colback=gray!5!white, colframe=gray!75!black,fonttitle=\bfseries, title = Proof (Continued)]
-    \begin{enumerate}
-        \setcounter{enumi}{2}
         \item If $p_n \rightarrow p$, there exists $N$ such that $d(p_n, p) < 1$ for all $n \geq N$. Set:
         \begin{align*}
             r = \max\set{1, d(p_1, p), d(p_2, p), \ldots ,d(p_{N-1}, p)}
@@ -182,7 +176,7 @@ This of course is a strikingly different picture for $\RR$ with the standard met
         so the claim follows with $M = r + d(q, p) + 1$.
         \item Pick $p_n \in E$ such that $d(p_n, p) < \frac{1}{n}$. Let $\e > 0$, and $N > \frac{1}{\e}$. Then, $n \geq N$ implies $\frac{1}{n} \leq \frac{1}{N} < \e$ and hence $d(p_n, p) < \e$ for all $n \geq N$, and hence $p_n \rightarrow p$ as desired. \qed
     \end{enumerate}
-\end{tcolorbox}
+\end{nproof}
 
 \setcounter{rudin}{4}
 \begin{definition}{Subsequences}{3.5}
@@ -213,6 +207,29 @@ This of course is a strikingly different picture for $\RR$ with the standard met
 \end{nproof}
 
 \subsection{Cauchy Sequences and Completeness}
+
+\setcounter{rudin}{8}
+\begin{definition}{Cauchy Sequences}{3.8}
+    A sequence $\set{p_n} \subset X$ is a Cauchy sequence if for all $\e > 0$, there exists $N \in \NN$ such that for all $n, m \geq N$, $d(p_n, p_m) < \e$. 
+\end{definition}
+\noindent Note the fact that this definition does not refer to a particular $p$ that the sequence may converge to! It instead formalizes the notion of the points of a sequence getting ``closer together'' as the sequence goes on. It is therefore easier to check if a sequence is Cauchy than if it converges, as we don't need to know the value of the limit. To this end, it is useful to know in what situations a sequence being Cauchy implies that the sequence is convergent. We will soon arrive at a theorem that addresses this question, but first we establish a little more machinery.
+
+\begin{definition}{Diameter}{3.9}
+    Let $E \subset X$. Then the diameter of $E$, denoted $\diam E$
+    
+\end{definition}
+
+\begin{theorem}{}{3.11}
+    \begin{enumerate}
+        \item If a sequence $\set{p_n} \subset X$ converges, then it is Cauchy.
+        \item If a sequence $\set{p_n} \subset X$ is Cauchy and $X$ is compact, then $\set{p_n}$ converges to some $p \in X$.
+        \item In $\RR^k$, every Cauchy sequence is convergent.
+    \end{enumerate}
+\end{theorem}
+
+
+
+
 \subsection{Limsup and Liminf}
 \subsection{Series}
 \subsection{The Harmonic Series and Euler's Number}
