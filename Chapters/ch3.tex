@@ -33,6 +33,12 @@ We begin by formally defining a sequence.
 
 \noindent As a remark, consider that convergence can depend on our choice of metric space; for example, $\set{\frac{1}{n}}$ as a sequence in $\RR$ converges to $0$, but the same sequence in the strictly positive reals ($\RR^+ = \set{x \in \RR: x > 0}$) does not converge.
 
+Another interesting example (that again shows us the importance of the choice of metric space). Is $\RR$ equipped with the discrete metric. A question we can ask is ``given some points $p \in \RR$, what sequences converge to $p$?'' The answer turns out to be eventually constant sequences only; that is, sequences for which $p_n = p$ for $n \geq N$ for some $N$. 
+\begin{proof}
+    If $p_n \rightarrow p$, then setting $\e = \frac{1}{2}$, we have that there exists $N \in NN$ such that for all $n \geq N$, $d(p_n, p) < \e = \frac{1}{2}$. Under the discrete metric, this is only possible if $p_n = p$. 
+\end{proof}
+This of course is a strikingly different picture for $\RR$ with the standard metric of $d(x, y) = \abs{x - y}$. For example, the sequnce $p_n = \frac{1}{n}$ has no term equal to zero, but converges to $p = 0$. The takeaway message here can be that in the Euclidean metric, points can ``get closer'' but in the discrete metric, they cannot.
+
 \stepcounter{rudin}
 \begin{theorem}{}{3.3}
     Suppose $\set{s_n}, \set{t_n}$ are complex sequences that converge, with $\linf s_n \rightarrow s$ and $\linf t_n \rightarrow t$. Then:
