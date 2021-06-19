@@ -208,16 +208,33 @@ This of course is a strikingly different picture for $\RR$ with the standard met
 
 \subsection{Cauchy Sequences and Completeness}
 
-\setcounter{rudin}{8}
+\setcounter{rudin}{7}
 \begin{definition}{Cauchy Sequences}{3.8}
     A sequence $\set{p_n} \subset X$ is a Cauchy sequence if for all $\e > 0$, there exists $N \in \NN$ such that for all $n, m \geq N$, $d(p_n, p_m) < \e$. 
 \end{definition}
 \noindent Note the fact that this definition does not refer to a particular $p$ that the sequence may converge to! It instead formalizes the notion of the points of a sequence getting ``closer together'' as the sequence goes on. It is therefore easier to check if a sequence is Cauchy than if it converges, as we don't need to know the value of the limit. To this end, it is useful to know in what situations a sequence being Cauchy implies that the sequence is convergent. We will soon arrive at a theorem that addresses this question, but first we establish a little more machinery.
 
 \begin{definition}{Diameter}{3.9}
-    Let $E \subset X$. Then the diameter of $E$, denoted $\diam E$
-    
+    Let $E \subset X$. Then the diameter of $E$, denoted $\diam E$ is defined as $\diam E = \sup\set{d(p, q): p, q \in E}$. 
 \end{definition}
+
+\begin{nexample}{}{}
+    \begin{enumerate}
+        \item If $E = (a, b) \subset \RR$ or $E = [a, b] \subset \RR$, then $\diam E = b - a$.
+        \item Let $\set{p_n}$ be a sequence, and define $E_n = \set{p_n}_{n=N}^\infty$ (the tail of the sequence). Then, $\set{p_n}$ is Cauchy if and only if $\lim_{N \rightarrow \infty} \diam E_n = 0$.
+    \end{enumerate}
+\end{nexample}
+
+\begin{theorem}{}{3.10}
+    \begin{enumerate}
+        \item Let $E \subset X$. Then, $\diam \overline{E} = \diam E$.
+        \item If $K_n \subset X$ are compact, $K_{n+1} \subset K_n$ for all $n$, and $\linf \diam K_n  = 0$, then $\bigcap_{n=1}^\infty K_n$ consists of exactly one point.
+    \end{enumerate}
+\end{theorem}
+
+\begin{nproof}
+    
+\end{nproof}
 
 \begin{theorem}{}{3.11}
     \begin{enumerate}
@@ -227,6 +244,25 @@ This of course is a strikingly different picture for $\RR$ with the standard met
     \end{enumerate}
 \end{theorem}
 
+\begin{nproof}
+    
+\end{nproof}
+
+\begin{definition}{Completeness}{3.12}
+    
+\end{definition}
+
+\begin{definition}{Monotonic Sequences}{3.13}
+    
+\end{definition}
+
+\begin{theorem}{}{3.14}
+    
+\end{theorem}
+
+\begin{nproof}
+    
+\end{nproof}
 
 
 
