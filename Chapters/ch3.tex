@@ -364,8 +364,83 @@ As a motivating question, how would we say something about the largest and small
 
 \setcounter{rudin}{20}
 \begin{definition}{Infinite Series}{3.21}
-    Let $\set{a_n} \subset \CC$. We then form a new sequence of $s_n = \sum_{j=1}^n a_j$ (the sequence of partial sums). Then, if 
+    Let $\set{a_n} \subset \CC$. We then form a new sequence of $s_n = \sum_{j=1}^n a_j$ (the sequence of partial sums). Then, if $s_n \rightarrow s$. We say that the series $\sum_{j = 1}^\infty a_j$ converges, and write $\sum_{j = 1}^\infty a_j = s$. If $s_n$ does not converge, we say that $\sum_{j=1}^\infty a_j$ diverges. As a notational point, we will sometimes omit the bounds of summation and write $\sum a_j$ to denote an infinite series, where the meaning is clear from context.
 \end{definition}
+\noindent Note that series are just a specific subset of sequences. We will now restate the Cauchy criterion (Theorem \ref{thm:3.11}) for series.
+
+\begin{theorem}{}{3.22}
+    A series $\sum a_j$ converges if and only if for all $\e > 0$, there exists $N \in \NN$ such that $\abs{\sum_{j=m}^n a_j} < \e$ for all $n \geq m \geq N$.
+\end{theorem}
+\begin{nproof}
+    $\sum a_j$ converges if and only if $\set{s_n}$ converges if and only if $\set{s_n}$ is Cauchy. So by definition there exists $N$ such that for $n \geq m - 1 \geq N$:
+    \begin{align*}
+        \abs{s_n - s_m} = \abs{\sum_{j=1}^n a_j - \sum_{j=1}^{m-1} a_j} = \abs{\sum_{j=m}^n a_j} < \e
+    \end{align*}
+    which proves the claim. \qed
+\end{nproof}
+
+\begin{theorem}{Divergence Test}{3.23}
+    If $\sum a_n$ converges, then $\linf a_n = 0$.
+\end{theorem}
+\begin{nproof}
+    Choose $n = m$ in Theorem \ref{thm:3.22}. \qed
+\end{nproof}
+\noindent Note that this criteria gives us the ability to easily check if a series diverges; if $a_j$ does not converge to $0$, then $\sum a_j$ diverges. However, note that the reverse implication does NOT hold! $\sum \frac{1}{n}$ diverges (as we will show next lecture) even though clearly $\frac{1}{n} \rightarrow 0$. 
+
+\begin{theorem}{}{3.24}
+    Let $\set{a_n} \subset \RR$ and $a_n \geq 0$ for all $n$. Then, we have that $\sum a_n$ converges if and only if the sequence of partial sums $\set{s_n}$ is bounded.
+\end{theorem}
+\begin{nproof}
+    If $a_n \geq 0$, then $\set{s_n}$ is monotonically increasing. Then by Theorem \ref{thm:3.14}, $\set{s_n}$ converges if and only if it is bounded. \qed
+\end{nproof}
+
+\begin{theorem}{Comparison Test}{3.25}
+    \begin{enumerate}
+        \item Let $\set{a_n} \subset \CC$ and $\set{c_n} \subset \RR$. Then, if $\abs{a_n} \leq c_n$ for all $n \geq N_0$ for some $N_0 \in \NN$, and $\sum c_n$ converges, then $\sum a_n$ converges. 
+        \item Let $\set{a_n} \subset \RR$ and $\set{d_n} \subset \RR$. If $a_n \geq d_n \geq 0$ for all $n \geq N_0$ for some $N_0 \in \NN$ and $\sum d_n$ diverges, then $\sum a_n$ diverges.
+    \end{enumerate}
+\end{theorem}
+\begin{nproof}
+    \begin{enumerate}
+        \item Let $\e > 0$. Then, there exists $N \in \NN$ such that $\sum_{j = m}^n c_n < \e$ for all $n \geq m \geq N$. Then, take $N \geq N_0$, and we have that:
+        \begin{align*}
+            \abs{\sum_{j=m}^n a_j} \leq \sum_{j=m}^n \abs{a_j} \leq \sum_{j=m}^n c_j < \e
+        \end{align*}
+        Where in the first inequality we apply the Triangle Inequality (Theorem \ref{thm:1.37}). We conclude that $\sum a_j$ converges by the Cauchy criterion (Theorem \ref{thm:3.22}).
+        \item The claim follows by considering the contrapositive of (a). \qed
+    \end{enumerate}
+\end{nproof}
+
+\begin{theorem}{The Geometric Series}{3.26}
+    If $0 \leq x < 1$, then $\sum_{j=0}^\infty x^j = \frac{1}{1-x}$. If $x \geq 1$, then $\sum_{j=0}^\infty x^j$ diverges.
+\end{theorem}
+\begin{nproof}
+    Suppose $x = 1$. Then, $x_n = 1$ does not converge to zero, so by Theorem \ref{thm:3.24} $\sum_{j=0}^\infty x^j$ diverges. Suppose then that $x \neq 1$. We have that $s_n = 1 + x + x^2 + \ldots + x^n$. Hence, $xs_n = x + x^2 + x^3 + \ldots + x^n + x^{n+1}$. Hence, $(1-x)s_n = 1 + x^{n+1}$ and therefore a closed form expression for $s_n$ is:
+    \begin{align*}
+        s_n = \frac{1 + x^{n+1}}{1 - x}
+    \end{align*}
+    If $x > 1$, we have that $s_n$ diverges (again) by Theorem \ref{thm:3.24}. If $x < 1$, then $x^{n+1} \rightarrow 0$ by \ref{thm:3.20}(e), so $s_n \rightarrow \frac{1}{1-x}$. \qed
+\end{nproof}
+
+\begin{theorem}{Cauchy Condensation Test}{3.27}
+    Suppose $\set{a_n} \subset \RR$ and $a_1 \geq a_2 \geq a_3 \geq \ldots \geq 0$. Then, $\sum a_j$ converges if and only if $\sum_{n=1}^\infty 2^n a_{2^n}$ converges.
+\end{theorem}
+\begin{nproof}
+    $\boxed{\implies}$ For $2^k < n$, using the fact that the sequence is decreasing, we have that:
+    \begin{align*}
+        a_1 + a_2 + \ldots + a_n &\geq a_1 + a_2 + (a_3 + a_4) + \ldots + (a_{2^{k-1}+1} + \ldots + a_{2^k})
+        \\ &\geq \frac{1}{2}a_1 + a_2 + 2a_4 + \ldots + 2^{k-1}a_{2^k}
+        \\ &= \frac{1}{2}(a_1 + 2a_2 + 4a_4 + \ldots + 2^ka_{2^k})
+    \end{align*}
+    Hence by the Comparison Test (Theorem \ref{thm:3.25}) we have that $\sum 2^n a_{2^n}$ converges if $\sum a_j$ converges.
+
+    $\boxed{\impliedby}$ We show the contrapositive. For $2^k > n$, We have that:
+    \begin{align*}
+        a_1 + a_2 + \ldots + a_n &\leq a_1 + (a_2 + a_3) + \ldots + (a_{2^k} + \ldots + a_{2^{k+1}-1})
+        \\ &\leq a_1 + 2a_2 + 4a_4 + \ldots + 2^ka_{2^k}
+    \end{align*}
+    Hence by the Comparison Test (Theorem \ref{thm:3.25}) we have that $\sum 2^n a_{2^n}$ diverges if $\sum a_j$ diverges. \qed
+\end{nproof}
 
 \subsection{The Harmonic Series and Euler's Number}
 \subsection{Convergence Tests}
