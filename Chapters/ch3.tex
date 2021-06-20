@@ -97,6 +97,11 @@ This of course is a strikingly different picture for $\RR$ with the standard met
     Let $\e > 0$. Choose $N \in \NN$ such that $n \geq N$ implies $0 \leq s_n < \e$. Then, we have that for $n \geq N$, $0 \leq x_n \leq s_n < \e$ and hence $x_n \rightarrow 0$ as claimed. \qed
 \end{nproof}
 
+\noindent Note that we can prove a more generalized version of the Squeeze Lemma. Suppose we have sequences $\set{l_n}, \set{x_n}, \set{u_n}$ such that $l_n \leq x_n \leq u_n$ for all $n$ and $\linf l_n = \linf u_n = L \in \RR$. Then, $\linf x_n = L$.
+\begin{proof}
+    We have that $0 \leq a_n - l_n \leq u_n - l_n$. We have that $\linf u_n - l_n = 0$ by Theorem \ref{thm:3.3}(a), so by the (original) Squeeze Lemma we have that $\linf a_n - l_n = 0$. It then follows that $\linf a_n = \linf l_n = L$ as claimed.
+\end{proof}
+
 \setcounter{rudin}{19}
 \begin{theorem}{}{3.20}
     \begin{enumerate}
@@ -210,18 +215,18 @@ This of course is a strikingly different picture for $\RR$ with the standard met
 
 \setcounter{rudin}{7}
 \begin{definition}{Cauchy Sequences}{3.8}
-    A sequence $\set{p_n} \subset X$ is a Cauchy sequence if for all $\e > 0$, there exists $N \in \NN$ such that for all $n, m \geq N$, $d(p_n, p_m) < \e$. 
+    A sequence $\set{p_n} \subset X$ is a \textbf{Cauchy sequence} if for all $\e > 0$, there exists $N \in \NN$ such that for all $n, m \geq N$, $d(p_n, p_m) < \e$. 
 \end{definition}
 \noindent Note the fact that this definition does not refer to a particular $p$ that the sequence may converge to! It instead formalizes the notion of the points of a sequence getting ``closer together'' as the sequence goes on. It is therefore easier to check if a sequence is Cauchy than if it converges, as we don't need to know the value of the limit. To this end, it is useful to know in what situations a sequence being Cauchy implies that the sequence is convergent. We will soon arrive at a theorem that addresses this question, but first we establish a little more machinery.
 
 \begin{definition}{Diameter}{3.9}
-    Let $E \subset X$. Then the diameter of $E$, denoted $\diam E$ is defined as $\diam E = \sup\set{d(p, q): p, q \in E}$. 
+    Let $E \subset X$. Then the \textbf{diameter} of $E$, denoted $\diam E$ is defined as $\diam E = \sup\set{d(p, q): p, q \in E}$. It follows from the definition that a sequence $\set{p_n}$ is Cauchy if and only if $\lim_{N \rightarrow \infty} \diam E_n = 0$ where $E_n = \set{p_n}_{n=N}^\infty$ (the tail of the sequence).
 \end{definition}
 
 \begin{nexample}{}{}
     \begin{enumerate}
         \item If $E = (a, b) \subset \RR$ or $E = [a, b] \subset \RR$, then $\diam E = b - a$.
-        \item Let $\set{p_n}$ be a sequence, and define $E_n = \set{p_n}_{n=N}^\infty$ (the tail of the sequence). Then, $\set{p_n}$ is Cauchy if and only if $\lim_{N \rightarrow \infty} \diam E_n = 0$.
+        \item If $E = (0, 1) \times (0,1) \subset \RR^2$, then $\diam E = \sqrt{2}$ (the diagonal of the open square).
     \end{enumerate}
 \end{nexample}
 
@@ -233,7 +238,21 @@ This of course is a strikingly different picture for $\RR$ with the standard met
 \end{theorem}
 
 \begin{nproof}
-    
+    \begin{enumerate}
+        \item Since $E \subset \overline{E}$, it is clear that $\diam \overline{E} \geq \diam E$. Next, let $\e > 0$ and $p, q \in \overline{E}$. Choose $p', q' \in E$ such that $d(p, p') < \frac{\e}{2}$, $d(q, q') < \frac{\e}{2}$ (this choice is possible as either $p, q$ are in $E$, or $p, q$ are limit points of $E$). Then, we have that:
+        \begin{align*}
+            d(p, q) \leq d(p, p') + d(p', q) \leq d(p, p') + d(p', q') + d(q', q) < \frac{\e}{2} + \diam E + \frac{\e}{2} = \diam E + \e
+        \end{align*}
+        $\e, p$, and $q$ are arbitrary, so it follows that $\diam \overline{E} \leq \diam E + \e$ from the definition of the diameter. It then follows that $\diam \overline{E} \leq \diam E$. We conclude that $\diam \overline{E} = \diam E$.
+        \item Let $K = \bigcap_{n=1}^\infty K_n$. By the corollary to Theorem \ref{thm:2.36}, we have that $K \neq \emptyset$, so $K$ contains at least one point. Since $K \subset K_n$, it follows that $\diam K \leq \diam K_n$ for any $n$, and since $\diam K_n \rightarrow 0$, $\diam K = 0$. If there were $p, q \in K$ such that $p \neq q$, then $\diam K \neq 0$, so it must follow that $K$ has at most one point. We conclude that $K$ has exactly one point. \qed
+    \end{enumerate}
+\end{nproof}
+
+\begin{nlemma}{}{}
+    If a sequence $\set{p_n}$ is Cauchy, then it is bounded.
+\end{nlemma}
+\begin{nproof}
+    If $\set{p_n}$ is Cauchy, then we have that $\lim_{N \rightarrow \infty} \diam E_N = \lim_{N \rightarrow \infty} \diam \set{p_n}_{n = N}^\infty = 0$. Then for some $N \in \NN$, $\diam E_N < 1$. The range of $\set{p_n}$ is the union of $E_N$ and the finite set $\set{p_1, \ldots, p_{N-1}}$ and hence $\set{p_n}$ is bounded. \qed
 \end{nproof}
 
 \begin{theorem}{}{3.11}
@@ -245,24 +264,50 @@ This of course is a strikingly different picture for $\RR$ with the standard met
 \end{theorem}
 
 \begin{nproof}
-    
+    \begin{enumerate}
+        \item Let $p_n \rightarrow p$ and let $\e > 0$. There exists $N \in \NN$ such that $d(p_n, p) < \frac{\e}{2}$ if $n \geq N$. Then, for $n, m \geq N$, we have that:
+        \begin{align*}
+            d(p_n, p_m) \leq d(p_n, p) + d(p, p_m) < \frac{\e}{2} + \frac{\e}{2} = \e
+        \end{align*}
+        so $\set{p_n}$ is Cauchy.
+        \item Let $E_N = \set{p_n}_{n = N}^{\infty}$. Then, $\overline{E}_N \subset X$ is closed, so by the compactness of $X$ we have that $\overline{E}_N$ is compact by Theorem \ref{thm:2.35}. Since $E_{N+1} \subset E_N$, we have that $\overline{E}_{N+1} \subset \overline{E}_N$, and additionally we have that $\lim_{N \rightarrow \infty} \overline{E}_N =\lim_{N \rightarrow \infty} E_N = 0$ where the first equality follows from Theorem \ref{thm:3.10}(a) and the second equality follows from the fact that $\set{p_n}$ is Cauchy and Definition \ref{def:3.9}. Thus, Theorem \ref{thm:3.10}(b) says that there exists a unique point $p \in \bigcap_{n=1}^\infty \overline{E}_N$. Next, let $\e > 0$. Then, there exists $N_0$ such that $\diam \overline{E}_N < \e$ for all $N \geq N_0$. So, $d(p, q) < \e$ for all $q \in \overline{E}_N$, so the same holds for all $q \in E_N$. Hence, $d(p, p_n) < \e$ for all $n \geq N_0$, which shows that $p_n \rightarrow p$ and proves the claim. 
+        \item By the above Lemma, Cauchy sequences are bounded. Hence, $\set{p_n} \subset I$ for some $k$-cell $I \subset \RR^k$. Since $I$ is compact in $\RR^k$, the claim follows from (b). \qed
+    \end{enumerate}
 \end{nproof}
 
 \begin{definition}{Completeness}{3.12}
-    
+    A metric space $X$ is called \textbf{complete} if every Cauchy sequence converges in $X$. 
 \end{definition}
+It might be tempting at first to think that every space would be complete, but this is not the case. For example, something that can go wrong is a sequnece can be Cauchy, but the limit can lie ``outside'' of the space. To see this, consider again the sequence $\set{\frac{1}{n}}$ in the metric space $\RR^+ = \RR \setminus \set{x \in \RR: x \leq 0}$. The sequence is Cauchy, but does not converge in $\RR^+$ (as it converges to 0, which lies outside of the space).
+
+\begin{nexample}{}{}
+    \begin{enumerate}[(i)]
+        \item Compact sets are complete by Theorem \ref{thm:3.11}(b).
+        \item $\RR^k$ (and $\CC$) are complete by Theorem \ref{thm:3.11}(c).
+        \item $\QQ$ is not complete. We can make a sequence of rational points that converges to an irrational number in $\RR$ which is Cauchy, but does not converge in $\QQ$ (Example \ref{exam:1.1b} gives a way one might construct such a sequence). 
+    \end{enumerate}
+\end{nexample}
+\noindent Note that $\QQ$ can be completed to $\RR$, and in general for any $(X, d)$ which is not complete, there exists $(X^*, d^*)$ that is complete such that $\abs{X} = X^*$. Indeed, this is another way we can construct the real numbers! $\RR$ can be viewed as equivalence classes of Cauchy sequences in $\QQ$. The idea is to define an equivalnence relation $\sim$ such that $p_n \sim q_n$ if $\linf d(p_n, q_n) = 0$. $X^*$ is then defined as the set of equivalence classes under that equivalence relation, equipped with the metric $d^*([p], [q]) = \linf d(p_n, q_n)$. It can then be checked that $d^*$ is a valid metric and that $X^*$ is complete. For the full proof, see HW7, or exercises 3.23-3.25 in Rudin (note: this proof is quite technical/difficult).
+
+To motivate the next theorem, consider that all convergent sequences in $\RR$ (and in general) are bounded (as we saw in Theorem \ref{thm:3.2}(c)). However, this is not always true; for example consider $p_n = (-1)^n$ which is clearly bounded but divergent. What then are conditions that a bounded sequence may converge?
 
 \begin{definition}{Monotonic Sequences}{3.13}
-    
+    A sequence $\set{p_n} \subset \RR$ is \textbf{monotonically increasing} if $p_{n+1} \geq p_n$ for all $n$, and \textbf{montonically decreasing} if $p_{n+1} \leq p_n$.
 \end{definition}
 
 \begin{theorem}{}{3.14}
-    
+    Suppose $\set{p_n} \subset \RR$ is montonic. Then, $\set{p_n}$ is convergent if and only if it is bounded. 
 \end{theorem}
 
 \begin{nproof}
-    
+    $\boxed{\implies}$ See Theorem \ref{thm:3.2}(c).
+
+    $\boxed{\impliedby}$ We show the proof for the increasing case as the decreasing case is analogous. Let $p = \sup{p_n: n \in \NN}$ which exists as $\set{p_n}$ is bounded and $\RR$ has the LUB property. Then, $p_n \leq p$ for all $n$. Let $\e > 0$. Then, there exists $N \in \NN$ such that $p - \e < p_{N} < p_{N+1}$. By the monotonicity of $\set{p_n}$, it follows that $\abs{p_n - p} < \e$ for all $n \geq N$. Hence, $p_n \rightarrow p$. \qed
 \end{nproof}
+
+\begin{definition}{Limits to Infinity}{3.15}
+    Let $\set{p_n} \subset \RR$. If for all $M \in \RR$, there exists $N \in \NN$ such that $p_n > M$ for all $n \geq N$, then we write $p_n \rightarrow \infty$. If instead for all $M \in \RR$ there exists $N \in \NN$ such that $p_n < M$ for all $n \geq N$, then we write $p_n \rightarrow -\infty$.
+\end{definition}
 
 
 
