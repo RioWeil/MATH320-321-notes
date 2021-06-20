@@ -331,7 +331,10 @@ As a motivating question, how would we say something about the largest and small
 \end{definition}
 
 \begin{nexample}{}{}
-    Consider $s_n = (-1)^n\left(1 + \frac{1}{n^2}\right)$. Then, we have that $1 \leq \sup_{m \geq n} s_n \leq 1 + \frac{1}{1^2} = 2$, so $\limsup_{n \rightarrow \infty} s_n = 1$. Similarly, $\limsup_{n \rightarrow \infty} s_n = -1$. Note that this sequence has no limit (it oscillates indefinitely and does not converge) but these quantities are well defined. We notice that the limsup is greater than the liminf in this case, and indeed it is true in general that $\liminf_{n \rightarrow \infty} s_n \leq \limsup_{n \rightarrow \infty} s_n$. 
+    \begin{enumerate}
+        \item Consider $s_n = (-1)^n\left(1 + \frac{1}{n^2}\right)$. Then, we have that $1 \leq \sup_{m \geq n} s_n \leq 1 + \frac{1}{1^2} = 2$, so $\limsup_{n \rightarrow \infty} s_n = 1$. Similarly, $\limsup_{n \rightarrow \infty} s_n = -1$. Note that this sequence has no limit (it oscillates indefinitely and does not converge) but these quantities are well defined. We notice that the limsup is greater than the liminf in this case, and indeed it is true in general that $\liminf_{n \rightarrow \infty} s_n \leq \limsup_{n \rightarrow \infty} s_n$. 
+        \item If $\set{s_n}$ is not bounded above, then $\sup_{m \geq n} s_n = \infty$ for all $n$ and we write $\limsup_{n \rightarrow} s_n = \infty$. Similarly, if $\set{s_n}$ is not bounded below, then $\inf_{m \geq n} s_n = -\infty$ for all $n$ and we write $\limsup_{n \rightarrow \infty} s_n = -\infty$.
+    \end{enumerate}
 \end{nexample}
 
 \noindent One difficulty with discussing the convergence of a sequence is that the definition is difficult to apply; we need to know what the sequence converges to. The notion of a Cauchy sequence then begins helpful (as Cauchy and convergent are equivalent in complete metric spaces). In addition, it is helpful to consider the limsup and liminf, as we can bound the limit above and below with these quantities respectively. In particular, the limit of the supremum of the tail of the sequence equals the limit of the infinimum of the tail of the sequence equals the limit of the sequence if the sequence is convergent.
@@ -358,6 +361,11 @@ As a motivating question, how would we say something about the largest and small
     for all $n \in \NN$. By assumption we have $\limsup_{n \rightarrow \infty} s_n = \liminf_{n \rightarrow \infty} = L$ so by the Generalized Squeeze Lemma we conclude that $\linf s_n = L$. \qed
 \end{nproof}
 \subsection{Series}
+
+\setcounter{rudin}{20}
+\begin{definition}{Infinite Series}{3.21}
+    Let $\set{a_n} \subset \CC$. We then form a new sequence of $s_n = \sum_{j=1}^n a_j$ (the sequence of partial sums). Then, if 
+\end{definition}
 
 \subsection{The Harmonic Series and Euler's Number}
 \subsection{Convergence Tests}
