@@ -97,10 +97,15 @@ This of course is a strikingly different picture for $\RR$ with the standard met
     Let $\e > 0$. Choose $N \in \NN$ such that $n \geq N$ implies $0 \leq s_n < \e$. Then, we have that for $n \geq N$, $0 \leq x_n \leq s_n < \e$ and hence $x_n \rightarrow 0$ as claimed. \qed
 \end{nproof}
 
-\noindent Note that we can prove a more generalized version of the Squeeze Lemma. Suppose we have sequences $\set{l_n}, \set{x_n}, \set{u_n}$ such that $l_n \leq x_n \leq u_n$ for all $n$ and $\linf l_n = \linf u_n = L \in \RR$. Then, $\linf x_n = L$.
-\begin{proof}
+\noindent Note that we can prove a more generalized version of the Squeeze Lemma. 
+
+\begin{nlemma}{: Generalized Squeeze Lemma}{}
+    Suppose we have sequences $\set{l_n}, \set{x_n}, \set{u_n}$ such that $l_n \leq x_n \leq u_n$ for all $n$ and $\linf l_n = \linf u_n = L \in \RR$. Then, $\linf x_n = L$.
+\end{nlemma}
+
+\begin{nproof}
     We have that $0 \leq a_n - l_n \leq u_n - l_n$. We have that $\linf u_n - l_n = 0$ by Theorem \ref{thm:3.3}(a), so by the (original) Squeeze Lemma we have that $\linf a_n - l_n = 0$. It then follows that $\linf a_n = \linf l_n = L$ as claimed.
-\end{proof}
+\end{nproof}
 
 \setcounter{rudin}{19}
 \begin{theorem}{}{3.20}
@@ -311,8 +316,49 @@ To motivate the next theorem, consider that all convergent sequences in $\RR$ (a
 
 
 
-\subsection{Limsup and Liminf}
+\subsection{Limit Supremum and Limit Infimum}
+As a motivating question, how would we say something about the largest and smallest accumulation points of a sequence? This leads us to the following definition.
+\begin{definition}{limsup and liminf}{3.16}
+    Let $\set{s_n} \subset \RR$, then, we define the limit supremum as:
+    \begin{align*}
+        \limsup_{n \rightarrow \infty} s_n = \inf_{n \geq 1}\sup_{m \geq n} s_m = \lim_{n \rightarrow \infty} \sup_{m \geq n} s_m
+    \end{align*}
+    And the limit infimum as:
+    \begin{align*}
+        \liminf_{n \rightarrow \infty} s_n = \sup_{n \geq 1}\inf_{m \geq n} s_m = \lim_{n \rightarrow \infty} \inf_{m \geq n} s_m
+    \end{align*}
+    Note that unlike the limit of a real-valued sequence, the limsup and liminf always exist.
+\end{definition}
+
+\begin{nexample}{}{}
+    Consider $s_n = (-1)^n\left(1 + \frac{1}{n^2}\right)$. Then, we have that $1 \leq \sup_{m \geq n} s_n \leq 1 + \frac{1}{1^2} = 2$, so $\limsup_{n \rightarrow \infty} s_n = 1$. Similarly, $\limsup_{n \rightarrow \infty} s_n = -1$. Note that this sequence has no limit (it oscillates indefinitely and does not converge) but these quantities are well defined. We notice that the limsup is greater than the liminf in this case, and indeed it is true in general that $\liminf_{n \rightarrow \infty} s_n \leq \limsup_{n \rightarrow \infty} s_n$. 
+\end{nexample}
+
+\noindent One difficulty with discussing the convergence of a sequence is that the definition is difficult to apply; we need to know what the sequence converges to. The notion of a Cauchy sequence then begins helpful (as Cauchy and convergent are equivalent in complete metric spaces). In addition, it is helpful to consider the limsup and liminf, as we can bound the limit above and below with these quantities respectively. In particular, the limit of the supremum of the tail of the sequence equals the limit of the infinimum of the tail of the sequence equals the limit of the sequence if the sequence is convergent.
+
+\setcounter{rudin}{17}
+\begin{theorem}{}{3.18}
+    Let $\set{s_n} \subset \RR$. Then, $\linf s_n = L$ if and only if $\limsup_{n \rightarrow \infty} s_n = \liminf_{n \rightarrow \infty} = L$.
+\end{theorem}
+\begin{nproof}
+    $\boxed{\implies}$ Let $\e > 0$. Then, there exists $N \in \NN$ such that $s_m \in (L - \e, L + \e)$ for all $m \geq N$> Then, we have that:
+    \begin{align*}
+        L - \e \leq \inf_{m \geq N} s_m \leq \sup_{m \geq N} \leq L + \e
+    \end{align*}
+    Taking limits we have:
+    \begin{align*}
+        L - \e \leq \liminf_{n \rightarrow \infty} \leq \limsup_{n \rightarrow \infty} s_n  \leq L + \e
+    \end{align*}
+    $\e$ is arbitrary, so we have that $\limsup_{n \rightarrow \infty} s_n = \liminf_{n \rightarrow \infty} = L$ .
+
+    $\boxed{\impliedby}$ We have that:
+    \begin{align*}
+        \inf_{m \geq n} s_n \leq s_n \leq \sup_{m \geq n} s_m
+    \end{align*}
+    for all $n \in \NN$. By assumption we have $\limsup_{n \rightarrow \infty} s_n = \liminf_{n \rightarrow \infty} = L$ so by the Generalized Squeeze Lemma we conclude that $\linf s_n = L$. \qed
+\end{nproof}
 \subsection{Series}
+
 \subsection{The Harmonic Series and Euler's Number}
 \subsection{Convergence Tests}
 \subsection{Power Series}
