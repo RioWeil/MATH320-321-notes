@@ -330,6 +330,19 @@ As a motivating question, how would we say something about the largest and small
     Note that unlike the limit of a real-valued sequence, the limsup and liminf always exist.
 \end{definition}
 
+\noindent In the above definition, the equivalence of $inf_{n \geq 1}\sup_{m \geq n} s_m$ and $\lim_{n \rightarrow \infty} \sup_{m \geq n} s_m$ may be slightly confusing. To see this, consider the fact that the sequence $q_n = \sup \set{p_n: n \geq 1}$ is a strictly decreasing sequence in $n$ (with increasing $n$, we take the supremum over less terms each time), so taking the limit of $n \rightarrow \infty$ or taking the infimum over $n$ are equivalent. 
+
+Note that Rudin defines the limsup/liminf differently, but perfectly equivalently. Namely, if $\set{p_n} \subset \RR$ is a sequence, then $E$ is the set of all subsequential limits (i.e. there is a subsequence of $\set{p_n}$ with a given limit). Then, $\limsup^* p_n = \sup E$ (we use the $*$ to denote Rudin's definition). The equivalence is not immediately obvious, so we here give a sketch to show that the two definitions coincide. We will use the general technique of showing that the two expressions are $\e$ close to one another. Namely, for any $\e > 0$, we show that the following two statements hold:
+\begin{enumerate}[1)]
+    \item $\limsup^* p_n \leq \limsup p_n + \e$
+    \item $\limsup^* p_n + \e \geq \limsup p_n$
+\end{enumerate}
+To show 1), for each $N$, we let $n_N$ be an index such that $p_{n_N}$ satisfies:
+\begin{align*}
+    p_{n_N} \geq \sup\set{p_n: n \geq N} - \frac{\e}{N}
+\end{align*}
+And then we claim that $\linf p_{n_N} = \limsup p_n$ (Exercise). There is one slight technical issue in that $\set{p_{n_N}}$ may not be a subsequence of $\set{p_n}$, in particular we don't know that $n_{N_1} < n_{N_2} < n_{N_3} < \ldots$ just by the above construction (but in order for this to be a valid subsequence, we need this to be the case). Fortunately, this is a fixable issue. We do know that $n_{N_1} \geq 1$, $n_{N_2} \geq 2$, $n_{N_3} \geq 3$ by construction, so if it turns out to be the case that $n_{N_1} < n_{N_2}$ doesn't hold, we can skip ahead into the sequence until we find the first $j$ for which the equality holds. Concretely, if $n_{N_1} = 1000$ (as an example), then if we skip ahead to $n_{N_{1001}}$, it is guaranteed that $n_{N_1} < n_{N_{1001}}$ and we can from there construct a valid sequence. The sketch for 2) is left as an exercise. 
+
 \begin{nexample}{}{}
     \begin{enumerate}
         \item Consider $s_n = (-1)^n\left(1 + \frac{1}{n^2}\right)$. Then, we have that $1 \leq \sup_{m \geq n} s_n \leq 1 + \frac{1}{1^2} = 2$, so $\limsup_{n \rightarrow \infty} s_n = 1$. Similarly, $\limsup_{n \rightarrow \infty} s_n = -1$. Note that this sequence has no limit (it oscillates indefinitely and does not converge) but these quantities are well defined. We notice that the limsup is greater than the liminf in this case, and indeed it is true in general that $\liminf_{n \rightarrow \infty} s_n \leq \limsup_{n \rightarrow \infty} s_n$. 
@@ -443,6 +456,21 @@ As a motivating question, how would we say something about the largest and small
 \end{nproof}
 
 \subsection{The Harmonic Series and Euler's Number}
-\subsection{Convergence Tests}
+We now use the result of Theorem \ref{thm:3.27} to prove a result about a familiar subset of series.
+
+\begin{theorem}{p-series}{3.28}
+    $\sum_{n=1}^\infty \frac{1}{n^p}$ converges if $p > 1$ and diverges if $p \leq 1$. 
+\end{theorem}
+\begin{nproof}
+    If $p \leq 0$, then $n^p$ does not converge to $0$ and hence $\sum \frac{1}{n^p}$ diverges by Theorem \ref{thm:3.23}. If $p > 0$, then $\frac{1}{n^p}$ is a monotonically decreasing sequence of positive terms. Hence, we can apply the result of Theorem \ref{thm:3.27}. $\sum \frac{1}{n^p}$ converges if and only if $\sum_k 2^k \frac{1}{2^{kp}}$ converges if and only if $\sum_k \left(\frac{1}{2^{p-1}}\right)^k$ converges. By Theorem \ref{thm:3.26}, this last expression is convergent if and only if $0 < \frac{1}{2^{p-1}} < 1$, namely, if $p > 1$, proving the claim. \qed
+\end{nproof}
+\noindent From the above result, we have that the $p$-series converges if $p > 1$ and diverges otherwise. Is there something ``in between'' these two regions?
+
+\begin{theorem}{}{3.29}
+    $\sum_{n=2}^\infty \frac{1}{n(\log n)^p}$ converges if $p > 1$ and diverges if $p \leq 1$.
+\end{theorem}
+
+
+\subsection{The Ratio and Root Tests}
 \subsection{Power Series}
 
