@@ -455,21 +455,34 @@ And then we claim that $\linf p_{n_N} = \limsup p_n$ (Exercise). There is one sl
     Hence by the Comparison Test (Theorem \ref{thm:3.25}) we have that $\sum 2^n a_{2^n}$ diverges if $\sum a_j$ diverges. \qed
 \end{nproof}
 
-\subsection{The Harmonic Series and Euler's Number}
+\subsection{p-Series and Euler's Number}
 We now use the result of Theorem \ref{thm:3.27} to prove a result about a familiar subset of series.
 
-\begin{theorem}{p-series}{3.28}
+\begin{theorem}{p-Series}{3.28}
     $\sum_{n=1}^\infty \frac{1}{n^p}$ converges if $p > 1$ and diverges if $p \leq 1$. 
 \end{theorem}
 \begin{nproof}
-    If $p \leq 0$, then $n^p$ does not converge to $0$ and hence $\sum \frac{1}{n^p}$ diverges by Theorem \ref{thm:3.23}. If $p > 0$, then $\frac{1}{n^p}$ is a monotonically decreasing sequence of positive terms. Hence, we can apply the result of Theorem \ref{thm:3.27}. $\sum \frac{1}{n^p}$ converges if and only if $\sum_k 2^k \frac{1}{2^{kp}}$ converges if and only if $\sum_k \left(\frac{1}{2^{p-1}}\right)^k$ converges. By Theorem \ref{thm:3.26}, this last expression is convergent if and only if $0 < \frac{1}{2^{p-1}} < 1$, namely, if $p > 1$, proving the claim. \qed
+    If $p \leq 0$, then $n^p$ does not converge to $0$ and hence $\sum \frac{1}{n^p}$ diverges by Theorem \ref{thm:3.23}. If $p > 0$, then $\frac{1}{n^p}$ is a monotonically decreasing sequence of positive terms. Hence, we can apply the result of Theorem \ref{thm:3.27}. $\sum \frac{1}{n^p}$ converges if and only if $\sum_k 2^k \frac{1}{2^{kp}} = \sum_k \left(\frac{1}{2^{p-1}}\right)^k$ converges. By Theorem \ref{thm:3.26}, this last expression is convergent if and only if $0 < \frac{1}{2^{p-1}} < 1$, i.e. if $p > 1$, proving the claim. \qed
 \end{nproof}
 \noindent From the above result, we have that the $p$-series converges if $p > 1$ and diverges otherwise. Is there something ``in between'' these two regions?
 
 \begin{theorem}{}{3.29}
     $\sum_{n=2}^\infty \frac{1}{n(\log n)^p}$ converges if $p > 1$ and diverges if $p \leq 1$.
 \end{theorem}
+\begin{nproof}
+    $\log n$ is monotonically increasing for $p > 0$. So, $\frac{1}{n(\log n)^p}$ is monotonically decreasing. Hence, $\sum \frac{1}{n(\log n)^p}$ converges if and only if $\sum_k 2^k \frac{1}{2^k}\frac{1}{(\log 2^k)^p} = \sum_k \frac{1}{k^p}$ converges, and hence the claim follows from Theorem \ref{thm:3.28}. \qed
+\end{nproof}
 
+\begin{definition}{Euler's Number}{3.30}
+    $e = \sum_{n=0}^\infty \frac{1}{n!}$, where $0! = 1$ and $n! = n\cdot (n-1)! = n \cdot (n-1) \cdot \ldots \cdot 2 \cdot 1$ for $n \geq 1$. 
+\end{definition}
+\noindent We should check that this expression is well defined (namely, that the series converges). We first observe that $\frac{1}{n!} \leq \frac{1}{2^{n-1}}$ for $n \geq 1$. Therefore, we have that:
+\begin{align*}
+    s_n = \sum_{j=0}^n \frac{1}{j!} \leq 1 + \sum_{j=1}^n \frac{1}{2^{j-1}} \leq 1 + \sum_{j=0}^\infty \frac{1}{2^j} = 1 + \frac{1}{1-\frac{1}{2}} = 3
+\end{align*}
+Where we use Theorem \ref{thm:3.26} in the second last equality. Hence, we conclude that $\sum_{j=0}^n \frac{1}{j!}$ converges by comparison, and moreover, that $0 < e < 3$. 
+
+It will also be of interest to investigate the rate of convergence of this series. 
 
 \subsection{The Ratio and Root Tests}
 \subsection{Power Series}
