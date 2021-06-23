@@ -419,7 +419,7 @@ And then we claim that $\linf p_{n_N} = \limsup p_n$ (Exercise). There is one sl
         \begin{align*}
             \abs{\sum_{j=m}^n a_j} \leq \sum_{j=m}^n \abs{a_j} \leq \sum_{j=m}^n c_j < \e
         \end{align*}
-        Where in the first inequality we apply the Triangle Inequality (Theorem \ref{thm:1.37}). We conclude that $\sum a_j$ converges by the Cauchy criterion (Theorem \ref{thm:3.22}).
+        Where in the first inequality we apply the triangle inequality (Theorem \ref{thm:1.37}). We conclude that $\sum a_j$ converges by the Cauchy criterion (Theorem \ref{thm:3.22}).
         \item The claim follows by considering the contrapositive of (a). \qed
     \end{enumerate}
 \end{nproof}
@@ -434,6 +434,7 @@ And then we claim that $\linf p_{n_N} = \limsup p_n$ (Exercise). There is one sl
     \end{align*}
     If $x > 1$, we have that $s_n$ diverges (again) by Theorem \ref{thm:3.24}. If $x < 1$, then $x^{n+1} \rightarrow 0$ by \ref{thm:3.20}(e), so $s_n \rightarrow \frac{1}{1-x}$. \qed
 \end{nproof}
+\noindent Note that by the comparison test, the above result can be generalized to see that $\sum z^j$ for $z \in \CC$ converges for $\abs{z} < 1$ and diverges for $\abs{z} \geq 1$. 
 
 \begin{theorem}{Cauchy Condensation Test}{3.27}
     Suppose $\set{a_n} \subset \RR$ and $a_1 \geq a_2 \geq a_3 \geq \ldots \geq 0$. Then, $\sum a_j$ converges if and only if $\sum_{n=1}^\infty 2^n a_{2^n}$ converges.
@@ -445,14 +446,14 @@ And then we claim that $\linf p_{n_N} = \limsup p_n$ (Exercise). There is one sl
         \\ &\geq \frac{1}{2}a_1 + a_2 + 2a_4 + \ldots + 2^{k-1}a_{2^k}
         \\ &= \frac{1}{2}(a_1 + 2a_2 + 4a_4 + \ldots + 2^ka_{2^k})
     \end{align*}
-    Hence by the Comparison Test (Theorem \ref{thm:3.25}) we have that $\sum 2^n a_{2^n}$ converges if $\sum a_j$ converges.
+    Hence by the comparison test (Theorem \ref{thm:3.25}) we have that $\sum 2^n a_{2^n}$ converges if $\sum a_j$ converges.
 
     $\boxed{\impliedby}$ We show the contrapositive. For $2^k > n$, We have that:
     \begin{align*}
         a_1 + a_2 + \ldots + a_n &\leq a_1 + (a_2 + a_3) + \ldots + (a_{2^k} + \ldots + a_{2^{k+1}-1})
         \\ &\leq a_1 + 2a_2 + 4a_4 + \ldots + 2^ka_{2^k}
     \end{align*}
-    Hence by the Comparison Test (Theorem \ref{thm:3.25}) we have that $\sum 2^n a_{2^n}$ diverges if $\sum a_j$ diverges. \qed
+    Hence by the comparison test (Theorem \ref{thm:3.25}) we have that $\sum 2^n a_{2^n}$ diverges if $\sum a_j$ diverges. \qed
 \end{nproof}
 
 \subsection{p-Series and Euler's Number}
@@ -482,8 +483,107 @@ We now use the result of Theorem \ref{thm:3.27} to prove a result about a famili
 \end{align*}
 Where we use Theorem \ref{thm:3.26} in the second last equality. Hence, we conclude that $\sum_{j=0}^n \frac{1}{j!}$ converges by comparison, and moreover, that $0 < e < 3$. 
 
-It will also be of interest to investigate the rate of convergence of this series. 
+It will also be of interest to investigate the rate of convergence of this series. To this end, we observe:
+
+\begin{align*}
+    0 < e - s_q = \frac{1}{(q+1)!} + \frac{1}{(q+2)!} + \ldots &\leq \frac{1}{(q+1)!}\left(1 + \frac{1}{q+1} + \frac{1}{(q+1)^2} + \ldots \right) 
+    \\ &= \frac{1}{(q+1)!}\frac{1}{1-\frac{1}{q+1}} = \frac{1}{(q+1)!}\frac{q+1}{q} = \frac{1}{q!q}
+\end{align*}
+Hence we have that the error goes to zero extremely quickly! Moreover, we can use this fact to show that $e$ is irrational.
+
+\setcounter{rudin}{31}
+\begin{theorem}{Irrationality of e}{3.32}
+    $e \notin \QQ$.
+\end{theorem}
+\begin{nproof}
+    Suppose $e = \frac{p}{q}$ for $p, q \in \NN$. Then, by the argument above, we have that $0 < e - s_q < \frac{1}{q!q}$. Hence, we have that $0 < q! q - q!s_q < \frac{1}{q} \leq 1$. But, $q!e = q!\frac{p}{q} = (q-1)!p \in \NN$, and $q!s_q = \sum_{j=0}^q q!\frac{1}{j!} \in \NN$. Hence, $q! e - q! s_q \in \ZZ$, but this is a contradiction as $0 < q! e  - q! s_q < 1$. \qed
+\end{nproof}
+\noindent There is another familiar definition of $e$ involving a limit that one may recall from first year calculus. These definitions are equivalent, as we will show in the next theorem.
+
+\setcounter{rudin}{30}
+\begin{theorem}{}{31}
+    $e = \linf \left(1 + \frac{1}{n}\right)^n$.
+\end{theorem}
+\begin{nproof}
+    Let $t_n = \left(1 + \frac{1}{n}\right)^n$. By the Binomial theorem, we have that:
+    \begin{align*}
+        t_n = \sum_{j=0}^n \binom{n}{j}\left(\frac{1}{n}\right)^j = \sum_{j=0}^n \frac{1}{j!}\left(\frac{n}{n}\cdot\frac{(n-1)}{n}\cdots \frac{(n-j+1)}{n}\right) \leq s_n
+    \end{align*}
+    Where the last inequality follows from the fact tha the term in brackets is less than (or equal to) 1. Hence, we have that $\limsup_{n \rightarrow \infty} t_n \leq \limsup_{n\rightarrow \infty} s_n = \linf s_n = e$. 
+
+    On the other hand, fix $m \in \NN$ and let $n \geq m$. Then, we have that:
+    \begin{align*}
+        t_n \geq \sum_{j=0}^m \binom{n}{j}\frac{1}{n^j} = \sum_{j=0}^m \frac{1}{j!}\left(\left(1 - \frac{1}{n}\right)\left(1 - \frac{2}{n}\right) \cdots \left(1 - \frac{j-1}{n}\right)\right)
+    \end{align*}
+    The infimum of the term in the brackets is just $1$, so we therefore have that:
+    \begin{align*}
+        \inf_{n \geq m} t_n = \sum_{j=0}^m \frac{1}{j!} = s_m
+    \end{align*}
+    Now, we take $m \rightarrow \infty$ to find that $\liminf_{m \rightarrow \infty} t_m \geq \liminf_{m \rightarrow \infty} s_m = \lim_{m \rightarrow \infty} s_m = e$. 
+
+    Having shown that $\liminf_{n \rightarrow \infty} t_n \geq e \geq \limsup_{n \rightarrow \infty} t_n$, we conclude that $\limsup_{n \rightarrow \infty} = \liminf_{n \rightarrow \infty} = e$ and hence $\linf t_n = e$. \qed
+\end{nproof}
 
 \subsection{The Ratio and Root Tests}
+\setcounter{rudin}{32}
+\begin{theorem}{The Root Test}{3.33}
+    Let $\sum a_n$ be a series, and put $\alpha = \limsup_{n \rightarrow \infty} \sqrt[n]{\abs{a_n}}$. Then,
+    \begin{enumerate}[(i)]
+        \item $\sum a_n$ converges if $\alpha < 1$.
+        \item $\sum a_n$ diverges if $\alpha > 1$. 
+        \item If $\alpha = 1$, the test is inconclusive.
+    \end{enumerate}
+\end{theorem}
+
+\begin{nproof}
+    \begin{enumerate}[(i)]
+        \item Suppose $\limsup_{n \rightarrow \infty} \sqrt[n]{\abs{a_n}} = \alpha < 1$. Take $\beta$ such that $\alpha < \beta < 1$ and $N \in \NN$ such that $\sqrt[n]{\abs{a_n}} < \beta$ for all $n \geq N$. Hence, for $n \geq N$, $\abs{a_n} < \beta^n$, and $\beta < 1$. The result follows by using the comparison Test with the geometric series.
+        \item Suppose $\limsup_{n \rightarrow \infty} \sqrt[n]{\abs{a_n}} = \alpha > 1$. Then, there exists a subsequence such that $\sqrt[n_j]{\abs{a_{n_j}}} \rightarrow \alpha$. Therefore, there exists $N$ such that for $j \geq N$, $\sqrt[n_j]{\abs{a_{n_j}}} > 1$, that is to say, $\sqrt[n_j]{\abs{a_{n_j}}} > 1$ for infinitely many terms. Hence, $\sqrt[n]{\abs{a_{n}}}$ does not converge to zero, and hence the series does not converge by the divergence test.
+        \item Consider $\sum \frac{1}{n}$ and $\sum \frac{1}{n^2}$. $\alpha = 1$ for both sums, but by Theorem \ref{thm:3.28} the former diverges and the latter converges. \qed
+    \end{enumerate}
+\end{nproof}
+
+\begin{theorem}{The Ratio Test}{3.34}
+    Let $\sum a_n$ be a series such that $a_n \neq 0$ for all $n$. Then,
+    \begin{enumerate}[(i)]
+        \item $\sum a_n$ converges if $\limsup_{n \rightarrow \infty} \abs{\frac{a_{n+1}}{a_n}} < 1$. 
+        \item Diverges if there exists $N_0$ such that $\abs{\frac{a_{n+1}}{a_n}} \geq 1$ for all $n \geq N_0$. 
+    \end{enumerate}
+\end{theorem}
+\noindent In other cases, the test is inconclusive.
+\begin{nproof}
+    \begin{enumerate}[(i)]
+        \item By assumption, there exists $\beta < 1$ such that for some $N$, $\abs{\frac{a_{n+1}}{a_n}} < \beta$ for all $n \geq N$. We then have that $\abs{a_{N+1}} < \beta \abs{a_N}$, that $\abs{a_{N+1}} < \beta \abs{a_{N+1}} < \beta^2 \abs{a_N}$ and inductively we obtain that $\abs{a_{N+p}} < \beta^p \abs{a_N}$. In other words, we have that for $n \geq N$, $\abs{a_n} < \abs{a_N}\beta^{-N}\beta^{n}$. Since $\sum \beta^n$ converges (convergent geometric series), $\sum a_n$ converges by the comparison test.
+        \item For $n \geq N_0$, we have that $\abs{a_n} \leq \abs{a_{N+1}}$. Hence, $a_n$ does not converge to 0, and the claim follows by the divergence test. \qed
+    \end{enumerate}
+\end{nproof}
+\noindent As a remark, the the ratio test is less powerful than the root test. For any series for which the ratio test is conclusive, the root test is also conclusive. But the converse is not true. However, the ratio test is easier to apply in practice. We also note that the above ratio test implies the (perhaps more familiar) version from first year calculus:
+\begin{ncorollary}{}{}
+    Let $\sum a_n$ be a series such that $a_n \neq 0$ for all $n$. Then:
+    \begin{enumerate}[(i)]
+        \item $\sum a_n$ converges if $\linf \abs{\frac{a_{n+1}}{a_n}} < 1$.
+        \item $\sum a_n$ diverges if $\linf \abs{\frac{a_{n+1}}{a_n}} > 1$.
+        \item $\sum a_n$ diverges if $\liminf \abs{\frac{a_{n+1}}{a_n}} > 1$.
+    \end{enumerate}
+\end{ncorollary}
+
+\begin{example}{}{3.35}
+    Consider the series:
+    \begin{align*}
+        \frac{1}{2} + 1 + \frac{1}{8} + \frac{1}{4} + \frac{1}{32} + \frac{1}{16} + \ldots
+    \end{align*}
+    We then have that the ratio $\frac{a_{n+1}}{a_n}$ is the sequence $2, \frac{1}{8}, 2, \frac{1}{8}, \ldots$. Therefore, $\limsup_{n \rightarrow \infty} \abs{\frac{a_{n+1}}{a_n}} = 2 > 1$ and $\limsup_{n \rightarrow \infty} \abs{\frac{a_{n+1}}{a_n}} = \frac{1}{8} < 1$ and the ratio test is inconclusive/tells us nothing. We then consider the root test. For $n \geq 3$, we have that:
+    \begin{align*}
+        a_n = \begin{cases}
+            \left(\frac{1}{4}\right)^k = \left(\frac{1}{4}\right)^{\frac{n-1}{2}} = 2\left(\frac{1}{4}\right)^{\frac{n}{2}} & n = 2k + 1
+            \\ \frac{1}{2}\left(\frac{1}{4}\right)^{k} = \frac{1}{2}\left(\frac{1}{4}\right)^{\frac{n}{2}} & n = 2k
+        \end{cases}
+    \end{align*}
+    Since $\linf \sqrt[n]{p} = 1$ for $p > 0$ (Theorem \ref{thm:3.20}(b)), we have that:
+    \begin{align*}
+        \linf \sqrt[n]{a_n} = \linf \sqrt[n]{c\left(\frac{1}{4}\right)^{\frac{n}{2}}} = \linf \sqrt[n]{c} \frac{1}{2} = \frac{1}{2} < 1
+    \end{align*}
+    where the above limit holds for either $c = \frac{1}{2}$ or $c = 2$. Hence, we conclude that the series converges by the root test. This example demonstrates how the root test is ``sharper'' than the ratio test (though harder to apply).
+\end{example}
 \subsection{Power Series}
 
