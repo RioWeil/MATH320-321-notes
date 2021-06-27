@@ -319,11 +319,11 @@ To motivate the next theorem, consider that all convergent sequences in $\RR$ (a
 \subsection{Limit Supremum and Limit Infimum}
 As a motivating question, how would we say something about the largest and smallest accumulation points of a sequence? This leads us to the following definition.
 \begin{definition}{limsup and liminf}{3.16}
-    Let $\set{s_n} \subset \RR$, then, we define the limit supremum as:
+    Let $\set{s_n} \subset \RR$, then, we define the \textbf{limit supremum} as:
     \begin{align*}
         \limsup_{n \rightarrow \infty} s_n = \inf_{n \geq 1}\sup_{m \geq n} s_m = \lim_{n \rightarrow \infty} \sup_{m \geq n} s_m
     \end{align*}
-    And the limit infimum as:
+    And the \textbf{limit infimum} as:
     \begin{align*}
         \liminf_{n \rightarrow \infty} s_n = \sup_{n \geq 1}\inf_{m \geq n} s_m = \lim_{n \rightarrow \infty} \inf_{m \geq n} s_m
     \end{align*}
@@ -379,7 +379,18 @@ And then we claim that $\linf p_{n_N} = \limsup p_n$ (Exercise). There is one sl
 \begin{definition}{Infinite Series}{3.21}
     Let $\set{a_n} \subset \CC$. We then form a new sequence of $s_n = \sum_{j=1}^n a_j$ (the sequence of partial sums). Then, if $s_n \rightarrow s$. We say that the series $\sum_{j = 1}^\infty a_j$ converges, and write $\sum_{j = 1}^\infty a_j = s$. If $s_n$ does not converge, we say that $\sum_{j=1}^\infty a_j$ diverges. As a notational point, we will sometimes omit the bounds of summation and write $\sum a_j$ to denote an infinite series, where the meaning is clear from context.
 \end{definition}
-\noindent Note that series are just a specific subset of sequences. We will now restate the Cauchy criterion (Theorem \ref{thm:3.11}) for series.
+\noindent Note that series are just a specific subset of sequences. Although the above definition states that $\set{a_n} \subset \CC$, it is in general possible to define series over general vector spaces, with $\set{a_n} \in V$ and $\set{s_n} \in V$. 
+
+Note that this generalization allows us to state an equivalent notion of completeness for vector spaces, namely that $V$ is compelte if and only if for all sequences $\set{a_n} \subset V$, the sum $\sum_{n=0}^\infty \norm{a_n}$ converges to a point in $V$. As before, $\RR, \RR^k$ (both over the field $\RR$), are complete vector spaces. An example of a vector space that is not complete is the set of functions $f: \RR \mapsto \CC$ such that $\int_{-\infty}^\infty \abs{f(x)}^2 dx < \infty$ (where the integral is the familiar Riemann integral from first year calculus, to be defined more rigorously in Chapter 6). For example, the sequence $f_n \subset V$ such that:
+\begin{align*}
+    f_n = \begin{cases}
+        1 & \text{for the first $n$ rationals}
+        \\ 0 & \text{elsewhere}
+    \end{cases}
+\end{align*}
+does not converge to a function in $V$. In fact, Lebesgue integration (which is not covered in this course, but will be the primary focus of a course in measure theory) deals with this issue.
+
+We will now restate the Cauchy criterion (Theorem \ref{thm:3.11}) for series.
 
 \begin{theorem}{}{3.22}
     A series $\sum a_j$ converges if and only if for all $\e > 0$, there exists $N \in \NN$ such that $\abs{\sum_{j=m}^n a_j} < \e$ for all $n \geq m \geq N$.
@@ -585,5 +596,180 @@ Hence we have that the error goes to zero extremely quickly! Moreover, we can us
     \end{align*}
     where the above limit holds for either $c = \frac{1}{2}$ or $c = 2$. Hence, we conclude that the series converges by the root test. This example demonstrates how the root test is ``sharper'' than the ratio test (though harder to apply).
 \end{example}
+
 \subsection{Power Series}
+
+\setcounter{rudin}{37}
+\begin{definition}{Power Series}{3.38}
+    For $z \in \CC$ and a sequence $\set{c_n}$, $\sum_{n=0}^\infty c_n z^n$ is called a \textbf{power series}.
+\end{definition}
+
+\begin{theorem}{Radius of Convergence}{3.39}
+    Let $R = \frac{1}{\limsup_{n \rightarrow \infty}\sqrt[n]{\abs{c_n}}}$, with the convention $R = \infty$ if $\limsup_{n \rightarrow \infty}\sqrt[n]{\abs{c_n}} = 0$ and $R = 0$ if $\limsup_{n \rightarrow \infty}\sqrt[n]{\abs{c_n}} = \infty$. Then, $\sum_{n=0}^\infty c_n z^n$ converges if $\abs{z} < R$ and diverges if $\abs{z} > R$. $R$ is called the \textbf{radius of convergence} of $\sum c_n z_n$. We note that on the circle $\abs{z} = R$, the behavior is varied; the series can be divergent or convergent, and it can also depend on the particular choice of $z$ on the circle.
+\end{theorem}
+
+\begin{nproof}
+    We have that $\limsup_{n \rightarrow \infty} \sqrt[n]{c_n z^n} = \limsup_{n \rightarrow \infty} \sqrt[n]{c_n} \abs{z} = \frac{\abs{z}}{R}$. Therefore, by the root test (Theorem \ref{thm:3.33}) the series converges if $\abs{z} < R$ and diverges if $\abs{z} > R$ (and nothing can be said if $\abs{z} = R$). \qed
+\end{nproof}
+\noindent Note that we can use the ratio test to determine $R$ as well, as we will see in the next few examples.
+
+\begin{example}{}{3.40}
+    \begin{enumerate}
+        \item $\sum n! z^n$. By the ratio test, we have that $\linf \abs{\frac{(n+1)!z^{n+1}}{n!z^n}} = \linf (n+1)\abs{z} = \infty$ for all $z \neq 0$. Hence the diverges for all $z \in \CC \neq \set{0}$, and we conclude that $R = 0$. 
+        \item $\sum \frac{z^n}{n^n}$. By Theorem \ref{thm:3.39}, we have that:
+        \begin{align*}
+            R = \frac{1}{\limsup_{n \rightarrow \infty}\sqrt[n]{\frac{1}{n^n}}} = \frac{1}{\limsup_{n \rightarrow \infty} \frac{1}{n}} = \frac{1}{\linf \frac{1}{n}} = \infty
+        \end{align*}
+        \item $\sum \frac{z^n}{n!}$ also has $R = \infty$ (as can be checked easily with the ratio test). For $R = 1$, the series is equal to $e$. As we will define later in Chapter 8, this series is equal to $e^z$. 
+        \item $\sum \frac{z^n}{n^p}$ with $p > 1$. By Theorem \ref{thm:3.39}, we have that:
+        \begin{align*}
+            R = \frac{1}{\limsup_{n \rightarrow \infty}\sqrt[n]{\frac{1}{n^p}}} = \frac{1}{\limsup_{n \rightarrow \infty} \left(\frac{1}{\sqrt[n]{n}}\right)^p} = \frac{1}{1^p} = 1
+        \end{align*}
+        where for the second last equality we apply Theorem \ref{thm:3.20}(c). Note that this series converges for all $\abs{z} \leq 1$ (although the above calculation does not show convergence on the boundary).
+    \end{enumerate}
+\end{example}
+\noindent Before moving on, let us consider some further examples. Suppose $a_n = 1$ for all $n$. Then, our power series if just $\sum_{n=0}^\infty z^n$, which is just the Geometric series. By Theorem \ref{thm:3.26}, we have that the series converges if $\abs{z} < 1$ to $\frac{1}{1-z}$.
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \draw[latex-latex,very thick] (-2,0)--(2,0);
+        \draw[latex-latex,very thick] (0,-2)--(0,2);
+        \draw[fill = black] (0, 1) circle (1pt);
+        \node[xshift = 0.25cm, yshift = 0.25cm] at (0, 1) {$i$};
+        \draw[fill = black] (1, 0) circle (1pt);
+        \node[xshift = 0.25cm, yshift = 0.25cm] at (1, 0) {$1$};
+        \draw[fill = black] (-1, 0) circle (1pt);
+        \node[xshift = -0.25cm, yshift = 0.25cm] at (-1, 0) {$-1$};
+        \draw[fill = black] (0, -1) circle (1pt);
+        \node[xshift = 0.25cm, yshift = -0.25cm] at (0, -1) {$-i$};
+        \draw[dotted, fill = white!60!black, fill opacity=0.3] (0, 0) circle (28.5pt);
+        \node[] at (1.6, 1.6) {$\CC$};
+    \end{tikzpicture}
+    \caption{Visualization of the radius of convergence of the Geometric Series. The series converges in the shaded region, and diverges outside of it (and on the boundary).}
+    \label{fig16}
+\end{figure}
+
+
+As another example, consider the series $\sum_{n=1}^\infty \frac{1}{n}z^n$. By the ratio test, we find that $R = 1$, as:
+\begin{align*}
+    \limsup_{n\rightarrow \infty} \abs{\frac{\frac{1}{n+1}z^{n+1}}{\frac{1}{n}z^n}} = \limsup_{n\rightarrow \infty}\abs{\frac{n}{n+1}z} = \abs{z} \limsup_{n\rightarrow \infty}\abs{1 - \frac{1}{n+1}} = \abs{z}
+\end{align*}
+So this series converges if $\abs{z} < 1$, diverges if $\abs{z} > 1$. What happens for $\abs{z} = 1$? At $z = 1$, we have that the series is just the standard harmonic series and diverges (by Theorem \ref{thm:3.28}). At $z = -1$, we have an alternating series (a series whose terms are decreasing and tend to zero, and alternate in sign with each term), so we can apply the Alternating series test (below) to conclude that it converges. What about elsewhere on the circle? Let's look at $z = i$. We then have that the terms look like:
+\begin{align*}
+    1 + \frac{i}{2} - \frac{1}{3} - \frac{i}{4} + \frac{1}{5} + \frac{i}{6} - \ldots
+\end{align*}
+we then have that the real and imaginary parts of the series are separately alternating series that decrease in magnitude; hence both parts are convergent, and the series as a whole is convergent at $z = i$. The same argument can be applied to conclude convergence of the series at $z = -i$. In fact, this series converges everywhere on the unit circle except at $z = 1$, which is a conclusion that follows from Theorem 3.44 (not covered in lecture, but feel free to refer to Rudin)!
+
+\setcounter{rudin}{42}
+\begin{theorem}{The Alternating Series Test}{3.43}
+    Let $\set{a_n} \subset \CC$ and suppose that:
+    \begin{enumerate}
+        \item $\abs{a_1} \geq \abs{a_2} \geq \abs{a_3} \ldots$.
+        \item $a_{2m-1} \geq 0, a_{2m} \leq 1$ for $m \in \NN$
+        \item $\linf a_n = 0$.
+    \end{enumerate}
+    Then, $\sum a_n$ converges.
+\end{theorem}
+\begin{nproof}
+    Rudin establishes a partial summation formula (Theorem 3.41) and proves a more general theorem (Theorem 3.42) to prove this claim. However, an alternative proof in the case where $\set{a_n}$ is real is left as homework (HW7). \qed
+\end{nproof}
+
+\subsection{Absolute Convergence}
+\begin{ndef}{: Absolute Convergence}{}
+    $\sum a_n$ is \textbf{absolutely convergent} if $\sum \abs{a_n}$ converges. Note that if $\sum a_n$ is convergenct but $\sum \abs{a_n}$ diverges, then $\sum a_n$ is \textbf{conditionally convergent}. Note that for real series with strictly positive terms, absolute convergence and conditional convergence are equivalent. Also, note that the root and ratio tests test for absolute convergence, and hence do not yield any information for conditional convergence. 
+\end{ndef}
+\noindent As an example, consider that $\sum \frac{(-1)^n}{n}$ converges, but $\sum \frac{1}{n}$ diverges, so $\sum \frac{(-1)^n}{n}$ is conditionally convergent.
+
+\setcounter{rudin}{44}
+\begin{theorem}{}{3.45}
+    If $\sum a_n$ converges absolutely, then $\sum a_n$ converges.
+\end{theorem}
+\begin{nproof}
+    We have that:
+    \begin{align*}
+        \abs{\sum_{j=m}^n a_j} \leq \sum_{j=m}^n\abs{a_j} < \e
+    \end{align*}
+    For all $n \geq m \geq N$ for some $N$ by the fact that $\sum \abs{a_j}$ converges. Hence, $\sum a_j$ is convergent by the Cauchy Criterion. \qed
+\end{nproof}
+\noindent For absolutely convergent series, we can freely change the order of the additions without affecting the value of the sum (as we will soon see). However, for series that are not absolutely convergent, this turns out to not be the case!
+
+\setcounter{rudin}{51}
+\begin{definition}{Rearrangements}{3.52}
+    Given a bijection $K: \NN \rightarrow \NN$, the series:
+    \begin{align*}
+        \sum_n a_n' = \sum_n a_{K(n)}
+    \end{align*}
+    is called a rearrangement of $\sum_n a_n$. 
+\end{definition}
+
+\setcounter{rudin}{54}
+\begin{theorem}{}{3.55}
+    If $\sum a_n$ is absolutely convergent, every rearrangement $\sum a_n'$ converges to the same limit.
+\end{theorem}
+\begin{nproof}
+    Let $\set{s_n'}$ beth sequence of partial sums of the rearrangement $\sum a_n'$. Let $\e > 0$. By the absolute convergent of the original series, there exists $N \in \NN$ such that for all $n \geq m \geq N$, $\sum_{j=m}^n \abs{a_j} < \e$. Then, pick $p$ such that $\set{1, 2, \ldots N} \subset \set{K(1), K(2), K(3), \ldots K(p)}$. Then, the summands $a_1, a_2, \ldots a_N$ cancel out in $s_n - s_n'$ for $n \geq p$, leaving only terms $a_{K(j)}$ past $a_N$. Hence, $\abs{s_n - s_n'} < \e$ for $n \geq p \geq N$, and we conclude that $\sum a_n'$ converges to the same limit as $\sum a_n$. \qed
+\end{nproof}
+
+\setcounter{rudin}{53}
+\begin{theorem}{Riemann Rearrangment Theorem}{3.54}
+    If $\sum a_n$ is a conditionally convergent series of real numbers, and $- \infty \leq \alpha \leq \beta \leq \infty$, then there is a rearrangement $\sum a_n'$ such that $\liminf_{n \rightarrow \infty} s_n' = \alpha$ and $\limsup_{n \rightarrow \infty} a_n' = \beta$. Taking $\alpha = \beta$, we have that for any real number, there exists a rearrangement that converges to it. 
+\end{theorem}
+\begin{nproof}
+    Not covered in lecture, see Rudin. \qed
+\end{nproof}
+\noindent For example, given $\sum (-1)^n a_n$ with $a_n \geq 0$ and $\linf a_n = 0$, we can rearrange this series to converge to any point in $\RR$ that we like (for example, $\pi$). The idea is to select positive terms from the series until we overshoot $\pi$, then choose a sequnece of alternating negative/positive terms of decreasing magnitude until the $\e$ distance from $\pi$ decreases to zero.
+
+\subsection{Addition and Multiplication of Series}
+\setcounter{rudin}{46}
+\begin{theorem}{Series Addition}{3.47}
+    Let $\sum a_n = A$ and $\sum b_n = B$. Then, $\sum(a_n + b_n) = A + B$ and $\sum c a_n = cA$ for any fixed $c \in \CC$.
+\end{theorem}
+\begin{nproof}
+    Let $A_n = \sum_{j=0}^n a_j$ and $B_n = \sum_{j=0}^n b_j$. Then, $A_n + B_n = \sum_{j=0}^n a_j + b_j$ and since $\linf A_n = A$ and $\linf B_n = B$, it follows that:
+    \begin{align*}
+        \linf(A_n + B_n) = A + B.
+    \end{align*}
+    For the second assertion, we have that $\linf c A_n = c \linf A_n = cA$. \qed
+\end{nproof}
+
+\begin{definition}{Series Multiplication}{3.48}
+    Let $\sum a_n$ and $\sum b_n$ be two series. Then, the \textbf{product} of of the two series is the series $\sum c_n$ where:
+    \begin{align*}
+        c_n = \sum_{j=0}^n a_jb_{n-j} = \sum_{j=0}^n a_{n-j}b_j
+    \end{align*}
+\end{definition}
+\noindent Any student who has studied Fourier Series prior to this course will notice the similarity of the above definition to the convolution of two functions.
+
+\setcounter{rudin}{49}
+\begin{theorem}{}{3.50}
+    Suppose that $\sum a_n$ converges absolutely and $\sum b_n$ converges. Let $\sum a_n = A$ and $\sum b_n = B$. Then, $\sum c_n$ converges and $\sum c_n = AB$.
+\end{theorem}
+\begin{nproof}
+    Let $A_n = \sum_{j=0}^n a_j$ and $B_n = \sum_{j=0}^n b_j$. Let $\beta_n = B_n - B$ (note that $\beta_n \rightarrow 0$). Now, we have that:
+    \begin{align*}
+        C_n  = \sum_{k=0}^n c_k = \sum_{k=0}^n \sum_{j=0}^k a_j b_{k-j} = \sum_{j=0}^n \sum_{k=j}^n a_j a_{k-j} = \sum_{j=0}^n a_j \sum_{k=j}^n b_{k-j} = \sum_{j=0}^n a_j B_{n-j} = \sum_{j=0}^n a_j(B + \beta_{n-j})
+    \end{align*}
+    From here, we split the sum and then we have that:
+    \begin{align*}
+        C_n = \sum_{j=0}^n a_jB + \sum_{j=0}^n a_j\beta_{n-j}
+    \end{align*}
+    Defining $\gamma_n = \sum_{j=0}^n a_j\beta_{n-j}$ and taking the limit of $n \rightarrow \infty$, we have:
+    \begin{align*}
+        \linf C_n = C = \linf \left(\sum_{j=0}^n a_jB + \gamma_n\right) = \linf \sum_{j=0}^n a_jB + \linf \gamma_n = AB + \linf \gamma_n
+    \end{align*}
+    So the claim is proven if $\linf \gamma_n = 0$. Let $\alpha = \sum \abs{a_n} < \infty$ (by assumption of absolute convergence). Let $\e > 0$. Then, tere exists $N \in \NN$ such that $\abs{\beta_j} < \frac{\e}{\alpha}$ for all $j \geq N$ (as $\beta_n \rightarrow 0$). Hence, 
+    \begin{align*}
+        \abs{\gamma_n} \leq \abs{\sum_{j=0}^n a_{n-j}\beta_j} \leq \abs{\sum_{j=0}^N a_{n-j}\beta_j} + \abs{\sum_{j=N+1}^n a_{n-j}\beta_j} < \abs{\sum_{j=0}^N a_{n-j}\beta_j} + \sum_{j=N+1}^n\abs{a_{n-j}}\frac{\e}{\alpha} \leq \abs{\sum_{j=0}^N a_{n-j}\beta_j} + \e
+    \end{align*}
+    Letting $n \rightarrow \infty$ with $N$ fixed, we have the first term goes to $0$ as $a_n \rightarrow 0$ as $n \rightarrow 0$. Hence, We have that:
+    \begin{align*}
+        \linf \abs{\gamma_n} < \e
+    \end{align*}
+    And as $\e$ is arbitrary, $\linf \abs{\gamma_n} = 0$ and the claim follows. \qed
+\end{nproof}
+
+
+
+
+
 
