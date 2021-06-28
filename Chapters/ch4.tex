@@ -7,10 +7,10 @@
 \end{definition}
 \begin{figure}[htbp]
     \centering
-    \begin{tikzpicture}
-        \draw[latex-latex,very thick] (-2,0)--(2,0);
-        \draw[latex-latex,very thick] (0,-2)--(0,2);
-        \draw[<->, thick] (-1.75, -1.75) -- (1.75, 1.75);
+    \begin{tikzpicture}[scale=2]
+        \draw[-latex,very thick] (0,0)--(2,0);
+        \draw[-latex,very thick] (0,0)--(0,2);
+        \draw[<->, thick] (0, 0) -- (1.75, 1.75);
         \draw[color = red] (1, 0) -- (1, 1);
         \draw[color = red, dashed] (0.5, 0) -- (0.5, 2);
         \draw[color = red, dashed] (1.5, 0) -- (1.5, 2);
@@ -29,8 +29,7 @@
         \node[xshift = -0.25cm] at (0, 1) {$1$};
         \draw[fill = black] (1, 0) circle (1pt);
         \node[yshift = -0.25cm] at (1, 0) {$1$};
-        
-
+        \node[yshift = 0.25cm, xshift = 0.25cm] at (1.75, 1.75) {$f(x)$};
     \end{tikzpicture}
     \caption{Visualization of the limit $\lim_{x \rightarrow 1}f(x) = 1$ for $f(x) = x$. For any $\e > 0$, we can take $\delta = \e$ and then we have that $\abs{f(x) - 1} < \e$ if $\abs{x - 1} < \delta$.}
     \label{fig17}
