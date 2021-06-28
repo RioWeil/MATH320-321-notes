@@ -77,7 +77,7 @@ Evidently, the domain of $f$ does not contain the point $p$, but we are interest
 \end{nproof}
 
 \begin{definition}{Continuity}{4.5}
-    Let $X, Y$ be metric spaces, and $E \subset X$. Let $p \in E$, and define $f: E \mapsto Y$. We say that $f$ is continuous at $p$ if for all $\e > 0$, there exists $\delta > 0$ such that for all $x \in E$ with $d_X(x, p) < \delta$, we have that $d_Y(f(x), f(p)) < \e$. Equivalently, $f(N_\delta^E(p)) \subset N_\e^Y(f(p))$. If $f$ is continuous at $p$ for all $p \in E$, we say that $f$ is continuous.
+    Let $X, Y$ be metric spaces, and $E \subset X$. Let $p \in E$, and define $f: E \mapsto Y$. We say that $f$ is \textbf{continuous} at $p$ if for all $\e > 0$, there exists $\delta > 0$ such that for all $x \in E$ with $d_X(x, p) < \delta$, we have that $d_Y(f(x), f(p)) < \e$. Equivalently, $f(N_\delta^E(p)) \subset N_\e^Y(f(p))$. If $f$ is continuous at $p$ for all $p \in E$, we say that $f$ is continuous.
 \end{definition}
 \noindent Note that this definition of continuity is heavily reliant on the particular metric of $X$ and $Y$; in particular, there can be functions that are continuous for some choices of metric but not others.
 
@@ -193,8 +193,8 @@ We now consider a Theorem which gives us a familiar notion of continuity (that m
 \end{nproof}
 
 \setcounter{rudin}{12}
-\begin{definition}{}{4.13}
-    Let $X$ be a metric space, and $E \subset X$. We say that $f: E \mapsto Y$ is bounded if $f(E)$ is a bounded set. In particular, if $Y = \RR^k$, then $f$ is bounded if and only if there exists $M \in \RR$ such that $\abs{f(x)} \leq M$ for all $x \in E$.
+\begin{definition}{Bounded functions}{4.13}
+    Let $X$ be a metric space, and $E \subset X$. We say that $f: E \mapsto Y$ is \textbf{bounded} if $f(E)$ is a bounded set. In particular, if $Y = \RR^k$, then $f$ is bounded if and only if there exists $M \in \RR$ such that $\abs{f(x)} \leq M$ for all $x \in E$.
 \end{definition}
 
 \setcounter{rudin}{14}
@@ -224,11 +224,36 @@ We now consider a Theorem which gives us a familiar notion of continuity (that m
 \begin{example}{}{4.21}
     This example shows the necessity of compactness of $X$ in Theorem \ref{thm:4.17}. Let $S = [0, 2\pi)$ which is not closed and hence not compact (Heine Borel/Theorem \ref{thm:2.41}). Let $Y = \set{(x, y) \in \RR^2: x^2 + y^2 = 1}$. Define $f: X \mapsto Y$ where $f(\theta) = (\cos\theta, \sin\theta)$. $f$ is continuous and a bijection (check!) but $f^{-1}$ is not continuous. To see this is the case, consider first that $[0, 1) \subset X$ is open in $X$. At everywhere except $0$ it should be evident that all points of $[0, 1)$ are interior to $X$, and at $0$, we have that $N_{1/2}(0) \subset [0, 1)$ showing that $0$ is also an interior point. But, $(f^{-1})^{-1}([0, 1)) = f([0, 1))$ is not open, because not every point is an interior point; namely, $(1, 0) = f(0) \in f([0, 1))$ is not an interior point. So, $f^{-1}$ os not continuous.
 \end{example}
+
 \begin{figure}[htbp]
     \centering
     
     \caption{Figure showing the map $f$ and the image $f([0,1))$}
     \label{fig19}
 \end{figure}
+
 \subsection{Uniform Continuiity, Connectedness, and IVT}
 
+\setcounter{rudin}{17}
+\begin{definition}{Uniform Continuity}{4.18}
+    Let $X, Y$ be metric spaces and $f: X \mapsto Y$. Then, $f$ is \textbf{uniformly continuous} if for all $\e > 0$, there exists $\delta > 0$ such that for all $p, q \in X$ with $d_X(p, q) < \delta$, we have that $d_Y(f(p), f(q)) < \e$. It is clear from the definition that every uniformly continuous function is continuous.
+\end{definition}
+\noindent Note that this definition is very similar to the definition of continuity, but with a difference in the quantifiers. With continuity, for each $\e$ there is a $\delta$ that we can find for a given point $p \in X$. For uniform continuity, we have that for each $\e$, there exists a $\delta$ that works uniformly for all $p$. 
+
+We now consider some examples to see the difference concretely. Take $X = (0, 1), Y = \RR$, and $f(x) = \frac{1}{x}$. We then have that $f$ is continuous, but not uniformly continuous, showing that in general continuity does not imply uniform continuity.
+
+Next, consider $X = Y = \RR$ and $f(x) = \sin x$. Then, $f$ is uniformly continuous. Given any $\e$, we can pick $\delta = \e$ and this proof will work. The ``calclus-inspired'' proof would use that $\od{}{x}\sin x = \cos x$ and $\abs{\cos x} \leq 1$, so we can always pick $\delta = \e$ with the MVT. However, we have yet to define the derivative or prove the mean value theorem, so an alternate appraoch would be to invoke trigonometric identities.
+
+Finally, let $X = [0, 10], Y = \RR$, and $f(x) = x^2$. Then, $f$ is uniformly continuous. However, if $X = Y = \RR$ and $f(x) = x^2$, then $f$ is not uniformly continuous. The uniform continuity of $f$ depends on the domain; in particular, $[0, 10]$ is closed/compact, while $\RR$ is not compact. This motivates our next theorem.
+
+\begin{theorem}{}{4.19}
+    Let $X, Y$ be metric spaces with $X$ compact. Let $f: X \mapsto Y$ be continuous. Then, $f$ is uniformly continuous.
+\end{theorem}
+\begin{nproof}
+    
+\end{nproof}
+
+\setcounter{rudin}{21}
+\begin{theorem}{}{}
+    
+\end{theorem}

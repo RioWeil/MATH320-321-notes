@@ -785,3 +785,15 @@ From the Heine-Borel theorem, it is clear here that $[1, \infty), \RR, \RR^2$ fa
     Let $X \in P$ and $S$ be an interval such that $x \in S$. Let $I_n$ be the interval of $E_n$ containing $x$. The length of $I_n$ is given by $\frac{1}{3^n}$. For sufficiently large $n$, $I_n \subset S$. Let $x_n$ be an endpoint of $I_n$ such that $x_n \neq x$. By construction, $x_n \in P$, and hence $x$ is a limit point of $P$ by construction. Additionally, $P$ is closed by Theorem \ref{thm:2.24} as it is an infinite intersection of closed sets. Hence $P$ is perfect, and by Theorem \ref{thm:2.43} it is uncountable. \qed
 \end{nproof}
 
+\noindent Though not covered in lecture, we here briefly discuss connectedness as it comes up later in Chapter 4.
+
+\begin{definition}{Connected Sets}{2.45}
+    Two subsets $A, B$ of a metric space $X$ are separated if $A \cap \overline{B} = \overline{A} \cap B = \emptyset$. A set $E \subset X$ is connected if $E$ is not a union of two nonempty separated sets.
+\end{definition}
+\noindent Separated sets are disjoint, but disjoint sets are not necessarily separated; for example, $A = [0, 1]$ and $B = (1, 2)$ are not separated as $\overline{B} = [1, 2]$ and hence $A \cap \overline{B} = \set{1}$. However, $A = (0, 1)$ and $B = (1, 2)$ are separated. The following theorem characterizes connected subsets of $\RR$. 
+\begin{theorem}{}{2.45}
+    A subset $E \subset \RR$ is connected if and only if it has the property that if $x, y \in E$ and $x < z < y \in E$, then $z \in E$.
+\end{theorem}
+\begin{nproof}
+    Not covered in lecture, see Rudin.
+\end{nproof}
