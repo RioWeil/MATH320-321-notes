@@ -181,7 +181,49 @@ We now consider a Theorem which gives us a familiar notion of continuity (that m
         \item Suppose $f: X \mapsto \RR^k$ is continous. Then so is $g: X \mapsto \RR^k$ with $g(x) = \abs{f(x)}$.
     \end{enumerate}
 \end{example}
+
 \subsection{Continuity and Compactness}
+
+\setcounter{rudin}{13}
+\begin{theorem}{}{4.14}
+    Let $f: X \mapsto Y$ be continuous, and suppose $X$ is compact. Then, the image $f(X)$ is compact.
+\end{theorem}
+\begin{nproof}
+    Let $\set{V_\alpha}$ be an open cover of $f(X)$. For each $\alpha$, Let $O_\alpha = f^{-1}(V_\alpha)$. Then, $\set{O_\alpha}$ is an open cover of $X$. to see this, we recognize that each $O_\alpha$ is open due to the continuity of $f$ (Theorem \ref{thm:4.8}) and each $p \in X$ satisfies $V_\beta$ for some $\beta$, so $p \in O_\beta$. $X$ is compact, so there exists a finite subcover $\set{O_{\alpha_1}, \ldots O_{\alpha_n}}$. But it then follows that $\set{V_{\alpha_1}, \ldots V_{\alpha_n}}$ is a finite subcover of $f(X)$. Hence $f(X)$ is compact. \qed
+\end{nproof}
+
+\setcounter{rudin}{12}
+\begin{definition}{}{4.13}
+    Let $X$ be a metric space, and $E \subset X$. We say that $f: E \mapsto Y$ is bounded if $f(E)$ is a bounded set. In particular, if $Y = \RR^k$, then $f$ is bounded if and only if there exists $M \in \RR$ such that $\abs{f(x)} \leq M$ for all $x \in E$.
+\end{definition}
+
+\setcounter{rudin}{14}
+\begin{theorem}{}{4.15}
+    Let $X$ be a compact metric space, and $f: X \mapsto Y$ be continuous. Then, $f(X)$ is bounded.
+\end{theorem}
+\begin{nproof}
+    By Theorem \ref{thm:4.14}, we have that $f(X)$ is compact. $f(X)$ is therefore bounded (see Discussion proceeding Theorem \ref{thm:2.41}). \qed
+\end{nproof}
+\noindent An interesting special case in the above theorem to think about is when $Y = \RR$; this yields the Extreme Value Theorem, below.
+
+\begin{theorem}{Extreme Value Theorem}{4.16}
+    Let $X$ be a compact metric space, and let $f: X \mapsto \RR$ be continuous. Then, there exist $p, q \in X$ such that $f(p) \leq f(x) \leq f(q)$ for all $x \in X$. In other words, $f$ attains its minimum (infimum) and maximum (supremum) on $X$.
+\end{theorem}
+\begin{nproof}
+    By Theorems \ref{thm:4.15} and \ref{thm:4.16}, $f(X)$ is closed and bounded. In particular, $m = \inf f(X)$ and $M = \sup f(X)$ exist (as the set is bounded), and $m, M \in f(X)$ as $f(X)$ contains all of its limit points. Hence, there exist $p, q \in X$ such that $f(p) = m$, $f(q) = M$. \qed
+\end{nproof}
+
+\begin{theorem}{}{4.17}
+    
+\end{theorem}
+\begin{nproof}
+    
+\end{nproof}
+
+\setcounter{rudin}{20}
+\begin{example}{}{4.21}
+    
+\end{example}
 
 \subsection{Uniform Continuiity, Connectedness, and IVT}
 
