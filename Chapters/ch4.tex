@@ -86,6 +86,8 @@ Let us consider some examples of continuous functions (while thinking about diff
 First, let us take onsider $X = E = \ZZ$ and $Y = \RR$. What functions $f: E \rightarrow Y$ are continuous at $p = 0$? The answer turns out to be all functions! To see this, fix $n \in \ZZ$ and let $\e > 0$. We then have that if $\abs{n - m} < \frac{1}{2}$, then $\abs{f(n) - f(m)} < \e$ as the only point $m$ contained in $N_{1/2}^\ZZ(n)$ is $n$ itself (and hence $\abs{f(n) - f(m)} = \abs{f(n) - f(n)} = 0$). This argument applies to every $n \in \ZZ$ and hence all functions $f: \ZZ \mapsto \RR$ are continuous.
 
 As further examples (that work for arbitrary metric spaces), If we have that $f: X \mapsto X$, $f(x) = x$, we have that $f$ is continuous (pick $\delta = \e$ in the definition of continuity). If we have that $f: X \mapsto Y$, $f(x) = c$ for some $c \in Y$, then $f$ is also continuous (pick any $\delta > 0$ in the definition). 
+
+Finally, the above definition doesn't make a distinction between limit points and isolated points. However, it turns out that according to the definition, if $p \in E$ is isolated, then every function $f$ with $E$ as its domain is continuous. To see this, consider that for any $\e > 0$, we can pick $\delta > 0$ such that the only point $x \in E$ for which $d_X(x, p) < \delta$ is $x = p$ (such a choice of $\delta$ is possible as $p$ is isolated). It then follows that $d_Y(f(x), f(p)) = 0 < \e$. 
  
 We now consider a Theorem which gives us a familiar notion of continuity (that may have been encountered in first year calculus).
 
@@ -108,34 +110,76 @@ We now consider a Theorem which gives us a familiar notion of continuity (that m
     Let $X, Y$ be metric spaces, and $f: X \mapsto Y$. Then, $f$ is continuous if and only if $f^{-1}(V) \subset X$ is open for every open set $V \subset Y$.
 \end{theorem}
 \begin{nproof}
-    \boxed{\implies}
+    \boxed{\implies} Suppose $f$ is continuous, and $V \subset Y$ is open. Let $p \in f^{-1}(V)$, so $f(p) \in V$. $V$ is open, so it follows that $f(p)$ is an interior point of $V$. So, there exists $r > 0$ such that $N_r^Y(f(p)) \subset V$. Next, $f$ is continuous, so there exists $\delta > 0$ such that for all $x \in X$ with $d_X(x, p) < \delta$, $d_Y(f(x), f(p)) < r$. Hence, we obtain that $f(x) \in N_r^Y(f(p)) \subset V$. In particular, $N_\delta^X(p) \subset f^{-1}(V)$, so $p$ is an interior point of $f^{-1}(V)$. Hence every point of $f^{-1}(V)$ is an interior point, and $f^{-1}(V)$ is open.
 
-    \boxed{\impliedby}
+    \boxed{\impliedby} Suppose $f^{-1}(V)$ is open for every open set $V \subset Y$. Let $p \in X$ and $\e > 0$. Let $V = N_\e^Y(f(p))$ which is open, so by assumption $f^{-1}(V)$ is open. $p \in f^{-1}(V)$, so $p$ is an interior point. Hence, there exists $\delta > 0$ such that $N_\delta^X(p) \subset f^{-1}(V)$. In other words, if $d_X(x, p) < \delta$, then $f(x) \in V$, so $d_Y(f(x), f(p)) < \e$. $f$ is then continuous by definition. \qed
 \end{nproof}
 
 \begin{ncorollary}{}{}
     $f: X \mapsto Y$ is continuous if and only if $f^{-1}(F) \subset X$ is closed for every closed set $F \subset Y$.
 \end{ncorollary}
 \begin{nproof}
-    
+    Let $V = F^c$ with $V$ open. Then, the above statement is equivalent to saying that a function $f: X \mapsto Y$ is continuous if and only if $f^{-1}(V^c) = \left(f^{-1}(V)\right)^c$ is closed for every open set $V \subset Y$. This is equivalent to the statement that $f^{-1}(V)$ is open for every open set $V \subset Y$, and the claim follows by the previous theorem. \qed
 \end{nproof}
 
 \begin{theorem}{}{4.9}
     Let $f: X \mapsto \CC$ and $g: X \mapsto \CC$ be continous functions. Then, $f+g$, $fg$ are continuous, and $\frac{f}{g}$ is continuous if $g(x) \neq 0$. 
 \end{theorem}
 \begin{nproof}
-    
+    At isolated points there is nothing to prove (as any choice of function that is defined at an isolated $p$ will be continuous there). For limit points, the claim follows from Theorems \ref{thm:4.4} and \ref{thm:4.6}. \qed
 \end{nproof}
 
 \begin{theorem}{}{4.10}
-    
+    \begin{enumerate}
+        \item Let $f_1, f_2, \ldots, f_k: X \mapsto \RR$, and define $\v{f}: X \mapsto \RR^k$ by:
+        \begin{align*}
+            \v{f}(x) = (f_1(x), f_2(x), \ldots, f_k(x))
+        \end{align*}
+        Then, $\v{f}$ is continuous if and only if every $f_i$ is continuous.
+        \item If $\v{f} = (f_1, \ldots f_k): X \mapsto \RR^k$ and $\v{g} = (g_1, \ldots g_k): X \mapsto \RR^k$ are continous, then the functions:
+        \begin{align*}
+            \v{f} + \v{g} = (f_1 + g_1, \ldots, f_k + g_k)
+        \end{align*}
+        \begin{align*}
+            \v{f} \cdot \v{g} = f_1g_1 + \ldots + f_kg_k
+        \end{align*}
+        are continous.
+    \end{enumerate} 
 \end{theorem}
 \begin{nproof}
-    
+    \begin{enumerate}
+        \item $\boxed{\implies}$ Suppose $\v{f}$ is continuous. Then, let $\e > 0$. For each $p \in X$, there exists $\delta > 0$ such that $d_X(x, p) < \delta$ implies $\abs{\v{f}(x) - \v{f}(p)} < \e$. We then observe that for any $i \in \set{1, \ldots k}$:
+        \begin{align*}
+            \abs{\v{f}(x) - \v{f}(p)} = \left(\sum_{j=1}^k \abs{f_j(x) - f_j(p)}^2\right)^{1/2} \geq \abs{f_i(x) - f_i(p)}
+        \end{align*}
+        Where the inequality follows by just keeping one term from the sum of non-negative terms. So for any $d_X(x, p) < \delta$ we therefore have that $\abs{f_i(x) - f_i(p)} < \e$, and hence each $f_i$ is continuous.
+        
+        $\boxed{\impliedby}$ Suppose each of $f_1, \ldots f_k$ is continuous. Then let $\frac{\e}{\sqrt{k}} > 0$. For each $p \in X$, there exists $\delta_i$ such that $d_X(x, p) < \delta_i$ implies that $\abs{f_i(x) - f_i(p)} < \frac{\e}{\sqrt{k}}$. Take $\delta = \min\set{\delta_1, \ldots \delta_k}$. Then, if $d_X(x, p) < \delta$, we have that:
+        \begin{align*}
+            \abs{\v{f}(x) - \v{f}(p)} = \left(\sum_{j=1}^k \abs{f_j(x) - f_j(p)}^2\right)^{1/2} < \left(\sum_{j=1}^k \left(\frac{\e}{\sqrt{k}}\right)^2\right)^{1/2} = \e
+        \end{align*}
+        So it follows that $\v{f}$ is continuous.
+        \item The claim follows from (a) and Theorem \ref{thm:4.9}. \qed
+    \end{enumerate}
 \end{nproof}
 
 \begin{example}{}{4.11}
-    
+    We will now explore some interesting examples of continuous functions.
+    \begin{enumerate}
+        \item For each index $i = 1, \ldots k$, define $\phi_i: \RR^k \mapsto \RR$ by $\phi_i(\v{x}) = x_i$. Then, $\phi_i$ is continuous.
+        \begin{proof}
+            Let $\e > 0$. Then, for $\v{p} \in \RR^k$, if $\abs{\v{x} - \v{p}} < \delta$ with $\delta = \e$, we have that:
+            \begin{align*}
+                \e > \abs{\v{x} - \v{p}} = \left(\sum_{j=1}^k \abs{x_j - p_j}^2\right)^{1/2} \geq \left(\abs{x_i - p_i}^2\right)^{1/2} = \abs{x_i - p_i}
+            \end{align*}
+            So for $\abs{\v{x} - \v{p}} < \delta$, we have that $\abs{\phi_i(\v{x}) - \phi_i(\v{p})} < \e$. We conclude that $\phi_i$ is continous.
+        \end{proof}
+        We could also use the topological characterization of continuity to prove this claim. If $V \subset \RR$ is open, then $\RR \times \RR \times \ldots \times V \times \RR \times \ldots \times \RR$ is open, showing again that $\phi_i$ is continuous (a much easier proof)!
+        \item Let $f: \RR^k \mapsto \RR$ be given by $f(\v{x}) = x_1^{n_1}x_2^{n_2}\cdots x_k^{n_k}$ with $n_i \in \NN \cup \set{0}$. $f$ is continous, and hence so is any polynomial $P: \RR^k \mapsto \RR$.
+        \item Rational functions $P/Q$ where $P, Q$ are polynomials are continous everywhere except where $Q$ is zero.
+        \item $f: \RR^k \mapsto \RR$ given by $f(\v{x}) = \abs{\v{x}}$ is continous.
+        \item Suppose $f: X \mapsto \RR^k$ is continous. Then so is $g: X \mapsto \RR^k$ with $g(x) = \abs{f(x)}$.
+    \end{enumerate}
 \end{example}
 \subsection{Continuity and Compactness}
 
