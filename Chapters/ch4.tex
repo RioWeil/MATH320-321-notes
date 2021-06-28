@@ -202,7 +202,7 @@ We now consider a Theorem which gives us a familiar notion of continuity (that m
     Let $X$ be a compact metric space, and $f: X \mapsto Y$ be continuous. Then, $f(X)$ is bounded.
 \end{theorem}
 \begin{nproof}
-    By Theorem \ref{thm:4.14}, we have that $f(X)$ is compact. $f(X)$ is therefore bounded (see Discussion proceeding Theorem \ref{thm:2.41}). \qed
+    By Theorem \ref{thm:4.14}, we have that $f(X)$ is compact. $f(X)$ is therefore bounded (see discussion proceeding Theorem \ref{thm:2.41}). \qed
 \end{nproof}
 \noindent An interesting special case in the above theorem to think about is when $Y = \RR$; this yields the Extreme Value Theorem, below.
 
@@ -214,16 +214,21 @@ We now consider a Theorem which gives us a familiar notion of continuity (that m
 \end{nproof}
 
 \begin{theorem}{}{4.17}
-    
+    Let $X$ be a compact metric space, and $f: X \mapsto Y$ be continuous and a bijection. Define $f^{-1}: Y \mapsto X$ by $f^{-1}(y) = x$ if $f(x) = y$ (this is well-defined due to the bijectivity of $f$). Then, $f^{-1}$ is continuous.
 \end{theorem}
 \begin{nproof}
-    
+    By Theorem \ref{thm:4.8}, it suffices to show that for every open set $V \subset X$, $\left(f^{-1}\right)^{-1}(V) = f(V)$ is open. By the openness of $V$, $V^c$ is closed, and hence compact (as closed subsets of compact sets are compact by Theorem \ref{thm:2.35}). So, $f(V^c) \subset Y$ is compact by Theorem \ref{thm:4.14}. Therefore, $f(V^c) = \left(f(V)\right)^c$ is closed (as compact sets are closed by Theorem \ref{thm:2.34}). Therefore, $\left(\left(f(V)\right)^c\right)^c = f(V)$ is open as desired. Hence $f^{-1}$ is continuous. \qed
 \end{nproof}
 
 \setcounter{rudin}{20}
 \begin{example}{}{4.21}
-    
+    This example shows the necessity of compactness of $X$ in Theorem \ref{thm:4.17}. Let $S = [0, 2\pi)$ which is not closed and hence not compact (Heine Borel/Theorem \ref{thm:2.41}). Let $Y = \set{(x, y) \in \RR^2: x^2 + y^2 = 1}$. Define $f: X \mapsto Y$ where $f(\theta) = (\cos\theta, \sin\theta)$. $f$ is continuous and a bijection (check!) but $f^{-1}$ is not continuous. To see this is the case, consider first that $[0, 1) \subset X$ is open in $X$. At everywhere except $0$ it should be evident that all points of $[0, 1)$ are interior to $X$, and at $0$, we have that $N_{1/2}(0) \subset [0, 1)$ showing that $0$ is also an interior point. But, $(f^{-1})^{-1}([0, 1)) = f([0, 1))$ is not open, because not every point is an interior point; namely, $(1, 0) = f(0) \in f([0, 1))$ is not an interior point. So, $f^{-1}$ os not continuous.
 \end{example}
-
+\begin{figure}[htbp]
+    \centering
+    
+    \caption{Figure showing the map $f$ and the image $f([0,1))$}
+    \label{fig19}
+\end{figure}
 \subsection{Uniform Continuiity, Connectedness, and IVT}
 
