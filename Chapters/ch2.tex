@@ -792,7 +792,8 @@ Though not covered in lecture, we here briefly discuss connectedness as it comes
     Two subsets $A, B$ of a metric space $X$ are separated if $A \cap \overline{B} = \overline{A} \cap B = \emptyset$. A set $E \subset X$ is connected if $E$ is not a union of two nonempty separated sets.
 \end{definition}
 \noindent Separated sets are disjoint, but disjoint sets are not necessarily separated; for example, $A = [0, 1]$ and $B = (1, 2)$ are not separated as $\overline{B} = [1, 2]$ and hence $A \cap \overline{B} = \set{1}$. However, $A = (0, 1)$ and $B = (1, 2)$ are separated. The following theorem characterizes connected subsets of $\RR$. 
-\begin{theorem}{}{2.45}
+\setcounter{rudin}{46}
+\begin{theorem}{}{2.47}
     A subset $E \subset \RR$ is connected if and only if it has the property that if $x, y \in E$ and $x < z < y \in E$, then $z \in E$.
 \end{theorem}
 \begin{nproof}

@@ -250,7 +250,15 @@ Finally, let $X = [0, 10], Y = \RR$, and $f(x) = x^2$. Then, $f$ is uniformly co
     Let $X, Y$ be metric spaces with $X$ compact. Let $f: X \mapsto Y$ be continuous. Then, $f$ is uniformly continuous.
 \end{theorem}
 \begin{nproof}
-    
+    Let $\e > 0$. By the continuity of $f$, for each $p \in X$, there exists $\delta_p  0$ such that for all $q \in X$ with $d_X(p, q)  <\delta_p$, we have that $d_Y(f(p), f(q)) < \frac{\e}{2}$. Define $U_p = N_{\delta_p/2}(p)$. We then have that $\set{U_p}_{p \in X}$ is an open cover for $X$. By the compactness of $X$, it has a finite subcover. Let $\set{U_{p_1}, \ldots, U_{p_n}}$ be a finite subcover. Let $\delta = \frac{1}{2}\min\set{\delta_{p_1}, \ldots, \delta_{p_n}} > 0$ (note the importance of taking the minimum over a \textit{finite} number of $\delta_{p_i}$s; if we took an infimum over an infinite number, it could be possible that the infimum could be zero). Then, take $p, q \in X$ with $d_X(p, q) < \delta$. Then, $p \in U_{p_i}$ for some $i$. So, $d_X(p, p_i) < \frac{\delta_{p_i}}{2}$, and then by the triangle inequality we have that:
+    \begin{align*}
+        d_X(q, p_i) \leq d_X(q, p) + d_X(p, p_i) < \delta + \frac{\delta_{p_i}}{2} \leq \frac{\delta_{p_i}}{2} + \frac{\delta_{p_i}}{2} = \delta_{p_i}
+    \end{align*} 
+    Therefore, we have that:
+    \begin{align*}
+        d_Y(f(p), f(q)) \leq d_Y(f(p), f(p_i)) + d_Y(f(p_i), f(q)) < \frac{\e}{2} + \frac{\e}{2} = \e
+    \end{align*}
+    And we conclude that $f$ is uniformly continuous. \qed
 \end{nproof}
 
 \setcounter{rudin}{21}
@@ -265,7 +273,7 @@ Finally, let $X = [0, 10], Y = \RR$, and $f(x) = x^2$. Then, $f$ is uniformly co
     Let $f: [a, b] \mapsto \RR$ be continuous and $f(a) < f(b)$. Then, for all $\alpha \in (f(a), f(b))$, there exists $c \in (a, b)$ with $f(c) = \alpha$.
 \end{theorem}
 \begin{nproof}
-    
+    $[a, b]$ is connected by Theorem \ref{thm:2.45}, so by Theorem \ref{thm:4.22}
 \end{nproof}
 
 \begin{figure}[htbp]
