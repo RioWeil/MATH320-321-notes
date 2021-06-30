@@ -3,7 +3,7 @@
 
 \subsection{Derivatives}
 \begin{definition}{Derivatives}{5.1}
-    Let $f: [a, b] \mapsto \RR$, and $x \in [a, b]$. We then define the derivative of $f$ at $x$ as:
+    Let $f: [a, b] \mapsto \RR$, and $x \in [a, b]$. We then define the \textbf{derivative} of $f$ at $x$ as:
     \begin{align*}
         f'(x) = \lim_{t\rightarrow x} \frac{f(t) - f(x)}{t - x}
     \end{align*}
@@ -83,6 +83,7 @@ NWe will now proceed to prove a series of theorems that have been seen in first 
 \end{align*}
 Note that as a corollary of this, we get that if $f(x) = x^n$, then $f'(x) = nx^{n-1}$ and we hence recover the familiar power rule from first year calculus!
 
+\setcounter{rudin}{4}
 \begin{theorem}{Chain Rule}{5.5}
     Let $f: [a, b] \mapsto \RR$, $x \in [a, b]$, and suppose $f$ is differentiable at $x$. Suppose furthermore that $f([a, b])$ is contained in some interval $I$. Let $g: I \mapsto \RR$ and suppose $g$ is differentiable at $f(x)$. Then, $g \circ f: [a, b] \mapsto \RR$ is differentiable at $x$, and furthermore:
     \begin{align*}
@@ -117,6 +118,81 @@ Note that as a corollary of this, we get that if $f(x) = x^n$, then $f'(x) = nx^
 
 
 \subsection{MVT}
+
+\setcounter{rudin}{6}
+\begin{definition}{Local Maxima/Minima}{5.7}
+    Let $X$ be a metric space. Let $f: X \mapsto \RR$, and let $x \in X$. We say that $x$ is a \textbf{local maximum} of $f$ if there exists $\delta > 0$ such that $f(y) \leq f(x)$ for all $y \in N_{\delta}(x)$. A \textbf{local minimum} is defined similarly, with $f(y) \geq f(x)$ instead.
+\end{definition}
+\noindent For a metric space $X$ equipped with the discrete metric, all points $x \in X$ are simultaneously local maxima and minima. To see this, take any $0 < \delta \leq 1$. 
+
+\begin{theorem}{}{5.8}
+    Let $f: [a, b] \mapsto \RR$. Let $x \in [a, b]$ and suppose that $f'(x)$ exists, and $f$ is either a local maximum or local minimum of $f$. Then, $f'(x) = 0$. 
+\end{theorem}
+\begin{nproof}
+    Suppose $x$ is a local minimum. Then, there exists $\delta > 0$ such that $N_{\delta}(x) \subset [a, b]$, and $f(y) \geq f(x)$ for all $y \in N_{\delta}(x)$. Thus, if $x < y < x + \delta$, then:
+    \begin{align*}
+        \frac{f(y) - f(x)}{y - x} \geq 0 \implies f'(x) \geq 0
+    \end{align*}
+    Conversely, if $x - \delta < y < x$, then:
+    \begin{align*}
+        \frac{f(y) - f(x)}{y - x} \leq 0 \implies f'(x) \leq 0
+    \end{align*}
+    So taken together we obtain that $f'(x) = 0$. An identical argument is used for the case of a local maximum. \qed
+\end{nproof}
+
+\begin{ntheorem}{: Rolle's Theorem}{}
+    Let $f: [a, b] \mapsto \RR$ be continuous, and suppose $f$ is differentiable on $(a, b)$. If $f(a) = f(b)$, then there exists $x \in (a, b)$ such that $f'(x) = 0$.
+\end{ntheorem}
+\begin{nproof}
+    Since $[a, b]$ is compact and $f$ is continuous, by the EVT (Theorem \ref{thm:4.16}) $f$ attains its maximum on $[a, b]$, that is, there exists $c \in [a, b]$ such that $f(y) \leq f(x)$ for all $y \in [a, b]$. If $c \in (a, b)$, then by Theorem \ref{thm:5.8}, $f'(c) = 0$ and we are done. Next, suppose $c = a$ or $c = b$. Again by the EVT, $f$ attains its minumum on $[a, b]$, that is, there exists $d \in [a, b]$ such that $f(y) \geq f(d)$ for all $y \in [a, b]$. If $d \in (a, b)$, then by Theorem \ref{thm:5.8}, $f'(d) = 0$ and we are done. Suppose then that $d = a$ or $d = b$. Since $f(a) = f(b)$, we therefore obtain that $f(a) = f(b) = f(c) = f(d)$ and the maximum/minimum values agree. Hence, $f(y) = f(a)$ for all $y \in [a, b]$, so $f'(y) = 0$ for all $y \in [a, b]$. So, the desired $x$ may be any point in $[a, b]$. \qed
+\end{nproof}
+
+\begin{figure}[htbp]
+    \centering
+    
+    \caption{Figure demonstrating Rolle's Theorem}
+    \label{fig21}
+\end{figure}
+
+\setcounter{rudin}{9}
+\begin{theorem}{Mean Value Theorem}{5.10}
+    Let $f: [a, b] \mapsto \RR$ be continuosu and differentiable on $(a, b)$. Then, there exists $x \in (a, b)$ such that $f(b) - f(a) = f'(x)(b - a)$.
+\end{theorem}
+\noindent The visual interpretation of this theorem is that there exists $x \in (a, b)$ such that the slope of the tangent line to $f$ at $x$ is equal to the secant line slope between $(a, f(a))$ and $(b, f(b))$. The idea of the proof is to rotate one's head such that the sectant line is horizontal; one is then able to apply Rolle's Theorem!
+
+\begin{nproof}
+    Define $h(y) = f(y) = \frac{f(b) - f(a)}{b - a}(y - a)$. $h$ is continuous on $[a, b]$ and differentiable on $(a, b)$ (being a sum of continuous/differentiable functions). We have that $h(a) = f(a) - 0 = f(a)$, and $h(b) = f(b) - \frac{f(b) - f(a)}{b - a}(b - a) = f(a)$. Applying Rolle's Theorem to $h$, there exists $x \in (a, b)$ such that $h'(x) = 0$. Therefore, $h'(x) = 0 = f'(x) - \frac{f(a) - f(b)}{b - a} = 0$, and we conclude that $f(b) - f(a) = f'(x)(b - a)$ for some $x \in (a, b)$. \qed
+\end{nproof}
+
+\begin{figure}[htbp]
+    \centering
+    
+    \caption{Figure demonstrating the MVT}
+    \label{fig22}
+\end{figure}
+
+
+\begin{theorem}{}{5.11}
+    Let $f: [a, b] \mapsto \RR$ be differentiable on $(a, b)$. Then:
+    \begin{enumerate}
+        \item If $f'(x) \geq 0$ for all $x \in (a, b)$, then $f$ is monotonically increasing.
+        \item If $f'(x) = 0$ for all $x \in (a, b)$, then $f$ is constant. 
+        \item If $f'(x) \leq 0$ for all $x \in (a, b)$, then $f$ is monotonically decreasing.
+    \end{enumerate} 
+\end{theorem}
+\begin{nproof}
+    If $a < x < y < b$, by the mean value theorem, there exists $z \in (x, y)$ such that:
+    \begin{align*}
+        f(y) - f(x) = f'(z)(y - x)
+    \end{align*}
+    Note that $y - x > 0$ by construction. 
+    \begin{enumerate}
+        \item If $f'(x) \geq 0$ for all $x \in (a, b)$, then $f'(z) \geq 0$, showing that $f(y) - f(x) \geq 0$ and hence that $f$ is monotonically increasing. 
+        \item If $f'(x) = 0$ for all $x \in (a, b)$, then $f'(z) = 0$, showing that $f(y) - f(x) = 0$ and hence that $f$ is constant on $(a, b)$.
+        \item If $f'(x) \leq 0$ for all $x \in (a, b)$, then $f'(z) \leq 0$, showing that $f(y) - f(x) \leq 0$ and hence that $f$ is monotonically decreasing. \qed
+    \end{enumerate}
+    
+\end{nproof}
 
 \subsection{Taylor's Theorem}
 
