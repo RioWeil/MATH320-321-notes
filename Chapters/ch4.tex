@@ -122,6 +122,14 @@ We now consider a Theorem which gives us a familiar notion of continuity (that m
     Let $V = F^c$ with $V$ open. Then, the above statement is equivalent to saying that a function $f: X \mapsto Y$ is continuous if and only if $f^{-1}(V^c) = \left(f^{-1}(V)\right)^c$ is closed for every open set $V \subset Y$. This is equivalent to the statement that $f^{-1}(V)$ is open for every open set $V \subset Y$, and the claim follows by the previous theorem. \qed
 \end{nproof}
 
+\noindent Note that the above topological characterization says properties of sets are preserved under taking the preimage; it does not say anything about preserving properties under the image. That is to say, images of open/closed sets are not necessarily open/closed.
+
+As an example, consider $X = \RR^+ = (0, \infty)$ and $Y = \RR$. Then, the function:
+\begin{align*}
+    \fullfunction{f}{X}{Y}{x}{\frac{1}{x}}
+\end{align*}
+is continuous. Then defining $A = [1, \infty)$ we have that $A$ is closed, but $f(A) = (0, 1]$ is not closed. 
+
 \begin{theorem}{}{4.9}
     Let $f: X \mapsto \CC$ and $g: X \mapsto \CC$ be continous functions. Then, $f+g$, $fg$ are continuous, and $\frac{f}{g}$ is continuous if $g(x) \neq 0$. 
 \end{theorem}
@@ -222,13 +230,35 @@ We now consider a Theorem which gives us a familiar notion of continuity (that m
 
 \setcounter{rudin}{20}
 \begin{example}{}{4.21}
-    This example shows the necessity of compactness of $X$ in Theorem \ref{thm:4.17}. Let $S = [0, 2\pi)$ which is not closed and hence not compact (Heine Borel/Theorem \ref{thm:2.41}). Let $Y = \set{(x, y) \in \RR^2: x^2 + y^2 = 1}$. Define $f: X \mapsto Y$ where $f(\theta) = (\cos\theta, \sin\theta)$. $f$ is continuous and a bijection (check!) but $f^{-1}$ is not continuous. To see this is the case, consider first that $[0, 1) \subset X$ is open in $X$. At everywhere except $0$ it should be evident that all points of $[0, 1)$ are interior to $X$, and at $0$, we have that $N_{1/2}(0) \subset [0, 1)$ showing that $0$ is also an interior point. But, $(f^{-1})^{-1}([0, 1)) = f([0, 1))$ is not open, because not every point is an interior point; namely, $(1, 0) = f(0) \in f([0, 1))$ is not an interior point. So, $f^{-1}$ os not continuous.
+    This example shows the necessity of compactness of $X$ in Theorem \ref{thm:4.17}. Let $S = [0, 2\pi)$ which is not closed and hence not compact (Heine Borel/Theorem \ref{thm:2.41}). Let $Y = \set{(x, y) \in \RR^2: x^2 + y^2 = 1}$. Define $f: X \mapsto Y$ where $f(\theta) = (\cos\theta, \sin\theta)$. $f$ is continuous and a bijection (check!) but $f^{-1}$ is not continuous. To see this is the case, consider first that $[0, \frac{\pi}{2}) \subset X$ is open in $X$. At everywhere except $0$ it should be evident that all points of $[0, \frac{\pi}{2})$ are interior to $X$, and at $0$, we have that $N_{1/2}(0) \subset [0, \frac{\pi}{2})$ showing that $0$ is also an interior point. But, $(f^{-1})^{-1}([0, \frac{\pi}{2})) = f([0, \frac{\pi}{2}))$ is not open, because not every point is an interior point; namely, $(1, 0) = f(0) \in f([0, \frac{\pi}{2}))$ is not an interior point. So, $f^{-1}$ is not continuous.
 \end{example}
 
 \begin{figure}[htbp]
     \centering
+    \begin{tikzpicture}[scale=2]
+        \foreach \i in {-2.95,-2.9,...,-2.5}{ 
+            \draw[blue] (\i,0.05) -- (\i,-0.05);
+            }
+        \begin{scope}[shift={(0:2)}]
+        \foreach \i [count=\j] in {0, 2, 4,...,90} {
+            \draw[blue] (\i:1) -- (\i:1.11);
+            }
+        \end{scope}
+        \draw[] (-3, 0) -- (-1, 0);
+        \node[] at (-3, 0) {$[$};
+        \node[] at (-1, 0) {$)$};
+        \node[below] at (-3, -0.25) {$0$};
+        \node[below] at (-1, -0.25) {$2\pi$};
+        \draw[->, thick] (-0.5, 0) -- (0.5, 0);
+        \node[above] at (0, 0) {$f$};
+        \draw[] (2, 0) circle (30pt);
+        \node[] at (-2.5, 0) {$)$};
+        \node[below] at (-2.5, -0.25) {$\frac{\pi}{2}$};
+        \node[rotate = 270] at (3.05, 0) {$]$};
+        \node[] at (2, 1.05) {$($};
+    \end{tikzpicture}
     
-    \caption{Figure showing the map $f$ and the image $f([0,1))$}
+    \caption{Visual of the map $f$ which maps a point $\theta \in [0, 2\pi)$ to the point $(\cos\theta, \sin\theta)$ on the unit circle. Pictured is the map from $[0, \frac{\pi}{2})$ to $f([0, \frac{\pi}{2}))$, the former which is open in $[0, 2\pi)$, and the latter which is not open in $Y = \set{(x, y) \in \RR^2: x^2 + y^2 = 1}$.}
     \label{fig19}
 \end{figure}
 
@@ -282,7 +312,34 @@ Finally, let $X = [0, 10], Y = \RR$, and $f(x) = x^2$. Then, $f$ is uniformly co
 
 \begin{figure}[htbp]
     \centering
+    \begin{tikzpicture}[scale=2]
+        \draw[-latex] (-2.5, 0) -- (-2.5, 2);
+        \draw[-latex] (-2.5, 0) -- (-0.5, 0);
+        \draw [] (-2.25 , 0.5) to [ curve through ={(-2, 0.75)..(-1.75, 1.1)..(-1.5, 1.25)..(-1.25,1.6)}] (-1,1.5);
+        \filldraw[] (-2.25, 0.5) circle (1.5pt);
+        \filldraw[] (-1, 1.5) circle (1.5pt);
+        \draw[dashed] (-2.5, 1.25) -- (-1.5, 1.25);
+        \draw[] (-2.25, 0) -- (-2.25, -0.15);
+        \node[below] at (-2.25, -0.16) {$a$};
+        \draw[] (-1, 0) -- (-1, -0.15);
+        \node[below] at (-1, -0.13) {$b$};
+        \draw[] (-1.5, 0) -- (-1.5, -0.15);
+        \node[below] at (-1.5, -0.17) {$c$};
+        \node[left] at (-2.5, 1.25) {$\alpha$};
+        \draw[-latex] (0.5, 0) -- (0.5, 2);
+        \draw[-latex] (0.5, 0) -- (2.5, 0);
+        \draw[] (0.75, 0.5) -- (1.375, 0.5);
+        \draw[] (1.375, 1.5) -- (2, 1.5);
+        \filldraw[] (0.75, 0.5) circle (1.5pt);
+        \draw[fill = white] (1.375, 0.5) circle (1.5pt);
+        \filldraw[] (1.375, 1.5) circle (1.5pt);
+        \filldraw[] (2, 1.5) circle (1.5pt);
+        \draw[] (0.75, 0) -- (0.75, -0.15);
+        \node[below] at (0.75, -0.16) {$a$};
+        \draw[] (2, 0) -- (2, -0.15);
+        \node[below] at (2, -0.13) {$b$};
+    \end{tikzpicture}
     
-    \caption{Figure of a function for which IVT applies, and another for which it does not apply.}
+    \caption{Visualization of functions for which the IVT applies (left) and for which it doesn't (right).}
     \label{fig20}
 \end{figure}
