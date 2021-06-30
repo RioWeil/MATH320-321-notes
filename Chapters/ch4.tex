@@ -124,11 +124,14 @@ We now consider a Theorem which gives us a familiar notion of continuity (that m
 
 \noindent Note that the above topological characterization says properties of sets are preserved under taking the preimage; it does not say anything about preserving properties under the image. That is to say, images of open/closed sets are not necessarily open/closed.
 
-As an example, consider $X = \RR^+ = (0, \infty)$ and $Y = \RR$. Then, the function:
-\begin{align*}
-    \fullfunction{f}{X}{Y}{x}{\frac{1}{x}}
-\end{align*}
-is continuous. Then defining $A = [1, \infty)$ we have that $A$ is closed, but $f(A) = (0, 1]$ is not closed. 
+\begin{nexample}{}{}
+    Consider $X = \RR^+ = (0, \infty)$ and $Y = \RR$. Then, the function:
+    \begin{align*}
+        \fullfunction{f}{X}{Y}{x}{\frac{1}{x}}
+    \end{align*}
+    is continuous. Then defining $A = [1, \infty)$ we have that $A$ is closed, but $f(A) = (0, 1]$ is not closed.   
+\end{nexample}
+
 
 \begin{theorem}{}{4.9}
     Let $f: X \mapsto \CC$ and $g: X \mapsto \CC$ be continous functions. Then, $f+g$, $fg$ are continuous, and $\frac{f}{g}$ is continuous if $g(x) \neq 0$. 
@@ -199,6 +202,26 @@ is continuous. Then defining $A = [1, \infty)$ we have that $A$ is closed, but $
 \begin{nproof}
     Let $\set{V_\alpha}$ be an open cover of $f(X)$. For each $\alpha$, Let $O_\alpha = f^{-1}(V_\alpha)$. Then, $\set{O_\alpha}$ is an open cover of $X$. to see this, we recognize that each $O_\alpha$ is open due to the continuity of $f$ (Theorem \ref{thm:4.8}) and each $p \in X$ satisfies $V_\beta$ for some $\beta$, so $p \in O_\beta$. $X$ is compact, so there exists a finite subcover $\set{O_{\alpha_1}, \ldots O_{\alpha_n}}$. But it then follows that $\set{V_{\alpha_1}, \ldots V_{\alpha_n}}$ is a finite subcover of $f(X)$. Hence $f(X)$ is compact. \qed
 \end{nproof}
+\noindent We previously discussed how an image of a closed set (under a continuous function) does not have to be closed. However, the above Theorem shows that the image of a compact set (under a continuous function) must be compact.
+
+Taking a slight tangent, a question of interest may be to consider the topology of the extended real numbers; namely, $\RR \cup \set{\infty, -\infty}$ (where $-\infty < x < \infty$ for all $x \in \RR$). In particular, a natural question to ask is whether $[1, \infty) \cup \set{\infty}$ would be closed/compact.
+
+We start then by defining a reasonable metric on $X = \RR \cup \set{\infty, -\infty}$. A ``reasonable'' definition of a metric will satify the requirement that $[1, \infty) \cup \set{\infty}$ is compact or not. We then define the metric:
+\begin{align*}
+    d(x, y) = \abs{\arctan(x) - \arctan(y)}
+\end{align*}
+where $\arctan(\infty) = \frac{\pi}{2}$ and $\arctan(-\infty) = -\frac{\pi}{2}$. We then have that $(X, d)$ is a metric space (check!) 
+
+Note that the extended reals have been made into a metric space here, but it is no longer a field; in particular, we have that $(-\infty + \infty) + \infty = 0 + \infty = \infty$ but $-\infty + (\infty + \infty) = -\infty + \infty = 0$ so associativity no longer holds.
+
+With a reasonable metric defined on the extended reals, let us now return to our previous example in Section 4.2 where we considered the function $f(x) = \frac{1}{x}$. We now extend the domain of the function such that:
+\begin{align*}
+    \fullfunction{f}{X \setminus \set{0}}{\RR}{x}{\frac{1}{x}}
+\end{align*}
+With $f(\infty) = f(-\infty) = 0$. We leave it as an exercise to verify that $f$ is continuous on $X \setminus \set{0}$ using the continuity of the $\arctan$ function. 
+
+Now, consider $A = [1, \infty) \subset X$. $A$ is not closed, as $\infty$ is a limit point of $A$ (this can be verified by checking that for all $\e > 0$, there exists $x \in [1, \infty)$ such that $\abs{\arctan x - \arctan \infty} = \frac{\pi}{2} - \arctan x < \e$). However, we do have that $\overline{A} = [1, \infty]$ is closed and compact, and that $f(\overline{A}) = [0, 1]$ is compact as Theorem \ref{thm:4.14} states. In a sense, we have ``compactified'' the reals through our construction, as $X$ is compact while $\RR$ was not. We also have that $X$ is bounded (unlike $\RR$), as all distances between points are bounded by at most $\pi$. In particular, $\diam X = \pi$. 
+
 
 \setcounter{rudin}{12}
 \begin{definition}{Bounded functions}{4.13}
@@ -316,8 +339,8 @@ Finally, let $X = [0, 10], Y = \RR$, and $f(x) = x^2$. Then, $f$ is uniformly co
         \draw[-latex] (-2.5, 0) -- (-2.5, 2);
         \draw[-latex] (-2.5, 0) -- (-0.5, 0);
         \draw [] (-2.25 , 0.5) to [ curve through ={(-2, 0.75)..(-1.75, 1.1)..(-1.5, 1.25)..(-1.25,1.6)}] (-1,1.5);
-        \filldraw[] (-2.25, 0.5) circle (1.5pt);
-        \filldraw[] (-1, 1.5) circle (1.5pt);
+        \filldraw[] (-2.25, 0.5) circle (1pt);
+        \filldraw[] (-1, 1.5) circle (1pt);
         \draw[dashed] (-2.5, 1.25) -- (-1.5, 1.25);
         \draw[] (-2.25, 0) -- (-2.25, -0.15);
         \node[below] at (-2.25, -0.16) {$a$};
@@ -330,10 +353,10 @@ Finally, let $X = [0, 10], Y = \RR$, and $f(x) = x^2$. Then, $f$ is uniformly co
         \draw[-latex] (0.5, 0) -- (2.5, 0);
         \draw[] (0.75, 0.5) -- (1.375, 0.5);
         \draw[] (1.375, 1.5) -- (2, 1.5);
-        \filldraw[] (0.75, 0.5) circle (1.5pt);
-        \draw[fill = white] (1.375, 0.5) circle (1.5pt);
-        \filldraw[] (1.375, 1.5) circle (1.5pt);
-        \filldraw[] (2, 1.5) circle (1.5pt);
+        \filldraw[] (0.75, 0.5) circle (1pt);
+        \draw[fill = white] (1.375, 0.5) circle (1pt);
+        \filldraw[] (1.375, 1.5) circle (1pt);
+        \filldraw[] (2, 1.5) circle (1pt);
         \draw[] (0.75, 0) -- (0.75, -0.15);
         \node[below] at (0.75, -0.16) {$a$};
         \draw[] (2, 0) -- (2, -0.15);
