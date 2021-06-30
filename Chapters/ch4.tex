@@ -243,6 +243,8 @@ Now, consider $A = [1, \infty) \subset X$. $A$ is not closed, as $\infty$ is a l
 \begin{nproof}
     By Theorems \ref{thm:4.15} and \ref{thm:4.16}, $f(X)$ is closed and bounded. In particular, $m = \inf f(X)$ and $M = \sup f(X)$ exist (as the set is bounded), and $m, M \in f(X)$ as $f(X)$ contains all of its limit points. Hence, there exist $p, q \in X$ such that $f(p) = m$, $f(q) = M$. \qed
 \end{nproof}
+\noindent We consider some examples which demonstrate the necessity of the compactness of the domain. Let $E = (0, 1) \subset \RR$ and consider $f: (0, 1) \mapsto \RR$. Let $f(x) = \frac{1}{x^2}$. $(0, 1)$ is bounded but not closed, and we observe that $f((0, 1)) = [1, \infty)$ which is unbounded (and hence $f$ does not attain a maximum). Instead let $f(x) = x$. Then, we have that $f((0, 1)) = (0, 1)$ which is bounded, but $f$ does not attain a maximum/minimum on its domain. 
+
 
 \begin{theorem}{}{4.17}
     Let $X$ be a compact metric space, and $f: X \mapsto Y$ be continuous and a bijection. Define $f^{-1}: Y \mapsto X$ by $f^{-1}(y) = x$ if $f(x) = y$ (this is well-defined due to the bijectivity of $f$). Then, $f^{-1}$ is continuous.
@@ -263,7 +265,7 @@ Now, consider $A = [1, \infty) \subset X$. $A$ is not closed, as $\infty$ is a l
             \draw[blue] (\i,0.05) -- (\i,-0.05);
             }
         \begin{scope}[shift={(0:2)}]
-        \foreach \i [count=\j] in {0, 2, 4,...,90} {
+        \foreach \i [count=\j] in {0, 3, 6,...,87} {
             \draw[blue] (\i:1) -- (\i:1.11);
             }
         \end{scope}
@@ -366,3 +368,13 @@ Finally, let $X = [0, 10], Y = \RR$, and $f(x) = x^2$. Then, $f$ is uniformly co
     \caption{Visualization of functions for which the IVT applies (left) and for which it doesn't (right).}
     \label{fig20}
 \end{figure}
+
+As a closing remark for this chapter, consider that continuity over a closed interval implies the intermediate value theorem. Does this then imply that a connected space with the intermediate value theorem implies continuity? The answer turns out to be no. Consider discontinuities other than jumps (IVT only tells us a function does not ``jump'' on the domain of interest), that is, a discontinuity that arises from the non-existence of a limit. As an example, consider:
+\begin{align*}
+    \fullfunction{f}{\RR}{\RR}{x}{\begin{cases}
+        \frac{1}{x} & x \neq 0
+        \\ 0 & x = 0
+    \end{cases}
+    }
+\end{align*}
+This function is not continuous at $x = 0$ (the limit does not even exist there!) but satisfies the IVT. 
