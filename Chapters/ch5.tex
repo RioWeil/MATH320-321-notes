@@ -61,25 +61,22 @@ NWe will now proceed to prove a series of theorems that have been seen in first 
         \begin{align*}
             h'(x) = f(x)g'(x) + f'(x)g(x)
         \end{align*}
-        as desired. 
+        as desired.
         \item Let $h(t) = \frac{f(t)}{g(t)}$. Then:
         \begin{align*}
             h(t) - h(x) &= \frac{f(t)}{g(t)} - \frac{f(x)}{g(x)}
             \\ &= \frac{1}{g(t)g(x)}\left(f(t)g(x) - g(t)f(x)\right)
-            \\ &= \frac{1}{g(t)g(x)}\left[\left(f(t)g(x) - f(x)g(x)\right) - \left(f(x)g(t) - f(t)g(t)\right)\right]
             \\ &= \frac{1}{g(t)g(x)}\left[g(x)\left(f(t) - f(x)\right) - f(x)\left(g(t) - g(x)\right)\right]
         \end{align*}
         For $t \neq x$, we can divide both sides by $t - x$ to get:
         \begin{align*}
             \frac{h(t) - h(x)}{t - x} = \frac{1}{g(t)g(x)}\left[g(t)\frac{f(t) - f(x)}{t - x} - f(x)\frac{g(t) - g(x)}{t - x}\right]
         \end{align*}
-        Taking the limit as $t \rightarrow x$ on both sides, we therefore obtain:
-        \begin{align*}
-            h'(x) = \frac{f'(x)g(x) - f(x)g'(x)}{(g(x))^2}
-        \end{align*}
-        which was the desired expression. \qed
+        Taking the limit as $t \rightarrow x$ on both sides, we obtain the desired expression. \qed
     \end{enumerate}
 \end{nproof}
+
+\newpage 
 \noindent As an exercise, one can prove by induction (applying 5.3(b)) that $(f_1f_2f_3\ldots f_n)'(x)$ (where $f_i: [a, b] \mapsto \RR$ and each $f_i'(x)$ exists) is given by:
 \begin{align*}
     f_1'(x)f_2(x)\ldots f_n(x) + \cdots + f_1(x)f_2(x)\ldots f'_n(x).
