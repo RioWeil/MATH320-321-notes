@@ -1,6 +1,123 @@
+\newpage
 \section[Differentiation]{\hyperlink{toc}{Differentiation}}
 
 \subsection{Derivatives}
+\begin{definition}{Derivatives}{5.1}
+    Let $f: [a, b] \mapsto \RR$, and $x \in [a, b]$. We then define the derivative of $f$ at $x$ as:
+    \begin{align*}
+        f'(x) = \lim_{t\rightarrow x} \frac{f(t) - f(x)}{t - x}
+    \end{align*}
+    If the limit exists. Alternative notations for the derivative are given by:
+    \begin{align*}
+        \dpd{f}{x}(x) \text{ or } \dod{}{x}f(x) \text { or } \left.\dod{}{y}f(x)\right|_{y = x}
+    \end{align*}
+\end{definition}
+As an interpretation of the derivative, take $[a, b]$ to be a metric space, with $x$ a limit point of $[a, b] \setminus \set{x}$. Then, $g(t) = \frac{f(t) - f(x)}{t - x}$ is a function from $[a, b] \setminus \set{x} \mapsto \RR$. If $x \in (a, b)$, then the above definition of the derivative agrees with the definition of $f'(x)$ from first year calculus. If $x = a$ or $x = b$, then the above definition agrees with the definition of the one-sided derivative from first year calculus. Note that we will not discuss in this class cases where the domain gets more complicated (i.e. not just closed intervals of $\RR$).
+
+\begin{theorem}{}{5.2}
+    Let $f:[a,b] \mapsto \RR$, let $x \in [a, b]$, and suppose $f'(x)$ exists. Then, $f$ is continuous at $x$.
+\end{theorem}
+\begin{nproof}
+    For $t \neq x$, we can write:
+    \begin{align*}
+        f(t) = f(x) + (f(t) - f(x)) = f(x) + \frac{f(t) - f(x)}{t - x}(t - x)
+    \end{align*}
+    Taking the limit of $t \rightarrow x$, we then have that:
+    \begin{align*}
+        \lim_{t \rightarrow x} f(t) = \lim_{t \rightarrow x} \left(f(x) + \frac{f(t) - f(x)}{t - x}(t - x) \right) = \lim_{t \rightarrow x} f(x) + \lim_{t \rightarrow x} \frac{f(t) - f(x)}{t - x} \lim_{t \rightarrow x} (t - x)
+    \end{align*}
+    Where in the last line we invoke Theorem \ref{thm:4.4}. Evaluating the limits on the RHS by using the existence of the derivative of $f$ at $x$, we have
+    \begin{align*}
+        \lim_{t \rightarrow x} f(t) = f(x) + f'(x)\cdot (0) = f(x)
+    \end{align*}
+    So we conclude that $f$ is continuous at $x$ by Theorem \ref{thm:4.6}. \qed
+\end{nproof}
+The interpretation is that differentiability at $x \in (a, b)$ implies continuity of $f$ at $x$, and the left/right differentiability of $f$ at $a/b$ implies the left/right continuity of $f$ at $a/b$. We have wrapped the proof of all these cases into one!
+
+Note that the converse of the above theorem is not true. As a simple example, take $f(x) = \abs{x}$ on $[-1, 1]$, which is continuous at $x = 0$ (it can be verified that $\lim_{x \rightarrow 0}f(x) = f(0) = 0$) but is not differentiable there (the left/right handed limits of the difference quotient do not agree and hence the derivative does not exist). In Chapter 7, we will construct a function that is continuous everywhere and differentiable nowhere!
+
+NWe will now proceed to prove a series of theorems that have been seen in first year, but using our new/rigorous definitions.
+
+\begin{theorem}{Sum, Product, and Quotient Rules}{5.3}
+    Let $f, g: [a, b] \mapsto \RR$. Let $x \in [a, b]$ and suppose $f$ and $g$ are differentiable at $x$. Then, $f + g$, $f - g$, $f\cdot g$ are differentiable at $x$, and so is $\frac{f}{g}$ provided $g(x) \neq 0$. Furthermore:
+    \begin{enumerate}
+        \item $(f+g)'(x) = f'(x) + g'(x)$
+        \item $(fg)'(x) = f'(x)g(x) + f(x)g'(x)$
+        \item $\left(\frac{f}{g}\right)'(x) = \frac{f'(x)g(x) - f(x)g'(x)}{(g(x))^2}$
+    \end{enumerate}
+\end{theorem}
+\begin{nproof}
+    \begin{enumerate}
+        \item Follows immediately from the additive property of limits (Theorem \ref{thm:4.4}).
+        \item Let $h = fg$. We then have that:
+        \begin{align*}
+            h(t) - h(x) = f(t)\left[g(t) - g(x)\right] + g(x)\left[f(t) - f(x)\right]
+        \end{align*}
+        For $t \neq x$, we can divide both sides by $t-x$ to obtain:
+        \begin{align*}
+            \frac{h(t) - h(x)}{t - x} = f(t)\frac{g(t) - g(x)}{t-x} + g(x)\frac{f(t) - f(x)}{t - x}
+        \end{align*}
+        Taking the limit of $t \rightarrow x$ on both sides, we obtain:
+        \begin{align*}
+            h'(x) = f(x)g'(x) + f'(x)g(x)
+        \end{align*}
+        as desired. 
+        \item Let $h(t) = \frac{f(t)}{g(t)}$. Then:
+        \begin{align*}
+            h(t) - h(x) &= \frac{f(t)}{g(t)} - \frac{f(x)}{g(x)}
+            \\ &= \frac{1}{g(t)g(x)}\left(f(t)g(x) - g(t)f(x)\right)
+            \\ &= \frac{1}{g(t)g(x)}\left[\left(f(t)g(x) - f(x)g(x)\right) - \left(f(x)g(t) - f(t)g(t)\right)\right]
+            \\ &= \frac{1}{g(t)g(x)}\left[g(x)\left(f(t) - f(x)\right) - f(x)\left(g(t) - g(x)\right)\right]
+        \end{align*}
+        For $t \neq x$, we can divide both sides by $t - x$ to get:
+        \begin{align*}
+            \frac{h(t) - h(x)}{t - x} = \frac{1}{g(t)g(x)}\left[g(t)\frac{f(t) - f(x)}{t - x} - f(x)\frac{g(t) - g(x)}{t - x}\right]
+        \end{align*}
+        Taking the limit as $t \rightarrow x$ on both sides, we therefore obtain:
+        \begin{align*}
+            h'(x) = \frac{f'(x)g(x) - f(x)g'(x)}{(g(x))^2}
+        \end{align*}
+        which was the desired expression. \qed
+    \end{enumerate}
+\end{nproof}
+\noindent As an exercise, one can prove by induction (applying 5.3(b)) that $(f_1f_2f_3\ldots f_n)'(x)$ (where $f_i: [a, b] \mapsto \RR$ and each $f_i'(x)$ exists) is given by:
+\begin{align*}
+    f_1'(x)f_2(x)\ldots f_n(x) + \cdots + f_1(x)f_2(x)\ldots f'_n(x).
+\end{align*}
+Note that as a corollary of this, we get that if $f(x) = x^n$, then $f'(x) = nx^{n-1}$ and we hence recover the familiar power rule from first year calculus!
+
+\begin{theorem}{Chain Rule}{5.5}
+    Let $f: [a, b] \mapsto \RR$, $x \in [a, b]$, and suppose $f$ is differentiable at $x$. Suppose furthermore that $f([a, b])$ is contained in some interval $I$. Let $g: I \mapsto \RR$ and suppose $g$ is differentiable at $f(x)$. Then, $g \circ f: [a, b] \mapsto \RR$ is differentiable at $x$, and furthermore:
+    \begin{align*}
+        (g \circ f)'(x) = g'(f(x))f'(x)
+    \end{align*}
+\end{theorem}
+\begin{nproof}
+    Define $h(t) = g \circ f(t)$ for $a \leq t \leq b$, $t \neq x$. We cna then write:
+    \begin{align*}
+        f(t) - f(x) = (t-x)\left[f'(x) + u(t)\right]
+    \end{align*}
+    For a function $u(t)$ with $\lim_{t \rightarrow x} u(t) = 0$. Now defining $y = f(x)$, we write:
+    \begin{align*}
+        g(s) - g(y) = (s-y)\left[g'(y) + r(s)\right]
+    \end{align*}
+    For a function $r(s)$ with $\lim_{s \rightarrow y}r(s) = 0$. Hence, we have that:
+    \begin{align*}
+        h(t) - h(x) &= g(f(t)) - g(f(x))
+        \\ &= \left(f(t) - f(x)\right)\left(g'(y) + r(s)\right)
+        \\ &= (t- x)\left[f'(x) + u(t)\right]\left(g'(y) + r(s)\right)
+    \end{align*}
+    Dividing both sides by $t - x$, we obtain:
+    \begin{align*}
+        \frac{h(t) - h(x)}{t - x} = \left[f'(x) + u(t)\right]\left(g'(y) + r(s)\right)
+    \end{align*}
+    We now take the limit of $t \rightarrow x$ on both sides. $\lim_{t \rightarrow x} u(t) = 0$, and $f$ is differentiable and hence continuous at $x$, so $s = f(t) \rightarrow y$ as $t \rightarrow x$. Thus, $r(s) \rightarrow 0$ as $t \rightarrow x$, and in conclusion:
+    \begin{align*}
+        h'(x) = (g \circ f)'(x) =  f'(x)g'(y) = g'(f(x))f'(x)
+    \end{align*}
+    as desired. \qed
+\end{nproof}
+
 
 \subsection{MVT}
 
