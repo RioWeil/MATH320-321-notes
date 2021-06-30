@@ -149,8 +149,23 @@ Note that as a corollary of this, we get that if $f(x) = x^n$, then $f'(x) = nx^
 
 \begin{figure}[htbp]
     \centering
+    \begin{tikzpicture}[scale = 2]
+        \draw[-latex] (0, 0) -- (0, 2);
+        \draw[-latex] (0, 0) -- (2, 0);
+        \draw[] (1, 1) parabola (0.5, 0.2);
+        \draw[] (1, 1) parabola (1.5, 0.2);
+        \filldraw[] (0.5, 0.2) circle (1pt);
+        \filldraw[] (1.5, 0.2) circle (1pt);
+        \draw[dashed] (0, 1.01) -- (2, 1.01);
+        \draw[] (0.5, 0) -- (0.5, -0.15);
+        \node[below] at (0.5, -0.15) {$a$};
+        \draw[] (1.5, 0) -- (1.5, -0.15);
+        \node[below] at (1.5, -0.12) {$b$};
+        \draw[] (1, 0) -- (1, -0.15);
+        \node[below] at (1, -0.16) {$x$};
+    \end{tikzpicture}
     
-    \caption{Figure demonstrating Rolle's Theorem}
+    \caption{A simple parabolic function that demonstrates Rolle's Theorem.}
     \label{fig21}
 \end{figure}
 
@@ -191,10 +206,8 @@ Note that as a corollary of this, we get that if $f(x) = x^n$, then $f'(x) = nx^
         \item If $f'(x) = 0$ for all $x \in (a, b)$, then $f'(z) = 0$, showing that $f(y) - f(x) = 0$ and hence that $f$ is constant on $(a, b)$.
         \item If $f'(x) \leq 0$ for all $x \in (a, b)$, then $f'(z) \leq 0$, showing that $f(y) - f(x) \leq 0$ and hence that $f$ is monotonically decreasing. \qed
     \end{enumerate}
-    
 \end{nproof}
 
 \subsection{Taylor's Theorem}
-test
-test
+
 \subsection{Local Behavior of Functions}
