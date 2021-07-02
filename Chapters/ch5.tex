@@ -152,11 +152,11 @@ Note that as a corollary of this, we get that if $f(x) = x^n$, then $f'(x) = nx^
     \begin{tikzpicture}[scale = 2]
         \draw[-latex, very thick] (0, 0) -- (0, 2);
         \draw[-latex, very thick] (0, 0) -- (2, 0);
-        \draw[] (1, 1) parabola (0.5, 0.2);
-        \draw[] (1, 1) parabola (1.5, 0.2);
+        \draw[] (1, 1.5) parabola (0.5, 0.2);
+        \draw[] (1, 1.5) parabola (1.5, 0.2);
         \filldraw[] (0.5, 0.2) circle (1pt);
         \filldraw[] (1.5, 0.2) circle (1pt);
-        \draw[dashed, red] (0, 1.01) -- (2, 1.01);
+        \draw[dashed, red] (0, 1.51) -- (1.85, 1.51);
         \draw[] (0.5, 0) -- (0.5, -0.15);
         \node[below] at (0.5, -0.15) {$a$};
         \draw[] (1.5, 0) -- (1.5, -0.15);
@@ -169,6 +169,7 @@ Note that as a corollary of this, we get that if $f(x) = x^n$, then $f'(x) = nx^
     \label{fig21}
 \end{figure}
 
+\newpage 
 \setcounter{rudin}{9}
 \begin{theorem}{Mean Value Theorem}{5.10}
     Let $f: [a, b] \mapsto \RR$ be continuosu and differentiable on $(a, b)$. Then, there exists $x \in (a, b)$ such that $f(b) - f(a) = f'(x)(b - a)$.
@@ -232,7 +233,7 @@ If $f$ is differentiable in a neighbourhood of $x$, then we may compute a second
 We can then continue this process to obtain $f^{(3)}(x), f^{(4)}(x), \ldots, f^{(n)}(x)$. 
 \end{definition}
 \begin{ndef}{: \texorpdfstring{$C^n(I, \RR)$}{Cn(I, R)}}{}
-    If $f$ is continuous in $I$, we can write $f \in C^{0}(I, \RR)$. If $f$ is differentiable in a neighbourhood $I$ and the derivative $f'$ is continuous in $I$, then we write $f \in C^{1}(I, \RR)$. In general, $f \in C^{n}(I, \RR)$ denotes the $n$th derivative of $f$ is continuous in $I$. 
+    If $f$ is continuous in $I$, we can write $f \in C^{0}(I, \RR)$. If $f$ is differentiable in a neighbourhood $I$ and the derivative $f'$ is continuous in $I$, then we write $f \in C^{1}(I, \RR)$. In general, $f \in C^{n}(I, \RR)$ denotes the $n$th derivative of $f$ is continuous in $I$. Note that where it is clear from context, we may drop the $\RR$ and just write $C^n(I)$. 
 \end{ndef}
 \noindent Recall that for a function $f$ continuous and differentiable on $(x_0, x)$, the Mean Value Theorem proved the existence of some $\tilde{x}$ such that:
 \begin{align*}
@@ -298,21 +299,168 @@ Making a table of the value of the LHS as a function of $m$, we have:
 \end{table}
 So we see that three terms are sufficient for a good approximation in this case (and as stated before, the series converges very quickly)!
 
+Note that in a sense, Taylor's Theorem is the culmination of a sequence of theorems we have proven in the course. Roughly, the sequence was as follows:
+\begin{enumerate}[1)]
+    \item $f: X \mapsto Y$ and $K \subset X$, then $f(K)$ compact (Theorem \ref{thm:4.14})
+    \item Extreme Value Theorem: If $f: X \mapsto \RR$ with $f$ continuous and $K$ compact, then $f$ realizes its supremum and infimum on $K$. (Theorem \ref{thm:4.16})
+    \item Rolle's Theorem
+    \item Mean Value Theorem (Theorem \ref{thm:5.10})
+    \item Taylor's Theorem (Theorem \ref{thm:5.15})
+\end{enumerate}
+A question that arises is could we have gone through this sequence of proofs with just the rational numbers ($\QQ$)? The intuitive answer is no, but it may be interesting to see where along this chain the logic breaks down.
+
+The first step that looks immediately questionable is step 2; the supremum/infimum is not well-defined for all subsets of $\QQ$, so we might be able to find a breakdown there. To this end, we consider the set $A = \set{q \in \QQ: q > 0, q^2 < 2}$ that arises in Example \ref{exam:1.1a} and try to find a function $f: K \mapsto \QQ$ with $K \subset \QQ$ compact such that $f(K) = A$. An idea would be to try $f(x) = \sqrt{x}$, with $K = \set{q \in \QQ: \exists r: r^2 = q} \cap [0, 2]$ but this doesn't work as $K$ is not compact. Other attempts such as $K = [1, 3] \cap \QQ$ with $f(x) = \sin(x)$ do not work either as $\sin(x)$ is not necessarily rational, and moreover, $[1, 3] \cap \QQ$ is not a compact set as not all Cauchy sequences in $S$ converge! Finding a valid counterexample for the EVT is therefore difficult. 
+
+An easier brak along the chain to find is with Rolle's Theorem. One can consider the function $f(x) = x^2 - 2$ which can break the Intermediate value theorem as $0$ is not contained in the image if the domain is $\QQ$. We can dress this up to construct a counterexample for Rolle's Theorem.
+
 \subsection{Local Behavior of Functions}
 \begin{ntheorem}{: Second Derivative Test}{}
-    Suppose $f \in C^{3}(I, \RR)$ where $I$ is a neighbourhood of $x_0$. Furthermore, suppose that $f'(x_0) = 0$. If $f''(x_0) > 0$, then $x_0$ is a local minimum. Conversely, if $f''(x_0) < 0$, then $x_0$ is a local maximum.
+    Suppose $f \in C^{3}(I)$ where $I$ is a neighbourhood of $x_0$. Furthermore, suppose that $f'(x_0) = 0$. If $f''(x_0) > 0$, then $x_0$ is a local minimum. Conversely, if $f''(x_0) < 0$, then $x_0$ is a local maximum.
 \end{ntheorem}
 \begin{nproof}
-    By Taylor's Theorem (Theorem \ref{thm:5.15}), if we let $x = x_0 + h$ for $h > 0$, there exists some $\tilde{x} \in (x_0, x)$ such that:
+    By Taylor's Theorem (Theorem \ref{thm:5.15}), if we let $x = x_0 + h$ for $h > 0$, there exists some $\tilde{x} = x_0 + \lambda h$ with $\lambda \in (0, 1)$ such that:
     \begin{align*}
         f(x) = f(x_0) + f'(x_0)(x - x_0) + \frac{1}{2}f''(x_0)(x - x_0)^2 + \frac{1}{6}f^{(3)}(x_0)(x - x_0)^3
     \end{align*}
-    Expressing $\tilde{x}$ as $\tilde{x} = x_0 + \lambda h$ for $\lambda \in (0, 1)$ and using that $f'(x_0) = 0$ and $(x - x_0) = h$, we have that:
+    Using that $f'(x_0) = 0$, we have:
     \begin{align*}
         f(x) - f(x_0) = h^2\left(\frac{1}{2}f''(x_0) + \frac{1}{6}f^{(3)}(x_0 + \lambda h) h\right)
     \end{align*} 
-    Let $0 < \e < \abs{\frac{1}{2}f''(x_0)}$. Then, by the assumed continuity of $f^(3)$, we have that there exists $\delta > )$ such that $\abs{h} < \delta$ implies $\abs{\frac{1}{6}f^{(3)}(x_0 + \lambda h)h} < \e$. Hence, for sufficiently small $h$, we have that:
+    Let $0 < \e < \abs{\frac{1}{2}f''(x_0)}$. Then, by the assumed continuity of $f^(3)$, we have that there exists $\delta > 0$ such that $\abs{h} < \delta$ implies $\abs{\frac{1}{6}f^{(3)}(x_0 + \lambda h)h} < \e$. Hence, for sufficiently small $h$, we have that:
     \begin{align*}
         \sgn\left(f(x) - f(x_0)\right) = \sgn(f''(x_0))
     \end{align*}
+    So we conclude that if $f'(x_0) = 0$ and $f''(x_0) > 0$ then $x_0$ is a local minimum, and if $f''(x_0) < 0$, then $x_0$ is a local maximum. \qed
 \end{nproof}
+
+\begin{ndef}{: Convex Functions}{}
+    Let $f: (a, b) \mapsto \RR$ is \textbf{convex} if for all $x, y \in (a, b)$ with $a < x < y < b$ and for all $\lambda \in (0, 1)$,
+    \begin{align*}
+        f(\lambda x + (1 - \lambda)y) \leq \lambda f(x) + (1 - \lambda)f(y)
+    \end{align*}
+\end{ndef}
+\noindent Note that an alternative definition of convexity is that for any $x, y$ with $x < y$, the function evaluated at some point $z \in (x, y)$ will always be below the average of the function at $x, y$. That is:
+\begin{align*}
+    f(z) \leq \frac{f(x) + f(y)}{2}
+\end{align*}
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=2]
+        \draw[-latex, very thick] (-2.5, 0) -- (-2.5, 2);
+        \draw[-latex, very thick] (-2.5, 0) -- (-0.5, 0);
+        \draw[] (-1.5, 0.5) parabola (-2, 1.5);
+        \draw[] (-1.5, 0.5) parabola (-1, 1.5);
+        \filldraw[] (-2, 1.5) circle (1pt);
+        \filldraw[] (-1, 1.5) circle (1pt);
+        \draw[] (-2, 0) -- (-2, -0.15);
+        \node[below] at (-2, -0.15) {$a$};
+        \draw[] (-1, 0) -- (-1, -0.15);
+        \node[below] at (-1, -0.13) {$b$};
+        \draw[] (-1.7, 0) -- (-1.7, -0.15);
+        \node[below] at (-1.7, -0.16) {$x$};
+        \draw[] (-1.15, 0) -- (-1.15, -0.15);
+        \node[below] at (-1.15, -0.15) {$y$};
+        \filldraw[] (-1.7, 0.66) circle (0.5pt);
+        %\node[left] at (-2.5, 0.66) {$f(x)$};
+        \filldraw[] (-1.15, 1) circle (0.5pt);
+        %\node[left] at (-2.5, 1) {$f(y)$};
+        \draw[dashed] (-1.7, 0.66) -- (-1.15, 1);
+        \draw[-latex, very thick] (0.5, 0) -- (0.5, 2);
+        \draw[-latex, very thick] (0.5, 0) -- (2.5, 0);
+        \draw[] (1.5, 1.5) parabola (1, 0.5);
+        \draw[] (1.5, 1.5) parabola (2, 0.5);
+        \filldraw[] (1, 0.5) circle (1pt);
+        \filldraw[] (2, 0.5) circle (1pt);
+        \draw[] (1, 0) -- (1, -0.15);
+        \node[below] at (1, -0.16) {$a$};
+        \draw[] (2, 0) -- (2, -0.15);
+        \node[below] at (2, -0.13) {$b$};
+        \draw[] (1.3, 0) -- (1.3, -0.15);
+        \node[below] at (1.3, -0.16) {$x$};
+        \draw[] (1.85, 0) -- (1.85, -0.15);
+        \node[below] at (1.85, -0.15) {$y$};
+        \filldraw[] (1.3, 1.34) circle (0.5pt);
+        \filldraw[] (1.85, 1) circle (0.5pt);
+        \draw[dashed] (1.3, 1.34) -- (1.85, 1);
+    \end{tikzpicture}
+    \caption{Visualization of a convex and non-convex function. For the upwards facing parabola, the function (and hence all points $(\lambda x + (1- \lambda) y, f(\lambda x + (1- \lambda) y))$ for $\lambda \in (0, 1)$) always lies below the line connecting $(x, f(x))$ and $(y, f(y))$ for $a < x < y < b$ and hence it is convex. For the downwards facing parabola, this is no longer true and the function is not convex (it is instead\textit{concave}).}
+    \label{fig23}
+\end{figure}
+
+\noindent Another equivalent way of defining convexity is to say that $f$ is convex if and only if for all $a < s < t < y < b$:
+\begin{align*}
+    \frac{f(t) - f(s)}{t - s} \leq \frac{f(u) - f(t)}{u - t}
+\end{align*}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=2]
+        \draw[-latex, very thick] (0, 0) -- (0, 2);
+        \draw[-latex, very thick] (0, 0) -- (2, 0);
+        \draw[] (1, 0.5) parabola (0.5, 1.5);
+        \draw[] (1, 0.5) parabola (1.5, 1.5);
+        \filldraw[] (0.5, 1.5) circle (1pt);
+        \filldraw[] (1.5, 1.5) circle (1pt);
+        \draw[] (0.5, 0) -- (0.5, -0.15);
+        \node[below] at (0.5, -0.16) {$a$};
+        \draw[] (1.5, 0) -- (1.5, -0.15);
+        \node[below] at (1.5, -0.13) {$b$};
+        \draw[] (0.75, 0) -- (0.75, -0.15);
+        \node[below] at (0.75, -0.16) {$s$};
+        \draw[] (1.25, 0) -- (1.25, -0.15);
+        \node[below] at (1.25, -0.17) {$u$};
+        \draw[] (1, 0) -- (1, -0.15);
+        \node[below] at (1, -0.14) {$t$};
+        \filldraw[] (1, 0.5) circle (0.5pt);
+        \filldraw[] (0.75, 0.755) circle (0.5pt);
+        \filldraw[] (1.25, 0.755) circle (0.5pt);
+        \draw[dashed] (0.75, 0.755) -- (1, 0.5);
+        \draw[dashed] (1.25, 0.755) -- (1, 0.5);
+    \end{tikzpicture}
+    
+    \caption{Visualization of the alternative definition of convexity. For any $a < s < t < u < v$, the slope of the line segment joining $s$ and $t$ is less than the slope of the line segment joining $t$ and $u$.}
+    \label{fig24}
+\end{figure}
+
+\begin{ntheorem}{}{}
+    \begin{enumerate}[(a)]
+        \item Assume that $f: (a, b) \mapsto \RR$ is convex. Then, $f$ is continuous.
+        \item Assume that $f \in C^1(a, b)$. Then, if $f$ is convex, $f'$ is increasing.
+        \item Assume that $f \in C^2(a, b)$. Then $f$ convex implies $f'' \geq 0$. 
+    \end{enumerate}
+\end{ntheorem}
+\begin{nproof}
+    \begin{enumerate}
+        \item Let $[c, d] \subset (a, b)$ and $a < c_1 < c < x < y < d < d_1 < b$. By convexity, we have that:
+        \begin{align*}
+            \frac{f(y) - f(x)}{y - x} \leq \frac{f(d) - f(y)}{d - y} \leq \frac{f(d_1) - f(d)}{d_1 - d}
+        \end{align*}
+        and also that:
+        \begin{align*}
+            \frac{f(y) - f(x)}{y - x} \geq \frac{f(x) - f(c)}{x - c} \geq \frac{f(c) - f(c_1)}{c - c_1}
+        \end{align*}
+        We therefore have that:
+        \begin{align*}
+            \set{\abs{\frac{f(y) - f(x)}{y - x}}: c < x < y < b} < M
+        \end{align*}
+        for some $M \in \RR$. Therefore, $\abs{f(y) - f(x)} < M\abs{y - x}$ for all $x, y \in (c, d)$. This holds for all $[c, d] \subset (a, b)$, showing the continuity of $f$.
+        \item Let $f$ be convex, and let $a < c < x < y < d < b$. Then, by convexity we have that:
+        \begin{align*}
+            \frac{f(x) - f(c)}{x - c} \leq \frac{f(y) - f(x)}{y - x} \leq \frac{f(d) - f(y)}{d - y}
+        \end{align*}
+        Ignoring the central term in the inequality, and taking the limit as $x \rightarrow c$ and $ y \rightarrow b$, we have that:
+        \begin{align*}
+            f'(c) \leq f'(b)
+        \end{align*}
+        So we conclude that $f'$ is increasing on $(a, b)$. 
+        \item If $f$ is convex, $f'$ is increasing by (b). Then, we have that for any $a < x < y < b$:
+        \begin{align*}
+            \frac{f(y) - f(x)}{y - x} \geq 0
+        \end{align*}
+        And hence taking $y \rightarrow x$ we have that $f'(x) \geq 0$. \qed
+    \end{enumerate}
+\end{nproof}
+
+\begin{ncorollary}{}{}
+    If $f \in C^3(I)$ and $f'(x_0) = 0$ and $f''(x_0) \neq 0$, $x_0$ is a local minimum if $f$ is convex in a neighbourhood of $x_0$. 
+\end{ncorollary}
