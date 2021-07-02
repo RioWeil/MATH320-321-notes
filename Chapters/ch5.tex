@@ -150,13 +150,13 @@ Note that as a corollary of this, we get that if $f(x) = x^n$, then $f'(x) = nx^
 \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}[scale = 2]
-        \draw[-latex] (0, 0) -- (0, 2);
-        \draw[-latex] (0, 0) -- (2, 0);
+        \draw[-latex, very thick] (0, 0) -- (0, 2);
+        \draw[-latex, very thick] (0, 0) -- (2, 0);
         \draw[] (1, 1) parabola (0.5, 0.2);
         \draw[] (1, 1) parabola (1.5, 0.2);
         \filldraw[] (0.5, 0.2) circle (1pt);
         \filldraw[] (1.5, 0.2) circle (1pt);
-        \draw[dashed] (0, 1.01) -- (2, 1.01);
+        \draw[dashed, red] (0, 1.01) -- (2, 1.01);
         \draw[] (0.5, 0) -- (0.5, -0.15);
         \node[below] at (0.5, -0.15) {$a$};
         \draw[] (1.5, 0) -- (1.5, -0.15);
@@ -181,8 +181,22 @@ Note that as a corollary of this, we get that if $f(x) = x^n$, then $f'(x) = nx^
 
 \begin{figure}[htbp]
     \centering
-    
-    \caption{Figure demonstrating the MVT}
+    \begin{tikzpicture}[scale=2]
+    \draw[-latex, very thick] (0, 0) -- (0, 2);
+    \draw[-latex, very thick] (0, 0) -- (2, 0);
+    \draw [] (0.5 , 0.25) to [ curve through ={(1, 1.25)}] (1.5,1.5);
+    \filldraw[] (0.5, 0.25) circle (1pt);
+    \filldraw[] (1.5, 1.5) circle (1pt);
+    \draw[dashed] (0.5, 0.25) -- (1.5, 1.5);
+    \draw[dashed, red] (0, 0.075) -- (1, 1.325) -- (1.42,1.85);
+    \draw[] (0.5, 0) -- (0.5, -0.15);
+    \node[below] at (0.5, -0.15) {$a$};
+    \draw[] (1.5, 0) -- (1.5, -0.15);
+    \node[below] at (1.5, -0.12) {$b$};
+    \draw[] (0.775, 0) -- (0.775, -0.15);
+    \node[below] at (0.775, -0.16) {$x$};
+    \end{tikzpicture}
+    \caption{A simple continuous function that demonstrates the MVT.}
     \label{fig22}
 \end{figure}
 
