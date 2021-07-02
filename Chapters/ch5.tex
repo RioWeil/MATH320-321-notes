@@ -209,5 +209,79 @@ Note that as a corollary of this, we get that if $f(x) = x^n$, then $f'(x) = nx^
 \end{nproof}
 
 \subsection{Taylor's Theorem}
+\setcounter{rudin}{14}
+\begin{definition}{Higher Order Derivatives}{5.15}
+If $f$ is differentiable in a neighbourhood of $x$, then we may compute a second order derivative:
+\begin{align*}
+    \lim_{t \rightarrow x} \frac{f'(t) - f'(x)}{t - x} = (f')'(x) = f''(x)
+\end{align*}
+We can then continue this process to obtain $f^{(3)}(x), f^{(4)}(x), \ldots, f^{(n)}(x)$. 
+\end{definition}
+\begin{ndef}{: \texorpdfstring{$C^n(I, \RR)$}{Cn(I, R)}}{}
+    If $f$ is continuous in $I$, we can write $f \in C^{0}(I, \RR)$. If $f$ is differentiable in a neighbourhood $I$ and the derivative $f'$ is continuous in $I$, then we write $f \in C^{1}(I, \RR)$. In general, $f \in C^{n}(I, \RR)$ denotes the $n$th derivative of $f$ is continuous in $I$. 
+\end{ndef}
+\noindent Recall that for a function $f$ continuous and differentiable on $(x_0, x)$, the Mean Value Theorem proved the existence of some $\tilde{x}$ such that:
+\begin{align*}
+    f(x) = f(x_0) + f'(\tilde{x})(x - x_0)
+\end{align*}
+This gives us a natural method to build up approximations for functions; we can start with a constant approximation $f(x_0)$, then add a linear term $f'(\tilde{x})(x - x_0)$, then add on a quadratic term $(x - x_0)^2$ and so on. The following theorem gives us a way to construct these approximations and bound their error.
+
+\begin{theorem}{Taylor's Theorem}{5.16}
+    Let $I$ be a neighbourhood of $x_0$, and $f \in C^p(I)$. Then, for any $n < p$, we have that:
+    \begin{align*}
+        f(x) = \sum_{j=0}^n \frac{f^{(j)}(x_0)}{j!}(x- x_0)^j + \frac{f^{(n+1)}(\tilde{x})}{(n+1)!}(x - x_0)^{n+1}
+    \end{align*}
+    Where $\tilde{x} = x_0 + \lambda(x - x_0)$ for some $\lambda \in (0, 1)$ (i.e. $\tilde{x} \in (x_0, x)$). Note that $\tilde{x}$ depends on $x, x_0$, and $n$. 
+\end{theorem}
+\begin{nproof}
+    For $n = 0$, the claim reduces to the Mean Value Theorem. Then, let $n \geq 1$. Let $A$ be a constant that depends on $x, x_0$, and $n$, and let $P_n(x) = \sum_{j=0}^n \frac{f^{(j)}(x_0)}{j!}(x-x_0)^j$. Then, we can write:
+    \begin{align*}
+        f(x) = P_n(x) + A(x-x_0)^{n+1}
+    \end{align*}
+    We need to show that we can express $A$ as relating to the derivative, namely, that there exists $\tilde{x}$ such that $A = \frac{f^{(n+1)}(\tilde{x})}{(n+1)!}$. Let $g(t) = f(t) - P_n(t) - A(t - x_0)^{n+1}$ with $t \in I$. Then, $g \in C^{p}(I)$. For $n < p$, we then have that:
+    \begin{align*}
+        g^{(n+1)}(t) = f^{(n+1)}(t) - 0 - A(n+1)!(t - x_0)
+    \end{align*}
+    We claim that there exists $\tilde{x} \in (x_0, x)$ such that $g^{(n+1)}(\tilde{x}) = 0$. To see this, consider that $P^{(j)}(x_0) = f^{(j)}(x_0)$ for $j = 0, 1, \ldots, n$, so $g(x_0) = 0$, and furthermore:
+    \begin{align*}
+        g'(x_0) = g''(x_0) = g^{(3)}(x_0) = \ldots = g^{(n)}(x_0) = 0
+    \end{align*}
+    Moreover y the choice of $n$, we have that $g(x) = 0$. Hence, by Rolle's Theorem, there exists a point $x_1$ between $x_0$ and $x$ such that $g'(x_1) = 0$. Similarly, repeating the argument above, there exists an $x_2$ between $x_0$ and $x_1$ such that $g''(x_2) = 0$. Repeating this process up to $g^{(n)}$, we have that $g^{(n)}(x_n) = 0$, for some $x_0 < x_{n} < x_{n-1} < \cdots < x$ and in turn, there exists $x_{n+1} \in (x_0, x_n)$ such that $g^{(n+1)}(x_{n+1}) = 0$. Setting $\tilde{x} = x_{n+1}$, the claim is shown. \qed
+\end{nproof}
+
+\noindent As an example, we consider the Taylor series of the function $f(x) = \cos(x)$ (We will formally define this function later on, but for now, let us assume its familar properties and derivatives). We then have that:
+\begin{align*}
+    f^{(j)}(0) = \begin{cases}
+        (-1)^m & \text{if $j = 2m$}
+        \\ 0 & \text{if $j = 2m + 1$}
+    \end{cases}
+\end{align*}
+If we have the sum run from $j = 0$ to some $j = n$, let us then try to estimate the rest. Let $\tilde{x} \in (0, x)$. Then, letting the error term be represented by $\e$, we have that:
+\begin{align*}
+    \e = \abs{\frac{f^{(n+1)}(\tilde{x})}{(n+1)!}(x-x_0)^{n+1}} \leq \frac{\abs{x}^{n+1}}{(n+1)!} 
+\end{align*}
+And we observe that $\linf \frac{\abs{x}^{n+1}}{(n+1)!} = 0$ and hence the error $\e$ goes to zero in the $n \rightarrow \infty$ limit. Therefore, the difference between $\cos(x)$ and its Taylor polynomial vanishes quickly for any $x$, and the Taylor series converges for all $x$. Taking the limit of the sum, we have that:
+\begin{align*}
+    f(x) = \cos(x) = \linf \left(P_{n}(x) + \frac{f^{(n+1)}(x_0)}{(n+1)!}(x - x_0)^{n+1}\right) = \sum_{j=0}^\infty \frac{(-1)^{2m}}{m!}x^{2m} = 1 - \frac{x^2}{2} + \frac{x^4}{4} - \frac{x^6}{6} + \ldots
+\end{align*}
+A question of interest might be how many terms do we need in the Polynomial such that our error is less than $10^{-6}$, say, for estimating the value of $\cos(\frac{\pi}{12})$. In other words, we want to find the $m$ such that:
+\begin{align*}
+    \frac{1}{2m!}\left(\frac{\pi}{12}\right)^{2m} \leq 10^{-6}
+\end{align*}
+Rearranging, we require:
+\begin{align*}
+    (2m)!\left(\frac{12}{\pi}\right)^{2m} > 10^6
+\end{align*}
+Making a table of the value of the LHS as a function of $m$, we have:
+\begin{table}[htbp]
+    \centering\begin{tabular}{c|c}
+    $m$ & $(2m)!\left(\frac{12}{\pi}\right)^{2m}$
+    \\ \hline
+    1 & $\approx 29$
+    \\ 2 & $\approx 5110$
+    \\ 3 & $\approx 2.23 \times 10^{6}$
+    \end{tabular}
+\end{table}
+So we see that three terms are sufficient for a good approximation in this case (and as stated before, the series converges very quickly)!
 
 \subsection{Local Behavior of Functions}
