@@ -223,8 +223,8 @@ Note that as a corollary of this, we get that if $f(x) = x^n$, then $f'(x) = nx^
 \end{nproof}
 
 \subsection{Taylor's Theorem}
-\setcounter{rudin}{14}
-\begin{definition}{Higher Order Derivatives}{5.15}
+\setcounter{rudin}{13}
+\begin{definition}{Higher Order Derivatives}{5.14}
 If $f$ is differentiable in a neighbourhood of $x$, then we may compute a second order derivative:
 \begin{align*}
     \lim_{t \rightarrow x} \frac{f'(t) - f'(x)}{t - x} = (f')'(x) = f''(x)
@@ -240,7 +240,7 @@ We can then continue this process to obtain $f^{(3)}(x), f^{(4)}(x), \ldots, f^{
 \end{align*}
 This gives us a natural method to build up approximations for functions; we can start with a constant approximation $f(x_0)$, then add a linear term $f'(\tilde{x})(x - x_0)$, then add on a quadratic term $(x - x_0)^2$ and so on. The following theorem gives us a way to construct these approximations and bound their error.
 
-\begin{theorem}{Taylor's Theorem}{5.16}
+\begin{theorem}{Taylor's Theorem}{5.15}
     Let $I$ be a neighbourhood of $x_0$, and $f \in C^p(I)$. Then, for any $n < p$, we have that:
     \begin{align*}
         f(x) = \sum_{j=0}^n \frac{f^{(j)}(x_0)}{j!}(x- x_0)^j + \frac{f^{(n+1)}(\tilde{x})}{(n+1)!}(x - x_0)^{n+1}
@@ -299,3 +299,20 @@ Making a table of the value of the LHS as a function of $m$, we have:
 So we see that three terms are sufficient for a good approximation in this case (and as stated before, the series converges very quickly)!
 
 \subsection{Local Behavior of Functions}
+\begin{ntheorem}{: Second Derivative Test}{}
+    Suppose $f \in C^{3}(I, \RR)$ where $I$ is a neighbourhood of $x_0$. Furthermore, suppose that $f'(x_0) = 0$. If $f''(x_0) > 0$, then $x_0$ is a local minimum. Conversely, if $f''(x_0) < 0$, then $x_0$ is a local maximum.
+\end{ntheorem}
+\begin{nproof}
+    By Taylor's Theorem (Theorem \ref{thm:5.15}), if we let $x = x_0 + h$ for $h > 0$, there exists some $\tilde{x} \in (x_0, x)$ such that:
+    \begin{align*}
+        f(x) = f(x_0) + f'(x_0)(x - x_0) + \frac{1}{2}f''(x_0)(x - x_0)^2 + \frac{1}{6}f^{(3)}(x_0)(x - x_0)^3
+    \end{align*}
+    Expressing $\tilde{x}$ as $\tilde{x} = x_0 + \lambda h$ for $\lambda \in (0, 1)$ and using that $f'(x_0) = 0$ and $(x - x_0) = h$, we have that:
+    \begin{align*}
+        f(x) - f(x_0) = h^2\left(\frac{1}{2}f''(x_0) + \frac{1}{6}f^{(3)}(x_0 + \lambda h) h\right)
+    \end{align*} 
+    Let $0 < \e < \abs{\frac{1}{2}f''(x_0)}$. Then, by the assumed continuity of $f^(3)$, we have that there exists $\delta > )$ such that $\abs{h} < \delta$ implies $\abs{\frac{1}{6}f^{(3)}(x_0 + \lambda h)h} < \e$. Hence, for sufficiently small $h$, we have that:
+    \begin{align*}
+        \sgn\left(f(x) - f(x_0)\right) = \sgn(f''(x_0))
+    \end{align*}
+\end{nproof}
