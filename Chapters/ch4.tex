@@ -378,3 +378,28 @@ As a closing remark for this chapter, consider that continuity over a closed int
     }
 \end{align*}
 This function is not continuous at $x = 0$ (the limit does not even exist there!) but satisfies the IVT. 
+
+\subsection{Introduction to Topological Spaces}
+Up until this point, we have been discussing metric spaces $(X, d)$, where $U \subset X$ is open if every point of $U$ is an interior point according to the metric $d$. In this picture, $\emptyset$ is open, $X$ is open, and if $\set{U_\alpha}$ are open, then $\bigcup_{\alpha} U_\alpha$ (arbitrary unions) and $\bigcap_{i=1}^n U_{\alpha_i}$ (finite intersections) are open. We now generalize these notions to a Topological space:
+
+\begin{ndef}{: Topological Spaces}{}
+    A pair $(X, \tau)$ is a \textbf{topological space} if $\tau \subset \mathcal{P}(X)$ such that $\emptyset \in \tau$, $X \in \tau$, and if $\set{U_\alpha} \subset \tau$, then $\bigcup_{\alpha} U_\alpha \in \tau$ and $\bigcap_{i=1}^n U_{\alpha_i} \in \tau$. In this definition, $\tau$ is the set of ``open sets'' of $X$.
+\end{ndef}
+\noindent In metric spaces, we defined openness in terms of a metric, but in topological spaces, we throw away the metric.
+
+If $(X, \tau)$ and $(Y, \rho)$ are topological spaces, how do we define a continuous function $f: X \mapsto Y$? Evidently, the $\e-\delta$ definition no longer makes sense (in the absense of a metric), but our topological characterization of continutiy still holds:
+
+\begin{ndef}{: Continuity on Topological Spaces}{}
+    Let $(X, \tau)$ and $(Y, \rho)$ be topological spaces. Then, $f: X \mapsto Y$ is \textbf{continuous} if for every $U \in \rho$, $f^{-1}(U) \in \tau$. 
+\end{ndef}
+
+\noindent A natural question that arises given a topological space is whether it is possible or not to find a metric that gives us this topology. 
+
+\begin{ndef}{: Metriziability}{}
+    Let $(X, \tau)$ be a topological space. If there exists a metric $d: X \times X \mapsto \RR$ such that every set $U \in \tau$ is open with respect to the metric $d$, then we say that $X$ is \textbf{metrizable}.
+\end{ndef}
+\noindent However, not all topological spaces are metrizable. For example, take $(X, \tau)$ with $\tau = \set{\emptyset, X}$. If $X$ has more than $1$ element, then there is no metric that gives rise to this trivial topology.
+
+\begin{proof}
+    We show the proof for the case of 2 elements (the proof for any finite $\abs{X}$ follows analogously, and the argument for the infinite case is left as an exercise). Let $X = \set{a, b}$ and $\tau = \set{\emptyset, X}$. if $d$ is a metric on $X$, then $d(a, b) = r > 0$. Then, let $0 < s < r$. Then, $N_{s}(a)$ has to be open, as does $N_{s}(b) = \set{b}$. The set of open sets of $X$ under $d$ is therefore $\set{X, \emptyset, \set{a}, \set{b}} \neq \tau$ and hence $(X, \tau)$ is not metrizable.
+\end{proof}
