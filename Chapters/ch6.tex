@@ -2,7 +2,7 @@
 
 \subsection{Definition of the Integral}
 \begin{definition}{Partition}{6.1}
-    A partition of $[a, b] \subset \RR$ is a set $\set{x_0, x_1, \ldots, x_n}$ (for some $n \in \NN$) such that:
+    A \textbf{partition} of $[a, b] \subset \RR$ is a set $\set{x_0, x_1, \ldots, x_n}$ (for some $n \in \NN$) such that:
     \begin{align*}
         a = x_0 \leq x_1 \leq x_2 \leq \ldots \leq x_{n-1} \leq x_n = b
     \end{align*}
@@ -40,7 +40,7 @@
         M_i &= \sup\set{f(x): x_{i-1} \leq x \leq x_i}
         \\ m_i &= \inf\set{f(x): x_{i-1} \leq x \leq x_i}
     \end{align*}
-    Then, we can define the upper and lower sums:
+    Then, we can define the \textbf{upper} and \textbf{lower sums}:
     \begin{align*}
         U(P, f) &= \sum_{i=1}^n M_i \Delta x_i
         \\ L(P, f) &= \sum_{i=1}^n m_i \Delta x_i
@@ -63,7 +63,14 @@
         \node[below] at (-0.2, -0.15) {$x_2$};
         \draw[] (0.4, 0) -- (0.4, -0.15);
         \node[below] at (0.4, -0.15) {$x_3$};
-    \end{tikzpicture}
+        \draw[] (-1, 0) sin (-1.5, 1);
+        \draw[] (-1, 0) sin (-0.5, -1);
+        \draw[] (0, 0) sin (-0.5, -1);
+        \draw[] (0, 0) sin (0.5, 1);
+        \draw[] (1, 0) sin (0.5, 1);
+        \draw[] (1, 0) sin (1.5, -1);
+        \node[circle, fill = blue, minimum size = 0.2cm, inner sep = 0pt, label={[right, text=blue]:$m_i$}] at (0, 0) {};
+        \end{tikzpicture}
     \caption{Example of a function $f$, a partition $P$ of $[a, b]$, and the $M_i, m_i$s for this choice of partition.}
     \label{fig28}
 \end{figure}
@@ -75,16 +82,31 @@ A natural question that arises from the form of the above expression is whether 
 
 \setcounter{rudin}{0}
 \begin{definition}{Upper/Lower Integrals and Riemann Integrability}{6.1}
-    We define the Upper Riemann Integral to be:
+    We define the \textbf{upper Riemann integral} to be:
     \begin{align*}
         \uint{a}{b} = \inf_P U(P, f).
     \end{align*}
-    and the Lower Riemann Integral to be:
+    and the \textbf{lower Riemann integral} to be:
     \begin{align*}
         \lint{a}{b} = \sup_P L(P, f).
     \end{align*}
-    Here, the infimum/supremum is taken over all partitions $P$. We say that $f$ is Riemann integral in
+    Here, the infimum/supremum is taken over all partitions $P$. We say that $f$ is \textbf{Riemann integrable} on $[a, b]$, and write $f \in \R[a, b]$ if:
+    \begin{align*}
+        \uint{a}{b} = \lint{a}{b}
+    \end{align*}
+    which we can write as:
+    \begin{align*}
+        \int_{a}^{b} f dx = \int_{a}^{b} f(x) dx = \int_{a}^{b} f(t) dt.
+    \end{align*}
 \end{definition}
+\noindent Note that the choice of variable in the above definition is totally arbitrary. 
+
+Also, note that while $f$ is not required to be continuous in the above definition, it is required to be bounded; else, $M_i$ and $m_i$ may not exist. Since $f$ is bounded, $U(P, f)$, $L(P, f)$ are bounded for all $P, f$ and hence we have a set of real numbers for which we may consider the supremum/infimium of by the LUB/GLB property of the reals.
+
+\setcounter{rudin}{0}
+\begin{theorem}{ML Bounds}{6.1}
+    
+\end{theorem}
 
 \subsection{Criterion for Integrability}
 
