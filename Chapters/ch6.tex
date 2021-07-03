@@ -77,12 +77,13 @@ A natural question that arises from the form of the above expression is whether 
 \begin{definition}{Upper/Lower Integrals and Riemann Integrability}{6.1}
     We define the Upper Riemann Integral to be:
     \begin{align*}
-        \uint{a}{b} = \inf U(P, f).
+        \uint{a}{b} = \inf_P U(P, f).
     \end{align*}
     and the Lower Riemann Integral to be:
     \begin{align*}
-        \lint{a}{b} = \sup L(P, f)
+        \lint{a}{b} = \sup_P L(P, f).
     \end{align*}
+    Here, the infimum/supremum is taken over all partitions $P$. We say that $f$ is Riemann integral in
 \end{definition}
 
 \subsection{Criterion for Integrability}
