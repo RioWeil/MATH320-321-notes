@@ -97,7 +97,7 @@ A natural question that arises from the form of the above expression is whether 
     \begin{align*}
         \lint{a}{b} = \sup_P L(P, f).
     \end{align*}
-    Here, the infimum/supremum is taken over all partitions $P$. We say that $f$ is \textbf{Riemann integrable} on $[a, b]$, and write $f \in \R[a, b]$ if:
+    Here, the infimum/supremum is taken over all partitions $P$. We say that $f$ is \textbf{Riemann integrable} on $[a, b]$, and write $f \in \R_{[a, b]}$ if:
     \begin{align*}
         \uint{a}{b} = \lint{a}{b}
     \end{align*}
@@ -167,7 +167,7 @@ Also, note that while $f$ is not required to be continuous in the above definiti
     \begin{align*}
         \int_a^b f d\alpha \text{ or } \int_a^b f(x)d\alpha(x)
     \end{align*}
-    and we write that $f \in \R_\alpha[a, b]$. In the case where $\alpha(x) = x$, we recover the Riemann integral.
+    and we write that $f \in \R_{[a, b]}(\alpha)$. In the case where $\alpha(x) = x$, we recover the Riemann integral.
 \end{definition}
 
 \noindent Why is this definition useful? What does it accomplish for us that the original Riemann integral does not? We consider a physically motivating example. Suppose we have a thin wire with varying mass density $\rho(x)$. If we wanted to calculate the mass density of the wire, we would integrat the density $\rho(x)$ over the length of the wire. Now, suppose our wire consists of steel of continuously varying mass density, as well as beads/point masses placed on certain locations of the wire. The Riemann integral cannot handle these point masses, but the Riemann-Stieltjes integral can deal with this case if we use an $\alpha$ with discontinuities in it. Hence, the Riemann-Stieltjes integral allows us to handle cases where we both have continuous and discrete masses to integrate over. It acts as a bridge between Riemann and Lebesgue integration (the latter of which will be the subject of a later course in measure theory).
@@ -191,7 +191,125 @@ We now will answer the question: ``for what choices of $f, \alpha$ is $f$ Rieman
 
 Also, note that the above theorem does \textit{not} apply to (right-hand, left-hand, midpoint, arbitrary) Riemann sums, and is a consequence of the choice of upper/lower sums with supremums/infimums taken over the subintervals.
 
+\begin{nproof}
+    It suffices to consider $P^*$ with a single extra point $x_{i - 1} < x^* < x_i$, and then the genral case follows by induction.
 
+    For the case where $\alpha(x) = x$, the refinement adds $(m^* - m_i)(x^* - x_{i-1}) \geq 0$. 
+
+    For the general case, we have that:
+    \begin{align*}
+        L(P^*, f, \alpha) - L(P, f, \alpha) &= \left(m^*(\alpha(x^*) - \alpha(x_{i-1})) + m_i(x^* - x_{i-1}) \right)- m_i(\alpha_{x_i} - \alpha_{x_{i-1}})
+        \\ &= \left(m^*(\alpha(x^*) - \alpha(x_{i-1})) + m_i(x^* - x_{i-1}) \right)
+        \\ &- m_i\left[(\alpha(x^*) - \alpha(x_{i-1})) + (\alpha(x_i) - \alpha(x^*))\right]
+        \\ &= (m^* - m_i)(\alpha(x^*) - \alpha(x_i))
+    \end{align*}
+    $\alpha$ is montonically increasing, so $x^* \geq x_i$ implies that the second term is positive. Furthermore, $m^* \geq m_i$ as $\inf\set{f(x): x \in [x_{i-1}, x^*]} \geq \inf\set{f(x): x \in [x_{i-1}, x_i]}$. It follows that:
+    \begin{align*}
+        L(P^*, f, \alpha) - L(P, f, \alpha) \geq 0
+    \end{align*} 
+    and the proof for $U(P^*, f, \alpha) - U(P, f, \alpha) \leq 0$ follows analogously. \qed
+\end{nproof}
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=1.5]
+        \draw[latex-latex, very thick] (-1.5, 0) -- (1.5, 0);
+        \draw[] (-1, 0) sin (-0.5, 1);
+        \draw[] (0, 0) sin (-0.5, 1);
+        \draw[] (0, 0) sin (0.5, -1);
+        \draw[] (1, 0) sin (0.5, -1);
+        \draw[] (-1, 0) -- (-1, -0.15);
+        \draw[] (1, 0) -- (1, -0.15);
+        \node[below] at (-1, -0.15) {$x_{i-1}$};
+        \node[below] at (1, -0.15) {$x_i$};
+        \draw[] (-0.25, 0) -- (-0.25, -0.15);
+        \node[below] at (-0.25, -0.12) {$x^*$};
+        %\node[circle, fill = red, minimum size = 0.2cm, inner sep = 0pt, label={[right, text=red]:$M_{i\text{original}}/M_{i\text{new}}$}] at (-0.5, 1) {};
+        \node[circle, fill = blue, minimum size = 0.2cm, inner sep = 0pt, label={[above, text=blue]:$m_{i}$}] at (0.5, -1) {};
+        %\node[circle, fill = red, minimum size = 0.2cm, inner sep = 0pt, label={[right, text=red]:$M_{i+1\text{new}}$}] at (-0.25, 0.7) {};
+        \node[circle, fill = blue, minimum size = 0.2cm, inner sep = 0pt, label={[above, text=blue]:$m^*$}] at (-1, 0) {};
+    \end{tikzpicture}
+    
+    \caption{Visualization of the effect of adding an extra point $x^*$ to the partition $P$. We can see that this has the net effect of increasing $L(P, f, \alpha)$ as $m^* \geq m_i$.}
+    \label{fig29}
+\end{figure}
+\noindent Note that as a point of notation, if $f, \alpha$ are fixed, we sometimes can write $L(P), U(P)$ in place of $L(P, f, \alpha)$ and $U(P, f, \alpha)$. Where $f$ is integrable, we will also sometimes omit the interval and just write $f \in \R(\alpha)$. 
+
+\begin{theorem}{}{6.5}
+    $\lint{a}{b} f d\alpha \leq \uint{a}{b} f d\alpha$.
+\end{theorem}
+\begin{nproof}
+    For partitions $P_1, P_2$, let $P^* = P_1 \cup P_2$ be the common refinement. By Theorem \ref{thm:6.4}, we have that:
+    \begin{align*}
+        L(P_1) \leq L(P^*) \leq U(P^*) \leq U(P_2)
+    \end{align*}
+    And in particular, $L(P_1) \leq U(P_2)$. Therefore, for any fixed $P_2$, $U(P_2)$ is an upper bound on the set of all lower sums. As the supremum is the least upper bound, we have that:
+    \begin{align*}
+        \sup_{P_1} L(P_1) \leq U(P_2)
+    \end{align*}
+    Therefore, as $\sup_{P_1} L(P_1)$ is a lower bound on the set of all upper sums, and the infimum is the greatest lower bound, we have that:
+    \begin{align*}
+        \sup_{P_1} L(P_1) \leq \inf_{P_2} U(P_2)
+    \end{align*}
+    So therefore:
+    \begin{align*}
+        \lint{a}{b} f d\alpha \leq \uint{a}{b} f d\alpha
+    \end{align*}
+    as claimed. \qed
+\end{nproof}
+
+\begin{theorem}{\texorpdfstring{$\e$}{e}-Criterion for Integrability}{6.6}
+    $f \in \R(\alpha)$ if and only if for all $\e > 0$, there exists $P_\e$ such that $U(P_\e) - L(P_\e) < \e$. 
+\end{theorem}
+\begin{nproof}
+    $\boxed{\implies}$ By hypothesis, $\sup_P L(P) = \int_a^b fd\alpha = \inf_P U(P)$. Let $\e > 0$. Then by the property of sup/inf, there exist $P_1, P_2$ such that:
+    \begin{align*}
+        \int_a^b f d\alpha - L(P_1) &< \frac{\e}{2}
+        \\ U(P_2) - \int_a^b f d\alpha &< \frac{\e}{2}
+    \end{align*}
+    Adding the first inequality to the second, we get:
+    \begin{align*}
+        U(P_2) - L(P_1) < \e
+    \end{align*}
+    Letting $P^* = P_1\cup P_2$, by Theorem \ref{thm:6.4} we have that:
+    \begin{align*}
+        U(P^*) - L(P^*) \leq U(P_2) - L(P_1) < \e
+    \end{align*}
+    which proves the claim.
+
+    $\boxed{\impliedby}$ Let $\e > 0$ Then by Theorem \ref{thm:6.5} we have that:
+    \begin{align*}
+        0 \leq \uint{a}{b} f d\alpha - \lint{a}{b} f d\alpha
+    \end{align*}
+    and furthermore:
+    \begin{align*}
+        0 \leq \uint{a}{b} f d\alpha - \lint{a}{b} f d\alpha \leq U(P_\e) - L(P_\e) < \e
+    \end{align*}
+    Where the second inequality is true for any choice of partition. $\e$ is arbitrary, so we conclude that:
+    \begin{align*}
+        \uint{a}{b} f d\alpha - \lint{a}{b} f d\alpha = 0
+    \end{align*}
+    And therefore $\uint{a}{b} f d\alpha = \lint{a}{b} f d\alpha$, and $f \in \R(\alpha)$. \qed
+\end{nproof}
+
+\noindent Theorem 6.7 is a little technical, so we shall skip it for now.
+
+\stepcounter{rudin}
+\begin{theorem}{Continuity implies integrability}{6.8}
+    If $f$ is continuous on $[a, b]$, then $f \in \R_{[a, b]}(\alpha)$. 
+\end{theorem}
+\noindent Note in the above theorem that we make no assumptions on $\alpha$, only that (of course) it is monotonic.
+\begin{nproof}
+    By definition, $U(P) - L(P) = \sum_{i=1}^n (M_i - m_i)\Delta \alpha_i$. The idea will be to choose small intervals to make these differences small. Since $[a, b]$ is compact, $f$ is uniformly continuous by Theorem \ref{thm:4.19}. So, for all $\eta > 0$, there exists $\delta > 0$ such that $\abs{f(x) - f(t)} < \eta$ if $\abs{x - t} < \delta$. Thus, if $P$ is constructed such that $\Delta x_i < \delta$ then $M_i - m_i < \eta$. We then have that:
+    \begin{align*}
+        U(P) - L(P) \leq \sum_{i=1}^n \eta \Delta \alpha_i = \eta \sum_{i=1}^n (\alpha(x_{i}) - \alpha(x_{i-1})) = \eta\left(\alpha(b) - \alpha(a)\right)
+    \end{align*}
+    Where in the last equality we use the fact that we have a telescoping sum. Given $\e > 0$, we choose $\eta < \frac{\e}{\alpha(b) - \alpha(a)}$. With this choice of partition with $\Delta x_i < \delta = \delta(\eta)$, we have that:
+    \begin{align*}
+        U(P) - L(P) < \e
+    \end{align*}
+    and we conclude that $f \in \R_{[a, b]}(\alpha)$ by Theorem \ref{thm:6.6}. \qed
+\end{nproof}
+\noindent A natural question is ``what $f$s are Riemann integrable in general?'' The answer turns out to be ``if $f$ is continuous almost everywhere''. This sounds handwavy, but has a precise definition; although it is not covered in this course, one can refer to Rudin 11.33(b) for details. 
 
 
 \subsection{Properties of the Integral}
