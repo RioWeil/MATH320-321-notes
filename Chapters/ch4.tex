@@ -379,8 +379,8 @@ As a closing remark for this chapter, consider that continuity over a closed int
 \end{align*}
 This function is not continuous at $x = 0$ (the limit does not even exist there!) but satisfies the IVT. 
 
-\subsection{Introduction to Topological Spaces}
-Up until this point, we have been discussing metric spaces $(X, d)$, where $U \subset X$ is open if every point of $U$ is an interior point according to the metric $d$. In this picture, $\emptyset$ is open, $X$ is open, and if $\set{U_\alpha}$ are open, then $\bigcup_{\alpha} U_\alpha$ (arbitrary unions) and $\bigcap_{i=1}^n U_{\alpha_i}$ (finite intersections) are open. We now generalize these notions to a Topological space:
+\subsection{Topological Spaces}
+Up until this point, we have been discussing metric spaces $(X, d)$, where $U \subset X$ is open if every point of $U$ is an interior point according to the metric $d$. In this picture, $\emptyset$ is open, $X$ is open, and if $\set{U_\alpha}$ are open, then $\bigcup_{\alpha} U_\alpha$ (arbitrary unions) and $\bigcap_{i=1}^n U_{\alpha_i}$ (finite intersections) are open. Although this metric space picture is the one we have been using (and will be using going forwards in the course), it could be interesting to take a temporary tangent, and consider a generalization of these notions to toplogical spaces:
 
 \begin{ndef}{: Topological Spaces}{}
     A pair $(X, \tau)$ is a \textbf{topological space} if $\tau \subset \mathcal{P}(X)$ such that $\emptyset \in \tau$, $X \in \tau$, and if $\set{U_\alpha} \subset \tau$, then $\bigcup_{\alpha} U_\alpha \in \tau$ and $\bigcap_{i=1}^n U_{\alpha_i} \in \tau$. In this definition, $\tau$ is the set of ``open sets'' of $X$.
@@ -403,3 +403,15 @@ If $(X, \tau)$ and $(Y, \rho)$ are topological spaces, how do we define a contin
 \begin{proof}
     We show the proof for the case of 2 elements (the proof for any finite $\abs{X}$ follows analogously, and the argument for the infinite case is left as an exercise). Let $X = \set{a, b}$ and $\tau = \set{\emptyset, X}$. if $d$ is a metric on $X$, then $d(a, b) = r > 0$. Then, let $0 < s < r$. Then, $N_{s}(a)$ has to be open, as does $N_{s}(b) = \set{b}$. The set of open sets of $X$ under $d$ is therefore $\set{X, \emptyset, \set{a}, \set{b}} \neq \tau$ and hence $(X, \tau)$ is not metrizable.
 \end{proof}
+
+The original definition we had of convergent sequences (and Cauchy sequences) also does not generalize well to topological spaces (as both invoke the notion of a metric). We can define convergence in topological spaces (in a way that does not explicitly use a metric) as follows:
+
+\begin{ndef}{: Convergence in Topological Spaces}{}
+    Let $(X, \tau)$ be a topological space, and suppose $\set{x_n} \subset X$. We say that $x_n$ \textbf{converges} to $x$ if for every set $U \in \tau$ such that $x \in \tau$, there exists $N$ such that $x_n \in U$ for all $n \geq N$. 
+\end{ndef}
+
+Note that it is impossible to define the notion of a Cauchy sequence without a metric (it cannot be defined solely in terms of open sets). Convergence is topological, but the metric matters for Cauchy.
+
+Recall that the compactness of a set $K$ was defined in terms of every cover having a finite subcover. The sequential compactness of a set $K$ can be defined by saying that every sequence in $K$ has a convergent subsequence. These definitions have no explicit reference to a metric given our above two definitions of open sets/convergence, so the definition of compactness holds in the same way in the picture of topological spaces. Note that in metric spaces, compactness and sequentially compactness are equivalent, but they can be different in topological spaces (this is another fact that tells us that there exist topological spaces that are not metrizable)!
+
+So reviewing what we can define meaningfully in the picture of topological spaces, we see that we can define continuity, convergence, compactness, and sequential compactness; unfortunately, Cauchy sequences are left on the cutting room floor.
