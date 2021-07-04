@@ -393,10 +393,10 @@ A natural question that arises is ``what if $f$ and $\alpha$ are discontinuous a
         \node[] at (-1.5, 0) {$[$};
         \node[] at (1.5, 0) {$]$};
         \node[] at (-1.2, 0) {$($};
-        \node[] at (-1, 0) {\textbullet};
+        \filldraw[] (-1, 0) circle (0.75pt);
         \node[] at (-0.8, 0) {$)$};
         \node[] at (0.2, 0) {$($};
-        \node[] at (0.5, 0) {\textbullet};
+        \filldraw[] (0.5, 0) circle (0.75pt);
         \node[] at (0.8, 0) {$)$};
         \foreach \i in {-1.45, -1.4, ..., -1.21} {
             \draw[blue] (\i, 0.05) -- (\i, -0.05);
@@ -527,7 +527,7 @@ A natural question that arises is ``what if $f$ and $\alpha$ are discontinuous a
     Then, $\int_a^b fd\alpha = f(s)$ (and in particular, $f \in \R(\alpha)$).
 \end{theorem}
 
-\noindent This result is interesting, and some remarks on the nature of this theorem are in order. Firstly, by Theorem 4.29 (not covered in Lecture, see Rudin), since $\alpha$ is monotonically increasing, we have that $\lim_{t \rightarrow x^+}\alpha(t) = \alpha(x^+)$ and $\lim_{t \rightarrow x^-}\alpha(t) = \alpha(x^-)$ exist at every $x \in (a, b)$ and $\alpha(x^-) \leq \alpha(x) \leq \alpha(x^+)$. Secondly, Note that Rudin defines $\alpha$ in the above Theorem to be left contiuous, but in probability theory, it is conventional to use a right continuous (i.e. $\alpha(x) = \alpha(x^+)$ for all $x \in (a, b)$). We leave it as an exercise to prove the theorem for the case of a right continuous $\alpha$ (the strategy and result are identitcal).
+\noindent This result is interesting, and some remarks on the nature of this theorem are in order. Firstly, by Theorem 4.29 (not covered in Lecture, see Rudin), since $\alpha$ is monotonically increasing, we have that $\lim_{t \rightarrow x^+}\alpha(t) = \alpha(x^+)$ and $\lim_{t \rightarrow x^-}\alpha(t) = \alpha(x^-)$ exist at every $x \in (a, b)$ and $\alpha(x^-) \leq \alpha(x) \leq \alpha(x^+)$. Secondly, note that Rudin defines $\alpha$ in the above Theorem to be left contiuous, but in probability theory, it is conventional to use a right continuous (i.e. $\alpha(x) = \alpha(x^+)$ for all $x \in (a, b)$). We leave it as an exercise to prove the theorem for the case of a right continuous $\alpha$ (the strategy and result are identitcal).
 
 \begin{figure}[htbp]
     \centering
@@ -565,8 +565,14 @@ We leave it as a homework exercise (HW2Q2) to prove that no such function can ac
 Finally, we note that this example really shows off something that the Riemann integral cannot reproduce; the incorporation of ``discrete'' points.
 
 \begin{nproof}
-    Choose $P = \set{x_0, x_1 = s, x_2, x_3 = b}$. 
+    Choose $P = \set{x_0, x_1 = s, x_2, x_3 = b}$. We then have that:
+    \begin{align*}
+        U(P) &= \sum_{i=1}^3M_i\Delta \alpha_i = M_2\Delta \alpha_2 = M_2 = \sup\set{f(x): x \in [x_1, x_2]}
+        \\ L(P) &= \sum_{i=1}^3 m_i \Delta \alpha_i = m_2\Delta \alpha_2 = m_2
+    \end{align*}
+    So, we have that $m_2 \leq \int_a^b f d\alpha \leq M_2$ (assuming the integral exists). Taking the limit as $x_2 \rightarrow s^+$, by the continuity of $f$ at $s$ we have that $M_2 \rightarrow f(s)$ and $m_2 \rightarrow f(s)$. Therefore, $\int_a^b f d\alpha$ exists and equals $f(s)$. \qed
 \end{nproof}
+\noindent Note that the above proof works exactly the same way if $s = a$. If $s = b$, then because we take $\alpha$ to be left continuous, $\alpha = 0$ everywhere on $[a, b]$ and the integral just equals zero.
 
 \setcounter{rudin}{13}
 \begin{definition}{Unit Step Function}{6.14}
@@ -586,13 +592,86 @@ Finally, we note that this example really shows off something that the Riemann i
         \draw[latex-latex, very thick] (-2, 0) -- (2, 0);
         \draw[<-, thick, blue] (-1.5, 0) -- (0, 0);
         \draw[->, thick, blue] (0, 1) -- (1.5, 1);
-        \filldraw[fill = white] (0, 0) circle (1pt);
-        \filldraw[fill = black] (0, 1) circle (1pt);
+        \filldraw[fill = blue, draw = blue] (0, 0) circle (1pt);
+        \filldraw[fill = white, draw = blue] (0, 1) circle (1pt);
     \end{tikzpicture}
     
-    \caption{Visualization of the (right continuous) unit step function.}
+    \caption{Plot of the (left continuous) unit step function. To obtain the $\alpha$ used in Theorem \ref{thm:6.15}, move the step to $x = s$ instead of $x = 0$.}
     \label{fig33}
 \end{figure}
 
-\subsection{Integration and Differentiation}
+\stepcounter{rudin}
+\begin{theorem}{}{3.16}
+    Let $c_n \geq 0$ be such that $\sum_{n=1}^\infty c_n < \infty$. Take $s_n \in (a, b)$ distinct (that is, $s_n \neq s_m$ if $n \neq m$). Define $\alpha(x) = \sum_{n=1}^\infty c_n I(x - s_n)$ (which converges/exists by comparison, as $\sum c_n$ converges). Let $f$ be continuous on $[a, b]$. Then,
+    \begin{align*}
+        \int_a^b f d\alpha = \sum_{n=1}^\infty c_nf(s_n)
+    \end{align*}
+\end{theorem}
+\noindent Note that the resultant series in the theorem above is convergent/well defined as $f$ is bouded on $[a, b]$ and hence $\sum_{n=1}^\infty c_nf(s_n) \leq M\sum_{n=1}^\infty c_n$ where $M = \max\set{f(x)}$. Hence the series converges by comparison. If all the $c_n$s are zero except for one, this is just Theorem \ref{thm:6.15}. Note that the above result holds for a finite sum as well (we would use induction to prove it in this case).
+
+\begin{nproof}
+    Let $R_N = \sum_a^b fd\alpha - \sum_{n=1}^N c_nf(s_n)$. We show that $R_n \rightarrow 0$ as $N \rightarrow \infty$ (i.e. given $\e > 0$, we show there exists $N_0$ such that $\abs{R_N} < \e$ if $N \geq N_0$). We define:
+    \begin{align*}
+        \alpha_1(x) = \sum_{n=1}^N c_nI(x - s_n) \quad \alpha_2(x) = \sum_{n=N+1}^\infty c_n I(x - s_n)
+    \end{align*}
+    Then, by Theorem \ref{thm:6.12}(e) we have that:
+    \begin{align*}
+        \int_a^b fd\alpha = \int_a^b f d\alpha_1 + \int_a^b f d\alpha_2 
+    \end{align*}
+    Then, we have that:
+    \begin{align*}
+        \int_a^b d\alpha_1 &= \sum_{i=1}^N \int_a^b f(x)d(c_nI(x - s_n))
+        \\ &= \sum_{n=1}^N c_n\int_a^b f(x)d(I(x - s_n))
+        \\ &= \sum_{n=1}^Nc_nf(s_n)
+    \end{align*}
+    Wherein the first two equalities we again apply Theorem \ref{thm:6.12}(e) and in the last equality we use Theorem \ref{thm:6.15}. We therefore obtain that $R_N = \int_a^b d\alpha_2$. We then have that:
+    \begin{align*}
+        \abs{R_n} \leq M\left[\alpha_2(b) - \alpha_2(a)\right] = M\sum_{n=N+1}^{\infty} c_n
+    \end{align*}
+    Then by the convergence of $\sum c_n$, we can choose $N_0$ such that $\sum_{n=N_0+1}^\infty c_n < \frac{\e}{M}$. We therefore have that $R_N < \e$ if $N \geq N_0$, proving the claim. \qed
+\end{nproof}
+
+\begin{theorem}{}{6.17}
+    Suppose:
+    \begin{enumerate}[(i)]
+        \item $\abs{f(x)} \leq M$ for all $x \in [a, b]$.
+        \item $\alpha$ is continuous and increasing on $[a, b]$ and differentable on $(a, b)$.
+        \item $\alpha' \in \R[a, b]$. 
+    \end{enumerate}
+    Then, $f \in \R_\alpha[a, b]$ if and only if $f\alpha' \in \R[a, b]$ and in this case:
+    \begin{align*}
+        \int_a^b fd\alpha = \int_a^b f(x)\alpha'(x)dx
+    \end{align*}
+\end{theorem}
+
+\begin{nproof}
+    It suffices to show that:
+    \begin{align*}
+        \uint{a}{b} f d\alpha = \uint{a}{b} f\alpha'dx \text{ and } \lint{a}{b}fd\alpha = \lint{a}{b}f\alpha' dx
+    \end{align*}
+    We prove the first equality and the second equality follows analogously. Let $\e > 0$. Since $\alpha' \in \R$, there exists a partition $P$ such that $U(P, \alpha') - L(P, \alpha') < \e$ (this also holds for any refinement of $P$). Letting $A_i = \sup \alpha', a_i = \inf \alpha' on [x_{i-1}, x_i]$ we have that:
+    \begin{align*}
+        \sum_{i=1}^n(A_i - a_i) \Delta x_i < \e
+    \end{align*}
+    By the Mean Value Theorem (Theorem \ref{thm:5.10}) we have that there exists $t_i \in [x_{i-1}, x_i]$ such that $\Delta \alpha_i = \alpha'(t_i)\Delta x_i$. We also have that for all $s_i \in [x_{i-1}, x_i]$, $\abs{\alpha'(s_i) - \alpha'(t_i)} \leq A_i - a_i$ ($\alpha'$ can only vary as much as the maximum minus the minimum on the interval). We therefore have that:
+    \begin{align*}
+        \sum_{i=1}^n \abs{\alpha'(s_i) - \alpha'(t_i)}\Delta x_i \leq \sum_{i=1}^n A_i - a_i\Delta x_i < \e
+    \end{align*}
+    Recall that we skipped Theorem 6.7, but it might be worth comparing this result to Theorem 6.7(c). Let $M = \sup{f(x): x \in [a, b]}$. Now, for any choice of $s_i \in [x_{i-1}, x_i]$, we have that:
+    \begin{align*}
+        \abs{\sum_{i=1}^n f(s_i)\Delta\alpha_i - \sum_{i=1}^n \alpha'(s_i)\Delta x_i} \leq \sum_{i=1}^m M\abs{\alpha'(t_i) - \alpha'(s_i)}\Delta x_i < M\e \quad (*)
+    \end{align*}
+    Therefore:
+    \begin{align*}
+        \sum_{i=1}^n f(s_i) \Delta \alpha_i \leq \sum_{i=1}^n f(s_i)\alpha'(s_i)\Delta x_i + M\e \leq U(P, f\alpha') + M\e
+    \end{align*}
+    We now take the supremum over each $[s_{i-1}, s_i]$. Since $s_i$ is arbitrary, we have that $\uint{a}{b}fd\alpha \leq U(P, f, \alpha) \leq U(P, f\alpha') + M\e$, and hence $\uint{a}{b}f d\alpha \leq \uint{a}{b}f\alpha' dx + M\e$. $(*)$ gives $\uint{a}{b}f\alpha' dx \leq \uint{a}{b}fd\alpha + M\e$. Since $\e$ is arbitrary, we have that $\uint{a}{b}fd\alpha \leq \uint{a}{b}f\alpha'dx$ and $\uint{a}{b}f\alpha'dx \leq \uint{a}{b}fd\alpha$, so $\uint{a}{b}f\alpha'dx = \uint{a}{b}fd\alpha$. \qed
+\end{nproof}
+\noindent This theorem tells us something that looks very familiar from Calculus... namely, a change of variables! Recall the COV formula from first year:
+\begin{align*}
+    \int_a^b f(x)dx = \int_{\phi^{-1}(a)}^{\phi^{-1}(b)} f(\phi(y))\phi'(y)dy
+\end{align*}
+Where $x = \phi(y), y = \phi^{-1}(y)$. We now prove this notion rigorously. 
+
+
 
