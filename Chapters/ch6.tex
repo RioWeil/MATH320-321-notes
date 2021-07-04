@@ -529,6 +529,33 @@ A natural question that arises is ``what if $f$ and $\alpha$ are discontinuous a
 
 \noindent This result is interesting, and some remarks on the nature of this theorem are in order. Firstly, by Theorem 4.29 (not covered in Lecture, see Rudin), since $\alpha$ is monotonically increasing, we have that $\lim_{t \rightarrow x^+}\alpha(t) = \alpha(x^+)$ and $\lim_{t \rightarrow x^-}\alpha(t) = \alpha(x^-)$ exist at every $x \in (a, b)$ and $\alpha(x^-) \leq \alpha(x) \leq \alpha(x^+)$. Secondly, Note that Rudin defines $\alpha$ in the above Theorem to be left contiuous, but in probability theory, it is conventional to use a right continuous (i.e. $\alpha(x) = \alpha(x^+)$ for all $x \in (a, b)$). We leave it as an exercise to prove the theorem for the case of a right continuous $\alpha$ (the strategy and result are identitcal).
 
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=2]
+        \draw[-latex, very thick] (0, 0) -- (2, 0);
+        \draw[-latex, very thick] (0, 0) -- (0, 2);
+        \draw [] (0.25 , 0) to [ curve through ={(0.5, 0.3)}] (1, 0.5);
+        \draw[] (1, 1.5) to [curve through = {(1.4, 1.7)}] (1.9, 1.8);
+        \draw[fill = white] (1, 0.5) circle (1pt);
+        \filldraw[] (1, 1) circle (1pt);
+        \draw[fill = white] (1, 1.5) circle (1pt);
+        \draw[] (1, 0) -- (1, -0.15);
+        \node[below] at (1, -0.15) {$x$};
+        \draw[] (0, 0.5) -- (-0.15, 0.5);
+        \draw[] (0, 1) -- (-0.15, 1);
+        \draw[] (0, 1.5) -- (-0.15, 1.5);
+        \node[left] at (-0.15, 0.5) {$\alpha(x^-)$};
+        \node[left] at (-0.15, 1) {$\alpha(x)$};
+        \node[left] at (-0.15, 1.5) {$\alpha(x^+)$};
+        %\draw[] (0.5, 0) -- (0.5, -0.15);
+        %\draw[] (1.7, 0) -- (1.7, -0.15);
+        %\node[below] at (0.5, -0.16) {$a$};
+        %\node[below] at (1.7, -0.13) {$b$};    
+    \end{tikzpicture}
+    
+    \caption{Visualization of Theorem 4.29. For any strictly increasing function, we have that $\alpha(x^-) \leq \alpha(x) \leq \alpha(x^+)$ at a discontinuity $x$.}
+    \label{fig32}
+\end{figure}
 Any physicists looking at the result of the Theorem will note that it looks very much like the ``Dirac Delta'' function; indeed, this choice of $\alpha$ is making rigorous the notion of a $\delta$ function where:
 \begin{align*}
     \int_a^b f(x)\delta(x - s) = f(s)
@@ -536,6 +563,36 @@ Any physicists looking at the result of the Theorem will note that it looks very
 We leave it as a homework exercise (HW2Q2) to prove that no such function can actually exist. This step-function method is one way to make the $\delta$ function well-defined; other methods include taking the limit of a bell curve, or bringing in the theory of distributions (the latter which is most definitely outside the scope of this course).
 
 Finally, we note that this example really shows off something that the Riemann integral cannot reproduce; the incorporation of ``discrete'' points.
+
+\begin{nproof}
+    Choose $P = \set{x_0, x_1 = s, x_2, x_3 = b}$. 
+\end{nproof}
+
+\setcounter{rudin}{13}
+\begin{definition}{Unit Step Function}{6.14}
+    We define the (left continuous) \textbf{unit step function} as:
+    \begin{align*}
+        I(x) = \begin{cases}
+            0 & x \leq 0
+            \\ 1 & x > 0
+        \end{cases}
+    \end{align*}
+    In Theorem \ref{thm:6.15}, we have that $\alpha(x) = I(x - s)$. 
+\end{definition}
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=2]
+        \draw[-latex, very thick] (0, 0) -- (0, 2);
+        \draw[latex-latex, very thick] (-2, 0) -- (2, 0);
+        \draw[<-, thick, blue] (-1.5, 0) -- (0, 0);
+        \draw[->, thick, blue] (0, 1) -- (1.5, 1);
+        \filldraw[fill = white] (0, 0) circle (1pt);
+        \filldraw[fill = black] (0, 1) circle (1pt);
+    \end{tikzpicture}
+    
+    \caption{Visualization of the (right continuous) unit step function.}
+    \label{fig33}
+\end{figure}
 
 \subsection{Integration and Differentiation}
 
