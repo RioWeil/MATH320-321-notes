@@ -315,8 +315,8 @@ A natural question of interest is the convergence of the sum in the $N \rightarr
     \begin{tikzpicture}
         \draw[latex-latex, very thick] (-2, 0) -- (2, 0);
         \draw[-latex, very thick] (0, 0) -- (0, 2);
-        \draw[<-, blue] (-1.9, 0) -- (0.02, 0);
-        \draw[->, blue, smooth, samples = 100, domain=0.01:1.8, variable = \x] plot(\x, {exp(-1/\x)});
+        \draw[<-, blue, thick] (-1.5, 0) -- (0.02, 0);
+        \draw[->, blue, thick, smooth, samples = 100, domain=0.01:1.5, variable = \x] plot(\x, {exp(-1/\x)});
     \end{tikzpicture}
     \caption{Plot of $f$.}
     \label{fig23}
@@ -343,9 +343,9 @@ We now consider a function $\chi(x)$ defined as $\chi(x) = \frac{f(x)}{f(x) + f(
     \begin{tikzpicture}
         \draw[latex-latex, very thick] (-2, 0) -- (2, 0);
         \draw[-latex, very thick] (0, 0) -- (0, 2);
-        \draw[<-, blue] (-1.9, 0) -- (0.02, 0);
-        \draw[blue, smooth, samples = 100, domain=0.01:0.99, variable = \x] plot(\x, {exp(-1/\x)/(exp(-1/\x) + exp(-1/(1-\x)))});
-        \draw[blue, ->] (0.98, 1) -- (1.8, 1);
+        \draw[<-, blue, thick] (-1.5, 0) -- (0.02, 0);
+        \draw[blue, smooth, samples = 100, domain=0.01:0.99, variable = \x, thick] plot(\x, {exp(-1/\x)/(exp(-1/\x) + exp(-1/(1-\x)))});
+        \draw[blue, ->, thick] (0.98, 1) -- (1.5, 1);
     \end{tikzpicture}
     \caption{Plot of $\chi$.}
     \label{fig24}
