@@ -772,7 +772,7 @@ To get intuition for Theorem \ref{thm:6.20}, we think about what happens when we
         \draw [<->, thick] (0.3, 1) -- (1.7, 1.05);
         \draw[] (0.5, 0) -- (0.5, -0.15);
         \draw[] (1.5, 0) -- (1.5, -0.15);
-        \node[below] at (0.5, -0.15) {$x_0$};
+        \node[below] at (0.5, -0.18) {$x_0$};
         \node[below] at (1.46, -0.15) {$x_0 + h$};
         \filldraw[opacity = 0.5, blue] (0.5, 0) -- (1.5, 0) -- (1.5, 1.04) -- (0.5, 1.004) -- (0.5, 0);
 
@@ -820,14 +820,104 @@ To get intuition for Theorem \ref{thm:6.20}, we think about what happens when we
 \end{theorem}
 
 \begin{nproof}
-    
+    For any partition $P$, we have that
+    \begin{align*}
+        F(b) - F(a) &= \sum_{i=1}^n \left[F(x_i) - F(x_{i-1})\right]
+        \\ &= \sum_{i=1}^n F'(t_i) \Delta x_i
+        \\ &= \sum_{i=1}^n f(t_i) \Delta x_i
+    \end{align*}
+    Where the first equality follows by the fact that the sum telescopes, the second equality follows from the Mean Value Theorem/Theorem \ref{thm:5.10} (By the continuity of $F$, there exists $t_i \in [x_{i-1}, x_i]$ such that $F(x_i) - F(x_{i-1}) = F'(t_i)(x_i - x_{i-1})$) and the third equality follows by Theorem \ref{thm:6.20}. Now, we ahve that $f(t_i) \in [m_i, M_i]$ for each $i$, so we therefore have that:
+    \begin{align*}
+        \sum_{i=1}^n m_i \Delta x_i \leq \sum_{i=1}^n f(t_i)\Delta x_i \leq \sum_{i=1}^n M_i \Delta x_i
+    \end{align*}
+    Hence:
+    \begin{align*}
+        F(b) - F(a) \in [L(P, f), U(P, f)]
+    \end{align*}
+    Additionally, by definition of the integral we have that:
+    \begin{align*}
+        \int_a^b f(x)dx \in [L(P, f), U(P, f)]
+    \end{align*}
+    Let $\e > 0$. Choose $P$ such that $U(P, f) - L(P, f) < \e$. Then, we have that:
+    \begin{align*}
+        \abs{F(b) - F(a) - \int_a^b f(x)dx} < \e
+    \end{align*}
+    Since $\e$ is arbitrary, we have that:
+    \begin{align*}
+        F(b) - F(a) = \int_a^b f(x)dx
+    \end{align*} \qed
 \end{nproof}
 
 \begin{theorem}{Integration By Parts}{6.22}
-    
+    If $F, G$ are differentiable on $[a, b]$ with $F' = f \in \R[a, b]$ and $G' = g \in \R[a, b]$, then:
+    \begin{align*}
+        \int_a^b F(x)g(x)dx = F(b)G(b) - F(a)G(a) - \int_a^b f(x)G(x)dx
+    \end{align*}
 \end{theorem}
+\noindent Note that the above integration by parts formula generalizes to different $\alpha$ (not just $\alpha(x) = x$. The proof of this is left as an exercise (Rudin Chapter 6 Problem 17).
+\begin{nproof}
+    Let $H(x) = F(x)G(x)$. Then, $H'(x) = F'(x)G(x) + F(x)G'(x) = f(x)G(x) + F(x)g(x) \in \R[a, b]$ by the product rule (Theorem \ref{thm:5.3}) and the FTC I (Theorem \ref{thm:6.20}). Therefore, we have that:
+    \begin{align*}
+        H(b) - H(a) = \int_a^b H'(x)dx = \int_a^b f(x)G(x)dx + \int_a^b F(x)g(x)dx
+    \end{align*}
+    Where the first equality follows by FTC II (Theorem \ref{thm:6.21}). We have that $H(b) - H(a) = F(b)G(b) - F(a)G(a)$, so rearranging the above expression, we find that:
+    \begin{align*}
+        \int_a^b F(x)g(x)dx = F(b)G(b) - F(a)G(a) - \int_a^b f(x)G(x)dx
+    \end{align*}
+    Which is the desired expression. \qed
+\end{nproof}
 
+\begin{ndef}{: Improper Integrals}{}
+    If $f \in \R[a, b]$ for all $b > a$, then we define:
+    \begin{align*}
+        \int_a^\infty f(x)dx = \lim_{b \rightarrow \infty}\int_a^b f(x)dx
+    \end{align*}
+    if the integral exists in $\RR$. Then, we say that the \textbf{improper integral} $\int_a^\infty f(x)dx$ converges.
+\end{ndef}
 \begin{ndef}{: Absolute Convergence of Integrals}{}
-    
+    If $\int_a^\infty \abs{f(x)}dx$ converges, then we say that $\int_a^\infty f(x)dx$ \textbf{converges absolutely}.
 \end{ndef}
 
+\noindent To finish off this chapter, we will work through a comprehensive problem together; we prove that $\int_0^\infty \sin t^2 dt$ converges but not absolutely. 
+
+\begin{proof}
+    The proof that the integral does not converge absolutely is left as a homework exercise (HW3Q1). We will prove that the integral converges here. Let $p_n = \int_0^n \sin t^2dt$ where $n \in \NN$. We will show that:
+    \begin{enumerate}[(i)]
+        \item $\set{p_n}$ is a Cauchy sequence and hence has a limit in $\RR$.
+        \item This is enough to show that the improper integral converges.
+    \end{enumerate}
+    We start by showing (i), namely that $\set{p_n}$ is Cauchy. For $x < y$, we have that:
+    \begin{align*}
+        \int_x^y \sin t^2 dt = \int_{x^2}^{y^2} \sin u \frac{1}{2\sqrt{u}}du
+    \end{align*}
+    by a change of variable (Theorem \ref{thm:6.19}). Now performing an integration by parts (Theorem \ref{thm:6.22}) with $F(u) = \frac{1}{2\sqrt{u}}$ and $G'(u)du = \sin u du$, we have that $F'(u) = -\frac{1}{4u^{3/2}}$ and $G(u) = -\cos u$, so:
+    \begin{align*}
+        \int_x^y \sin t^2 dt = \int_{x^2}^{y^2} \sin u \frac{1}{2\sqrt{u}}du = \left.-\frac{\cos u}{2\sqrt{u}}\right|_{x^2}^{y^2} - \int_{x^2}^{y^2} \frac{\cos u}{4u^{3/2}} du
+    \end{align*}
+    Hence:
+    \begin{align*}
+        \int_x^y \sin t^2 dt = \frac{\cos x^2}{2x} - \frac{\cos y^2}{2y} - \int_{x^2}^{y^2} \frac{\cos u}{4u^{3/2}}du
+    \end{align*}
+    Suppose $n \geq m$. Then, we have that:
+    \begin{align*}
+        \abs{p_n - p_m} &= \abs{\int_m^n \sin t^2 dt}
+        \\ &= \abs{\frac{\cos m^2}{2m} - \frac{\cos n^2}{2n} - \int_{m^2}^{n^2} \frac{\cos u}{4 u^{3/2}}du }
+    \end{align*}
+    Using the fact that $\abs{\cos(x)} \leq 1$ and applying the Triangle inequality, we have that:
+    \begin{align*}
+        \abs{p_n - p_m} \leq \frac{1}{2m} + \frac{1}{2n} - \int_{m^2}^{n^2} \frac{1}{4u^{3/2}}du = \frac{1}{2m} + \frac{1}{2n} + \left. \frac{-1}{2u^{1/2}}\right|_{m^2}^{n^2} = \frac{1}{2m} + \frac{1}{2n} - \frac{1}{2n} + \frac{1}{2m} = \frac{1}{m} \quad (*)
+    \end{align*}
+    Let $\e > 0$. Choose $N_0$ such that $\frac{1}{N_0} < \e$. Then, for $m \geq n \geq N_0$ we have that:
+    \begin{align*}
+        \abs{p_n - p_m} \leq \frac{1}{m} \leq \frac{1}{N_0} < \e
+    \end{align*}
+    and we conclude that $\set{p_n}$ is Cauchy. Since $\RR$ is complete, $p_n \rightarrow p$ for some $p \in \RR$. To finish the proof, we show (ii); that this is sufficient. For $b \geq N_0$, choose $N \geq N_0$ such that $b \in [N, N+1)$. Then, we have that:
+    \begin{align*}
+        \int_{0}^b \sin t^2 dt = p_N + \int_{N}^b \sin t^2 dt \leq p_N + \frac{1}{N}
+    \end{align*}
+    Where the inequality follows by $(*)$. We therefore have that:
+    \begin{align*}
+        \abs{p - \int_0^b \sin t^2 dt} \leq \abs{p - p_N} + \abs{\int_{N}^b \sin t^2 dt} < \e + \frac{1}{N} \leq \e + \frac{1}{N_0} < \e + \e  = 2\e
+    \end{align*}
+    Since $\e$ is arbitrary, we conclude that $\lim_{b \rightarrow \infty} \int_0^b \sin t^2 dt = p$ and hence the improper integral converges.
+\end{proof}
