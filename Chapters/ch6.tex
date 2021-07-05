@@ -673,5 +673,161 @@ Finally, we note that this example really shows off something that the Riemann i
 \end{align*}
 Where $x = \phi(y), y = \phi^{-1}(y)$. We now prove this notion rigorously. 
 
+\setcounter{rudin}{18}
+\begin{theorem}{Change of Variable}{6.19}
+    Let $f: [a, b] \mapsto \RR$. Suppose $\phi: [A, B] \mapsto [a, b]$ is continuous and strictly increasing. Suppose $\alpha$ is increasing on $[a, b]$ and $f \in \R_{\alpha}[a, b]$. Let $g = f \circ \phi: [A, B] \mapsto \RR$ and $\beta = \alpha \circ \phi: [A, B] \mapsto \RR$. Then, we have that $g \in \R_\beta[A, B]$, and:
+    \begin{align*}
+        \int_A^B g d\beta = \int_a^b fd\alpha
+    \end{align*}
+\end{theorem}
+\noindent As an example, consider the integral $\int_a^b \sin x^2dx$ for $0 \leq a < b$. We then have that $f(x) = \sin x^2$ and $\alpha(x) = x$. We make the substitution $x^2 = y$, so $\phi(x) = \sqrt{x}$ and $\phi^{-1}(y) = y^2$. Then, A = $\phi^{-1}(a) = a^2$, $B = \phi^{-1}(b) = b^2$. We then have that $g(y) = f \circ \phi(y) = f(\sqrt{y}) = \sin(y)$, and $\beta(y) = \alpha \circ \phi(y) = \alpha(\sqrt{y}) = \sqrt{y}$. We then have that:
+\begin{align*}
+    \int_a^b \sin x^2 dx = \int_{a^2}^{b^2} \sin y d\beta = \int_{a^2}^{b^2} \frac{\sin y}{2\sqrt{y}}dy
+\end{align*}
+Where the first equality follows by Theorem \ref{thm:6.19} and the second equality follows by Theorem \ref{thm:6.17}.
 
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=2]
+        \draw[-latex, very thick] (0, 0) -- (2, 0);
+        \draw[-latex, very thick] (0, 0) -- (0, 2);
+        \draw[] (0, 0.5) -- (-0.15, 0.5);
+        \draw[] (0, 0.7) -- (-0.15, 0.7);
+        \draw[] (0, 1.5) -- (-0.15, 1.5);
+        \draw[] (0, 1.7) -- (-0.15, 1.7);
+        \node[] at (0.7, 1.2) {$x = \phi(y)$};
+        \filldraw[] (0.5, 0.5) circle (1pt);
+        \filldraw[] (1.7, 1.7) circle (1pt);
+        \draw[] (0.5, 0) -- (0.5, -0.15);
+        \draw[] (1.7, 0) -- (1.7, -0.15);
+        \node[below] at (0.5, -0.16) {$a$};
+        \node[below] at (1.7, -0.13) {$b$};
+        \node[below] at (0.86, -0.15) {$x_1$};
+        \node[below] at (1.36, -0.15) {$x_2$};
+        \draw[] (0.86, 0) -- (0.86, -0.15);
+        \draw[] (1.36, 0) -- (1.36, -0.15);
+        \node[left] at (-0.15, 0.5) {$A$};
+        \node[left] at (-0.15, 1.7) {$B$};
+        \node[left] at (-0.15, 0.7) {$y_1$};
+        \node[left] at (-0.15, 1.5) {$y_2$};
+        \draw[dashed] (0, 0.5) -- (0.5, 0.5);
+        \draw[dashed] (0.5, 0) -- (0.5, 0.5);
+        \draw[dashed] (0, 0.7) -- (0.86, 0.7);
+        \draw[dashed] (0.86, 0) -- (0.86, 0.7);
+        \draw[dashed] (0, 1.5) -- (1.36, 1.5);
+        \draw[dashed] (1.36, 0) -- (1.36, 1.5);
+        \draw[dashed] (0, 1.7) -- (1.7, 1.7);
+        \draw[dashed] (1.7, 0) -- (1.7, 1.7);
+        \draw [] (0.5 , 0.5) to [ curve through ={(0.8, 0.6)..(1, 1)..(1.25, 1.2)..(1.4, 1.6)}] (1.7, 1.7);
+    \end{tikzpicture}
+    \caption{Plot of a (monotonically increasing and continuous) function $\phi$ and a demonstration of how it puts partitions of $[a, b]$ and $[A, B]$ in one-to-one correspondence. This gives the intuition for the proof of Theorem \ref{thm:6.19}.}
+    \label{fig34}
+\end{figure}
+
+\begin{nproof}
+    We make the observation that partitions $P$ of $[a, b]$ and parititons $Q$ of $[A, B]$ can be put in 1-1 correspondence via $x_i = \phi(y_i)$. Additionally, we make the observation that the set of $g$ values on $[y_{i-1}, y_i]$ is equal to the set of $f$ values on $[x{i-1}, x_i]$. Finally, we observe that $\alpha(x_i) = (\alpha\circ\phi)(y_i) = \beta(y_i)$. With these three observations, we have that:
+    \begin{align*}
+        U(P, f, \alpha) = U(Q, g, \beta) \text{ and } L(P, f, \alpha) = U(Q, g, \beta)
+    \end{align*}
+    Let $\e > 0$. Since $f \in \R_{\alpha}[a, b]$, there exists a $P$ such that $U(P, f, \alpha) - L(P, f, \alpha) < \e$ by Theorem \ref{thm:6.6}. For this partition, we have that $U(Q, g, \beta) - L(Q, g, \beta) < \e$ for the corresponding partition $Q$. Hence, $g \in \R_\beta[A, B]$. Finally, we have that:
+    \begin{align*}
+        \int_A^B gd\beta = \inf_Q U(Q, g, \beta) = \inf_P U(P, f, \alpha) = \int_a^b fd\alpha
+    \end{align*}
+    \qed
+\end{nproof}
+
+
+\begin{theorem}{Fundamental Theorem of Calculus I}{6.20}
+    Let $f \in \R[a, b]$ and for $x \in [a, b]$, define $F(x) = \int_a^x f(t)dt$. Then, $F$ is continuous on $[a, b]$. If $f$ is continuous at $x_0 \in [a, b]$ then $F'(x_0)$ exists and $F'(x_0) = f(x_0)$.  
+\end{theorem}
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=2]
+        \draw[-latex, very thick] (0, 0) -- (2, 0);
+        \draw[-latex, very thick] (0, 0) -- (0, 2);
+        \filldraw[] (0.5, 0.5) circle (1pt);
+        \filldraw[] (1.7, 1.7) circle (1pt);
+        \draw[] (0.5, 0) -- (0.5, -0.15);
+        \draw[] (1.7, 0) -- (1.7, -0.15);
+        \draw[] (1, 0) -- (1, -0.15);
+        \node[below] at (0.5, -0.16) {$a$};
+        \node[below] at (1.7, -0.13) {$b$};
+        \node[below] at (1, -0.15) {$x$};
+        \draw [] (0.5 , 0.5) -- (1.7, 1.7);
+        \filldraw[opacity = 0.5, blue] (0.5, 0.5) -- (1, 1) -- (1, 0) -- (0.5, 0) -- (0.5, 0.5);
+        \node[text = blue] at (1.2, 0.5) {$F(x)$};
+        \node[above] at (1.2, 1.3) {$f(x)$};
+    \end{tikzpicture}
+    
+    \caption{The Fundamental Theorem of Calculus/Theorem \ref{thm:6.20} gives us a way to relate a curve ($f$) with the culmulative area beneath it ($F$) by means of the derivative.}
+    \label{fig35}
+\end{figure}
+
+To get intuition for Theorem \ref{thm:6.20}, we think about what happens when we ``zoom in'' to a function $f$. Over an interval $(x_0, x_0 + h)$, if $x_0$ is continuous at $x_0$ and $h$ is small, then $f$ will be roughly constant over the interval. Hence, $F(x_0 + h) - F(x_0) \approx f(x_0)h$. In the limit of $h \rightarrow 0$, this approximation becomes exact. 
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=2]
+        \draw[latex-latex, very thick] (0, 0) -- (2, 0);
+        \draw [<->, thick] (0.3, 1) -- (1.7, 1.05);
+        \draw[] (0.5, 0) -- (0.5, -0.15);
+        \draw[] (1.5, 0) -- (1.5, -0.15);
+        \node[below] at (0.5, -0.15) {$x_0$};
+        \node[below] at (1.46, -0.15) {$x_0 + h$};
+        \filldraw[opacity = 0.5, blue] (0.5, 0) -- (1.5, 0) -- (1.5, 1.04) -- (0.5, 1.004) -- (0.5, 0);
+
+    \end{tikzpicture}
+    
+    \caption{Visual Intuition for Theorem \ref{thm:6.20} and its proof. As $f$ is continuous at $x_0$, for small $h$, $f$ is roughly constant on $(x_0, x_0 + h)$. Hence, the increase in culmulative area below the curve is roughly $f(x_0)\cdot h$ (height of $f(x_0)$ times width $h$ of the approximate rectangle).}
+    \label{fig36}
+\end{figure}
+
+\begin{nproof}
+    We first show the continuity of $F$. Choose $M$ such that $\abs{f(t)} \leq M$ for all $t \in [a, b]$. For $a \leq x < y \leq b$, we then have that:
+    \begin{align*}
+        \abs{F(x) - F(y)} = \abs{\int_a^xf(t)dt - \int_a^yf(t)dt} = \abs{\int_x^y f(t)dt} \leq M(y - x)
+    \end{align*}
+    Where we use Theorem \ref{thm:6.12}(c) for the second equality and Theorem \ref{thm:6.12}(d) for the inequality at the end. Let $\e > 0$. If $\abs{x - y} < \delta = \frac{\e}{M}$, then $\abs{F(x) - F(y)} < \e$ so $F$ is continuous.
+
+    We next show the differentiability of $F$.We wish to show that:
+    \begin{align*}
+        \lim_{h \rightarrow 0} \frac{F(x_0 + h) - F(x_0)}{h} = f(x_0)
+    \end{align*}
+    We show the case for $h > 0$, that is, taking the limit of $h \rightarrow 0^+$. We have that:
+    \begin{align*}
+        \frac{1}{h}\left[F(x_0 + h) - F(x_0)\right] - f(x_0) = \frac{1}{h}\int_{x_0}^{x_0 + h}f(t)dt - f(x_0) = \frac{1}{h}\int_{x_0}^{x_0 + h}\left[f(t) - f(x_0)\right]dt
+    \end{align*}
+    Where in the last line we use the observation that $\frac{1}{h}\int_{x_0}^{x_0 + h}f(x_0)dt = f(x_0)$. Since $f$ is continuous at $x_0$, for any $\e > 0$, there exists $\delta > 0$ such that:
+    \begin{align*}
+        \abs{t - x_0} < \delta \implies \abs{f(t) - f(x_0)}  <\e
+    \end{align*}
+    Thus, if $h < \delta$, then:
+    \begin{align*}
+        \abs{ \frac{1}{h}\left[F(x_0 + h) - F(x_0)\right] - f(x_0)} \leq \frac{1}{h}\int_{x_0}^{x_0 + h}\abs{f(t) - f(x_0)}dt < \frac{1}{h}\e h = \e
+    \end{align*}
+    So we conclude that:
+    \begin{align*}
+        \lim_{h \rightarrow 0^+} \frac{F(x_0 + h) - F(x_0)}{h} = F'(x_0) = f(x_0)
+    \end{align*}
+    \qed
+\end{nproof}
+
+\begin{theorem}{Fundamental Theorem of Calculus II}{6.21}
+    If $f \in \R[a, b]$ and there exists $F$ on $[a, b]$ such that $F' = f$, then:
+    \begin{align*}
+        \int_a^b f(x)dx = F(b) - F(a)
+    \end{align*}
+\end{theorem}
+
+\begin{nproof}
+    
+\end{nproof}
+
+\begin{theorem}{Integration By Parts}{6.22}
+    
+\end{theorem}
+
+\begin{ndef}{: Absolute Convergence of Integrals}{}
+    
+\end{ndef}
 
