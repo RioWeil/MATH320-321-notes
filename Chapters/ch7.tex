@@ -332,6 +332,154 @@
     Let $\e > 0$. Choose $N \geq N_0$ such that $\sum_{i = N+1}^\infty M_i < \e$ (which we can choose as the series converges by assumption). We then have that $\abs{S_n(x) - S_m(x)} < \e$ for all $n > m \geq N$ for all $x \in E$. Hence, $S_n(x)$ converges uniformly on $E$. \qed
 \end{nproof}
 
+\begin{theorem}{}{7.11}
+    Let $E \subset X$ and $f_n: E \mapsto \RR \text{ or } \CC$, $n \in \NN$. Suppose $f_n \rightarrow f$ uniformly on $E$, and let $x \in E$ (where $x$ is a limit point of $E$). Suppose $\lim_{t \rightarrow x} f_n(t) = A_n$ exists for each $n \in \NN$. Then, $A_n \rightarrow A$ for some $A$ And $\lim_{t \rightarrow x} f(t) = A$. In other words:
+    \begin{align*}
+        \lim_{t \rightarrow x}\linf f_n(t) = \linf \lim_{t \rightarrow x} f_n(t)
+    \end{align*}
+    showing that the interchange of limits is valid when we have uniform convergence.
+\end{theorem}
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=2]
+        \draw[-latex, very thick] (0, 0) -- (2, 0);
+        \draw[-latex, very thick] (0, 0) -- (0, 2);
+        \draw[red] (0, 1) to [ curve through ={(0.5, 1.2)..(1,0.7)..(1.5,1.2)}] (1.7, 1.1);
+        \draw[red, dotted, yshift = 5pt] (0, 1) to [ curve through ={(0.5, 1.2)..(1,0.7)..(1.5,1.2)}] (1.7, 1.1);
+        \draw[red, dotted, yshift = -5pt] (0, 1) to [ curve through ={(0.5, 1.2)..(1,0.7)..(1.5,1.2)}] (1.7, 1.1);
+        \draw[blue] (0, 1.15) to [curve through = {(0.5, 1.1)..(1, 0.8)..(1.5,1.1)}] (1.7, 1);
+        \draw[blue, fill = white] (0, 1.15) circle (1pt);
+        \node[left, text = blue] at (0, 1.15) {$A_n$};
+        \draw[red, fill = white] (0, 1) circle (1pt);
+        \node[left, text = red] at (0, 1) {$A$};
+        \node[right, text = red] at (1.7, 1.15) {$f$};
+        \node[right, text = blue] at (1.7, 0.95) {$f_n$};
+    \end{tikzpicture}
+    
+    \caption{Visualization of Theorem \ref{thm:7.11}, with $E = (0, \infty)$ and $x = 0$. Eventually, the graph of $f_n$ lies in the $\e$ tube around $f$ (no matter how skinny the tube is). But, $A_n$ is being determined by $f_n$ near $0$, so there is nowhere for $A_n$ to go except to the limiting value. That is, $A_n \rightarrow A$ as the $\e$ tube gets compressed.}
+    \label{fig42}
+\end{figure}
+
+\begin{nproof}
+    We first show that $A_n \rightarrow A$ for some $A$. Since $\RR, \CC$ are complete metric spaces, it suffices to show that $\set{A_n}$ is Cauchy. Given $\e > 0$, choose $N$ such that for $m, n \geq N$, $\abs{f_n(t) - f_m(t)} < \e$ for all $t$ (such an $N$ exists by Theorem \ref{thm:7.8}). Letting $t \rightarrow x$, we therefore obtain that $\abs{A_n - A_m} \leq \e$ for all $m, n \geq N$, showing that $\set{A_n}$ is Cauchy. Hence, the sequence converges to some limit $A$. 
+
+    Now, we show that $\lim_{t \rightarrow x}f(t) = A$. We show this by the common ``$\e/3$ argument''. For all $t \in E$ and $n \in \NN$, we have by the triangle inequality that:
+    \begin{align*}
+        \abs{f(t) - A} \leq \abs{f(t) - f_n(t)} + \abs{f_n(t) - A_n} + \abs{A_n - A} (*)
+    \end{align*} 
+    Which is a good move, as we know that we can make each of the three terms on the RHS arbitrarily small (they are ``close''). Let $\e > 0$. Since $f_n \rightarrow f$ uniformly, there exists $N_1$ such that $\abs{f(t) - f_n(t)} < \frac{\e}{3}$ for all $n \geq N_1$ and all $t \in E$. Since $A_n \rightarrow A$, there exists some $N_2$ such that $\abs{A_n - A} < \frac{\e}{3}$ for all $n \geq N_2$. Letting $N = \max\set{N_1, N_2}$ and taking $n = N$ in $(*)$, we have that:
+    \begin{align*}
+        \abs{f(t) - A} < \frac{\e}{3} + \abs{f_N(t) - A_N} + \frac{\e}{3} 
+    \end{align*}
+    Since $\lim_{t \rightarrow x} f_N(t) = A_N$, we can choose $\delta > 0$ such that $t \in N_{\delta}(x)$ implies $\abs{f_N(t) - A_N} < \frac{\e}{3}$ (Note a subtle point here that this choice of $\delta$ depends on $N$!). Therefore, if $t \in N_{\delta}(x)$, we have that:
+    \begin{align*}
+        \abs{f(t) - A} < \frac{\e}{3} + \frac{\e}{3} + \frac{\e}{3} = \e
+    \end{align*}
+    Hence, as $t \rightarrow x$, $f(t) \rightarrow A$. \qed
+\end{nproof}
+
+\begin{corollary}{}{7.12}
+    Suppose $f_n$ is continuous on $E$ for all $n \in \NN$, and $f_n \rightarrow f$ uniformly on $E$. Then, $f$ is continuous.
+\end{corollary}
+\begin{nproof}
+    Every $f_n$ is continuous at isolated points of $E$, so it suffices to consider limit points $x \in E' \cap E$. For these points, we have that:
+    \begin{align*}
+        f(x) = \lim_{n \rightarrow \infty}f_n(x) = \linf\lim_{t \rightarrow x} f_n(t) = \lim_{t \rightarrow x} \linf f_n(t) = \lim_{t \rightarrow x} f(t)
+    \end{align*}
+    Where the third equality (the interchange of the two limits) follows from Theorem \ref{thm:7.11}. We conclude that $f$ is continuous by Theorem \ref{thm:4.6} (as $f(x) = \lim_{t \rightarrow x} f(t)$). \qed
+\end{nproof}
+
+\begin{theorem}{}{7.13}
+    Suppose $K$ is compact, and:
+    \begin{enumerate}
+        \item $f_n$ is continuous on $K$ for each $n \in \NN$
+        \item $f_n \rightarrow f$ pointwise (that is, for each $x \in K$, $f_n(x) \rightarrow f(x)$) and $f$ is continuous
+        \item $f_n(x) \geq f_{n+1}(x)$ for all $x \in K$ and all $n \in \NN$ (note that the opposite inequality also works, just multiply by $-1$).
+    \end{enumerate}
+    Then, $f_n \rightarrow f$ uniformly on $K$. 
+\end{theorem}
+\noindent Note that this theorem is not super useful, being that it requires so many specific assumptions; however, we will find that it does have an interesting proof. Before we move to that, let us show some counterexamples for when the assumptions do not hold.
+
+\begin{nexample}{}{}
+    Let $K = [-1, 0)$, and define:
+    \begin{align*}
+        f_n(x) = \begin{cases}
+            0 & -1 \leq x \leq -\frac{1}{n}
+            \\ 1 + nx & -\frac{1}{n} < x < 0
+        \end{cases}
+    \end{align*}
+    We then have that $f_n$ is continuous on $K$, that $f_n \rightarrow 0$ pointwise on $K$, that $f$ is continuous (the zero function), and $f_n$ is decreasing with $n$. However, we note that $f_n$ does not converge uniformly to $f$ on $K$, with points close to zero being problem points (for example, take $x = -\frac{1}{2n}$, and then $f_n(x) - f(x) = \frac{1}{2}$ for all $n$). We note that $K$ is \textit{not} compact, showing the importance of compactness of the domain in the above Theorem.
+\end{nexample}
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=1.5]
+        \draw[latex-latex, very thick] (-2, 0) -- (2, 0);
+        \draw[-latex , very thick] (0, 0) -- (0, 2);
+        \draw[thick, blue] (-1.5, 0) -- (-0.5, 0);
+        \draw[thick, blue] (-0.5, 0) -- (0, 1);
+        \draw[blue, fill = white] (0, 1) circle (1pt);
+        \draw[] (-1.5, 0) -- (-1.5, -0.15);
+        \draw[blue, fill = blue] (-1.5, 0) circle (1pt);
+        \draw[] (-0.5, 0) -- (-0.5, -0.15);
+        \node[below] at (-0.5, -0.15) {$-\frac{1}{n}$};
+        \node[below] at (-1.5, -0.15) {$-1$};
+        \node[right] at (0, 1) {$1$};
+    \end{tikzpicture}
+    
+    \caption{Plot of $f_n$ on $K = [-1, 0)$ from the above example.}
+    \label{fig43}
+\end{figure}
+
+\begin{nexample}{}{}
+    Let $K = [0, 1]$, and define:
+    \begin{align*}
+        f_n(x) = \begin{cases}
+            nx & 0 \leq x \leq \frac{1}{n}
+            \\ 2 - nx & \frac{1}{n} \leq x \leq \frac{2}{n}
+            \\ 0 & \frac{2}{n} < x \leq 1
+        \end{cases}
+    \end{align*}
+    We then have that $f_n$ is continuous, $f_n \rightarrow f = 0$ pointwise (which is continuous), and $K$ is compact. However, $f_n$ does not converge to $f$ uniformly. In this case, condition (c) of the above Theorem fails; $f_n$ is not monotonic in $n$.
+\end{nexample}
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=2]
+        \draw[-latex, very thick] (0, 0) -- (2, 0);
+        \draw[-latex, very thick] (0, 0) -- (0, 2);
+        \draw[] (1, 0) -- (1, -0.15);
+        \draw[blue, thick] (0, 0) -- (0.5, 1);
+        \draw[blue, thick] (0.5, 1) -- (1, 0);
+        \draw[blue, thick] (1, 0) -- (1.5, 0);
+        \draw[] (1.5, 0) -- (1.5, -0.15);
+        \draw[blue, fill = blue] (1.5, 0) circle (1pt);
+        \draw[blue, fill = blue] (0, 0) circle (1pt);
+        \draw[] (0, 1) -- (-0.15, 1);
+        \node[left] at (-0.15, 1) {$1$};
+        \node[below] at (1.5, -0.15) {$1$};
+        \draw[] (0.5, 0) -- (0.5, -0.15);
+        \node[below] at (0.5, -0.15) {$\frac{1}{n}$};
+
+        \node[below] at (1, -0.15) {$\frac{2}{n}$};
+
+    \end{tikzpicture}
+    
+    \caption{Plot of $f_n$ on $K = [0, 1]$ from the above example.}
+    \label{fig44}
+\end{figure}
+
+\begin{nproof}
+    Let $g_n = f_n - f$. We can then see that:
+    \begin{enumerate}
+        \item $g_n$ is continuous (the difference of two continuous functions is continuous by Theorem \ref{thm:4.9})
+        \item $g_n \rightarrow 0$ pointwise for all $x \in K$
+        \item $g_n \geq g_{n+1} \geq 0$ for all $x \in K$.
+    \end{enumerate}
+    The goal will be to show that $g_n \rightarrow 0$ uniformly on $K$. We will use the finite intersection property of compact sets to show this.
+\end{nproof}
+
+
+
+
 \subsection{Uniform Convergence and Integration}
 
 \subsection{Uniform Convergence and Differentiation}
