@@ -474,9 +474,48 @@
         \item $g_n \rightarrow 0$ pointwise for all $x \in K$
         \item $g_n \geq g_{n+1} \geq 0$ for all $x \in K$.
     \end{enumerate}
-    The goal will be to show that $g_n \rightarrow 0$ uniformly on $K$. We will use the finite intersection property of compact sets to show this.
+    The goal will be to show that $g_n \rightarrow 0$ uniformly on $K$. We will use the finite intersection property of compact sets to show this. Let $\e > 0$. We will show that there exists $N$ such that $0 \leq g_n(x) < \e$ for all $n \geq N$ and for all $x \in K$. Note that it suffices to show that $g_N(x) < \e$ for some $N$, as $g$ is monotone decreasing in $n$. Define $K_n = g_{n}^{-1}([\e, \infty))$ (i.e. the set of ``bad $x$s''). We are done if we are able to show that there exists a $N$ with $K_N = \emptyset$. Since $g_n$ is conitnuous, $K_n$ is closed as $[\e, \infty)$ is closed. Since $K_n \subset K$, $K$ is therefore compact as a closed subset of a compact set (Theorem \ref{thm:2.35}). Additionally, we have that $K_{n+1} \subset K_n$, as $g_{n+1} \geq \e$ implies that $g_n \geq \e$. Since $g_n \rightarrow 0$ pointwise, given $x \in K$, there exsits $N_x$ such that $x \notin K_n$ for all $n \geq N_x$ (as $g_n(x) < \e$ for large enough $n$). We therefore have that $x \notin \bigcap_n K_n$ for all $x \in K$. Then, applying the corollary to Theorem \ref{thm:2.36}, we obtain that $K_N$ is empty. This means that for this $N$, $g_N^{-1}([\e, \infty)) = \emptyset$, and hence $g_N^{-1}([0, \e]) = K$, which is to say that $0 \leq g_n(x) < \e$ for all $x \in K$. \qed
 \end{nproof}
 
+\begin{definition}{$\C(X)$ and the Supremum Norm}{7.14}
+    For a metric space $X$, define:
+    \begin{align*}
+        \C(X) = \set{f: X \mapsto \CC \text{ such that $f$ is bounded and continuous.}}
+    \end{align*}
+    The \textbf{supremum norm} of $f \in \C(X)$ is then defined as $\norm{f} = \sup_{x \in X}\abs{f(x)}$. We claim that $\norm{f - g}$ defines a metric on $\C(X)$, and we prove this assertion below. Thus, we have that:
+    \begin{align*}
+        f_n \rightarrow f \text{ uniformly} &\iff \forall \e > 0, \exists N \text{ such that } \abs{f_n(x) - f(x)} < \e \; \forall n \geq N \text{ and } \forall x \in X
+        \\ &\iff \forall \e > 0, \exists N \text{ such that } \norm{f_n(x) - f(x)} < \e \; \forall n \geq N
+        \\ &\iff f_n \rightarrow f \text{ in the metric space $\C(X)$}
+    \end{align*}
+    We have hence ``metrized'' uniform convergence.
+\end{definition}
+\begin{ntheorem}{}{}
+    $\norm{f - g}$ defines a metric on $\C(X)$.
+\end{ntheorem}
+\begin{nproof}
+    We recall the three properties of a metric as per Definition \ref{def:2.15}:
+    \begin{enumerate}
+        \item $d(f, g) = 0 \iff f = g$
+        \item $d(f, g) = d(g, f)$
+        \item $d(f, g) \leq d(f, h) + d(h, g)$
+    \end{enumerate}
+    We now show that $\norm{f - g}$ satisfies these three properties.
+    \begin{enumerate}
+        \item $\norm{f - g} = 0$ means that $0 = \sup_{x \in X}\abs{f(x) - g(x)} \implies \abs{f(x) - g(x)} = 0$ for all $x$, hence $f(x) = g(x)$. 
+        \item $\norm{f - g} = \sup_{x \in X}\abs{f(x) - g(x)} = \sup_{x \in X}\abs{g(x) - f(x)} = \norm{g - f}$
+        \item We have that $\abs{f(x) - g(x)} \leq \abs{f(x) - h(x)} + \abs{h(x) - g(x)}$ for all $x \in X$, so $\norm{f - g} \leq \norm{f - h} + \norm{h - g}$. \qed
+    \end{enumerate}
+\end{nproof}
+
+\noindent Note that sometimes $\norm{f}$ is written as $\norm{f}_\infty$ as it is the $n \rightarrow \infty$ limit of the $L_p$ norm. See HW3Q3 for the proof that the supremum norm is the limit of the $L_p$ norm. 
+
+\begin{theorem}{}{7.15}
+    $\C(X)$ is a complete metric space (every Cauchy sequence in $\C(X)$ has a limit in $\C(X)$).
+\end{theorem}
+\begin{nproof}
+    
+\end{nproof}
 
 
 
