@@ -378,9 +378,9 @@
     Hence, as $t \rightarrow x$, $f(t) \rightarrow A$. \qed
 \end{nproof}
 
-\begin{corollary}{}{7.12}
+\begin{theorem}{}{7.12}
     Suppose $f_n$ is continuous on $E$ for all $n \in \NN$, and $f_n \rightarrow f$ uniformly on $E$. Then, $f$ is continuous.
-\end{corollary}
+\end{theorem}
 \begin{nproof}
     Every $f_n$ is continuous at isolated points of $E$, so it suffices to consider limit points $x \in E' \cap E$. For these points, we have that:
     \begin{align*}
@@ -514,14 +514,95 @@
     $\C(X)$ is a complete metric space (every Cauchy sequence in $\C(X)$ has a limit in $\C(X)$).
 \end{theorem}
 \begin{nproof}
-    
+    Let $\set{f_n}$ be a Cauchy sequence in $\C(X)$. Then, given $\e > 0$, $\exists N$ such that $m, n \geq N$ implies $\norm{f_m - f_n} = \sup_{x \in X}\abs{f_m(x) - f_n(x)} < \e$. By the Cauchy criterion (Theorem \ref{thm:7.8}), $f_n \rightarrow f$ for some $f$. What is left to show is that $f \in \C(X)$. $f$ is continuous as it is the uniform limit of continuous functions (Theorem \ref{thm:7.12}). Additionally, $f$ is bounded as there exists $N_0$ such that $\abs{f(x) - f_{N_{0}}(x)} < 1$ for all $x$, and hence $\abs{f(x)} \leq \abs{f_{N_0}(x)} + \abs{f(x) - f_{N_0}(x)} \leq M_0 + 1$ for all $x$ where $M_0$ is the bound on $f_{N_0}(x)$ that exists as $f_{N_0} \in \C(X)$. As $f$ is continuous and bounded, we conclude that $f \in \C(X)$. \qed
 \end{nproof}
 
-
-
 \subsection{Uniform Convergence and Integration}
+\begin{theorem}{}{7.16}
+    Suppose $f_n \in \R_{\alpha}[a, b]$ for all $n \in \NN$ and that $f_n \rightarrow f$ uniformly on $[a, b]$. Then, $f \in \R_{\alpha}[a, b]$, and:
+    \begin{align*}
+        \linf \int_{a}^b f_n d\alpha = \int_a^b f d\alpha
+    \end{align*}
+\end{theorem}
+
+\newpage
+\noindent In other words, the above Theorem tells us that we can interchange the integral with the limit if the sequence is uniformly convergent. Compare this to our earlier example with pointwise convergence, where such an interchange was not possible (as it yielded different values).
+
+\begin{nproof}
+    First, we show that $f \in \R_{\alpha}[a, b]$. Let $\e > 0$. Since $f_n \rightarrow f$ uniformly, there exists $N$ such that $\abs{f_n(X) - f(x)} < \e$ if $n \geq N$ for all $x \in [a, b]$. So, $f_n(x) - \e < f(x) < f_n(x) + \e$. Hence,
+    \begin{align*}
+        \lint{a}{b}(f_n - \e)d\alpha \leq \lint{a}{b}fd\alpha \leq \uint{a}{b} fd\alpha \leq \uint{a}{b}(f_n + \e)d\alpha 
+    \end{align*}
+    Since $f_n \pm \e \in \R_{\alpha}[a, b]$, we have that:
+    \begin{align*}
+        \int_{a}^b (f_n - \e)d\alpha \leq \lint{a}{b}fd\alpha \leq \uint{a}{b} fd\alpha \leq \int_a^b(f_n + \e)d\alpha 
+    \end{align*}
+    Therefore:
+    \begin{align*}
+        0 \leq \uint{a}{b} fd\alpha - \lint{a}{b} fd\alpha \leq \int_a^b 2\e d\alpha \implies \uint{a}{b} fd\alpha - \lint{a}{b} fd\alpha \leq 2\e(\alpha(b) - \alpha(a))
+    \end{align*}
+    Since $\e$ is arbitrary, we have that $\uint{a}{b} fd\alpha = \lint{a}{b} fd\alpha$ and hence $f \in \R_\alpha[a, b]$.
+
+    Next, we show that $\linf \int_{a}^b f_n d\alpha = \int_a^b f d\alpha$. To do this, we show that $\abs{\int_a^b fd\alpha - \int_a^bf_nd\alpha}$ goes to 0 as $n \rightarrow \infty$. We have that:
+    \begin{align*}
+        \abs{\int_a^b fd\alpha - \int_a^bf_nd\alpha} = \abs{\int_a^b (f - f_n)d\alpha} \leq \int_a^b\abs{f - f_n}d\alpha \leq \int_a^b \e d\alpha = \e(\alpha(b) - \alpha(a))
+    \end{align*}
+    Where in the first equality we use Linearity (Theorem \ref{thm:6.12}), the first inequality we apply Theorem \ref{thm:6.13}, and in the second inequality, we use that for any $\e > 0$, there exists $N$ such that $\abs{f - f_n} < \e$ for $n \geq N$. Since $\e$ is arbitrary, we conclude that $\linf \int_{a}^b f_n d\alpha = \int_a^b f d\alpha$. \qed
+\end{nproof}
+
+\begin{ncorollary}{}{}
+    If $f_n \in \R_\alpha[a, b]$ and $f(x) = \sum_{n=1}^\infty f_n(x)$ converges uniformly on $[a, b]$, then $\int_a^b fd\alpha = \sum_{n=1}^\infty \int_a^b f_n d\alpha$. That is to say, the infinite series and the integral can be interchanged.
+\end{ncorollary}
+
+\begin{nproof}
+    Let $S_n(x) = \sum_{i=1}^n f_i(x)$. Then, $S_n(x) \rightarrow f(x)$ uniformly by assumption, so:
+    \begin{align*}
+        \int_a^b fd\alpha = \linf \int_a^b s_n d\alpha = \linf \sum_{i=1}^n \int_a^b f_i d\alpha = \sum_{i=1}^\infty \int_a^b f_i d\alpha
+    \end{align*}
+    Where the first equality follows from the previous theorem, and the second equality follows from the fact that a finite sum and integral can be interchanged by Linearity. \qed
+\end{nproof}
 
 \subsection{Uniform Convergence and Differentiation}
+Recall Example \ref{exam:7.5}, where we looked at the sequence of functions $f_n(x) = \frac{\sin n x}{\sqrt{n}}$. We showed that $f_n \rightarrow 0$ uniformly on $\RR$, but we found in the example that $f_n'(x)$ does \emph{not} converge. We are therefore motivated to find a condition that if a function converges and is differentiable, then $f_n'$ converges.
+
+As a point of notation, note that for $a < b$ we denote $\int_b^a f d\alpha = -\int_a^b fd\alpha$. 
+
+\begin{theorem}{}{7.17}
+    Suppose:
+    \begin{enumerate}
+        \item $f_n$ is differentiable on $[a, b]$;
+        \item $\exists x_0 \in [a, b]$ such that $f_n(x_0)$ converges as $n \rightarrow \infty$;
+        \item $f_n'$ converges uniformly on $[a, b]$. 
+    \end{enumerate}
+    Then, there exists $f$ such that $f_n \rightarrow f$ uniformly on $[a, b]$, and:
+    \begin{align*}
+        \linf f_n'(x) = f'(x) \; \forall x \in [a, b]
+    \end{align*}
+\end{theorem}
+\noindent A couple remarks before we move to the proof. First, we note that hypothesis (b) seems strange; why would we require convergence $f_n$ at a single point? This has to do with the fact that in differentiating, we lost our constants. For example, let $f_n(x) = n$ as the simplest example. In this case, we have that $f_n$ is differentiable everywhere (with derivative zero everywhere on $[a, b]$) and that $gfn'$ uniformly converges (it is just the sequence of the zero function). However, $f_n$ does not even converge!
+
+Note that we can and will assume that $f_n(x_0) \rightarrow 0$ at the specified $x_0$; if this is not true, we can simply replace $f_n(x)$ by $f_n(x) - f_n(x_0)$.
+
+\begin{nproof}
+    The proof of the above theorem is not so trivial. We will therefore prove a weaker theorem. Namely, we add a fourth hypothesis (d) that $f_n'$ is continuous on $[a, b]$. The proof of the stronger/original theorem can be found in Rudin.
+    
+    First, by (c) there exists a $g$ such that $f_n' \rightarrow g$ uniformly on $[a, b]$ (and also on any subinterval of $[a, b]$). Furthermore, by (d) and Theorem \ref{thm:7.12}, $g$ is continuous. 
+    
+    Next, applying Theorem \ref{thm:7.16} (to either $[x_0, x]$ or $[x, x_0]$) we have that:
+    \begin{align*}
+        \int_{x_0}^x f_n'(t) \rightarrow \int_{x_0}^x g(t) dt = f(x)
+    \end{align*}
+    Then applying the Fundamental theorem of calculus (Theorem \ref{thm:6.21}), we have $f_n(x) - f_n(x_0) \rightarrow f(x) \text{ and } f'(x) = g(x)$. But we also assume that $f_n(x_0) \rightarrow 0$, so $f_n(x) \rightarrow f(x)$ and $f_n'(x) \rightarrow g(x) = f'(x)$. So, we have shown pointwise convergence of $f_n$ to $f$! We have obtained that $\linf f_n'(x) = f'(x)$ for all $x \in [a, b]$. Finally, we show $f_n \rightarrow f$ uniformly on $[a, b]$. We have that:
+    \begin{align*}
+        \abs{f(x) - f_n(x)} = \abs{\int_{x_0}^x g(t)dt - \int_{x_0}^x f_n'(t) dt + f_n(x_0)} &\leq \int_{x_0}^x \abs{g(t) - f_n'(t)}dt + \abs{f_n(x_0)}
+        \\ &< \int_{x_0}^x \frac{\e}{2(b-a)}dt + \frac{\e}{2} \leq \frac{\e}{2(b-a)}(b-a) + \frac{\e}{2} = \e
+    \end{align*}
+    Where we apply Theorem \ref{thm:6.13} for the first inequality, the fact that $f_n'(t) \rightarrow g$ and $f_n(x_0) \rightarrow 0$ in the second last inequality, and Theorem \ref{thm:6.12}(d) in the last inequality. \qed
+\end{nproof}
+
+\begin{theorem}{}{7.18}
+    There exists a continuous function $f: \RR \mapsto \RR$ such that $f'(x)$ does not exist for any $x \in \RR$.
+\end{theorem}
 
 \subsection{Equicontinuituous Families of Functions}
 
