@@ -604,7 +604,17 @@ Note that we can and will assume that $f_n(x_0) \rightarrow 0$ at the specified 
     There exists a continuous function $f: \RR \mapsto \RR$ such that $f'(x)$ does not exist for any $x \in \RR$.
 \end{theorem}
 
-\noindent The proof of the above theorem will follow by the construction of an ``infinitely spiky'' real function. Though this might seem like a very pathological counterexample, there are actually many examples of non-differentiable phenomena in mathematics. In the field of probability, brownian motion, brownian maps, and discrete exploration processes all have this property. A visualization of the brownian map, as well as other beautiful probability pictures can be found here \url{https://secure.math.ubc.ca/Links/Probability/pages/pic_gallery.html}.
+\noindent The proof of the above theorem will follow by the construction of an ``infinitely spiky'' real function. Though this might seem like a very pathological counterexample, there are actually many examples of non-differentiable phenomena in mathematics. Looking at the field of probability, we find that brownian motion, brownian maps, and discrete exploration processes (to name a few) all have this property. A visualization of the brownian map, as well as other beautiful probability pictures can be found here \url{https://secure.math.ubc.ca/Links/Probability/pages/pic_gallery.html}.
+
+\begin{nproof}
+    Define $\phi: \RR \mapsto \RR$ by $\phi(x) = \abs{x}$ for $-1 \leq x \leq 1$ and $\phi(x + 2) = \phi(x)$ for all $x \in \RR$. (See figure \textbf{REF}). Then, $\phi$ is continuous; moreover, it is Lipschiz continuous, with $\abs{\phi(s) - \phi(t)} \leq \abs{s - t}$ for all $s, t \in \RR$ (with equality where there are no integers between $s, t$). Define $f(x) = \sum_{n=0}^\infty \left(\frac{3}{4}\right)^n \phi(4^nx)$. The series converges uniformly on $\RR$ by Theorem \ref{thm:7.10}, since $0 \leq \left(\frac{3}{4}\right)^n \phi(4^nx) \left(\frac{3}{4}\right)^n$ and $\sum_n\left(\frac{3}{4}\right)^n$ converges (it is a geometric series with $r < 1$). Hence, $f$ is continuous as it is a uniform limit of a continuous function (Theorem \ref{thm:7.12}). We now prove that $f'(x)$ does not exists for any $x \in \RR$; let us then fix $x$. It suffices to find $\delta_m \rightarrow 0$ such that:
+    \begin{align*}
+        \abs{\frac{f(x + \delta_m) - f(x)}{\delta_m}} \rightarrow \infty \text{ as } m \rightarrow \infty.
+    \end{align*}
+    We then choose $\delta_m = \pm \frac{1}{2}\frac{1}{4^m}$. We choose the sign of $\delta_m$ depending on the choice of $x$ as follows. At most one of $(4^m x - \frac{1}{2}, 4^mx)$ and $(4^mx, 4^mx + \frac{1}{2})$ contains an integer (See figure \textbf{REF}). We choose the sign such that no integer lies between $4^m x$ and $4^m(x + \delta_m)$. Note that we may choose a differnet sign for each $m$. 
+    
+    Next, we make the observation that $\abs{\phi(4^m(x + \delta_m)) - \phi(4^mx)} = 4^mx$; this holds as for the difference between two $\phi(x)$ values at two points without an integer between them is just the difference between the $x$ values. Looking back at our definition of $\delta_m$, we then see that $\abs{\phi(4^m(x + \delta_m)) - \phi(4^mx)} = \frac{1}{2}$.
+\end{nproof}
 
 \subsection{Equicontinuituous Families of Functions}
 
