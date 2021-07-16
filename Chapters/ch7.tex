@@ -676,6 +676,16 @@ Note that we can and will assume that $f_n(x_0) \rightarrow 0$ at the specified 
     \end{enumerate}
 \end{nproof}
 
+\begin{nexample}{}{}
+    Let $\mathcal{F} = \set{f_1, f_2, \ldots}$ with $f_n(x) = \frac{\sin (nx)}{\sqrt{n}}$ for $x \in [0, 1] \in E$. Then, $\mathcal{F}$ is equicontinuous.
+\end{nexample}
+\begin{nproof}
+    We have that $\abs{f_n(x) - f_n(y)} = \frac{1}{\sqrt{n}}\abs{\sin(nx) - \sin(ny)} \leq \frac{2}{\sqrt{n}}$ for all $x, y \in E$. Let $\e > 0$. Choose $N$ such that $\frac{2}{\sqrt{n}} < \e$ if $n > N$. Since the remaining $f_n$ (i.e. $\set{f_1, \ldots, f_{n}}$) are a finite collection of uniformly continuous functions (they are uniformly continuous by Theorem \ref{thm:4.19}, as they continuous functions on a closed and bounded interval), by the above theorem, $\set{f_1, \ldots f_{n}}$ is equicontinuous. So, there exists a $\delta$ such that for $n \geq N$ and $\abs{x - y} < \delta$, $\abs{f_n(x) - f_n(y)} < \e$. We then have that for any $n \in \NN$ and for any $x, y \in E$ with $\abs{x - y} < \delta$, then $\abs{f_n(x) - f_n(y)} < \e$. We conclude that $\mathcal{F}$ is equicontinuous.
+\end{nproof}
+
+\begin{ntheorem}{ (Problem 7.16)}{}
+    
+\end{ntheorem}
 
 \subsection{The Stone-Weierstrauss Theorem}
 
