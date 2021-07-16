@@ -1,7 +1,7 @@
 \section[The Riemann-Stieltjes Integral]{\hyperlink{toc}{The Riemann-Stieltjes Integral}}
 
 \subsection{Definition of the Integral}
-\begin{definition}{Partition}{6.1}
+\begin{definition}{Partition}{6.1a}
     A \textbf{partition} of $[a, b] \subset \RR$ is a set $\set{x_0, x_1, \ldots, x_n}$ (for some $n \in \NN$) such that:
     \begin{align*}
         a = x_0 \leq x_1 \leq x_2 \leq \ldots \leq x_{n-1} \leq x_n = b
@@ -34,7 +34,7 @@
 \end{figure}
 
 \setcounter{rudin}{0}
-\begin{definition}{Upper and Lower Sums}{6.1}
+\begin{definition}{Upper and Lower Sums}{6.1b}
     Given $f: [a, b] \mapsto \RR$ and a partition $P$ of $[a, b]$ let:
     \begin{align*}
         M_i &= \sup\set{f(x): x_{i-1} \leq x \leq x_i}
@@ -88,7 +88,7 @@ A natural question that arises from the form of the above expression is whether 
 
 
 \setcounter{rudin}{0}
-\begin{definition}{Upper/Lower Integrals and Riemann Integrability}{6.1}
+\begin{definition}{Upper/Lower Integrals and Riemann Integrability}{6.1c}
     We define the \textbf{upper Riemann integral} to be:
     \begin{align*}
         \uint{a}{b} = \inf_P U(P, f).
