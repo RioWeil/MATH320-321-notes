@@ -606,17 +606,76 @@ Note that we can and will assume that $f_n(x_0) \rightarrow 0$ at the specified 
 
 \noindent The proof of the above theorem will follow by the construction of an ``infinitely spiky'' real function. Though this might seem like a very pathological counterexample, there are actually many examples of non-differentiable phenomena in mathematics. Looking at the field of probability, we find that brownian motion, brownian maps, and discrete exploration processes (to name a few) all have this property. A visualization of the brownian map, as well as other beautiful probability pictures can be found here \url{https://secure.math.ubc.ca/Links/Probability/pages/pic_gallery.html}.
 
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=1.5]
+        \draw[-latex, very thick] (0, 0) -- (0, 2);
+        \draw[latex-latex, very thick] (-2.5, 0) -- (2.5, 0);
+        \draw[blue] (-2, 0) -- (-1.5, 1) -- (-1, 0) -- (-0.5, 1) -- (0, 0) -- (0.5, 1) -- (1, 0) -- (1.5, 1) -- (2, 0);
+        \draw[] (0, 1) -- (0.15, 1);
+        \draw[right] node at (0.1, 1) {$1$};
+        \draw[below] node at (0, 0) {$0$};
+        \draw[below] node at (1, 0) {$1$};
+        \draw[below] node at (-1, 0) {$-1$};
+
+
+    \end{tikzpicture}
+    \caption{Plot of the $\phi$ function defined in the proof of Theorem \ref{thm:7.18}.}
+    \label{fig45}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.25]{Images/7-18-graph.png}
+    
+    \caption{Desmos visualization of the nowhere-differentiable $f$ constructed in the proof of Theorem \ref{thm:7.18}. Note that a partial sum $(N = 10)$ of the series that $f$ is defined to be is shown, as the infinite series is impossible to plot. Readers can play around the function with themselves at \url{https://www.desmos.com/calculator/onhkmblgo6}. There is a notion that $f$ is ``infinitely spiky'', no matter how much one is to zoom into the above graph.}
+    \label{fig46}
+\end{figure}
+
 \begin{nproof}
-    Define $\phi: \RR \mapsto \RR$ by $\phi(x) = \abs{x}$ for $-1 \leq x \leq 1$ and $\phi(x + 2) = \phi(x)$ for all $x \in \RR$. (See figure \textbf{REF}). Then, $\phi$ is continuous; moreover, it is Lipschiz continuous, with $\abs{\phi(s) - \phi(t)} \leq \abs{s - t}$ for all $s, t \in \RR$ (with equality where there are no integers between $s, t$). Define $f(x) = \sum_{n=0}^\infty \left(\frac{3}{4}\right)^n \phi(4^nx)$. The series converges uniformly on $\RR$ by Theorem \ref{thm:7.10}, since $0 \leq \left(\frac{3}{4}\right)^n \phi(4^nx) \left(\frac{3}{4}\right)^n$ and $\sum_n\left(\frac{3}{4}\right)^n$ converges (it is a geometric series with $r < 1$). Hence, $f$ is continuous as it is a uniform limit of a continuous function (Theorem \ref{thm:7.12}). We now prove that $f'(x)$ does not exists for any $x \in \RR$; let us then fix $x$. It suffices to find $\delta_m \rightarrow 0$ such that:
+    Define $\phi: \RR \mapsto \RR$ by $\phi(x) = \abs{x}$ for $-1 \leq x \leq 1$ and $\phi(x + 2) = \phi(x)$ for all $x \in \RR$. (See figure \ref{fig45} above). Then, $\phi$ is continuous; moreover, it is Lipschiz continuous, with $\abs{\phi(s) - \phi(t)} \leq \abs{s - t}$ for all $s, t \in \RR$ (with equality where there are no integers between $s, t$). Define $f(x) = \sum_{n=0}^\infty \left(\frac{3}{4}\right)^n \phi(4^nx)$. The series converges uniformly on $\RR$ by Theorem \ref{thm:7.10}, since $0 \leq \left(\frac{3}{4}\right)^n \phi(4^nx) \left(\frac{3}{4}\right)^n$ and $\sum_n\left(\frac{3}{4}\right)^n$ converges (it is a geometric series with $r < 1$). Hence, $f$ is continuous as it is a uniform limit of a continuous function (Theorem \ref{thm:7.12}). We now prove that $f'(x)$ does not exists for any $x \in \RR$; let us then fix $x$. It suffices to find $\delta_m \rightarrow 0$ such that:
     \begin{align*}
         \abs{\frac{f(x + \delta_m) - f(x)}{\delta_m}} \rightarrow \infty \text{ as } m \rightarrow \infty.
     \end{align*}
-    We then choose $\delta_m = \pm \frac{1}{2}\frac{1}{4^m}$. We choose the sign of $\delta_m$ depending on the choice of $x$ as follows. At most one of $(4^m x - \frac{1}{2}, 4^mx)$ and $(4^mx, 4^mx + \frac{1}{2})$ contains an integer (See figure \textbf{REF}). We choose the sign such that no integer lies between $4^m x$ and $4^m(x + \delta_m)$. Note that we may choose a differnet sign for each $m$. 
+    We then choose $\delta_m = \pm \frac{1}{2}\frac{1}{4^m}$. We choose the sign of $\delta_m$ depending on the choice of $x$ as follows. At most one of $(4^m x - \frac{1}{2}, 4^mx)$ and $(4^mx, 4^mx + \frac{1}{2})$ contains an integer. We choose the sign such that no integer lies between $4^m x$ and $4^m(x + \delta_m)$. Note that we may choose a differnet sign for each $m$. 
     
     Next, we make the observation that $\abs{\phi(4^m(x + \delta_m)) - \phi(4^mx)} = 4^mx$; this holds as for the difference between two $\phi(x)$ values at two points without an integer between them is just the difference between the $x$ values. Looking back at our definition of $\delta_m$, we then see that $\abs{\phi(4^m(x + \delta_m)) - \phi(4^mx)} = \frac{1}{2}$.
+
+    Furthermore, we see that if $n > m$, we have that $\phi(4^n(x + \delta_m)) - \phi(4^nx \pm \frac{1}{2}4^{n-m}) = \phi(4^nx)$ as $\frac{1}{2}4^{n-m}$ is an even integer and $\phi$ is 2-periodic. This leads us to conclude that $\phi(4^n(x + \delta_m)) - \delta(4^nx) = 0$ if $n > m$. Given $m$, then define:
+    \begin{align*}
+        \gamma_n = \frac{\phi(4^n(x + \delta_m)) - \delta(4^nx)}{\delta_m}
+    \end{align*}
+    Then, $\gamma_n = 0$ if $n > m$, $\abs{\gamma_m} = \abs{\frac{4^m\delta_m}{\delta_m}} = \abs{4^m} =4^m$, and if $0 \leq n < m$, $\abs{\gamma_n} \leq \frac{1}{\delta_m}\abs{4^n(x + \delta_m) - 4^nx} = \frac{1}{\abs{\delta_m}}\abs{4^n\delta_m} = 4^n$. Finally, we have that:
+    \begin{align*}
+        \abs{\frac{f(x + \delta_m) - f(x)}{\delta_m}} = \abs{\sum_{n=0}^\infty \left(\frac{3}{4}\right)^n\gamma_m} = \abs{\sum_{n=0}^m \left(\frac{3}{4}\right)^n\gamma_m} &\geq \left(\frac{3}{4}\right)^m\abs{\gamma_m} - \sum_{n=0}^{m-1}\left(\frac{3}{4}\right)^n\abs{\gamma_n}
+        \\ &\geq \left(\frac{3}{4}\right)^m4^m - \sum_{n=0}^{m-1}\left(\frac{3}{4}\right)^n4^n
+        \\ &= 3^m - \sum_{n=1}^{m-1}3^n
+        \\ &= 3^m - \frac{3^m - 1}{3 - 1}
+        \\ &= \frac{1}{2}(3^m + 1)
+    \end{align*}
+    Where the second equality follows as all terms $n > m$ are zero, the first inequality follows by the reverse triangle inequality, the second inequality follows by the bounds on $\abs{\gamma_n}$, and the third-to-last equality is the geometric sum formula. As $m \rightarrow \infty$, the difference quotient goes to infinity, and we therefore conclude that $f$ is differentiable nowhere. \qed
 \end{nproof}
 
 \subsection{Equicontinuituous Families of Functions}
+\setcounter{rudin}{21}
+\begin{definition}{Equicontinuity}{7.22}
+    A family $\mathcal{F}$ of functions on $E$ (that is, a possibly finite, countable, or uncountable set of functions on $E$) is equicontinuous on $E$ if for every $\e > 0$, there exists $\delta > 0$ such that if $f \in \mathcal{F}$ and $x, y \in E$ with $d(x, y) < \delta$, then $\abs{f(x) - f(y)} < \e$. Note that the functions $f \in \mathcal{F}$ are either real or complex valued.
+\end{definition}
+\noindent The above definition of equicontinuity is essentially an even stronger version of uniform continuity; the $\delta$ works not just for all $x$ and $y$ for a single $f$, but for all $x$ and $y$ for all of the $f$s in $\mathcal{F}$. If $\mathcal{F} = \set{f}$, then this is just uniform continuity.
+
+\begin{ntheorem}{}{}
+    \begin{enumerate}
+        \item If a family $\mathcal{F}$ of functions on $E$ is equicontinuous, then every $f \in \mathcal{F}$ is uniformly continuous on $E$.
+        \item Any finite family $\mathcal{F} = \set{f_1, \ldots f_n}$ of uniformly continuous functions on $E$ is equicontinuous.
+    \end{enumerate}
+\end{ntheorem}
+\begin{nproof}
+    \begin{enumerate}
+        \item The claim follows immediately from the definition.
+        \item Let $\e > 0$. Then, by the uniform continuity of each $f_i \in \mathcal{F}$, there exists $\delta_i$ such that if $d(x, y) < \delta_i$, then $\abs{f_i(x) - f_i(y)} < \e$. Taking $\delta = \min{\delta_1, \ldots, \delta_n}$, we have that for any $f \in \mathcal{F}$, if $d(x, y) < \delta$ then $\abs{f(x) - f(y)} < \e$. Hence $\mathcal{F}$ is equicontinuous. \qed
+    \end{enumerate}
+\end{nproof}
+
 
 \subsection{The Stone-Weierstrauss Theorem}
 
