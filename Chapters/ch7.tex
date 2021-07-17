@@ -434,9 +434,9 @@
     Let $K = [0, 1]$, and define:
     \begin{align*}
         f_n(x) = \begin{cases}
-            nx & 0 \leq x \leq \frac{1}{n}
-            \\ 2 - nx & \frac{1}{n} \leq x \leq \frac{2}{n}
-            \\ 0 & \frac{2}{n} < x \leq 1
+            2nx & 0 \leq x < \frac{1}{2n}
+            \\ 2 - 2nx & \frac{1}{n} \leq x \leq \frac{1}{n}
+            \\ 0 & \frac{1}{n} < x \leq 1
         \end{cases}
     \end{align*}
     We then have that $f_n$ is continuous, $f_n \rightarrow f = 0$ pointwise (which is continuous), and $K$ is compact. However, $f_n$ does not converge to $f$ uniformly. In this case, condition (c) of the above Theorem fails; $f_n$ is not monotonic in $n$.
@@ -457,10 +457,8 @@
         \node[left] at (-0.15, 1) {$1$};
         \node[below] at (1.5, -0.15) {$1$};
         \draw[] (0.5, 0) -- (0.5, -0.15);
-        \node[below] at (0.5, -0.15) {$\frac{1}{n}$};
-
-        \node[below] at (1, -0.15) {$\frac{2}{n}$};
-
+        \node[below] at (0.5, -0.15) {$\frac{1}{2n}$};
+        \node[below] at (1, -0.15) {$\frac{1}{n}$};
     \end{tikzpicture}
     
     \caption{Plot of $f_n$ on $K = [0, 1]$ from the above example.}
@@ -659,7 +657,7 @@ Note that we can and will assume that $f_n(x_0) \rightarrow 0$ at the specified 
 \subsection{Equicontinuituous Families of Functions}
 \setcounter{rudin}{21}
 \begin{definition}{Equicontinuity}{7.22}
-    A family $\mathcal{F}$ of functions on $E$ (that is, a possibly finite, countable, or uncountable set of functions on $E$) is equicontinuous on $E$ if for every $\e > 0$, there exists $\delta > 0$ such that if $f \in \mathcal{F}$ and $x, y \in E$ with $d(x, y) < \delta$, then $\abs{f(x) - f(y)} < \e$. Note that the functions $f \in \mathcal{F}$ are either real or complex valued.
+    A family $\mathcal{F}$ of functions on $E$ (that is, a possibly finite, countable, or uncountable set of functions on $E$) is \textbf{equicontinuous} on $E$ if for every $\e > 0$, there exists $\delta > 0$ such that if $f \in \mathcal{F}$ and $x, y \in E$ with $d(x, y) < \delta$, then $\abs{f(x) - f(y)} < \e$. Note that the functions $f \in \mathcal{F}$ are either real or complex valued.
 \end{definition}
 \noindent The above definition of equicontinuity is essentially an even stronger version of uniform continuity; the $\delta$ works not just for all $x$ and $y$ for a single $f$, but for all $x$ and $y$ for all of the $f$s in $\mathcal{F}$. If $\mathcal{F} = \set{f}$, then this is just uniform continuity.
 
@@ -680,12 +678,97 @@ Note that we can and will assume that $f_n(x_0) \rightarrow 0$ at the specified 
     Let $\mathcal{F} = \set{f_1, f_2, \ldots}$ with $f_n(x) = \frac{\sin (nx)}{\sqrt{n}}$ for $x \in [0, 1] \in E$. Then, $\mathcal{F}$ is equicontinuous.
 \end{nexample}
 \begin{nproof}
-    We have that $\abs{f_n(x) - f_n(y)} = \frac{1}{\sqrt{n}}\abs{\sin(nx) - \sin(ny)} \leq \frac{2}{\sqrt{n}}$ for all $x, y \in E$. Let $\e > 0$. Choose $N$ such that $\frac{2}{\sqrt{n}} < \e$ if $n > N$. Since the remaining $f_n$ (i.e. $\set{f_1, \ldots, f_{n}}$) are a finite collection of uniformly continuous functions (they are uniformly continuous by Theorem \ref{thm:4.19}, as they continuous functions on a closed and bounded interval), by the above theorem, $\set{f_1, \ldots f_{n}}$ is equicontinuous. So, there exists a $\delta$ such that for $n \geq N$ and $\abs{x - y} < \delta$, $\abs{f_n(x) - f_n(y)} < \e$. We then have that for any $n \in \NN$ and for any $x, y \in E$ with $\abs{x - y} < \delta$, then $\abs{f_n(x) - f_n(y)} < \e$. We conclude that $\mathcal{F}$ is equicontinuous.
+    We have that $\abs{f_n(x) - f_n(y)} = \frac{1}{\sqrt{n}}\abs{\sin(nx) - \sin(ny)} \leq \frac{2}{\sqrt{n}}$ for all $x, y \in E$. Let $\e > 0$. Choose $N$ such that $\frac{2}{\sqrt{n}} < \e$ if $n > N$. Since the remaining $f_n$ (i.e. $\set{f_1, \ldots, f_{n}}$) are a finite collection of uniformly continuous functions (they are uniformly continuous by Theorem \ref{thm:4.19}, as they continuous functions on a closed and bounded interval), by the above theorem, $\set{f_1, \ldots f_{n}}$ is equicontinuous. So, there exists a $\delta$ such that for $n \geq N$ and $\abs{x - y} < \delta$, $\abs{f_n(x) - f_n(y)} < \e$. We then have that for any $n \in \NN$ and for any $x, y \in E$ with $\abs{x - y} < \delta$, then $\abs{f_n(x) - f_n(y)} < \e$. We conclude that $\mathcal{F}$ is equicontinuous. \qed
 \end{nproof}
 
 \begin{ntheorem}{ (Problem 7.16)}{}
-    
+    Let $\set{f_n}$ be an equicontinuous sequnece of functions such that $f_n: K \mapsto \CC$ with $K$ compact. Suppose there is a pointwise limit $f(x) = \linf f_n(x)$ that exists for all $x \in K$. Then, $f_n \rightarrow f$ uniformly on $K$.
 \end{ntheorem}
+\begin{nproof}
+    We use an ``$\frac{\e}{3}$'' argument. Let $\e > 0$. Then, choose $\delta > 0$ such that $\abs{f_n(x) - f_n(y)} < \frac{\e}{3}$ for all $n$ and for all $x, y$ such that $d(x, y) < \delta$ (such a choice is possible by the equicontinuity of the sequence). Take an open cover of $K$ by considering the set of neighbourhoods of radius $\delta$ around every point $x \in K$. Since $K$ is compact, the open cover $\set{N_{\delta}(x): x \in K}$ has a finite subcover $\set{N_\delta(x_1), \ldots, N_\delta(x_k)}$. Thus, given $x \in K$, there exists $x_j$ such that $x \in N_\delta(x_j)$ and hence $d(x_j, x) < \delta$. Therefore by the triangle inequality:
+    \begin{align*}
+        \abs{f_n(x) - f_m(x)} &\leq \abs{f_n(x) - f_n(x_j)} + \abs{f_n(x_j) - f_m(x_j)} + \abs{f_m(x_j) - f_m(x)}
+        \\ &< \frac{\e}{3} + \abs{f_n(x_j) - f_m(x_j)} + \frac{\e}{3}
+    \end{align*}
+    where the last inequality follows from the equicontinuity. For each $i \in \set{1, \ldots k}$, we know that $\set{f_n(x_j)}$ is a convergent sequence as $f_n$ converges pointwise by assumption. Hence, it is a Cauchy sequence. Therefore, there exists a $N_i$ such that $m, n \geq N_i$ implies $\abs{f_n(x_i) - f_m(x_i)} < \frac{\e}{3}$. Take $N = \max{N_1, \ldots, N_k}$. Then, we have that $m, n \geq N$ implies:
+    \begin{align*}
+        \abs{f_n(x) - f_m(x)} < \frac{\e}{3} + \frac{\e}{3} + \frac{\e}{3} = \e.
+    \end{align*}
+    So, $f_n$ satisfies the Cauchy criterion for uniform convergence, and hence $\set{f_n}$ converges uniformly on $K$. \qed
+\end{nproof}
+
+\setcounter{rudin}{23}
+
+\begin{theorem}{}{7.24}
+    If $f_n: K \mapsto \CC$ is continuous, $K$ is compact, and $f_n \mapsto f$ uniformly on $K$, then $\set{f_n}$ is equicontinuous.
+\end{theorem}
+\begin{nproof}
+    We again use an ``$\frac{\e}{3}$'' argument. Let $\e > 0$. Since $f_n \rightarrow f$ uniformly, we have that there exists $N$ such that $m, n \geq N$ implies $\abs{f_n(x) - f_m(x)} < \frac{\e}{3}$ for all $x \in K$. Also, since $K$ is compact, each $f_i$ is unformly continuous, so $\set{f_1, \ldots f_N}$ is equicontinuous for any $N \in \NN$ (as it is a finite set of uniformly continuous functions). Hence, there exists $\delta > 0$ such that $\abs{f_i(x) - f_i(y)} < \frac{\e}{3}$ if $d(x, y) < \delta$ and $i \leq N$. Finally, for $n > N$, we habe that:
+    \begin{align*}
+        \abs{f_n(x) - f_n(y)} \leq \abs{f_n(x) - f_N(x)} + \abs{f_N(x) - f_N(y)} + \abs{f_N(y) - f_n(y)} < \frac{\e}{3} + \frac{\e}{3} + \frac{\e}{3} = \e
+    \end{align*}
+    where the first/third $\frac{\e}{3}$s come from uniform convergence and the second from the equicontinuity. We conclude that $\set{f_n}$ is equicontinuous. \qed
+\end{nproof}
+
+\begin{nexample}{}{}
+    We here discuss a set of functions which is not equicontinuous, by returning to a prior example. Let $K = [0, 1]$, and define:
+    \begin{align*}
+        f_n(x) = \begin{cases}
+            2nx & 0 \leq x < \frac{1}{2n}
+            \\ 2 - 2nx & \frac{1}{n} \leq x \leq \frac{1}{n}
+            \\ 0 & \frac{1}{n} < x \leq 1
+        \end{cases}.
+    \end{align*}
+    See Figure \ref{fig44} for a visualization. We have that $\set{f_n}$ obeys $\abs{f_n(x)} \leq 1$ for all $x \in [0, 1]$, but that $\set{f_n}$ is not equicontinuous, as $\abs{f_n(\frac{1}{2^n} - f_n(0)} = 1 - 0 = 1$ for all $n$. We can get as close as we like to $0$, but the difference will remain large. Also, there is no subsequence of $\set{f_n}$ that can be uniformly convergent on $[0, 1]$, as $f_n(x) \rightarrow 0$ for all $x \in [0, 1]$ pointwise but $f_n(\frac{1}{2n}) = 1$ for all $n$. $f_n(x)$ ``stays far'' from the limit. The takeaway message is that a sequence that converges pointwise but is not equicontinuous is not guaranteed to have a uniformly convergent subsequence. This is motivation for the later Theorem \ref{thm:7.25}, which gives crtieria for a sequence of functions having a uniformly convergent subsequence.
+\end{nexample}
+
+\setcounter{rudin}{18}
+
+\begin{definition}{Pointwise/Uniform Bounded Functions}{7.19}
+    $\set{f_n}$ is \textbf{pointwise bounded} on $E$ if there exists a $\phi: E \mapsto \RR$ such that $\abs{f_n(x)} < \phi(x)$ for all $x \in E$ and for all $n \in \NN$. $\set{f_n}$ is \textbf{uniformly bounded} on $E$ if there exists $M$ such that $\abs{f_n(x)} \leq M$ for all $x \in E$ and all $n \in \NN$.
+\end{definition}
+
+\begin{nexample}{}{}
+    Let $f_n(x) = \frac{1}{x} + \frac{1}{n}$. Then, $\set{f_n}$ is pointwise bounded, by (for example) $\phi(x) = \frac{1}{x} + 2$. But, it is not uniformly bounded, as $\frac{1}{x}$ grows arbitrarily large as $x \rightarrow 0$. 
+\end{nexample}
+
+\setcounter{rudin}{22}
+\begin{theorem}{Selection Theorem}{7.23}
+    Suppose $f_n : E \mapsto \CC$ is pointwise bounded on a countable set $E$. Then, some subsequence $\set{f_{n_k}}$ of $\set{f_n}$ is pointwise convergent on $E$; that is to say, $\lim_{k \rightarrow \infty} f_{n_k}(x)$ exists for all $x \in E$. 
+\end{theorem}
+\noindent Note that the above theorem plays a large role in probability!
+
+\begin{nproof}
+    We invoke a ``diagonal argument''. Let $E = \set{x_1, x_2, \ldots}$. Consider the sequence $\set{f_n(x_1)}$. We have that it is pointwise bounded by hypothesis, so there exists a subsequence $\set{f_{1_k}}$ such that $\linf f_{1_n}(x_1)$ converges. (Theorem \ref{thm:2.42}). We can apply the same logic for $x_2, x_3, \ldots$ in term, such that the proceeding sequence is a subsequence of the former. In other words, we form the array:
+    \begin{comment}
+    \begin{align*}
+        \matrix[matrix of math nodes,inner sep=1pt,row sep=1em,column sep=1em] (M)
+        {
+            S_1 & = & f_{1_1} & f_{1_2} & f_{1_3}  & \cdots \\
+            S_2 & = & f_{2_1} & f_{2_2} & f_{2_3}  & \cdots \\
+            S_3 & = & f_{3_1} & f_{3_2} & f_{3_3}  & \cdots \\
+            \cdots \\
+        }
+    \end{align*}
+\end{comment}
+\end{nproof}
+
+\begin{nlemma}{ (Problem 2.25)}{}
+    
+\end{nlemma}
+
+\begin{nproof}
+
+\end{nproof}
+
+\setcounter{rudin}{24}
+\begin{theorem}{Arzela-Ascoli}{7.25}
+    
+\end{theorem}
+
+\begin{nproof}
+    
+\end{nproof}
 
 \subsection{The Stone-Weierstrauss Theorem}
 
