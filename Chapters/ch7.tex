@@ -845,12 +845,20 @@ Note that we can and will assume that $f_n(x_0) \rightarrow 0$ at the specified 
 \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}[scale=1.5]
-        \draw[-latex] (0, 0) -- (2, 0);
-        \draw[-latex] (0, 0) -- (0, 2);
-        ‎\draw[<->, blue, thick, smooth, samples = 100, domain=0:2, variable = \x] plot(\x, {exp(-1*(\x-1)*(\x-1))});
+        \draw[blue, thick, smooth, samples = 100, domain=0:2, variable = \x] plot(\x, {exp(-((\x)-1)*((\x)-1)*5)});
+        \draw[-latex, very thick] (0, 0) -- (2, 0);
+        \draw[-latex, very thick] (0, 0) -- (0, 2);
+        \node[left] at (-0.15, 1.9) {$P(X_n = \frac{m}{n})$};
+        \node[below] at (1.9, -0.15) {$X_n = \frac{m}{n}$};
+        \draw[] (1, 0) -- (1, -0.15);
+        \node[below] at (1, -0.15) {$p$};
+        \draw[<->] (1, 0.65) -- (1.3, 0.65);
+        \draw[<->] (1, 0.65) -- (0.7, 0.65);
+        \node[below] at (1.2, 0.65) {$\sigma_{X_n}$};
+        \node[below] at (0.85, 0.65) {$\sigma_{X_n}$};
     \end{tikzpicture}
     
-    \caption{Visualization of how $P(X_n)$ concentrates around $p$ as $n \rightarrow \infty$.}
+    \caption{Visualization of how $P(X_n)$. Since $\sigma_{X_n}$ (the width of the distribution) scales as $\frac{1}{\sqrt{n}}$, as $n$ grows, the distribution becomes more sharply peaked around $p$.}
     \label{fig47}
 \end{figure}
 
@@ -858,13 +866,17 @@ Note that we can and will assume that $f_n(x_0) \rightarrow 0$ at the specified 
     $P(\abs{X_n - p} > \delta) \leq \frac{1}{\sigma^2}p(1-p)\frac{1}{n}$. Note that this inequality can be generalized to random variables in general, but here it suffices to consider the inequality just for the case of $X_n$.
 \end{ntheorem}
 \begin{nproof}
-    
+    We have that:
+    \begin{align*}
+        P(\abs{X_n - p} > \delta) = \sum_{m: \abs{\frac{m}{n} - p} > \sigma}p_m \leq \sum_{m=0}^n \abs{\frac{\frac{m}{n} - p}{\sigma}}^2p_m = \frac{1}{\sigma^2}\sum_{m=0}^n \left(\frac{m}{n} - p\right)^2p_m &= \frac{1}{\sigma^2}\text{Var}(X_n) 
+        \\ &= \frac{1}{\sigma^2}p(1-p)\frac{1}{n}.
+    \end{align*}
+    where in the first inequality we use the fact that $\abs{\frac{\frac{m}{n} - p}{\sigma}}^2 \geq 1$ and we hence add non-negative terms to the sum, and in the second to last equality we invoke the definition of the variance. \qed
 \end{nproof}
 \noindent With the machinery of basic probability established, we move to the proof of the Weierstrass theorem.
 
 \begin{nproof}
-    
+    Take $p = x \in [0, 1]$. We then have that $p_m = \binom{n}{m}x^m(1-x)^{n-m}$. 
 \end{nproof}
-
 
 
