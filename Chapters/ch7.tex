@@ -685,7 +685,7 @@ Note that we can and will assume that $f_n(x_0) \rightarrow 0$ at the specified 
     Let $\set{f_n}$ be an equicontinuous sequnece of functions such that $f_n: K \mapsto \CC$ with $K$ compact. Suppose there is a pointwise limit $f(x) = \linf f_n(x)$ that exists for all $x \in K$. Then, $f_n \rightarrow f$ uniformly on $K$.
 \end{ntheorem}
 \begin{nproof}
-    We use an ``$\frac{\e}{3}$'' argument. Let $\e > 0$. Then, choose $\delta > 0$ such that $\abs{f_n(x) - f_n(y)} < \frac{\e}{3}$ for all $n$ and for all $x, y$ such that $d(x, y) < \delta$ (such a choice is possible by the equicontinuity of the sequence). Take an open cover of $K$ by considering the set of neighbourhoods of radius $\delta$ around every point $x \in K$. Since $K$ is compact, the open cover $\set{N_{\delta}(x): x \in K}$ has a finite subcover $\set{N_\delta(x_1), \ldots, N_\delta(x_k)}$. Thus, given $x \in K$, there exists $x_j$ such that $x \in N_\delta(x_j)$ and hence $d(x_j, x) < \delta$. Therefore by the triangle inequality:
+    We use an ``$\frac{\e}{3}$ argument''. Let $\e > 0$. Then, choose $\delta > 0$ such that $\abs{f_n(x) - f_n(y)} < \frac{\e}{3}$ for all $n$ and for all $x, y$ such that $d(x, y) < \delta$ (such a choice is possible by the equicontinuity of the sequence). Take an open cover of $K$ by considering the set of neighbourhoods of radius $\delta$ around every point $x \in K$. Since $K$ is compact, the open cover $\set{N_{\delta}(x): x \in K}$ has a finite subcover $\set{N_\delta(x_1), \ldots, N_\delta(x_k)}$. Thus, given $x \in K$, there exists $x_j$ such that $x \in N_\delta(x_j)$ and hence $d(x_j, x) < \delta$. Therefore by the triangle inequality:
     \begin{align*}
         \abs{f_n(x) - f_m(x)} &\leq \abs{f_n(x) - f_n(x_j)} + \abs{f_n(x_j) - f_m(x_j)} + \abs{f_m(x_j) - f_m(x)}
         \\ &< \frac{\e}{3} + \abs{f_n(x_j) - f_m(x_j)} + \frac{\e}{3}
@@ -703,7 +703,7 @@ Note that we can and will assume that $f_n(x_0) \rightarrow 0$ at the specified 
     If $f_n: K \mapsto \CC$ is continuous, $K$ is compact, and $f_n \mapsto f$ uniformly on $K$, then $\set{f_n}$ is equicontinuous.
 \end{theorem}
 \begin{nproof}
-    We again use an ``$\frac{\e}{3}$'' argument. Let $\e > 0$. Since $f_n \rightarrow f$ uniformly, we have that there exists $N$ such that $m, n \geq N$ implies $\abs{f_n(x) - f_m(x)} < \frac{\e}{3}$ for all $x \in K$. Also, since $K$ is compact, each $f_i$ is unformly continuous, so $\set{f_1, \ldots f_N}$ is equicontinuous for any $N \in \NN$ (as it is a finite set of uniformly continuous functions). Hence, there exists $\delta > 0$ such that $\abs{f_i(x) - f_i(y)} < \frac{\e}{3}$ if $d(x, y) < \delta$ and $i \leq N$. Finally, for $n > N$, we habe that:
+    We again use an ``$\frac{\e}{3}$ argument''. Let $\e > 0$. Since $f_n \rightarrow f$ uniformly, we have that there exists $N$ such that $m, n \geq N$ implies $\abs{f_n(x) - f_m(x)} < \frac{\e}{3}$ for all $x \in K$. Also, since $K$ is compact, each $f_i$ is unformly continuous, so $\set{f_1, \ldots f_N}$ is equicontinuous for any $N \in \NN$ (as it is a finite set of uniformly continuous functions). Hence, there exists $\delta > 0$ such that $\abs{f_i(x) - f_i(y)} < \frac{\e}{3}$ if $d(x, y) < \delta$ and $i \leq N$. Finally, for $n > N$, we habe that:
     \begin{align*}
         \abs{f_n(x) - f_n(y)} \leq \abs{f_n(x) - f_N(x)} + \abs{f_N(x) - f_N(y)} + \abs{f_N(y) - f_n(y)} < \frac{\e}{3} + \frac{\e}{3} + \frac{\e}{3} = \e
     \end{align*}
@@ -740,35 +740,98 @@ Note that we can and will assume that $f_n(x_0) \rightarrow 0$ at the specified 
 
 \begin{nproof}
     We invoke a ``diagonal argument''. Let $E = \set{x_1, x_2, \ldots}$. Consider the sequence $\set{f_n(x_1)}$. We have that it is pointwise bounded by hypothesis, so there exists a subsequence $\set{f_{1_k}}$ such that $\linf f_{1_n}(x_1)$ converges. (Theorem \ref{thm:2.42}). We can apply the same logic for $x_2, x_3, \ldots$ in term, such that the proceeding sequence is a subsequence of the former. In other words, we form the array:
-    \begin{comment}
     \begin{align*}
-        \matrix[matrix of math nodes,inner sep=1pt,row sep=1em,column sep=1em] (M)
-        {
-            S_1 & = & f_{1_1} & f_{1_2} & f_{1_3}  & \cdots \\
-            S_2 & = & f_{2_1} & f_{2_2} & f_{2_3}  & \cdots \\
-            S_3 & = & f_{3_1} & f_{3_2} & f_{3_3}  & \cdots \\
-            \cdots \\
-        }
+        \begin{array}{ccccc}
+            S_1: & f_{1_1} & f_{1_2} & f_{1_3} & \ldots \\
+            S_2: & f_{2_1} & f_{2_2} & f_{2_3} & \ldots \\
+            S_3: & f_{3_1} & f_{3_2} & f_{3_3} & \ldots \\
+            & & \vdots & &
+        \end{array}
     \end{align*}
-\end{comment}
+    In doing so, we have that $S_1$ converges on $x_1$, $S_2$ is a subsequence of $S_1$ that converges on $x_1$ and $x_2$, $S_3$ is a subsequence of $S_2$ that converges on $x_1$ and $x_2$ and $x_3$ and so on. Then, we consider the sequence formed by the diagonal of the above array, with $S: f_{1_1}, f_{2_2}, f_{3_3}, \ldots$. This is a subsequence of our original sequence $f_n$. If we fix some $N$, then this subsequence is a subsequence of $S_n$ for $n \geq N$ (as $S$ is eventually a subsequence of each $S_n$), so it converges on the same points that $S_n$ does, namely, $x_1, \ldots, x_n$. But this is true for every $n \in \NN$, so the subsequence $S$ converges for $x_i \in E$ for every $i \in \NN$. \qed
 \end{nproof}
 
 \begin{nlemma}{ (Problem 2.25)}{}
-    
+    If $K$ is compact, then $K$ has a countable dense subset $E \subset K$ (i.e. $\overline{E} = E \cup E' = K$). Alternatively, for all $x \in K$, there exists $r > 0$ such that there exists $p \in E$ such that $d(p, x) < r$. In other words, $K$ is separable. 
 \end{nlemma}
 
 \begin{nproof}
-
+    For $n \in \NN$, $\set{N_{1/n}(p)}_{p \in K}$ is an open cover. So, it has a finite subcover $\set{N_{1/n}(p)}_{p \in E_n}$ where $E_n \subset K$ is finite. Let $E = \bigcup_{n=1}^\infty E_n$, then $E$ is at most countable (Theorem \ref{thm:2.12}). To see that it is dense, let $x \in K$, and $r > 0$. Then, choose $n_0$ such that $\frac{1}{n_0} < r$. We can then find $p_0 \in E_{n_0} \subset E$ such that $x \in N_{1/n_0}(p_0)$ as $E_{n_0}$ is an open cover of $K$. Then, $d(x, p_0) < \frac{1}{n_0} < r$. Hence, $E$ is dense. \qed
 \end{nproof}
 
 \setcounter{rudin}{24}
 \begin{theorem}{Arzela-Ascoli}{7.25}
-    
+    Suppose $K$ is compact, and that $\mathcal{F} = \set{f_n} \subset \C(K)$ is equicontinuous and pointwise bounded. Then,
+    \begin{enumerate}
+        \item $\set{f_n}$ is uniformly bounded.
+        \item $\set{f_n}$ has a uniformly convergent subsequence (i.e. a subsequence that converges in $\C(K)$).
+    \end{enumerate}
 \end{theorem}
 
 \begin{nproof}
-    
+    \begin{enumerate}
+        \item The goal is to find $M$ such that $\abs{f_n(x)} \leq M$ for all $n \in \NN$ and for all $x \in K$. Let $\e > 0$ (though we can take $\e = 0$ for this proof of part (a)). Since $\mathcal{F}$ is equicontinuous, we have that there exists $\delta > 0$ such that $d(x, y) < \delta$ implies $\abs{f_n(x) - f_n(y)} < \e$ for all $n$. $K$ is compact, we can cover $K$ with balls of radius $\delta$ around each point in $K$ and then take a finite subcover; i.e. there exists a finite set $\set{p_1, \ldots, p_r} \in K$ such that $\set{N_\delta(p_i)}_{i = 1, \ldots, r}$ covers $K$. For each $i$, $\set{f_n(p_i)}_n$ is bounded, that is, $\abs{f_n(p_i)} \leq M_i$ for all $n$. Let $M_0 = \max{M_1, \ldots, M_n}$. Given $x \in K$, choose $p_i$ such that $x \in N_\delta(p_i)$. Then:
+        \begin{align*}
+            \abs{f_n(x)} \leq \abs{f_n(p_i)} + \abs{f_n(x) - f_n(p_i)} < M_i + \e \leq M_0 + \e
+        \end{align*} 
+        letting $M = M_0 + \e$, we see that $\set{f_n}$ is a uniformly bounded.
+        \item Our goal is to construct a uniformly convergent subsequence. We do this in three steps. First, we construct a subsequence (we will show it is uniformly convergent afterwards!). By the above Lemma, $K$ has a countable dense subset $E$. By Theorem \ref{thm:7.23}, there exists a subsequence $\set{f_{n_i}}$ such that $\lim_{i \rightarrow \infty} f_{n_i}(x)$ exists for all $x \in E$. Write $g_i = f_{n_i}$.
+        
+        Secondly, we set up the argument to show uniform convergence of the subsequence constructed in the first step. Let $\e > 0$. By the equicontinuity assumption, there exists $\delta > 0$ such that $d(x, y) < \delta$ implies $\abs{g_i(x) - g_i(y)} < \frac{\e}{3}$ for all $i$. Consider $\set{N_\delta(p)}_{p \in E}$, which covers $K$ since $E$ is dense. By the compactness of $K$, there exists a finite subset $\set{N_{\delta}(x_1), \ldots, N_\delta(x_m)}$ with $x_i \in E$. Hence, given $x \in K$, there exists $x_s$ such that $d(x, x_s) < \delta$. 
+
+        For the third step, we complete the proof with an ``$\frac{\e}{3}$ argument''. Using the triangle inequality, we have that:
+        \begin{align*}
+            \abs{g_i(x) - g_j(x)} &\leq \abs{g_i(x) - g_i(x_s)} + \abs{g_i(x_s) - g_j(x_s)} + \abs{g_j(x_s) - g_j(x)}
+            \\ &< \frac{\e}{3} + \abs{g_i(x_s) - g_j(x_s)} + \frac{\e}{3}
+        \end{align*}
+        where the last inequality follows from the arguments in step 2. For the second term, we consider that for $s = 1, \ldots, m$, we can choose $N_s$ such that $\abs{g_j(x_s) - g_i(x_s)} < \frac{\e}{3}$ for $i, j \geq N_s$ (this choice of $N_s$ is possible as $\set{g_n(x_s)})$ converges. There are finitely many $N_s$s, so let $N = \max{N_1, \ldots, N_m}$. Then, we have that:
+        \begin{align*}
+            \abs{g_i(x) - g_j(x)} < \frac{\e}{3} + \frac{\e}{3} + \frac{\e}{3} = \e    
+        \end{align*}
+        for $i, j \geq N$ and for all $x \in K$. Hence, $\set{g_i}$ converges uniformly on $K$. \qed
+    \end{enumerate}
 \end{nproof}
 
-\subsection{The Stone-Weierstrauss Theorem}
+\subsection{The Stone-Weierstrass Theorem}
+
+\begin{theorem}{Weierstrass}{7.26}
+    Let $f: [a, b] \mapsto \RR$ be continuous. Then, there exists polynomials $p_n$ such that $p_n \rightarrow f$ uniformly on $[a, b]$.
+\end{theorem}
+\noindent Note that it will suffice to consider the case where $[a, b] = [0, 1]$; we can get to arbitrary $[a, b]$ to $[0, 1]$ by a change of variable, and the composition of apolynomial with a change of variable is still a polynomial.
+
+\noindent Note that our proof will take a different angle from Rudin's proof of the theorem; we shall be exploring the proof by Bernstein. However, before we begin the proof, we will need to establish some basic background in probability.
+
+\begin{ndef}{: Bernoulli Trials}{}
+    A \textbf{Bernoulli trial} is a random experiment with a success outcome of probablity $p$ and a failure outcome with probability $1 - p$ (here, $p \in [0, 1]$ is fixed). Consider $n$ independent Bernoulli trials (where each experiment does not affect any of the others) and let $S_n$ be the number of successes. Then, we have that:
+    \begin{align*}
+        p_m = p(S_n = m) = \binom{n}{m}p^m(1-p)^{n-m} \quad (m = 0, 1, \ldots, n).
+    \end{align*}
+    Also note that:
+    \begin{align*}
+        \sum_{m=0}^np_m = [p+(1-p)]^n = 1^n = 1
+    \end{align*}
+\end{ndef}
+
+\begin{ndef}{: Random Variables}{}
+    A \textbf{random variable} is a function $X: \set{0, 1, \ldots n} \mapsto \RR$. 
+\end{ndef}
+\noindent For example, $S_n$ is the identity function, with $X(m) = S_n(m) = m$. 
+
+\begin{ndef}{: Expectation}{}
+    The \textbf{expectation} of a random variable $X$, denoted $EX$, is defined as:
+    \begin{align*}
+        EX = \sum_{m=0}^n X(m)p_m
+    \end{align*}
+\end{ndef}
+\noindent We can interpret the expectation of $X$ as the sum over the values of $X$, weighted by the likelihoods. As an example, we have that:
+\begin{align*}
+    ES_n = \sum_{m=0}^n S_n(m)p_m = \sum_{m=0}^n mp_m = \sum_{m=0}^n m\binom{n}{m}p^m(1-p)^{n-m} = \ldots = np
+\end{align*}
+
+\begin{ndef}{: Variance \& Standard Deviation}{}
+    The \textbf{variance} of a random variable $X$, denoted
+\end{ndef}
+
+
+
 
