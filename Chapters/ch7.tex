@@ -804,7 +804,7 @@ Note that we can and will assume that $f_n(x_0) \rightarrow 0$ at the specified 
 \begin{ndef}{: Bernoulli Trials}{}
     A \textbf{Bernoulli trial} is a random experiment with a success outcome of probablity $p$ and a failure outcome with probability $1 - p$ (here, $p \in [0, 1]$ is fixed). Consider $n$ independent Bernoulli trials (where each experiment does not affect any of the others) and let $S_n$ be the number of successes. Then, we have that:
     \begin{align*}
-        p_m = p(S_n = m) = \binom{n}{m}p^m(1-p)^{n-m} \quad (m = 0, 1, \ldots, n).
+        p_m = P(S_n = m) = \binom{n}{m}p^m(1-p)^{n-m} \quad (m = 0, 1, \ldots, n).
     \end{align*}
     Also note that:
     \begin{align*}
@@ -829,9 +829,47 @@ Note that we can and will assume that $f_n(x_0) \rightarrow 0$ at the specified 
 \end{align*}
 
 \begin{ndef}{: Variance \& Standard Deviation}{}
-    The \textbf{variance} of a random variable $X$, denoted
+    The \textbf{variance} of a random variable $X$, denoted $\text{Var}(X)$, is defined as:
+    \begin{align*}
+        \text{Var}(X) = E[(X - EX)^2] = E(X^2) - (EX)^2.
+    \end{align*}
+    The \textbf{standard deviation}of $X$, denoted by $\sigma_x$, is then defined as $\sigma_x = \sqrt{\text{Var}(X)}$.
 \end{ndef}
+\noindent For example, $\text{Var}(S_n) = E(S_n^2) - (ES_n)^2 = np(1-p)$, and $\sigma_{S_n} = \sqrt{np(1-p)}$. 
 
+\begin{ndef}{: Proportion of Successes}{}
+    Define $X_n$ to be the proportion of successes in $n$ independent Bernoulli trials, with $X_n = \frac{1}{n}S_n$. Then, we have that $EX_n = \frac{1}{n}np = p$, $\text{Var}(X_n) = \text{Var}(\frac{1}{n}S_n) = \frac{1}{n^2}\text{Var}(S_n)= \frac{1}{n}p(1-p)$. We then have that $\sigma_{X_n} = \sqrt{\frac{p(1-p)}{n}}$.
+\end{ndef}
+\noindent Analyzing the standard deviation $\sigma_{X_n}$, we see that as we do more trials ($n$ increases), the fluctuation of the proportion of successes gets smaller. This phenomena is known as the \emph{Law of large numbers}, which states that the proportion of successes should converge to the probability of success in a single trial. $\sigma_{X_n} \rightarrow 0$ as $n \rightarrow \infty$ tells us this fact. 
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=1.5]
+        \begin{axis}[every axis plot post/.append style={
+            mark=none,domain=-2:3,samples=50,smooth}, % All plots: from -2:2, 50 samples, smooth, no marks
+          axis x line*=bottom, % no box around the plot, only x and y axis
+          axis y line*=left, % the * suppresses the arrow tips
+          enlargelimits=upper] % extend the axes a bit to the right and top
+          \addplot {\gauss{0}{0.5}};
+          \addplot {\gauss{1}{0.75}};
+        \end{axis}
+    \end{tikzpicture}
+    
+    \caption{Visualization of how $p(x_n)$ concentrates around $p$ as $n \rightarrow \infty$.}
+    \label{fig47}
+\end{figure}
+
+\begin{ntheorem}{: Chebychev's Inequality}{}
+    $P(\abs{X_n - p} > \delta) \leq \frac{1}{\sigma^2}p(1-p)\frac{1}{n}$. Note that this inequality can be generalized to random variables in general, but here it suffices to consider the inequality just for the case of $X_n$.
+\end{ntheorem}
+\begin{nproof}
+    
+\end{nproof}
+\noindent With the machinery of basic probability established, we move to the proof of the Weierstrass theorem.
+
+\begin{nproof}
+    
+\end{nproof}
 
 
 
