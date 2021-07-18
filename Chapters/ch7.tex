@@ -838,7 +838,7 @@ Note that we can and will assume that $f_n(x_0) \rightarrow 0$ at the specified 
 \noindent For example, $\text{Var}(S_n) = E(S_n^2) - (ES_n)^2 = np(1-p)$, and $\sigma_{S_n} = \sqrt{np(1-p)}$. 
 
 \begin{ndef}{: Proportion of Successes}{}
-    Define $X_n$ to be the proportion of successes in $n$ independent Bernoulli trials, with $X_n = \frac{1}{n}S_n$. Then, we have that $EX_n = \frac{1}{n}np = p$, $\text{Var}(X_n) = \text{Var}(\frac{1}{n}S_n) = \frac{1}{n^2}\text{Var}(S_n)= \frac{1}{n}p(1-p)$. We then have that $\sigma_{X_n} = \sqrt{\frac{p(1-p)}{n}}$.
+    Define $X_n$ to be the \textbf{proportion of successes} in $n$ independent Bernoulli trials, with $X_n = \frac{1}{n}S_n$. Then, we have that $EX_n = \frac{1}{n}np = p$, $\text{Var}(X_n) = \text{Var}(\frac{1}{n}S_n) = \frac{1}{n^2}\text{Var}(S_n)= \frac{1}{n}p(1-p)$. We then have that $\sigma_{X_n} = \sqrt{\frac{p(1-p)}{n}}$.
 \end{ndef}
 \noindent Analyzing the standard deviation $\sigma_{X_n}$, we see that as we do more trials ($n$ increases), the fluctuation of the proportion of successes gets smaller. This phenomena is known as the \emph{Law of large numbers}, which states that the proportion of successes should converge to the probability of success in a single trial. $\sigma_{X_n} \rightarrow 0$ as $n \rightarrow \infty$ tells us this fact. 
 
@@ -914,6 +914,60 @@ Note that we can and will assume that $f_n(x_0) \rightarrow 0$ at the specified 
 
 \setcounter{rudin}{27}
 
-\begin{definition}{Algebras}{7.29}
-    
+\begin{definition}{Algebras}{7.28a}
+    Let $\A$ be a set of functions $f: E \mapsto \CC$ (or $\RR$). Then, $\A$ is an \textbf{algebra} if for all $f, g \in \A$ and for all $c \in \CC$, $f + g \in \A$, $fg \in \A$, and $cf \in \A$. 
 \end{definition}
+
+\begin{nexample}{}{}
+    Let $E = [0, 1]$ and let $\A = \mathbb{P}$ be the set of polynomials on $[0, 1]$. Then, $\A$ is an algebra as the sum and product of two polynomials is also a polynomial, and a constant times a polynomial is a polynomial.
+\end{nexample}
+
+\setcounter{rudin}{27}
+
+\begin{definition}{Uniformly Closed Algebras and Uniform Closure}{7.28b}
+    We say that an algebra $\A$ is \textbf{uniformly closed} if $f_n \in \A$ and if $f_n \rightarrow f$ uniformly on $E$, then $f \in A$. In other words, the uniform limit of sequences of functions in the algebra is contained in the algebra. The \textbf{uniform closure} of $\A$ is then defined as $\mathcal{B} = \set{f: E \mapsto \CC: \exists f_n \in \A \text{ such that } f_n \rightarrow f \text{ uniformly}}$. 
+\end{definition}
+
+\begin{nexample}{}{}
+    $\mathbb{P}$ in the above example is not closed, as the uniform limit of a polynomial is not necessarily a polynomial. $\C([0, 1])$ is uniformly closed as the limit of uniform and continuous functions are closed and bounded. $\C([0, 1])$ is also the uniform closure of $\mathbb{P}$ by the Weierstrass theorem (Theorem \ref{thm:7.26}). 
+\end{nexample}
+
+\begin{theorem}{}{7.29}
+    The uniform closure $\mathcal{B}$ (sometimes denoted $\overline{\A}$) of an algebra $\A$  of bounded functions is a uniformly closed algebra. Note that $\A$ has a metric $d(f, g) = \sup_{x \in E}\abs{f(x) - g(x)} = \norm{f - g}$ and uniform convergence is equivalent to convergence in this metric.
+\end{theorem}
+
+\begin{nproof}
+    Suppose $f, g \in \mathcal{B}$ and $c \in \CC$. Then, there exsits $\set{f_n}, \set{g_n} \subset \A$ such that $f_n \rightarrow f$ uniformly and $g_n \rightarrow g$ uniformly (that is, $\norm{f - f_n} \rightarrow 0$ and $\norm{g - g_n} \rightarrow 0$). We then have that:
+    \begin{align*}
+        f_n + g_n &\rightarrow f + g \text{ uniformly,}
+        \\ fng_n &\rightarrow fg \text{ uniformly,}
+        \\ cf_n &\rightarrow cf \text{ uniformly.}
+    \end{align*}
+    Note that the first two lines above correspond to Rudin problems 7.2 and 7.3 respectively (these are left as exercises to the reader). We conclude that $f+g, fg, cg \in \mathcal{B}$ and hence $\mathcal{B}$ is an algebra. Furthermore, it is uniformly closed as it consists of $\A$ and all limit points of $\A$ (hence $\mathcal{B} = \overline{\A}$). \qed
+\end{nproof}
+
+\begin{definition}{Separating Points and Vanishing at No Point}{7.30}
+    A set $\A$ consisting of functions $f: E \mapsto \CC$ \textbf{separates points} on $E$ if for all $x_1, x_2$ in $E$ with $x_1 \neq x_2$, there exists $f \in \A$ such that $f(x_1) \neq f(x_2)$. In other words, there are enough functions in the set such that whatever pair of points we choose, we can always find distinct function values at these points. We say that $\A$ \textbf{vanishes at no point} in $E$ if for all $x \in E$, there exists $f \in \A$ such that $f(x) \neq 0$.
+\end{definition}
+
+\begin{nexample}{}{}
+    \begin{enumerate}
+        \item The set of polynomials $\mathbb{P}$ on $[-1, 1]$ separates points and vanishes at no point.
+        \item The set of even polynomials on $[-1, 1]$ vanishes at no point but does not separate points (as for any $x \in (0, 1]$ and even polynomial $f$, $f(x) = f(-x)$).
+        \item The set of odd polynomials on $[-1, 1]$ separates points, but all odd polynomials vanish at zero.
+    \end{enumerate}
+\end{nexample}
+
+\setcounter{rudin}{31}
+
+\begin{theorem}{Stone-Weierstrass}{7.32}
+    The uniform closure of any algebra $\A$ of real continuous functions on a compact set $K$ which separates points and vanishes at no point is $\C(K)$ (i.e. the set of all continuous functions on $K$).
+\end{theorem}
+\noindent In other words, the above theorem tells us that given $\A$ that separates points and vanishes at no point on compact $K$, we can generate a sequence that uniformly converges to any continuous function on $K$. Note that the above theorem gives the Weierstrass theorem as a special case. Take $[a, b]$ and $\A = \mathbb{P}$ to be the polynomials on $[a, b]$. Then, $\mathbb{P}$ separates points and vanishes at no point, so according to the theorem, the uniform closure of $\mathbb{P}$ is all continuous functions on $[a, b]$. 
+
+\begin{theorem}{Complex Stone-Weierstrass}{7.33}
+    Let $\A$ be a set of real complex functions on a compact set $K$ which separates points and vanishes at no point. Furthermore, suppose that $\A$ is self adjoint, that is, if $f \in \A$, then $\overline{f} \in \A$ (where $\overline{f}(x) = \overline{f(x)}$). Then, the uniform closure of $\A$ is $\C(K)$. 
+\end{theorem}
+
+
+
