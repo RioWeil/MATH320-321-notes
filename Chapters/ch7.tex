@@ -795,7 +795,7 @@ Note that we can and will assume that $f_n(x_0) \rightarrow 0$ at the specified 
 \subsection{The Stone-Weierstrass Theorem}
 
 \begin{theorem}{Weierstrass}{7.26}
-    Let $f: [a, b] \mapsto \RR$ be continuous. Then, there exists polynomials $p_n$ such that $p_n \rightarrow f$ uniformly on $[a, b]$.
+    Let $f: [a, b] \mapsto \RR$ be continuous. Then, there exists polynomials $P_n$ such that $P_n \rightarrow f$ uniformly on $[a, b]$.
 \end{theorem}
 \noindent Note that it will suffice to consider the case where $[a, b] = [0, 1]$; we can get to arbitrary $[a, b]$ to $[0, 1]$ by a change of variable, and the composition of apolynomial with a change of variable is still a polynomial.
 
@@ -876,7 +876,44 @@ Note that we can and will assume that $f_n(x_0) \rightarrow 0$ at the specified 
 \noindent With the machinery of basic probability established, we move to the proof of the Weierstrass theorem.
 
 \begin{nproof}
-    Take $p = x \in [0, 1]$. We then have that $p_m = \binom{n}{m}x^m(1-x)^{n-m}$. 
+    Take $p = x \in [0, 1]$. We then have that $p_m = \binom{n}{m}x^m(1-x)^{n-m}$. Let $P_n(x) = Ef(x_n) = \sum_{m=0}^n f(\frac{m}{n})p_m$ (why? as we take $n$ large, we have that $x_n \rightarrow x$, so $f(x_n) \rightarrow f(x)$, showing that $P_n(x)$ approximates $f(x)$ well). We note that $\sum_{m=0}^n f(\frac{m}{n})p_m$ is a polynomial in $x$ of degree $n$. This is our candidate for a uniformly convergent polynomial. We then have that:
+    \begin{align*}
+        f(x) - P_n(x) = \sum_{n=0}\left(f(x) - f\left(\frac{m}{n}\right)\right)p_m
+    \end{align*}
+    We will show that this is small by dividing it into two parts. For $\sigma > 0$, we have that:
+    \begin{align*}
+        \abs{f(x) - P_n(x)} &\leq \sum_{m: \abs{\frac{m}{n} - x} \leq \sigma} \abs{f(x) - f\left(\frac{m}{n}
+        \right)}p_m + \sum_{m: \abs{\frac{m}{n} - x} > \sigma}\abs{f(x) - f\left(\frac{m}{n}\right)}p_m
+        \\ &\leq \sum_{m: \abs{\frac{m}{n} - x} \leq \sigma} \abs{f(x) - f\left(\frac{m}{n}
+        \right)}p_m + \sum_{m: \abs{\frac{m}{n} - x} > \sigma}2Mp_m
+    \end{align*}
+    where $M = \sup\set{f(x): x \in [0, 1]}$. Let $\e > 0$. we choose $\delta > 0$ such that $\abs{x - y} < \delta$ implies $\abs{f(x) - f(y)} < \frac{\e}{2}$. This choice is possible by the uniform continuity of $f$ (it is a continuous (polynomial) function on a compact set ($[0, 1]$)). Then, for the first term above we have that:
+    \begin{align*}
+        \sum_{m: \abs{\frac{m}{n} - x} \leq \sigma} \abs{f(x) - f\left(\frac{m}{n}
+        \right)}p_m \leq \frac{\e}{2}\sum_{m=0}^n p_m = \frac{\e}{2}.
+    \end{align*}
+    For the second term, we apply Chebychev's inequality to get:
+    \begin{align*}
+        \sum_{m: \abs{\frac{m}{n} - x} > \sigma}2Mp_m \leq 2M\frac{1}{\delta^2}\frac{x(1-x)}{n}.
+    \end{align*}
+    Since $x(1-x) \leq \frac{1}{4}$ for $x \in [0, 1]$ we have:
+    \begin{align*}
+        \sum_{m: \abs{\frac{m}{n} - x} > \sigma}2Mp_m \leq 2M\frac{1}{\delta^2}\frac{x(1-x)}{n} \leq \frac{M}{2\delta^2}\frac{1}{n}.
+    \end{align*}
+    Now, choose $n$ such that $n > N \geq \frac{4\delta^2}{M\e}$. We then have that:
+    \begin{align*}
+        \frac{M}{2\delta^2}\frac{1}{n} < \frac{\e}{2}
+    \end{align*}
+    Then, we have that:
+    \begin{align*}
+        \abs{f(x) - P_n(x)} \leq \frac{\e}{2} + \frac{\e}{2} = \e
+    \end{align*}
+    which proves the claim. \qed
 \end{nproof}
+\noindent Our conclusion is that $P_n(x)$ is very close to $f(x)$. In the above proof, we split up the sum into two parts, and used different methods to obtain nice estimates/bounds on each. The next topic we will look at is generalizing this theorem; we will be building up to Rudin 7.32 (Stone-Weierstrass).
 
+\setcounter{rudin}{27}
 
+\begin{definition}{Algebras}{7.29}
+    
+\end{definition}
