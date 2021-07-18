@@ -845,17 +845,12 @@ Note that we can and will assume that $f_n(x_0) \rightarrow 0$ at the specified 
 \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}[scale=1.5]
-        \begin{axis}[every axis plot post/.append style={
-            mark=none,domain=-2:3,samples=50,smooth}, % All plots: from -2:2, 50 samples, smooth, no marks
-          axis x line*=bottom, % no box around the plot, only x and y axis
-          axis y line*=left, % the * suppresses the arrow tips
-          enlargelimits=upper] % extend the axes a bit to the right and top
-          \addplot {\gauss{0}{0.5}};
-          \addplot {\gauss{1}{0.75}};
-        \end{axis}
+        \draw[-latex] (0, 0) -- (2, 0);
+        \draw[-latex] (0, 0) -- (0, 2);
+        ‎\draw[<->, blue, thick, smooth, samples = 100, domain=0:2, variable = \x] plot(\x, {exp(-1*(\x-1)*(\x-1))});
     \end{tikzpicture}
     
-    \caption{Visualization of how $p(x_n)$ concentrates around $p$ as $n \rightarrow \infty$.}
+    \caption{Visualization of how $P(X_n)$ concentrates around $p$ as $n \rightarrow \infty$.}
     \label{fig47}
 \end{figure}
 
