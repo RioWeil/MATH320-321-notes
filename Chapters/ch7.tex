@@ -1029,3 +1029,62 @@ Note that we can and will assume that $f_n(x_0) \rightarrow 0$ at the specified 
 \end{nproof}
 
 \noindent We now proceed into the proof of Theorem \ref{thm:7.32}. As a brief refresher, we have an algebra $\A$ of continuous real functions on a compact set $K$, which vanishes points and separates at no point. We wish to show that for all continuous functions $f: K \mapsto \RR$ and for all $\e > 0$, there exists $h \in \mathcal{B} = \overline{\A}$ such that $\norm{h - f} < \e$. 
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=2]
+        \draw[-latex, very thick] (0, 0) -- (2, 0);
+        \draw[-latex, very thick] (0, 0) -- (0, 2);
+        \node[] at (0.5, 0) {$[$};
+        \node[] at (1.5, 0) {$]$};
+        \node[below] at (1, 0) {$K$};
+        \draw[red] (1, 1.5) parabola (0.5, 0.5);
+        \draw[red] (1, 1.5) parabola (1.5, 0.5);
+        \draw[red, dotted, yshift = 10pt] (1, 1.5) parabola (0.5, 0.5);
+        \draw[red, dotted, yshift = 10pt] (1, 1.5) parabola (1.5, 0.5);
+        \draw[red, dotted, yshift = -10pt] (1, 1.5) parabola (0.5, 0.5);
+        \draw[red, dotted, yshift = -10pt] (1, 1.5) parabola (1.5, 0.5);
+        \draw[blue] (0.5, 1.5) to [ curve through ={(0.75, 1.3)..(1,1.17)..(1.2,1.3)...(1.3,1.2)...(1.4,1.4)}] (1.5, 1.5);
+        \node[right, text = blue] at (1.5, 1.5) {$g_x(t)$};
+        \draw[] (0.77, 0) -- (0.77, -0.15);
+        \node[below] at (0.77, -0.15) {$x$};
+        \filldraw[] (0.77, 1.28) circle (0.5pt);
+        %\draw[<->] (1, 1.5) -- (1, 1.15);
+        %\node[left] at (1, 1.3) {$\e$};
+        %\draw[<->] (1, 1.5) -- (1, 1.85);
+        %\node[left] at (1, 1.625) {$\e$};
+        \node[right, text = red] at (1.5, 0.5) {$f(t)$};
+    \end{tikzpicture}
+    
+    \caption{Visualization of Claim 1 in the below proof of the Stone-Weierstrass theorem. We have that $g_x(x) = f(x)$, and that $g_x(t)$ lies above the bottom of the $\e$-tube around $f$. As we will see in the proof, this $g_x$ is obtained by considering $h_y$s that satisfy $h_y(t) - f(t) > -\e$ for $t$ in some neighbourhood of $y$. By the compactness of $K$, we can consider a finite subcover of these neighbourhoods, and defining $g_x$ to be the maximum of some finite number of $h_{y_i}$s. 
+    }
+    \label{fig48}
+\end{figure}
+
+\begin{nproof}
+    \textbf{Claim 1:} Let $f: K \mapsto \RR$ be continuous, $x \in K$, and $\e > 0$. Then, $\exists g_x \in \mathcal{B}$ such that $g_x(x) = f(x)$ and $g_x(t) - f(t) > -\e$ for all $t \in K$.
+
+    We now prove the claim. Fix $x \in K$. Given $y \in K$ with $y \neq x$, by Theorem \ref{thm:7.31} there exists $h_y \in \A$ such that $h_y(x) = f(x)$ and $h_y(y) = f(y)$. $h_y - f$ is continuous, and $h_y(y) - f(y) = 0$, so by continuity there exists an open set $J_y \subset K$ such that $y \in J_y$ and $h_y(t) - f(t) > -\e$ for all $t \in J_y$. We can form an open cover of $K$ from considering the set of $J_y$s around each $y \in K$. By the compactness of $K$, there exists a finite subcover $\set{J_{y_1}, \ldots J_{y_n}}$. Let $g_x = \max\set{h_{y_1}, \ldots h_{y_n}}$ (a maximum can be taken over a finite set). Each of the $h_{y_i}$s are continuous and in $\A$, so $g_x \in \mathcal{B}$ by Lemma 2. Also, we have that:
+    \begin{align*}
+        g_x(x) = \max{h_{y_1}(x), \ldots, h_{y_n}(x)} = \max{f(x), \ldots, f(x)} = f(x)
+    \end{align*}
+    as well as that $g_x(t) - f(t) \geq h_{y_i}(t) - f(t) > -\e$ where we choose $i$ such that $t \in J_{y_i}$. This proves the claim.
+
+    \textbf{Claim 2:} Let $f: K \mapsto \RR$ be continuous, and let $\e > 0$. Then, there exists $h \in \mathcal{B}$ such that $\sup_{x \in K}\abs{h(x) - f(x)} < \e$. This claim implies the Stone-Weierstrass theorem. We will be ``fixing'' the function from claim 1 such that the function does not lie above the $\e$ tube. 
+
+    Let us move onto the proof of the claim. Since $g_x - f$ is continuous and $g_x(x) - f(x) = 0$, we ahve that there exists an open set $V_x \in K$ such that $\abs{g_x(t) - f(t)} < \e$ for $t \in V_x$. Since $K$ is compact, we have that $K \subset V_{x_1} \cup \ldots \cup V_{x_n}$ for some $x_1, \ldots, x_n \in K$. Let $h = \min\set{g_{x_1}, \ldots, g_{x_n}}$. By Lemma 2, $h \in \mathcal{B}$. Then, take any $t \in K$. We then have that:
+    \begin{align*}
+        h(t) - f(t) = g_{x_i} - f(t) > -\e
+    \end{align*}
+    where we pick $i$ to give the minimum, and the lower bound of $-\e$ follows by Claim 1. We also have that:
+    \begin{align*}
+        h(t) - f(t) \leq g_{x_{i'}}(t) - f(t) < \e
+    \end{align*}
+    where we pick a new $i'$ such that $t \in V_{x_{i'}}$. We conclude that $\norm{h - f} < \e$, proving the claim. \qed
+\end{nproof}
+
+\noindent Having proven the real case of the Stone-Weierstrass theorem, we now move to the proof of the complex generalization (Theorem \ref{thm:7.33}). Recall that we add the hypothesis that $\A$ is self-adjoint in this generalization (if $f \in \A$, then $\overline{f} \in \A$). As a recap of the statement of the theorem, we suppose that $\A$ is a self-adjoint algebra of complex continuous functions on a compact set $K$ that separates points and vanishes at no point. Then, $\mathcal{B} = \overline{\A} = \C(K)$. In other words, for any $f \in \C(K)$ we can find an element in $\overline{\A}$ such that the difference is arbitrarily small. 
+
+\begin{nproof}
+    Let $\A_\RR$ be the algebra of real-valued continuous functions contained in $\A$. If $f = u + iv \in \A$, then $u = \frac{1}{2}(f + \overline{f}) \in \A_\RR$ and $v = \frac{1}{2}(f - \overline{f}) \in \A_\RR$. We have that $\A_\RR$ separates points; to see this, let $x_1, x_2 \in K$ with $x_1 \neq x_2$. By Theorem \ref{thm:7.31} (applied to $\A$) there exists $f \in \A$ such that $f(x_1) = 1$ and $f(x_2) = 0$. Writing $f = u + iv$, we have that $u(x_1) = 1 \neq u(x_2) = 0$ and $u \in \A_\RR$. Furthermore, $\A_\RR$ vanishes at no point. For all $x \in K$, by assumption there exists $f \in \A$ such that $f(x) \neq 0$, and hence $u(x) \neq 0$ (or $v(x) \neq 0$). Hence by Theorem \ref{thm:7.32}, we have that $\A_\RR = \C_\RR(K)$ (that is, the real values continuous functions on $K$). Let $f = u + iv \in \C_\CC(K)$ and let $\e > 0$. There exist $\tilde{u}, \tilde{v}$ such that $\norm{u - \tilde{u}} < \frac{\e}{2}$ and $\norm{v - \tilde{v}} < \frac{\e}{2}$, so it follows that $\norm{f - (\tilde{u} + i\tilde{v})} \leq \norm{u - \tilde{u}} + \norm{v - \tilde{v}} < \e$. \qed
+\end{nproof}
