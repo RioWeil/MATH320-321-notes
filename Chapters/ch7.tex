@@ -969,5 +969,63 @@ Note that we can and will assume that $f_n(x_0) \rightarrow 0$ at the specified 
     Let $\A$ be a set of real complex functions on a compact set $K$ which separates points and vanishes at no point. Furthermore, suppose that $\A$ is self adjoint, that is, if $f \in \A$, then $\overline{f} \in \A$ (where $\overline{f}(x) = \overline{f(x)}$). Then, the uniform closure of $\A$ is $\C(K)$. 
 \end{theorem}
 
+\noindent We establish three ingridients necessary for our proof of the Stone-Weierstrass theorem.
 
+\begin{nlemma}{ 1}
+    Let $\A$ be an algebra of real, continuous functions on a compact set $K$. Then, if $f \in \overline{\A}$, then $\abs{f} \in \overline{\A}$. 
+\end{nlemma}
 
+\begin{nproof}
+    Let $f \in \overline{\A}$ and $M = \sup_{x \in K}\abs{f(x)}$. This $M$ is finite. Let $\e > 0$. By Theorem \ref{thm:7.26}, there exists a polynomial $\tilde{P}_n$ duch that:
+    \begin{align*}
+        \sup_{\abs{y} \leq M}\abs{\tilde{P}_n(y) - \abs{y}} < \frac{\e}{2}.
+    \end{align*}
+    Then, let $P_n(y) = \tilde{P}_n(y) - \tilde{P}_n(0) = \sum_{j=1}^n c_jy^j$. We then have that:
+    \begin{align*}
+        \abs{P_n(y) - \abs{y}} \leq \abs{\tilde{P}_n(0) - \abs{0}} + \abs{\tilde{P}_n(y) - \abs{y}} < \frac{\e}{2} + \frac{\e}{2} = \e
+    \end{align*}
+    Also, $P_n(f) = \sum_{j=1}^n c_jf^j \in \overline{\A}$ as $f \in \overline{\A}$ and hence sums/products of $f$ will be in the algebra. Note that the constant function may or may not be in the algebra, which is the reason why we define $P_n$ with the constant term left out (by subtracting $\tilde{P}_n(0)$ from $\tilde{P}_n(y)$). Moreover, we have that $\sup_{x \in K}\abs{P_n(f)(x) - \abs{f(x)}} < \e$ as $\abs{P_n(y) - \abs{y}} < \e$ for any $\abs{y} \leq M$ (since $\abs{f(x)} \leq M$ for all $x \in K$). Hence, $\abs{f} \in \overline{\A}$. \qed
+\end{nproof}
+
+\begin{nlemma}{ 2}
+    For $\overline{\A}$ as in the previous Lemma (where $\overline{\A}$ is the uniform closure of a set of real, continuous functions on compact $K$), if $f_1, \ldots, f_n \in \overline{\A}$, then $\max\set{f_1, \ldots, f_n} \in \overline{\A}$ and $\min\set{f_1, \ldots, f_n} \in \overline{\A}$. 
+\end{nlemma}
+
+\begin{nproof}
+    It suffices to consider the case where $n = 2$. For this we use that:
+    \begin{align*}
+        \max\set{f_1, f_2} &= \frac{1}{2}(f_1 + f_2) + \frac{1}{2}\abs{f_1 - f_2}
+        \\ \min\set{f_1, f_2} &= \frac{1}{2}(f_1 + f_2) - \frac{1}{2}\abs{f_1 - f_2}
+    \end{align*}
+    Then, as $\overline{\A}$ is an algebra, we have that $\frac{1}{2}(f_1 + f_2) \pm \frac{1}{2}\abs{f_1 - f_2} \in \overline{\A}$ by Lemma 1. \qed
+\end{nproof}
+\noindent As a quick verification of the above formulas for the max/min over $\set{f_1, f_2}$, we can WLOG consider the case where $f_1 \geq f_2$:
+\begin{align*}
+    \frac{1}{2}(f_1 + f_2) + \frac{1}{2}\abs{f_1 - f_2} = &\frac{1}{2}(f_1 + f_2) + \frac{1}{2}(f_1 - f_2) = f_1 = \max\set{f_1, f_2}
+    \\ \frac{1}{2}(f_1 + f_2) - \frac{1}{2}\abs{f_1 - f_2} = &\frac{1}{2}(f_1 + f_2) - \frac{1}{2}(f_1 - f_2) = f_2 = \min\set{f_1, f_2}
+\end{align*}
+
+\setcounter{rudin}{30}
+
+\begin{theorem}{}{7.31}
+    If an algebra $\A$ of functions on $E$ separates points and vanishes at no point, then given any $x_1, x_2 \in E$ with $x_1 \neq x_2$ and constants $c_1, c_2$, there exists $f \in \A$ such that $f(x_1) = c_1$ and $f(x_2) = c_2$. 
+\end{theorem}
+
+\begin{nproof}
+    By hypothesis, there exists $g \in A$ such that $g(x_1) \neq g(x_2)$ (as $\A$ separates points). Furthermore, there exists $h, k \in \A$ such that $h(x_1) \neq 0$ and $k(x_2) \neq 0$ as $\A$ vanishes at no point. Let:
+    \begin{align*}
+        u(x) &= (g(x) - g(x_1))k(x)
+        \\ v(x) &= (g(x) - g(x_2))h(x)
+    \end{align*}
+    Then, $u(x_1) = 0$ and $u(x_2) \neq 0$, and $v(x_1) \neq 0$ and $v(x_2) = 0$. Note that the $k, h$s are necessary to include in the above definitions of $u, v$ to ensure that $u, v$ lie in our algebra; $g(x) - g(x_i)$ may not be in $\A$ if the constant functions are not in $\A$. Now, let:
+    \begin{align*}
+        f(x) = c_1\frac{v(x)}{v(x_1)} + c_2\frac{u(x)}{u(x_2)}
+    \end{align*}
+    which is a meaningful definition as $v(x_1) \neq 0$ and $u(x_2) \neq 0$. Since $\A$ is an algebra, $f \in \A$. Furthermore, we have that:
+    \begin{align*}
+        f(x_1) = c_1\frac{v(x_1)}{v(x_1)} + c_2\frac{u(x_1)}{v(x_2)} = c_1 + 0 = c_1
+    \end{align*}
+    and identically $f(x_2) = c_2$, proving the claim. \qed
+\end{nproof}
+
+\noindent We now proceed into the proof of Theorem \ref{thm:7.32}. As a brief refresher, we have an algebra $\A$ of continuous real functions on a compact set $K$, which vanishes points and separates at no point. We wish to show that for all continuous functions $f: K \mapsto \RR$ and for all $\e > 0$, there exists $h \in \mathcal{B} = \overline{\A}$ such that $\norm{h - f} < \e$. 
