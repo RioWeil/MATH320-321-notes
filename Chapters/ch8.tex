@@ -86,8 +86,8 @@ Note that if $\limsup_{n \rightarrow \infty}\sqrt[n]{\abs{c_n}} = \infty$, then 
 \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}[scale=1.5]
-        \draw[-latex] (0, 0) -- (0, 2);
-        \draw[latex-latex] (-2, 0) -- (2, 0);
+        \draw[-latex, very thick] (0, 0) -- (0, 2);
+        \draw[latex-latex, very thick] (-2, 0) -- (2, 0);
         \draw[blue, thick, smooth, samples = 100, domain=-0.999:0.999, variable = \x] plot(\x, {3*exp(-1/(1-(\x)*(\x)))});
         \draw[->, blue, thick] (1, 0) -- (1.95, 0);
         \draw[->, blue, thick] (-1, 0) -- (-1.95, 0);
@@ -101,6 +101,141 @@ Note that if $\limsup_{n \rightarrow \infty}\sqrt[n]{\abs{c_n}} = \infty$, then 
     \caption{Plot of the bump function $f$ from the above example.}
     \label{fig50}
 \end{figure}
+
+\noindent Before we continue, some remarks on the radius of convergence are in order. Of course, the definition of $R = \frac{1}{\limsup_{n \rightarrow \infty}\sqrt[n]{\abs{c_n}}}$ always holds. But in practice, the ratio test is much nicer to use (though it does not always work). We can make the observation that:
+\begin{align*}
+    \abs{\frac{c_{n+1}x^{n+1}}{c_nx^n}} = \abs{x}\abs{\frac{c_{n+1}}{c_n}} \rightarrow \abs{x}L
+\end{align*}
+Where we take the $n \rightarrow \infty$ limit in the final expression (assuming the limit exists). We have that the power series converges if $\abs{x} < \frac{1}{L}$ and diverges if $\abs{x} > \frac{1}{L}$. So, when the limit exists, we can write:
+\begin{align*}
+    R = \frac{1}{\linf\abs{\frac{c_{n+1}}{c_n}}}.
+\end{align*}
+In general, by Theorem 3.37 (not covered in lecture in 320, see Rudin), we have that:
+\begin{align*}
+    \frac{1}{\limsup_{n \rightarrow \infty}\abs{\frac{c_{n+1}}{c_n}}} \leq R \leq \frac{1}{\liminf_{n \rightarrow \infty}\abs{\frac{c_{n+1}}{c_n}}}
+\end{align*}
+
+\begin{theorem}{Abel's Theorem}{8.2}
+    Suppose $\sum_{n=0}^\infty c_n$ converges (perhaps conditionally). Let $f(x) = \sum_{n=0}^\infty c_nx^n$. Then, $f(x)$ converges if $\abs{x} < 1$, and $\lim_{x \rightarrow 1^{-}}f(x) = \sum_{n=0}^\infty c_n$. 
+\end{theorem}
+\begin{nproof}
+    For the first claim, we have that $\limsup_{n \rightarrow \infty}\sqrt[n]{\abs{c_n}} \leq 1$ so by the root test, $\sum_n c_n x^n$ has $R \geq 1$. The interesting case is when $R = 1$ (as if $R > 1$, then $f$ is continuous on $(-R, R)$ and the result follows immediately). In this case, $f(x)$ converges if $\abs{x} < 1$. Let $s_n = \sum_{m=0}^n c_m$ and $s = \sum_{m=0}^\infty c_m = \lim_{n \rightarrow \infty}s_n$. Let $s_{-1} = 0$. Then, we have that $s_n - s_{n-1} = c_n$ for $n \geq 0$.
+
+    Let $\e > 0$. We wish to show that there exists $\delta > 0$ such that for $1 -\delta < x < 1$ we have that $\abs{f(x) - s} < \e$. We start with the partial sum of $f(x)$. For $\abs{x} < 1$, we have:
+    \begin{align*}
+        \sum_{m=0}^n c_mx^m &= \sum_{m=0}^n (s_m - s_{m-1})x^m
+        \\ &= \sum_{m=0}^n s_mx^m - x\sum_{m=0}^{n-1}s_m x^m
+        \\ &= (1-x)\sum_{m=0}^n s_mx^m + s_nx^{n+1}.
+    \end{align*}
+    Now, let $n \rightarrow \infty$. We then have that $s_nx^{n+1} \rightarrow 0$ as $s_n \rightarrow s$ and $x^{n+1} \rightarrow 0$. We then have that $f(x) = (1-x)\sum_{m=0}^n s_mx^m + 0$, and using that $\sum_{m=0}^\infty x^m = \frac{1}{1-x}$, we obtain that:
+    \begin{align*}
+        \abs{f(x) - s} = \abs{(1-x)\sum_{m=0}^\infty(s_m - s)x^m} \leq \abs{1 - x}\sum_{m=0}^\infty \abs{s_m - s}\abs{x}^m.
+    \end{align*}
+    Now, choose $N$ such that $m \geq N$ implies $\abs{s_m - s} < \frac{\e}{2}$. Let $x \in (0, 1)$, and then:
+    \begin{align*}
+        \abs{f(x) - s} \leq (1-x)\sum_{m=0}^N\abs{s_m - s}x^n + (1-x)\frac{\e}{2}\frac{1}{1-x}
+    \end{align*}
+    The second term on the RHS is bounded using the geometric series. The first term is a polyonimal in $x$ and hence continuous everywhere (including at $x = 1$). It equals $0$ at $x = 1$, so it has absolute value less than $\frac{\e}{2}$ if $x \in (1-\delta, 1)$ for some $\delta$. Hence:
+    \begin{align*}
+        \abs{f(x) - s} < \frac{\e}{2} + \frac{\e}{2} = \e
+    \end{align*}
+    \noindent See Rudin page 175 for an application of this Theorem to prove Theorem 3.51 in a different way. Not that for the case where $\sum_n c_n = \infty$, the theorem still holds, with $\lim_{x \rightarrow 1^-}\sum_{n=0}^\infty c_nx^n = \infty$. \qed
+\end{nproof}
+
+\begin{theorem}{}{8.3}
+    Suppose $\sum_{i=1}^\infty \left(\sum_{j=1}^\infty \abs{a_{ij}}\right) < \infty$. Then, $\sum_{i=0}^\infty \sum_{j=0}^\infty a_{ij} = \sum_{j=0}^\infty \sum_{i=0}^\infty a_{ij}$ (and both converge).
+\end{theorem}
+\begin{nproof}
+    Rudin uses an overly clever proof. See HW7Q2 for a more natural one. \qed
+\end{nproof}
+
+\begin{theorem}{}{8.4}
+    Suppose $f(x) = \sum_{n=0}^\infty c_nx^n$ has radius of convergence $R$ (Taylor series of $f$ at 0/Maclaurin series). Let $\abs{a} < R$. Then, $f(x) = \sum_{n=0}^\infty \frac{f^{(n)}(0)}{n!}(x-a)^n$ for (at least) $\abs{x - a} < R - \abs{a}$. 
+\end{theorem}
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=2]
+        \draw[latex-latex, very thick] (-2, 0) -- (2, 0);
+        \draw[] (0, 0) -- (0, -0.15);
+        \draw[] (1, 0) -- (1, -0.15);
+        \draw[] (-1, 0) -- (-1, -0.15);
+        \draw[] (0.5, 0) -- (0.5, -0.15);
+        \node[below] at (0, -0.15) {$0$};
+        \node[below] at (1, -0.15) {$R$};
+        \node[below] at (-1, -0.15) {$-R$};
+        \node[below] at (0.5, -0.15) {$a$};
+        \draw[<->, red] (1, 0.15) -- (0, 0.15);
+    \end{tikzpicture}
+    
+    \caption{Visualization of Theorem \ref{thm:8.4}. The new Taylor series around $x = a$ converges in the region up to the radius of convergence of the original series.}
+    \label{fig51}
+\end{figure}
+
+\begin{nproof}
+    We have that $f(x) = \sum_{n=0}^\infty c_n\left[(x - a) + a\right]^n = \sum_{n=0}^\infty c_n\sum_{m=0}^n \binom{n}{m}(x-a)^ma^{n-m}$, and we want to find a way to interchange the order of summation. By Theorem \ref{thm:8.3}, the interchange is permitted if:
+    \begin{align*}
+        \sum_{n=0}^\infty\sum_{m=0}^n \abs{c_n}\binom{n}{m}\abs{x-a}^m\abs{a}^{n-m} < \infty
+    \end{align*}
+    but the above is equaivalent to:
+    \begin{align*}
+        \sum_{n=0}^\infty \abs{c_n}\left(\abs{x - a} + \abs{a}\right)^n
+    \end{align*}
+    which converges if $\abs{x - a} + \abs{a} < R$. Therefore:
+    \begin{align*}
+        f(x) = \sum_{m=0}^\infty \sum_{n=m}^\infty c_n\binom{n}{m}a^{n-m}(x - a)^m
+    \end{align*}
+    over $n \geq m$. We need to show that these new coefficients $\left(\sum_{n=m}^\infty c_n\binom{n}{m}a^{n-m}\right)$ are equal to $\frac{f^{(m)}(a)}{m!}$. Expanding out, we have that:
+    \begin{align*}
+        \sum_{n=m}^\infty c_n\binom{n}{m}a^{n-m} = \frac{1}{m!}n(n-1)\ldots (n-m+1)c_na^{n-m} = \frac{1}{m!}f^{(m)}(a)
+    \end{align*}
+    where in the last equality we use Theorem \ref{thm:8.1}. We conclude that:
+    \begin{align*}
+        f(x) = \sum_{m=0}\frac{f^{(m)}(a)}{m!}(x-a)^m \text{ for } \abs{x - a} < R - \abs{a}
+    \end{align*}
+\end{nproof}
+
+\begin{nexample}{}{}
+    Let $f(x) = \sum_{n=0}^\infty x^n$. If $\abs{x} < 1$, then the series converges and $f(x) = \frac{1}{1-x}$ ($R = 1$). Choose $a = -\frac{1}{2}$ (we look at the Taylor serires around $x = -\frac{1}{2}$). For any $\abs{x} < 1$, we have that $f^{(n)}(x) = \frac{n!}{(1-x)^{n+1}}$, so therefore:
+    \begin{align*}
+        f^{(n)}(-\frac{1}{2}) = \frac{n!}{(1+\frac{1}{2})^{n+1}} = \left(\frac{2}{3}\right)^{n+1}n!.
+    \end{align*}
+    By Theorem \ref{thm:8.4}, we then have that:
+    \begin{align*}
+        f(x) = \sum_{n=0}^\infty \frac{\left(\frac{2}{3}\right)^{n+1}n!}{n!}(x - a)^n = \sum_{n=0}^\infty \left(\frac{2}{3}\right)^{n+1}(x + \frac{1}{2})^n
+    \end{align*}
+    which is valid for $\abs{x - (-\frac{1}{2})} < 1 - \abs{-\frac{1}{2}}$ and hence if $\abs{x + \frac{1}{2}} < \frac{1}{2}$. Note that in fact, $\sum_{n=0}^\infty\left(\frac{2}{3}\right)^{n+1}(x - a)^n$ converges whenever $\abs{\frac{2}{3}(x + \frac{1}{2})} < 1$, in other words, whenever $\abs{x + \frac{1}{2}} < \frac{3}{2}$, so the series converges in $(-\frac{3}{2}, \frac{1}{2})$. 
+\end{nexample}
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=1.5]
+        \draw[-latex, very thick] (0, 0) -- (0, 2);
+        \draw[latex-latex, very thick] (-2, 0) -- (2, 0);
+        \draw[blue, thick, smooth, <->, samples = 100, domain=-1.8:0.5, variable = \x] plot(\x, {1/(1 - (\x))});
+        \draw[] (1, 0) -- (1, -0.15);
+        \draw[] (-1, 0) -- (-1, -0.15);
+        \draw[] (-0.5, 0) -- (-0.5, -0.15);
+        \draw[] (-1.5, 0) -- (-1.5, -0.15);
+        \draw[] (0.5, 0) -- (0.5, -0.15);
+        \node[below] at (0.5, -0.15) {$\frac{1}{2}$};
+        \node[below] at (1, -0.15) {$1$};
+        \node[below] at (-1, -0.15) {$-1$};
+        \node[below] at (-0.5, -0.15) {$-\frac{1}{2}$};
+        \node[below] at (-1.5, -0.15) {$-\frac{3}{2}$};
+        \node[above, text = blue] at (-1.5, 0.5) {$y = \frac{1}{1-x}$};
+        \draw[dotted] (1, 2) -- (1, -0.15);
+        \draw[<->, red] (-1.5, 0.15) -- (0.5, 0.15);
+    \end{tikzpicture}
+    
+    \caption{Plot of $y = \frac{1}{1-x}$ and region for which the Taylor series around $a = -\frac{1}{2}$ is valid (red).}
+    \label{fig52}
+\end{figure}
+\noindent As a remark, note that although Theorem \ref{thm:8.4} only guarantees convergence up to the previous boundary, in general the Taylor series will converge up to the nearest singularity. The above theorem is a good example of \emph{analytic continuation}, where a representation of a function converges in a larger interval than the original series (notice that the above taylor series for $f$ around $a = -\frac{1}{2}$ converges up to $-\frac{3}{2}$, when the original series only converged up to $-1$). We extend the function to a larger interval.
+
+Note that there is another way to obtain the Taylor series around $a = -\frac{1}{2}$ (in a technique reminiscent of that used in MATH 300). We can cleverly manipulate the original expression and the geometric series formula to observe that:
+\begin{align*}
+    f(x) = \frac{1}{1 - x} = \frac{1}{1 - x + \frac{1}{2} - \frac{1}{2}} = \frac{2}{3}\frac{1}{1 - \frac{2}{3}(x + \frac{1}{2})} = \frac{2}{3}\sum_{n=0}^\infty \left(\frac{2}{3}\right)^n (x + \frac{1}{2})^n.
+\end{align*}
+
 
 \subsection{The Exponential Function}
 
