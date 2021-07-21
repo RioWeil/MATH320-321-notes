@@ -259,11 +259,125 @@ Note that there is another way to obtain the Taylor series around $a = -\frac{1}
     
     Given the claim, we have that $A \cap \overline{B} = \overline{A} \cap B = \emptyset$ and hence $A$ and $B$ are separated sets. Since $(-R, R)$ is connected and equals $A \cup B$, one of $A, B$ must be empty. It cannot be $A$ (as $E' \neq \emptyset$ by assumption) so it must be $B$. Hence $B = \emptyset$ and $A = (-R, R) = E'$. This means that any $x \in (-R, R)$ is a limit point of $E$, so there exists $\set{x_n} \subset E$ such that $x_n \rightarrow x$. Since $f$ is continuous on $(-R, R)$, we have that $f(x) = \linf f(x_n) = 0$. So, $x \in E$ and $E = (-R, R)$. \qed
 \end{nproof}
+\noindent Having proven some more properties of power series, we now move to formal definitions of the exponential/logarithmic/trigonometric functions and a from-first-principles proof of their properties. 
 
-\subsection{The Exponential Function}
-Recall Definition \ref{def:3.30}, where we defined $e = \sum_{n=0}^\infty \frac{1}{n!}$. We also showed in Theorem \ref{thm:3.31} that
+\subsection{: The Exponential Function}
+Recall Definition \ref{def:3.30}, where we defined $e = \sum_{n=0}^\infty \frac{1}{n!}$. We also showed in Theorem \ref{thm:3.31} that $e = \linf\left(1 + \frac{1}{n}\right)^n$. We also know that $2 < e < 3$, and  by Theorem \ref{thm:3.32} that $e$ is irrational. We now define a power series based on $e$. 
+
+\begin{ndef}{: The Exponential Function}{}
+    For $z \in \CC$, we define:
+    \begin{align*}
+        E(z) = \sum_{n=0}^\infty \frac{z^n}{n!}
+    \end{align*}
+\end{ndef}
+\noindent In particular, we note that $E(1) = e$. Also note that (from Example \ref{exam:3.40}) that the above power series has radius of convergence $R = \infty$. We will show with the next sequence of theorems that $E(z)$ coincides with the exponential function $\exp(z) = e^z$ that we are familiar with.
+
+\begin{ntheorem}{: Addition Formula}{}
+    For $z, w \in \CC$, we have that $E(z + w) = E(z)E(w)$.
+\end{ntheorem}
+\begin{nproof}
+    From the defintion, we have that:
+    \begin{align*}
+        E(z)E(w) &= \sum_{n=0}^\infty \frac{z^n}{n!}\sum_{m=0}^\infty\frac{w^m}{m!}
+        \\ &= \sum_{n=0}^\infty \sum_{k=0}^n \frac{z^k}{k!}\frac{w^{n-k}}{(n-k)!}
+        \\ &= \sum_{n=0}^\infty \frac{1}{n!}\sum_{k=0}^n\binom{n}{k}z^kw^{n-k}
+        \\ &= \sum_{n=0}^\infty \frac{1}{n!}(z + w)^n
+        \\ &= E(z + w)
+    \end{align*}
+    where in the second equality we use Theorem \ref{thm:3.50} for the multiplication of series. \qed
+\end{nproof}
+\noindent We can now use this addition formula to show how $E(p)$ coincides with $\exp(p)$:
+
+\begin{ntheorem}{}{}
+    For $p \in \QQ, E(p) = e^p$. 
+\end{ntheorem}
+\begin{nproof}
+    Setting $z = w = 1$ in the addition formula above, we note that:
+    \begin{align*}
+        E(2) = E(1 + 1) = E(1)^2 = e^2, \quad E(3) = E(2 + 1) = E(2)E(1) = e^2e^1 = e^3
+    \end{align*}
+    so by induction, it follows that for $N \in \NN$:
+    \begin{align*}
+        E(N) = e^N
+    \end{align*}
+    Furthermore, we observe that:
+    \begin{align*}
+        E(z)E(-z) = E(z - z) = E(0) = 1
+    \end{align*}
+    so it follows that $E(z) = \frac{1}{E(z)}$. Hence, $E(-N) = \frac{1}{e^N} = e^{-N}$ for $N \in \NN$. Finally, let $p = \frac{m}{n}$ with $m, n \in \NN$. Then, we have that:
+    \begin{align*}
+        e^m = E(m) = E(np) = E(p + \ldots + p) = E(p)^n
+    \end{align*}
+    so therefore:
+    \begin{align*}
+        E(\frac{m}{n}) = E(p) = e^{\frac{m}{n}}
+    \end{align*}
+    Additionally, we have that:
+    \begin{align*}
+        1 = E(p - p) = E(p)E(-p) = e^pE(-p) \implies E(-p) = \frac{1}{e^p}.
+    \end{align*}
+    We have hence successfully shown that $E(p) = e^p$ for $p \in \QQ$. \qed
+\end{nproof}
+\noindent Next, we will extend the theorem for real exponents and study properties. We will have to come up with a different definition for an exponential of irrational powers; note that so far, our definition for exponentials $a^x$ only could accomodate rational $x$. 
+
+\begin{ndef}{: Real Exponentials}{}
+    For $x \in \RR$, let:
+    \begin{align*}
+        e^x = E(x) = \sum_{n=0}^\infty \frac{x^n}{n!}
+    \end{align*}
+\end{ndef}
+\noindent The above defintion defines $x \mapsto e^x$ as an analytic function on $\RR$, which is therefore infinitely differentiable on $\RR$. Futhermore, the derivatives have a certain property.
+\begin{ntheorem}{}{}
+    $\od{}{x}e^x = e^x$.
+\end{ntheorem}
+\begin{nproof}
+    By the defintion of $e^x$ we have that:
+    \begin{align*}
+        \dod{}{x}e^x = \sum_{n=0}^\infty \dod{}{x}\left(\frac{x^n}{n!}\right) = \sum_{n=0}^\infty \left(\frac{nx^{n-1}}{(n-1)!}\right) = \sum_{n=1}^\infty \frac{x^{n-1}}{(n-1)!} = \sum_{n=0}^\infty \frac{x^n}{n!} = e^x
+    \end{align*}
+\end{nproof}
+
+\begin{ntheorem}{}{}
+    $e^x > 0$ for all $x \in \RR$.
+\end{ntheorem}
+\begin{nproof}
+    Since $e^{x+y} = e^xe^y$ by the addition formula, we have for any $x \in \RR$ that $e^{x}e^{-x} = 1$. Since $e^x > 0$ if $x \geq 0$ by definition, it follows that $e^{-x} > 0$ as well if $e^{x}e^{-x} = 1 > 0$ is to be satisfied. \qed
+\end{nproof}
+
+\begin{ntheorem}{}{}
+    $e^x$ is strictly increasing and strictly convex.
+\end{ntheorem}
+\begin{nproof}
+    Since $\od{}{x} e^x = e^x > 0$ and $\od[2]{}{x} e^x = e^x > 0$ by the two previous theorems, we conclude that $e^x$ is strictly increasing and convex by Theorems \ref{thm:5.11} (and its extension).
+\end{nproof}
+
+\begin{ntheorem}{: Superpolynomial Asymptotic Growth}{}
+    $\lim_{x \rightarrow \infty} \frac{e^x}{x^n} = \infty$.
+\end{ntheorem}
+\begin{nproof}
+    For $n \geq 0$, the defintion shows that:
+    \begin{align*}
+        e^x > \frac{x^{n+1}}{(n+1)!}
+    \end{align*}
+    if $x > 0$, as on the RHS we drop all but the $k = n+1$ term in the series (and all of the terms are positive for $x > 0$). Rearranging, we have that:
+    \begin{align*}
+        \frac{e^x}{x^n} > \frac{x}{(n+1)!}
+    \end{align*}
+    and the claim follows by taking $x \rightarrow \infty$. \qed
+\end{nproof}
+\noindent The above theorem shows that $e^x$ grows faster than any power of $x$. We also obtain the Corollary:
+\begin{ncorollary}{}{}
+    $\lim_{x \rightarrow \infty} e^x = \infty$, $\lim_{x \rightarrow \infty} e^{-x} = 0$. 
+\end{ncorollary}
+\begin{nproof}
+    The first claim follows by setting $n = 0$ in the previous Theorem, and the second by using that $e^{-x} = \frac{1}{e^x}$. \qed
+\end{nproof}
+\noindent Since $e^x$ is strictly increasing, we may now define an inverse of $e^x$ at each $y > 0$. 
+
 \subsection{The Logarithm}
 
 \subsection{Sine and Cosine}
+
+\subsection{The Fundamental Theorem of Algebra}
 
 \subsection{Fourier Series}
