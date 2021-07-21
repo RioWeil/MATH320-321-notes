@@ -236,9 +236,32 @@ Note that there is another way to obtain the Taylor series around $a = -\frac{1}
     f(x) = \frac{1}{1 - x} = \frac{1}{1 - x + \frac{1}{2} - \frac{1}{2}} = \frac{2}{3}\frac{1}{1 - \frac{2}{3}(x + \frac{1}{2})} = \frac{2}{3}\sum_{n=0}^\infty \left(\frac{2}{3}\right)^n (x + \frac{1}{2})^n.
 \end{align*}
 
+\begin{theorem}{Principle of Permanence of Form}{8.5}
+    Suppose $\sum_n a_n x^n$ and $\sum_n b_n x^n$ each have radius of convergence larger or equal to $R$. Suppose $D \subset (-R, R)$ has a limit point in $(-R, R)$ (for example, $D = \set{\frac{R}{n}: n = 2, 3, \ldots}$ with limit point $0$). If $\sum_n a_nx^n = \sum_n b_n x^n$ in all $x \in D$, then $a_n = b_n$ for all $n \in \NN$ and $\sum_n a_nx^n$ and $\sum_n b_n x^n$ for all $x \in (-R, R)$. 
+\end{theorem}
+\noindent Note that this also holds for complex variables, so it can be a way of taking things we know in a real context and promoting it to a complex context. We will first prove a lemma.
+
+\begin{nlemma}{ (Problem 2.6)}{}
+    Let $E \subset X$ for a metric space $X$. Then the set $E'$ of limit points of $E$ is closed.
+\end{nlemma}
+\begin{nproof}
+    Let $x$ be a limit point of $E'$. We wish to show that $x \in E'$. Let $\delta > 0$. Since $x$ is a limit point of $E'$, for any $r > 0$ there exists some $y \in E'$, $y \neq x$ such that $y \in N_r(x)$. Since $y \in E'$, for any $\delta - r > 0$ we have that $N_{\delta-r}(y)$ contains a point $z$ of $E$. Therefore, we have that:
+    \begin{align*}
+        d(x, z) \leq d(x, y) + d(y, z) < r + \delta - r = \delta
+    \end{align*}
+    so any neighbourhood $N_\delta(x)$ of $x$ contains some point of $E$. Hence, $x$ is a limit point of $E$ and $x \in E'$. Hence $E'$ is closed. \qed
+\end{nproof}
+\noindent We now move to the proof of the theorem.
+\begin{nproof}
+    Let $c_n = a_n - b_n$ and $f(x) = \sum_n c_nx^n$. Then, $f(x) = 0$ for all $x \in D$. Let $E = \set{x \in (-R, R): f(x) = 0}$, so $D \subset E$. We want to show that $E = (-R, R)$. Let $A = E' \cap (-R, R)$. By hypothesis, $A \neq \emptyset$ as $D$ has a limit point in $(-R, R)$. Let $B = (-R, R) \setminus A$. Then, $(-R, R) = A \cup B$ and $A \cap B = \emptyset$. By the above Lemma, the set of limit points $E'$ is closed. Hence, $A$ is closed and $B$ is open. We claim that $A$ is also open.
+
+    To see that this is the case, we show that $E'$ is open (then $E' \cap (-R, R)$ is open as a finite intersection of open sets is open). Let $x_0 \in A$. Then, there exists $d_n$ such that $f(x) = \sum_n d_n(x - x_0)^n$ for $\abs{x - x_0} < R - \abs{x_0}$ by Theorem \ref{thm:8.4}. We will show that $d_n = 0$ for all $n$, showing that $f(x) = 0$ for all $x \in I_0 = N_{R - \abs{x_0}}(x_0)$, and therefore that $A$ is open. Suppose for the sake of contradiction that this is false. Then, there exists $k$ such that $d_k \neq 0$, i.e. $f(x) = \sum_{n=k}^\infty d_n(x - x_0)^n$ with $d_k \neq 0$. So, $f(x) = (x-x_0)^k\sum_{n=0}^\infty d_{n+k}(x - x_0)^n = g(x)$. Then, $g(x_0) = d_k \neq 0$. By the continuity of $g$, there exists $\delta > 0$ such that $g(x) \neq 0$ for $\abs{x - x_0} < \delta$. But then, $f(x) = (x - x_0)^kg(x) \neq 0$ if $0 < \abs{x - x_0} < \delta$. But then we have that there exists a neighbourhood of $x_0$ such that $f(x) \neq 0$, but then $x_0$ cannot be a limit point of $\set{x: f(x) = 0}$. So, $x_0 \notin A$, which is a contradiction. Hence $d_n = 0$ for all $n \in \NN$, and $A$ is open. 
+    
+    Given the claim, we have that $A \cap \overline{B} = \overline{A} \cap B = \emptyset$ and hence $A$ and $B$ are separated sets. Since $(-R, R)$ is connected and equals $A \cup B$, one of $A, B$ must be empty. It cannot be $A$ (as $E' \neq \emptyset$ by assumption) so it must be $B$. Hence $B = \emptyset$ and $A = (-R, R) = E'$. This means that any $x \in (-R, R)$ is a limit point of $E$, so there exists $\set{x_n} \subset E$ such that $x_n \rightarrow x$. Since $f$ is continuous on $(-R, R)$, we have that $f(x) = \linf f(x_n) = 0$. So, $x \in E$ and $E = (-R, R)$. \qed
+\end{nproof}
 
 \subsection{The Exponential Function}
-
+Recall Definition \ref{def:3.30}, where we defined $e = \sum_{n=0}^\infty \frac{1}{n!}$. We also showed in Theorem
 \subsection{The Logarithm}
 
 \subsection{Sine and Cosine}
