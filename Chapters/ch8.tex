@@ -296,9 +296,9 @@ Recall Definition \ref{def:3.30}, where we defined $e = \sum_{n=0}^\infty \frac{
     \begin{align*}
         E(2) = E(1 + 1) = E(1)^2 = e^2, \quad E(3) = E(2 + 1) = E(2)E(1) = e^2e^1 = e^3
     \end{align*}
-    so by induction, it follows that for $N \in \NN$:
+    so by induction, it follows that for $n \in \NN$:
     \begin{align*}
-        E(N) = e^N
+        E(n) = e^n
     \end{align*}
     Furthermore, we observe that:
     \begin{align*}
@@ -334,7 +334,7 @@ Recall Definition \ref{def:3.30}, where we defined $e = \sum_{n=0}^\infty \frac{
     By the defintion of $e^x$ we have that:
     \begin{align*}
         \dod{}{x}e^x = \sum_{n=0}^\infty \dod{}{x}\left(\frac{x^n}{n!}\right) = \sum_{n=0}^\infty \left(\frac{nx^{n-1}}{(n-1)!}\right) = \sum_{n=1}^\infty \frac{x^{n-1}}{(n-1)!} = \sum_{n=0}^\infty \frac{x^n}{n!} = e^x
-    \end{align*}
+    \end{align*} \qed
 \end{nproof}
 
 \begin{ntheorem}{}{}
@@ -348,7 +348,7 @@ Recall Definition \ref{def:3.30}, where we defined $e = \sum_{n=0}^\infty \frac{
     $e^x$ is strictly increasing and strictly convex.
 \end{ntheorem}
 \begin{nproof}
-    Since $\od{}{x} e^x = e^x > 0$ and $\od[2]{}{x} e^x = e^x > 0$ by the two previous theorems, we conclude that $e^x$ is strictly increasing and convex by Theorems \ref{thm:5.11} (and its extension).
+    Since $\od{}{x} e^x = e^x > 0$ and $\od[2]{}{x} e^x = e^x > 0$ by the two previous theorems, we conclude that $e^x$ is strictly increasing and convex by Theorems \ref{thm:5.11} (and its extension). \qed
 \end{nproof}
 
 \begin{ntheorem}{: Superpolynomial Asymptotic Growth}{}
@@ -375,9 +375,315 @@ Recall Definition \ref{def:3.30}, where we defined $e = \sum_{n=0}^\infty \frac{
 \noindent Since $e^x$ is strictly increasing, we may now define an inverse of $e^x$ at each $y > 0$. 
 
 \subsection{The Logarithm}
+\begin{ndef}{: The Logarithm}{}
+    For $y > 0$, define $L(y) = \log(y)$ by $E(L(y)) = y$ for $y > 0$, $y \in \RR$. Equivalently, we can define the logarithm as $L(E(x))) = x$ for $x \in \RR$ or $e^{\log y} = y$ or $\log e^x = x$. 
+\end{ndef}
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=1.5]
+        \draw[-latex, very thick] (0, 0) -- (0, 2);
+        \draw[latex-latex, very thick] (-2, 0) -- (2, 0);
+        \draw[blue, thick, smooth, <->, samples = 100, domain=-1.8:1.25, variable = \x] plot(\x, {0.5*exp(\x)});
+        \node[above, text = blue] at (-1.5,0.2) {$e^x$};
+        \draw[dashed] (0, 1.39) -- (1, 1.39);
+        \draw[dashed] (1, 0) -- (1, 1.39);
+        \draw[] (0, 1.39) -- (-0.15, 1.39);
+        \node[left] at (-0.15, 1.39) {$y$};
+        \draw[] (1, 0) -- (1, -0.15);
+        \node[below] at (1, -0.15) {$L(y)$};
+    \end{tikzpicture}
 
-\subsection{Sine and Cosine}
+    \caption{Plot of $e^x$ and extraction of its inverse $L(y)$.}
+    \label{fig53}
+\end{figure}
 
-\subsection{The Fundamental Theorem of Algebra}
+\begin{ntheorem}{: Derivative and Addition Formula}{}
+    $L'(y) = \frac{1}{y}$ for $y > 0$ and $L(uv) = L(u) + L(v)$
+\end{ntheorem}
+\begin{nproof}
+    Since $L(E(x)) = x$ by definition, by the chain rule (Theorem \ref{thm:5.5}) we have that:
+    \begin{align*}
+        L'(E(x))E'(x) = 1 \implies L'(E(x)) = \frac{1}{E(x)}.
+    \end{align*}
+    Where we use that $E'(x) = E(x)$ in the above implication. Letting $E(x) \mapsto y$, we have that $L'(y) = \frac{1}{y}$ as claimed. For the second claim, consider that for all $u, v > 0$, there exists unique $x, y \in \RR$ (which can be denoted as $\exists ! x, y \in \RR$) such that $E(x) = u, E(y) = v$. Hence:
+    \begin{align*}
+        L(uv) = L(E(x)E(y)) = L(E(x + y)) = x + y = L(u) + L(v).
+    \end{align*}\qed
+\end{nproof}
+
+\begin{ncorollary}{}{}
+    For $y > 0$, $L(y) = \int_1^y \frac{1}{t}dt$.
+\end{ncorollary}
+\begin{nproof}
+    By the Fundamental Theorem of Calculus (Theorem \ref{thm:6.21}) we have that $\int_1^y \frac{1}{t}dt = L(y) - L(1) = L(y)$. \qed
+\end{nproof}
+
+\begin{ntheorem}{}{}
+    For $p \in \QQ$, $L(x^p) = pL(x)$.
+\end{ntheorem}
+\begin{nproof}
+    By the addition formula, we have that $L(\frac{1}{x}) + L(x) = L(\frac{1}{x}x) = L(1) = 0$. Hence, $L(\frac{1}{x}) = -L(x)$. Furthermore, by the addition formula, we have that $L(x^n) = nL(x)$ by induction. Furthermore, $L(x^0) = L(1) = 0 = 0L(x)$ which shows that the formula holds for $\NN \cup \set{0}$. Combining the previous facts, we have that:
+    \begin{align*}
+        nL(x^{\frac{1}{n}}) = L((x^{\frac{1}{n}})^n) = L(x^1) \implies L(x^{\frac{1}{n}}) = \frac{1}{n}L(x)
+    \end{align*} 
+    We therefore have that for $p = \frac{m}{n}$ with $m, n \in \NN$ that:
+    
+    \begin{align*}
+        L(x^{\frac{m}{n}}) = mL(x^{\frac{1}{n}}) = \frac{m}{n}L(x)
+    \end{align*}
+    Furthermore,
+    \begin{align*}
+        L(x^{-\frac{m}{n}}) = L\left(\frac{1}{x^{\frac{m}{n}}}\right) = -L(x^{\frac{m}{n}}) = -\frac{m}{n}L(x)
+    \end{align*}
+    which shows that the proposed identity holds for all $p \in \QQ$. \qed
+\end{nproof}
+
+\begin{ndef}{: Real Exponentials with Arbitrary Base}{}
+    For $\alpha \in \RR$, we define $x^\alpha = e^{\alpha \log \alpha}$.
+\end{ndef}
+\noindent Note that the above definition is equivalen to the definition made in MATH 320 HW3Q1, but it is a much cleaner definition (as we will soon see)!
+
+\begin{ntheorem}{: Generalized Power Rule}{}
+    $\od{}{x}x^\alpha = \alpha x^{\alpha -1}$ and hence $x^\alpha$ has antiderivative:
+    \begin{align*}
+        \begin{cases}
+            \frac{1}{\alpha + 1}x^{\alpha + 1} & \text{if $\alpha \neq -1$}
+            \\ \log x & \text{if $\alpha = 1$}
+        \end{cases}.
+    \end{align*}
+\end{ntheorem}
+\begin{nproof}
+    From the definition of $x^\alpha$, we have that:
+    \begin{align*}
+        \dod{}{x}x^\alpha = \dod{}{x}\left(e^{\alpha \log x}\right) = e^{\alpha \log x} \alpha\frac{1}{x} = \alpha\frac{x^\alpha}{x} = \alpha x^{\alpha - 1}
+    \end{align*}
+    where in the second equality we use the chain rule and the fact that $L'(y) = \frac{1}{y}$. \qed
+\end{nproof}
+
+\begin{ntheorem}{: Subpolynomial Asymptotic Growth}{}
+    $\lim_{x \rightarrow \infty} \log x = \infty$, $\lim_{x \rightarrow 0^+} = -\infty$, and $\lim_{x \rightarrow \infty} \frac{\log x}{x^\alpha} = 0$ if $\alpha > 0$.
+\end{ntheorem}
+\begin{nproof}
+    To realize the first two equalities, we first make the observation that $\log(x)$ is (Strictly) monotonically increasing. To see this, let $x_1, x_2 > 0$ and $x_1 < x_2$ and then we have that:
+    \begin{align*}
+        \log(x_2) - \log(x_1) = \int_0^{x_2} \frac{1}{t}dt - \int_0^{x_1}\frac{1}{t}dt = \int_{x_1}^{x_2}\frac{1}{t}dt > 0
+    \end{align*}
+    where the bound follows from the fact that $\frac{1}{t} > 0$ for all $t > 0$ and $x_2 - x_1 > 0$. Hence, $\log(x)$ is monotonicaly increasing, and to compute the limits it suffices to compute the limit along a specific choice of sequence that tends to $\infty$ or $0$ respectively. Using that $\linf e^n = \infty$ and $\linf e^{-n} = 0$, we have that:
+    \begin{align*}
+        \linf \log(e^n) = \linf n\log(e) = \linf n = \infty
+    \end{align*}
+    \begin{align*}
+        \linf \log(e^{-n}) = \linf -n\log(e) = \linf -n = -\infty
+    \end{align*}
+    so we conclude that $\lim_{x \rightarrow \infty}\log(x) = \infty$ and $\lim_{x \rightarrow 0} \log(x) = -\infty$.
+
+    For the third claim, we let $a > 0$ and $x > 1$. Then:
+    \begin{align*}
+        \log(x) = \int_1^x \frac{1}{t}dt < \int_1^x t^a\frac{1}{t}dt = \left.\frac{t^a}{a}\right|_{1}^x = \frac{x^a}{a} - \frac{1}{a} < \frac{x^a}{a}
+    \end{align*}
+    so choosing $a \in (0, \alpha)$ we have that:
+    \begin{align*}
+        \frac{1}{x^\alpha}\log x < \frac{1}{a}\frac{1}{x^{\alpha - a}} \rightarrow 0 \text{ as } x \rightarrow \infty.
+    \end{align*}\qed
+\end{nproof}
+
+\subsection{Cosine and Sine}
+We have seen that $E(z+w) = E(z)E(w)$ for all $z, w \in \CC$. A natural definition for the complex exponential follows.
+
+\begin{ndef}{: Complex Exponentials}{}
+    Given $z \in \CC$, we define:
+    \begin{align*}
+        e^z = \sum_{n=0}^\infty \frac{z^n}{n!} = E(z)
+    \end{align*}
+\end{ndef}
+\noindent As a remark, note in taking the complex conjugate of $\exp(z)$, we can absorb the conjugation into the argument:
+\begin{align*}
+    \overline{\exp(z)} = \overline{\sum_{n=0}^\infty \frac{z^n}{n!}} = \sum_{n=0}^\infty \frac{\overline{z}^n}{n!} = \exp(\overline{z})
+\end{align*}
+\noindent We will now define the trigonometric functions using the complex exponential, and prove the properties that we would expect them to have from our prior geometric notions.
+
+\begin{ndef}{: Cosine and Sine}{}
+    Let $x \in \R$. We then define:
+    \begin{align*}
+        C(x) &= \Re E(ix) = \frac{1}{2}\left[e^{ix} + e^{-ix}\right]
+        \\ S(x) &= \Im E(ix) = \frac{1}{2i}\left[e^{ix} - e^{-ix}\right]
+    \end{align*}
+\end{ndef}
+
+\begin{ntheorem}{: Euler's Formula}{}
+    $E(ix) = C(x) + iS(x)$. 
+\end{ntheorem}
+\begin{nproof}
+    The formula is an immediate consequence of the definitions of $C(x), S(x)$. \qed
+\end{nproof}
+\noindent Note that $C(x), S(x)$ can alternatively (equivalently) be defined as power series:
+\begin{align*}
+    C(x) &= \frac{1}{2}\sum_{n=0}^\infty \left(\frac{(ix)^n}{n!} + \frac{(-ix)^n}{n!}\right) = \sum_{n=0}^\infty (-1)^n \frac{x^{2n}}{(2n)!}
+    \\ S(x) &= \sum_{n=0}^\infty (-1)^n \frac{x^{2n}}{(2n+1)!}
+\end{align*}
+
+\begin{ntheorem}{}{}
+    Let $x \in \RR$. We then have that:
+    \begin{enumerate}
+        \item $C(x) = C(-x)$, $C(0) = 1$ and $S(x) = -S(-x)$, $S(0) = 0$.
+        \item $C^2(x) + S^2(x) = 1$.
+        \item $C'(x) = -S(x)$ and $S'(x) = C(x)$.
+    \end{enumerate}
+\end{ntheorem}
+
+\begin{nproof}
+    \begin{enumerate}
+        \item From the definitions of $C$ and $S$, we have:
+        \begin{align*}
+            C(-x) &= \frac{1}{2}\left[e^{-ix} + e^{ix}\right] = C(x)
+            \\ C(0) &= \frac{1}{2}\left[e^{i(0)} + e^{-i(0)}\right] = \frac{1}{2}\left[1 + 1\right] = 1
+            \\ -S(-x) &= -\frac{1}{2}\left[e^{-ix} - e^{ix}\right] = \frac{1}{2}\left[e^{ix} - e^{-ix}\right] = S(x)
+            \\ S(0) &= \frac{1}{2}\left[e^{i(0)} - e^{-i(0)}\right] = \frac{1}{2}\left[1 - 1\right] = 0
+        \end{align*}
+        \item Expanding out the expression, we have:
+        \begin{align*}
+            C^2(x) + S^2(x) &= \frac{1}{4}\left[e^{ix}e^{ix} + 2e^{ix}e^{-ix} + e^{-ix}e^{-ix}\right] - \frac{1}{4}\left[e^{ix}e^{ix} - 2e^{ix}e^{-ix} + e^{-ix}e^{-ix}\right]
+            \\ &= e^{ix}e^{-ix}
+            \\ &= e^{ix - ix}
+            \\ &= e^0
+            \\ &= 1
+        \end{align*}
+        \item Using the linearity of the derivative, and the known result for the derivative of exponentials we have:
+        \begin{align*}
+            C'(x) &= \frac{1}{2}\left[ie^{ix} - ie^{-ix}\right] = -\frac{1}{2i}\left[e^{ix} - e^{-ix}\right] = -S(x)
+            \\ S'(x) &= \frac{1}{2i}\left[ie^{ix} + ie^{-ix}\right] = \frac{1}{2}\left[e^{ix} + e^{-ix}\right] = C(x)
+        \end{align*} \qed
+    \end{enumerate}
+\end{nproof}
+
+\begin{nlemma}{}{}
+    There exists $x > 0$ such that $C(x) = 0$. 
+\end{nlemma}
+\begin{nproof}
+    Suppose for the sake of contradiction that $C(x) > 0$ for all $x > 0$. Then, $S$ is strictly increasing as $S' = C$. So, for all $y > x$, we then have that:
+    \begin{align*}
+        S(x)(y - x) < \int_x^y S(t)dt = -C(y) + C(x) \leq 2
+    \end{align*}
+    but letting $y \rightarrow \infty$, we get that $\infty \leq 2$ which is a contradiciton. \qed
+\end{nproof}
+
+\begin{ndef}{: $\pi$}{}
+    Given the above Lemma, $x_0 = \inf\set{x > 0: C(x) = 0}$ exists. In particular, $x_0 > 0$ since $C(0) = 1$ and $C$ is continuous. Then, we define $\pi = 2x_0$. 
+\end{ndef}
+
+\begin{ntheorem}{}{}
+    $S(\frac{\pi}{2}) = 1$.
+\end{ntheorem}
+\begin{nproof}
+    By the definition of $\pi$, we have that $C(x) > 0$ for $x \in [0, \frac{\pi}{2})$ and $C(\frac{\pi}{2}) = 0$. From the previous theorem we have that $C^2(\frac{\pi}{2}) + S^2(\frac{\pi}{2}) = 1$ so we obtain that $S(\frac{\pi}{2}) = \pm 1$. Since $S(0) = 0$ and $S'(x) = C(x) > 0$ for $x \in [0, \frac{\pi}{2})$, we conclude that $S(\frac{\pi}{2}) = 1$. \qed
+\end{nproof}
+\noindent Note the implication this result has for $e^{ix}$; using Euler's Formula, we find that:
+\begin{align*}
+    e^{i\frac{\pi}{2}} = \cos(\frac{\pi}{2}) + i\sin(\frac{\pi}{2}) = 0 + i1 = i
+\end{align*}
+Therefore:
+\begin{align*}
+    e^{i\pi} &= \left(e^{i\frac{\pi}{2}}\right)^2 = i^2 = -1
+    \\ e^{i\frac{3\pi}{2}} &= \left(e^{i\frac{\pi}{2}}\right)^3 = i^3 = -i
+    \\ e^{i2\pi} &= \left(e^{i\frac{\pi}{2}}\right)^4 = i^4 = 1.
+\end{align*}
+From this we notice the periodicity of $e^{ix}$. 
+\begin{ntheorem}{: Periodicity of Trigonometric Functions}{}
+    \begin{enumerate}
+        \item $e^{x + 2\pi i} = e^x$.
+        \item $C(x + 2\pi) = C(x)$.
+        \item $S(x + 2\pi) = S(x)$.
+    \end{enumerate}
+\end{ntheorem}
+\begin{nproof}
+    \begin{enumerate}
+        \item $e^{x + 2\pi i} = e^{x}e^{2\pi i}$ by the addition formula. Then, $e^{2\pi i} = 1$ by the argument above, proving the identity.
+        \item Using the above periodicity of $e^{ix}$, we have that $C(x + 2\pi) = \Re(e^{i(x + 2\pi)}) = \Re(e^{ix}) = C(x)$.
+        \item $S(x + 2\pi) = \Im(e^{i(x + 2\pi)}) = \Im(e^{ix}) = C(x)$. \qed
+    \end{enumerate}
+\end{nproof}
+\noindent Note that there is a way to relate $S$ and $C$ via a phase shift. We observe that:
+\begin{align*}
+    S(x + \frac{\pi}{2}) = \Im(e^{i(x + \frac{\pi}{2})}) = \Im(e^{ix}e^{i\frac{\pi}{2}}) = \Im(e^{ix}i) = \Im((C(x) + iS(x))i) = \Im(iC(x) - S(x)) = C(x)
+\end{align*}
+\noindent We can also generalize this formula to get the familiar trigonometric sum identity.
+
+\begin{ntheorem}{}{}
+    $S(x + y) = C(x)S(y) + S(x)C(y)$.
+\end{ntheorem}
+\begin{nproof}
+    Using the definition of $S$ and Euler's Formula, we observe that:
+    \begin{align*}
+        S(x + y) = \Im(e^{i(x + y)}) 
+        &= \Im(e^{ix}e^{iy})
+        \\ &= \Im((C(x) + iS(x))(C(y) + iS(y)))
+        \\ &= \Im(C(x)C(y) + iS(x)C(y) + iC(x)S(y) - S(x)S(y))
+        \\ &= C(x)C(y) - S(x)S(y)
+    \end{align*} \qed
+\end{nproof}
+\noindent As a final remark before moving onto the next section, we observe that $x \mapsto e^{ix}$ is a bijection from $[0, 2\pi)$ onto the unit circle (points $z \in \CC$ with $\abs{z} = 1$). See Rudin for more details.
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \draw[blue, thick] (0, 0) -- (1, 1);
+        \draw[latex-latex, very thick] (-2, 0) -- (2, 0);
+        \draw[latex-latex, very thick] (0, -2) -- (0, 2);
+        \draw[smooth] (0, 0) circle (40pt);
+        \draw[fill = blue, draw = blue] (1, 1) circle (1pt);
+        \draw[->,red] (0.75, 0) arc(0:45:0.75);
+        \node[text = red] at (0.82, 0.37) {$x$};
+        \node[text = blue] at (1.23, 1.23) {$e^{ix}$};
+
+    \end{tikzpicture}
+    
+    \caption{Visualization of the map $x \mapsto e^{ix}$ from $[0, 2\pi)$ onto the unit circle in the complex plane.}
+    \label{fig55}
+\end{figure}
+
+
+\subsection{The Algebraic Completeness of the Complex Field}
+
+\setcounter{rudin}{7}
+
+\begin{theorem}{The Fundamental Theorem of Algebra}{}
+    Let $n \in \NN$, and $a_0, a_1, \ldots, a_n \in \CC$ such that $a_n \neq 0$. Define the polynomial:
+    \begin{align*}
+        P(z) = a_0 + a_1z + \ldots + a_nz^n
+    \end{align*}
+    with $z \in \CC$. Then, there exists $z_0 \in \CC$ such that $P(z_0) = 0$. 
+\end{theorem}
+
+\begin{ncorollary}{}{}
+    By division, $P_n(z)$ has $n$ roots. 
+\end{ncorollary}
+
+\begin{nproof}
+    Assume WLOG that $a_n = 1$ (this can be realized by dividing out by the original nonzero $a_n$). Let $\mu = \inf_{z \in \CC}\abs{P(z)}$. We wish to show that $\mu = 0$, and that the inf is attained at some $z_0 \in \CC$. 
+
+    We first show that the infimum is attained. The idea of the argument is that for large $z$, $z^n$ grows the most rapidly and hence it dominates. Hence, $\abs{P(z)}$ is large. Hence, the $\inf$ is attained in some compact disk, but since $P$ is continuous, the $\inf$ is therefore obtained somewhere on this compact set. Formally, for $\abs{z} = R$, we have that:
+    \begin{align*}
+        \abs{P(z)} = \abs{z^n}\abs{\frac{a_0}{z^n} + \frac{a_1}{z^{n-1}} + \ldots + \frac{a_{n-1}}{z} + 1} &\geq \abs{z}^n\left(1 - \frac{\abs{a_0}}{\abs{z}^n} - \frac{\abs{a_1}}{\abs{z}^{n-1}} - \ldots - \frac{\abs{a_{n-1}}}{\abs{z}}\right)
+        \\ &= R^n\left(1 - \frac{\abs{a_0}}{\abs{z}^n} - \frac{\abs{a_1}}{\abs{z}^{n-1}} - \ldots - \frac{\abs{a_{n-1}}}{\abs{z}}\right)
+    \end{align*}
+    We see that this expression goes to infinity as $R \rightarrow \infty$. Hence, $\abs{P(z)} \geq \mu + 1$ if $\abs{z} \geq R_0$ for some $R_0 > 0$. As $\abs{P}$ is continuous, and $\abs{z} \leq R_0$ is a compact subset of $\CC$, $\mu$ is attained somewhere on the subset by the Extreme Value Theorem (Theorem \ref{thm:4.16}). Therefore, $\mu = \abs{P(z_0)}$ for some $z_0$ with $\abs{z_0} \leq R_0$. 
+
+    Next, we show that $\mu = 0$. Suppose (for the sake of contradiction) that $\mu > 0$ and hence $P(z_0) \neq 0$. Let $Q(z) = \frac{P(z_0 + z)}{P(z_0)}$. Then $Q(0) = 1$, so:
+    \begin{align*}
+        Q(z) = 1 + b_kz^k + \ldots + b_nz^n
+    \end{align*}
+    where $b_k$ is the first nonzero coeffient. Furthermore, we see that $\abs{Q(z)} = \frac{\abs{P(z_0 + z)}}{\mu} \geq 1$ for all $z \in \CC$ (as $\mu$ is the infimum). We will now derive a contradiction by looking at small $z$ (where $z^k > z^{k+1} > \ldots > z^n$). We consider that:
+    \begin{align*}
+        \abs{Q(z)} \leq \abs{1 + b_kz^k} + \sum_{m=k+1}^n \abs{b_m}\abs{z^m}
+    \end{align*}
+    We want to choose $z$ small enough such that the first term in the above expression is less than $1$ and the others are negligeble. To this end, let us write $bk = \frac{b_k}{\abs{b_k}}\abs{b_k} = e^{it_1}\abs{b_k}$ for some $t_1 \in \RR$. Then, let $t = \frac{-t_1 + \pi}{k}$ so $t_1 = -kt + \pi$. We then have that $b_k = -e^{-itk}\abs{b_k}$ (where the minus sign comes from $e^{i\pi}$). Choose $z = re^{it}$ with $r > 0$. Then, $z^k = r^ke^{itk}$ and $b_kz^k = -e^{-itk}\abs{b_k}r^ke^{itk} = -r^k\abs{b_k} < 0$. Let us choose $r$ small enough so that $\abs{b_k}r^k < 1$ is satisfied. We then have that:
+    \begin{align*}
+        \abs{1 + b_kz^k} = \abs{1 - \abs{b_k}r^k} = 1 - \abs{b_k}r^k
+    \end{align*}
+    so therefore:
+    \begin{align*}
+        \abs{Q(z)} \leq 1 - \abs{b_k}r^k + \sum_{m=k+1}^n \abs{b_m}r^k = 1 - r^k\left(\abs{b_k} - r\abs{b_{k+1}} - \ldots - r^{n-k}\abs{b_n}\right)
+    \end{align*}
+    where $\left(\abs{b_k} - r\abs{b_{k+1}} - \ldots - r^{n-k}\abs{b_n}\right) > 0$. Hence $\abs{Q(z)} < 1$, which is a contradiction. We conclude that $\abs{P(z_0)} = 0$. \qed
+\end{nproof}
 
 \subsection{Fourier Series}
