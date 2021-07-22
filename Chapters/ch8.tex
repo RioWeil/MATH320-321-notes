@@ -689,7 +689,11 @@ From this we notice the periodicity of $e^{ix}$.
 \subsection{Fourier Series}
 \noindent We now begin our discussion on Fourier Series. Note that the theory of Fourier Series (and more generally, Harmonic Analysis) is rich enough for it to be its own course, but we will here give an introduction to the topic. Fourier Series show up everywhere, such as (for example) in partial differential equations, or in signal processing. It is an interesting topic of study that combines analysis and linear algebra. 
 
-\begin{ndef}{: Inner Product of Functions}{}
+For some additional references on the topic, Katznelson's ``Harmonic Analysis'' (\url{https://www.cambridge.org/core/books/an-introduction-to-harmonic-analysis/67C4CE356E7420BA17F3F1337291EF82}) and 
+
+\noindent Grafakos' ``Classical Fourier Analysis'' (\url{https://link.springer.com/book/10.1007/978-1-4939-1194-3}) are good texts.
+
+\begin{ndef}{: Inner Product/Norm of Functions}{}
     Given $a, b \in \RR$ with $a < b$ and integrable $f, g: [a, b] \mapsto \CC$ we write:
     \begin{align*}
         \avg{f, g} = \int_a^b f(x)\overline{g(x)}dx \; \left(= \overline{\avg{g, f}}\right)
@@ -750,7 +754,7 @@ That is, $c_n = \frac{1}{2\pi}\int_{-\pi}^\pi f(x)e^{-inx}dx$.
 
 \setcounter{rudin}{10}
 
-\begin{theorem}{}{}
+\begin{theorem}{}{8.11}
     Suppose $f \in \R[a, b]$ and $\set{\phi_n}$ is an orthonormal on $[a, b]$. Let $c_n = \avg{f, \phi_n}$ and $s_n = \sum_{m=1}^n c_m\phi_m$. Let $t_n = \sum_{m=1}^n a_m\phi_m$ for some $a_m \in \CC$. Then, we have that:
     \begin{align*}
         \norm{f- s_n}_2^2 \leq \norm{f - t_n}_2^2
@@ -758,3 +762,107 @@ That is, $c_n = \frac{1}{2\pi}\int_{-\pi}^\pi f(x)e^{-inx}dx$.
     with equality if and only if $c_m = a_m$ for each $m$. 
 \end{theorem}
 \noindent The moral of the theorem is that if we are to use a linear combination of the first $n$ functions out of an orthonormal set of functions to best approximate $f$ in the $L^2$ norm, the best way to do so is by using Fourier coefficients. 
+
+\begin{nproof}
+    By the definition of the norm, we have that:
+    \begin{align*}
+        \norm{f - t}_2^2 = \avg{f - t_n, f - t_n}^2 = norm{f}_2^2 - \avg{t_n, f} - \avg{f, t_n} + \norm{t_n}_2^2
+    \end{align*}
+    Looking at the terms, we have that:
+    \begin{align*}
+        \norm{t_n}_2^2 = \avg{t_n, t_n} = \sum_{k, m = 1}^n a_k\overline{a_m}\avg{\phi_k, \phi_m} = \sum_{k, m = 1}^n a_k\overline{a_m}\delta_{km} = \sum_{m=1}^n a_m\overline{a_m} \quad (1)
+    \end{align*}
+    \begin{align*}
+        \avg{f, t_n} = \sum_{m=1}^n \overline{a_m}\avg{f, \phi_n} = \sum_{m=1}^n c_m\overline{a_m}
+    \end{align*}
+    Therefore:
+    \begin{align*}
+        \norm{f - t_n}_2^2 &= \norm{f}_2^2 + \sum_{m=1}^n a_m\overline{a_m} - c_m\overline{a_m} - \overline{c_m}a_m 
+        \\ &= \norm{f}_2^2 + \sum_{m=1}^n \left(a_m\overline{a_m} - c_m\overline{a_m} - \overline{c_m}a_m + c_m\overline{c_m}\right) - \sum_{m=1}^n c_m\overline{c_m}
+        \\ &= \norm{f}_2^2 + \sum_{m=1}^n \abs{a_m - c_m}^2 - \sum_{m=1}^n \abs{c_m}^2
+    \end{align*}
+    Putting $a_m = c_m$, we obtain:
+    \begin{align*}
+        \norm{f - s_n}_2^2 = \norm{f}_2^2 - \sum_{m=1}^n \abs{c_m}^2. \quad (2)
+    \end{align*} Hence, we have that:
+    \begin{align*}
+        \norm{f - t_n}_2^2 = \norm{f - s_n}_2^2 + \sum_{m=1}^n \abs{a_m - c_m}^2
+    \end{align*} 
+    And $\sum_{m=1}^n \abs{a_m - c_m}^2 \geq 0$ and is $0$ if and only if $a_m = c_m$ for all $m$. This proves the claim. \qed
+\end{nproof}
+\noindent Note that putting $(1)$ and $(2)$ together in the above proof give the identity that $\norm{f}_2^2 = \norm{f - s_n}_2^2 + \norm{s_n}_2^2$. There is a geometric interpretation to this identity, which we picture below:
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=1.5]
+        \draw[] (0, 0) -- (2.75, 0) -- (3.25, 2) -- (0.5, 2) -- (0, 0);
+        \draw[->, thick, blue] (1, 1) -- (2, 1);
+        \draw[->, thick, purple] (2, 1) -- (2, 1.55);
+        \draw[->, thick, red] (1, 1) -- (1.95, 1.55);
+        \draw[] (1.9, 1) -- (1.9, 1.1) -- (2, 1.1);
+        \node[text = red, above] at (1.47, 1.27) {$f$};
+        \node[text = blue, below] at (1.5, 1) {$s_n$};
+        \node[text = purple, right] at (2, 1.28) {$f - s_n$};
+        \node[above] at (2.6, 0) {$V_n$};
+    \end{tikzpicture}
+    
+    \caption{Visualization of the identity $\norm{f}_2^2 = \norm{f - s_n}_2^2 + \norm{s_n}_2^2$. If we let $V_n$ be the set of all linear combinations of $\phi_1, \ldots, \phi_n$ (i.e. all sums of the form $\sum_{m=1}^n a_m\phi_m$), then $s_n$ is the orthogonal projection of $f$ onto $V_n$.}
+    \label{<label>}
+\end{figure}
+
+\begin{theorem}{Bessel's Inequality}{8.12}
+    Suppose $\set{\phi_n}$ is orthonormal on $[a, b]$ and is an infinite family. If $f(x) = \sum_{n=1}^\infty c_n \phi_n$, then:
+    \begin{align*}
+        \sum_{n=1}^\infty \abs{c_n}^2 \leq \int_a^b \abs{f(x)}^2 dx.
+    \end{align*}
+    We call this the Bessel Inequality. Note that this implies:
+    \begin{align*}
+        \linf c_n = 0
+    \end{align*}
+\end{theorem}
+
+\begin{nproof}
+    We start with the identity that $\norm{f}_2^2 = \norm{f - s_n}_2^2 + \norm{s_n}_2^2$. It then follows that $\sum_{m=1}^n \abs{c_m}^2 = \norm{s_m}_2^2 \leq \norm{f}_2^2$. We then take $n \rightarrow \infty$. Since $\sum_{m=1}^n \abs{c_m}$ is bounded above (by $\norm{f}_2^2$) for any $n$ and is monotonically increasing, we conclude that the infinite series converges and hence:
+    \begin{align*}
+        \sum_{n=1}^\infty \abs{c_n}^2 \leq \int_a^b \abs{f(x)}^2 dx.
+    \end{align*}
+    By the divegence test (Theorem \ref{thm:3.23}) we obtain that $\linf c_n = 0$. \qed
+\end{nproof}
+
+\begin{nexample}{}{}
+    Suppose $f \in \R[-\pi, \pi]$. Then, $\linf \int_{-\pi}^{\pi} f(x)\cos(nx) dx = 0$ by the above Theorem. 
+\end{nexample}
+\noindent The above example is a version of the Riemann-Lebesgue Lemma. The intuitive interpretation of the above example is that $\cos(nx)$ oscillates wildly as $n \rightarrow \infty$, and hence under the integral, the peaks/valleys cancel.
+
+\begin{ndef}{: Inner Product/Norm of Functions (Revisited)}{}
+    From now on, we will restrict ourselves to $f: [-\pi, \pi] \mapsto \CC$ with $f \in \R[-\pi, \pi]$. Take $\phi_n(x) = e^{inx}$ for $n \in \ZZ$. We extend $f$ to all of $\RR$ by $f(x + 2\pi) = f(x)$. To make the $\phi_n$s orthonormal over our interval, we change our definition of our inner product and norm:
+    \begin{align*}
+        \avg{f, g} = \frac{1}{2\pi}\int_{-\pi}^\pi f(x)\overline{g(x)}dx, \norm{f}_2^2 = \avg{f, f} = \frac{1}{2\pi}\int_{-\pi}^\pi\abs{f(x)}^2 dx
+    \end{align*}
+    We then have that $\avg{\phi_n, \phi_m} = \delta_{nm}$. Theorem \ref{thm:8.11} and its consequences hold with this new definition.
+\end{ndef}
+
+\begin{ndef}{: Fourier Series (Revisited)}{}
+    We define the \textbf{Fourier series} of $f$ by:
+    \begin{align*}
+        \sum_{n=-\infty}^\infty c_n\phi_n(x)
+    \end{align*}
+    where $c_n = \avg{f, \phi_n}$ and $\phi_n(x) = e^{inx}$.
+\end{ndef}
+\noindent Note that at this point, we do note claim that the Fourier series converges, nor that it equals $f$.
+
+\begin{ndef}{: Partial Fourier Series}{}
+    The $N$th partial Fourier seris of $f$ is defined as $s_N(f;x) = \sum_{n=-N}^N c_ne^{inx}$.
+\end{ndef}
+\noindent Note that Theorem \ref{thm:8.12} implies that:
+\begin{align*}
+    \sum_{n = -N}^{N} \abs{c_n}^2 = \norm{s_N}_2^2 \leq \norm{f}_2^2.
+\end{align*}
+
+\begin{nlemma}{}{}
+    For $x \in \RR$, $s_N(f;x) = \frac{1}{2\pi}\int_{-\pi}^\pi f(x - t)D_N(t)dt$ with $D_n(t) = \sum_{n=-N}^{N}e^{int} = \frac{\sin((N + \frac{1}{2})t)}{\sin(\frac{1}{2}t)}$. $D_n(t)$ is called the \emph{Dirchlet kernel}.
+\end{nlemma}
+\noindent What we would like to see is that $s_N(f;x) \rightarrow f$ as $N \rightarrow \infty$. Given the above Lemma, this can be realized if $D_N(t) \rightarrow \delta(t)$ (where $\delta(t)$ is the Dirac delta ``function''; of course this is not actually a function, but the intuition is that $D_N(t)$ becomes sharply peaked around $t$) and then $f(x - t) = f(x)$. Note that the integral formula above is of a \emph{convolution integral}. We will discuss properties of it and the Dirchlet kernel, and use it to show that $s_N \rightarrow f$ if $f$ is Lipshiz continuous.
+
+% Include figure of plot of Dirchlet kernel
+% desmos url \url{https://www.desmos.com/calculator/lpnrdke4ml}
