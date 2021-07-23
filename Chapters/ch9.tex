@@ -70,6 +70,45 @@ We will start off this chapter with discussion of the Banach fixed point theorem
 \end{nproof}
 
 \subsection{Differentiation of Functions of Several Variables}
+\noindent In this section we discuss the differentiation of functions $f: \RR^n \mapsto \RR^m$. It will be instructive to remind ourselves of the familiar case of $n = m = 1$. In this case, we defined the derivative as:
+\begin{align*}
+    f'(x) = \lim_{h \rightarrow 0}\frac{f(x + h) - f(x)}{h}
+\end{align*}
+where we would say $f$ was differentiable at $x$ if the above limit existed. We want to now try to generalize this notion to higher dimensions. It obviously does not apply directly, as in this general setting, $\v{f}(\v{x} + \v{h}) - \v{f}(\v{x})$ is a vector in $\RR^m$ and $\v{h}$ is a vector in $\RR^n$, and the division of such vectors is not well defined. Let us try to recast the $n = m = 1$ derivative into a form that lends itself better to generalization. We could equivalently write the above derivative expression as:
+\begin{align*}
+    \lim_{h \rightarrow 0}\frac{f(x + h) - f(x) - f'(x)h}{h} = 0
+\end{align*}
+and hence:
+\begin{align*}
+    \lim_{h \rightarrow 0}\abs{\frac{f(x + h) - f(x) - f'(x)h}{h}} = 0.
+\end{align*}
+Equivalently, we can say that $f(x + h) = f(x) + f'(x)h + r(h)$ with $\lim_{h \rightarrow \infty}\frac{r(h)}{h} = 0$; $r(h)$ is then the ``remainder term''. With this interpretation, $f'(x)h$ is the best linear approximation to $f(x + h) - f(x)$. This last characterization makes sense for general vectors in $\RR^k$, so let us define derivatives with this notion!
+
+\setcounter{rudin}{10}
+
+\begin{definition}{Derivatives of $f: \RR^n \mapsto \RR^n$}{9.11}
+    Let $m, n \in \NN$ and $E \subset \RR^n$ be open. Define a function $\v{f}$ such that $\v{f}: E \mapsto \RR^m$, and let $\v{x} \in E$. We say that $f$ is \textbf{differentiable} at $\v{x}$ and has \textbf{derivative} $A \in L(\RR^n, \RR^m)$ ($\v{f}'(\v{x}) = A$) if:
+    \begin{align*}
+        \lim_{\v{h} \rightarrow \v{0}} \frac{\abs{\v{f}(\v{x} + \v{h}) - \v{f}(\v{x}) - A\v{h}}}{\abs{\v{h}}} = 0
+    \end{align*}
+\end{definition}
+\noindent Note that the $\abs{}$ in the above definition refer to the $L_2$/Euclidean norm of $\RR^m$ (in the numerator) and $\RR^m$ (in the denominator) respectively. Furthermore, observe that $A$ is not just a number (as it is in the linear case) but an \emph{linear transformation} such that $A \in L(\RR^n, \RR^m)$, where $L(\RR^n, \RR^m)$ is the vector space of linear maps from $\RR^n$ to $\RR^m$. Equivalently, the above definition can be phrased as:
+\begin{align*}
+    \v{f}(\v{x} + \v{h}) = \v{f}(\v{x}) + A\v{h} + \v{r}(\v{h}) \text{ with } \lim_{\v{h} \rightarrow \v{0}} \frac{\abs{\v{r}(\v{h})}}{\abs{\v{h}}} = 0
+\end{align*}
+where again, $A\v{h}$ is the ``best linear approximation'' to $\v{f}(\v{x} + \v{h}) - \v{f}(\v{x})$. 
+
+\begin{theorem}{Uniqueness of Higher Dimensional Derivatives}{9.12}
+    The derivative $A$ defined above is unique.
+\end{theorem}
+\begin{nproof}
+    Suppose $\v{f}(\v{x} + \v{h}) = \v{f}(\v{x}) + A_1\v{h} + \v{r}_1(\v{h})$ and $\v{f}(\v{x} + \v{h}) = \v{f}(\v{x}) + A_2\v{h} + \v{r}_2(\v{h})$ with $\v{r}_1(\v{h}) \in O(\v{h})$ and $\v{r}_2(\v{h}) \in O(\v{h})$. Let $B = A_1 - A_2$. Then, $0 = (A_1 - A_2)\v{h} + (\v{r}_1 - \v{r}_2)$. Therefore, $B\v{h} = \v{r}_2 - \v{r}_1$, so for $\v{h} \neq \v{0}$ and scalar $t \neq 0$ we have that:
+    \begin{align*}
+        \frac{\abs{B\v{h}}}{\abs{\v{h}}} = \frac{\abs{B(t\v{h})}}{\abs{t\v{h}}} \leq \frac{\abs{\v{r}_1(t\v{h})}}{\abs{t\v{h}}} + \frac{\abs{\v{r}_2(t\v{h})}}{\abs{t\v{h}}} \quad \text{(Triangle Inequality)}
+    \end{align*} 
+    Letting $t$ go to zero, we have that the RHS goes to zero. Hence, $\frac{\abs{B\v{h}}}{\abs{\v{h}}} \rightarrow 0$. But $\frac{\abs{B\v{h}}}{\abs{\v{h}}}$ is independent of $t$, so it must be zero. Hence, $B$ is the zero map and hence $A_1 = A_2$. We conclude that the derivative $A$ is unique. \qed
+\end{nproof}
+
 
 \subsection{The Inverse Function Theorem}
 
