@@ -261,7 +261,7 @@ Note that there is another way to obtain the Taylor series around $a = -\frac{1}
 \end{nproof}
 \noindent Having proven some more properties of power series, we now move to formal definitions of the exponential/logarithmic/trigonometric functions and a from-first-principles proof of their properties. 
 
-\subsection{: The Exponential Function}
+\subsection{The Exponential Function}
 Recall Definition \ref{def:3.30}, where we defined $e = \sum_{n=0}^\infty \frac{1}{n!}$. We also showed in Theorem \ref{thm:3.31} that $e = \linf\left(1 + \frac{1}{n}\right)^n$. We also know that $2 < e < 3$, and  by Theorem \ref{thm:3.32} that $e$ is irrational. We now define a power series based on $e$. 
 
 \begin{ndef}{: The Exponential Function}{}
@@ -807,7 +807,7 @@ That is, $c_n = \frac{1}{2\pi}\int_{-\pi}^\pi f(x)e^{-inx}dx$.
     \end{tikzpicture}
     
     \caption{Visualization of the identity $\norm{f}_2^2 = \norm{f - s_n}_2^2 + \norm{s_n}_2^2$. If we let $V_n$ be the set of all linear combinations of $\phi_1, \ldots, \phi_n$ (i.e. all sums of the form $\sum_{m=1}^n a_m\phi_m$), then $s_n$ is the orthogonal projection of $f$ onto $V_n$.}
-    \label{<label>}
+    \label{fig55}
 \end{figure}
 
 \begin{theorem}{Bessel's Inequality}{8.12}
@@ -852,17 +852,221 @@ That is, $c_n = \frac{1}{2\pi}\int_{-\pi}^\pi f(x)e^{-inx}dx$.
 \noindent Note that at this point, we do note claim that the Fourier series converges, nor that it equals $f$.
 
 \begin{ndef}{: Partial Fourier Series}{}
-    The $N$th partial Fourier seris of $f$ is defined as $s_N(f;x) = \sum_{n=-N}^N c_ne^{inx}$.
+    The $N$th partial Fourier seris of $f$ is defined as $s_N(f;x) = \sum_{n=-N}^N c_ne^{inx}$. Where $f$ is clear from context, we sometimes will write $s_N(x)$.
 \end{ndef}
 \noindent Note that Theorem \ref{thm:8.12} implies that:
 \begin{align*}
     \sum_{n = -N}^{N} \abs{c_n}^2 = \norm{s_N}_2^2 \leq \norm{f}_2^2.
 \end{align*}
 
-\begin{nlemma}{}{}
-    For $x \in \RR$, $s_N(f;x) = \frac{1}{2\pi}\int_{-\pi}^\pi f(x - t)D_N(t)dt$ with $D_n(t) = \sum_{n=-N}^{N}e^{int} = \frac{\sin((N + \frac{1}{2})t)}{\sin(\frac{1}{2}t)}$. $D_n(t)$ is called the \emph{Dirchlet kernel}.
-\end{nlemma}
-\noindent What we would like to see is that $s_N(f;x) \rightarrow f$ as $N \rightarrow \infty$. Given the above Lemma, this can be realized if $D_N(t) \rightarrow \delta(t)$ (where $\delta(t)$ is the Dirac delta ``function''; of course this is not actually a function, but the intuition is that $D_N(t)$ becomes sharply peaked around $t$) and then $f(x - t) = f(x)$. Note that the integral formula above is of a \emph{convolution integral}. We will discuss properties of it and the Dirchlet kernel, and use it to show that $s_N \rightarrow f$ if $f$ is Lipshiz continuous.
+\begin{ndef}{: The Dirchlet Kernel}{}
+    The \textbf{Dirchlet Kernel} is defined as:
+    \begin{align*}
+        D_n(t) = \sum_{n=-N}^{N}e^{int}.
+    \end{align*}
+\end{ndef}
 
-% Include figure of plot of Dirchlet kernel
-% desmos url \url{https://www.desmos.com/calculator/lpnrdke4ml}
+\begin{nlemma}{ 1}{}
+    $D_n(t) = \frac{\sin((N + \frac{1}{2})t)}{\sin(\frac{1}{2}t)}$.
+\end{nlemma}
+
+\begin{nproof}
+    By definition, we have that $D_N(t) = \sum_{n=-N}^N e^{int}$. We then have that:
+    \begin{align*}
+        D_N(t) &= \sum_{n=-N}^N e^{int}
+        \\ &= e^{-iNt}\sum_{k=0}^{2N}(e^{it})^k & \text{(Common factor)}
+        \\ &= e^{-iNt}\left[\frac{e^{i(2N+1)} - 1}{e^{it} - 1}\right] & \text{(Geometric sum)}
+        \\ &= e^{-iNt}\left[\frac{e^{i(2N+1)} - 1}{e^{it} - 1}\right]\frac{e^{-it/2}}{e^{-it/2}}
+        \\ &= \frac{e^{i(N+1/2)t} - e^{-i(N+1/2)t}}{e^{it/2} - e^{-it/2}}
+        \\ &= \frac{\sin((N + \frac{1}{2})t)}{\sin(\frac{1}{2}t)}
+    \end{align*} \qed
+\end{nproof}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.3]{Images/Dirchlet-graph.png}
+    
+    \caption{Plot of the Dirchlet Kernel $D_N(t)$ for $N = 7$. $D_N(t)$ is $2\pi$ periodic, and becomes more sharply peaked at $t = \pi n$, $n \in \ZZ$ as we increase $N$. It can be understood as an oscillating function that approaches a $\delta$ ``function''. Readers can play around with the function at \url{https://www.desmos.com/calculator/lpnrdke4ml}.}
+    \label{fig56}
+\end{figure}
+
+\begin{nlemma}{ 2}{}
+    For $x \in \RR$, $s_N(f;x) = \frac{1}{2\pi}\int_{-\pi}^\pi f(x - t)D_N(t)dt$.
+\end{nlemma}
+\noindent What we would like to see is that $s_N(f;x) \rightarrow f$ as $N \rightarrow \infty$. Given the above Lemma, this can be realized if $D_N(t) \rightarrow \delta(t)$ (where $\delta(t)$ is the Dirac delta ``function''; of course this is not actually a function, but the intuition is that $D_N(t)$ becomes sharply peaked around $t$) and then $f(x - t) = f(x)$. Note that the integral formula above is of a \emph{convolution integral}. We will discuss properties of it and the Dirchlet kernel, and use it to show that $s_N \rightarrow f$ if $f$ is Lipschitz continuous.
+
+\begin{nproof}
+    By calculation and algebraic manipulation, we have that:
+    \begin{align*}
+        s_N(x) = \sum_{n=-N}^N c_ne^{inx} &= \sum_{n=-N}^{N}\avg{f, \phi_n}e^{inx}
+        \\ &= \sum_{n=-N}^N \frac{1}{2\pi}\int_{-\pi}^\pi f(t)e^{-int}dt e^{inx}
+        \\ &= \sum_{n=-N}^N \frac{1}{2\pi}\int_{-\pi}^\pi f(t)e^{in(x - t)} dt
+        \\ &= \frac{1}{2\pi}\int_{-\pi}^\pi f(t)\sum_{n=-N}^N e^{in(x-t)} dt 
+        \\ &= \frac{1}{2\pi} \int_{-\pi}^\pi f(t)D_N(x - t)dt 
+        \\ &= \frac{1}{2\pi}\int_{x - \pi}^{x + \pi}f(x - s)D_N(s)ds & \text{(Substitute $s = x - t$)}
+        \\ &= \frac{1}{2\pi}\int_{- \pi}^{\pi}f(x - s)D_N(s)ds & \text{(Periodicity of $f, D_N$)}
+    \end{align*} \qed
+\end{nproof}
+
+\begin{nlemma}{ 3}{}
+    \begin{enumerate}
+        \item $\frac{1}{2\pi}\int_{-N}^N D_N(t)dt = 1$
+        \item $D_N(t) = \cos(nt) + \cot(\frac{1}{2}t)\sin(nt)$. 
+    \end{enumerate}
+\end{nlemma}
+\begin{nproof}
+    \begin{enumerate}
+        \item $\frac{1}{2\pi}\int_{-N}^N D_N(t)dt = \avg{D_N, 1} = \sum_{n=-N}^N \avg{\phi_n, \phi_0} = \sum_{n=-N}^N \delta_{N_0} = 1$.
+        \item $D_N(t) = \frac{1}{\sin(\frac{1}{2}t)}\left(\sin(\frac{1}{2}t)\cos(Nt) + \cos(\frac{1}{2}t)\sin(Nt)\right) = \cos(nt) + \cot(\frac{1}{2}t)\sin(nt)$. \qed
+    \end{enumerate}
+\end{nproof}
+
+\setcounter{rudin}{13}
+\begin{theorem}{}{8.14}
+    Let $x \in \RR$, $f \in \RR$ on $[-\pi, \pi]$. Suppose there exist $\delta > 0$, $M < \infty$ such that $\abs{f(x + t) - f(x)} \leq M\abs{t}$ for all $\abs{t} < \delta$. Then, we have that $\lim_{N \rightarrow \infty} s_N(x) = f(x)$.
+\end{theorem}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=1.5]
+        \draw[-latex, very thick] (0, 0) -- (2, 0);
+        \draw[-latex, very thick] (0, 0) -- (0, 2);
+        \draw[] (1, 0) -- (1, -0.15);
+        \node[below] at (1, -0.17) {$x$};
+        \draw[] (0.5, 0) -- (0.5, -0.15);
+        \node[below] at (0.5, -0.12) {$x - \delta$};
+        \draw[] (1.5, 0) -- (1.5, -0.15);
+        \node[below] at (1.5, -0.12) {$x + \delta$};
+        \draw[dotted] (0.5, 0.75) -- (1.5, 1.25);
+        \draw[dotted] (0.5, 1.25) -- (1.5, 0.75);
+        \draw[blue] (0.25, 0.6) to [curve through ={(0.5, 0.9)..(0.75, 1.1)..(0.9,1)..(1, 1)..(1.1,1)..(1.25, 0.9)...(1.5, 1.1)}] (1.6, 1.6);
+        \node[text = blue, right] at (1.5, 1) {$f$};
+    \end{tikzpicture}
+    
+    \caption{Visualization of the Lipschitz continuity condition on $f$ in Theorem \ref{thm:8.14}. $f$ is bounded in between lines of slope $\pm M$ for a neighbourhood $N_\delta(x)$ around $x$.}
+    \label{fig57}
+\end{figure}
+
+\begin{nproof}
+    We show that $f(x) - s_N(x)$ goes to zero. The intuition for the proof we will use is that $D_N(t)$ will behave like a delta function, picking out a specific value of $x$. Using the result of the previous Lemma, we have:
+    \begin{align*}
+        f(x) - s_N(x) &= f(x)\frac{1}{2\pi}\int_{-\pi}^\pi D_N(t)dt - \frac{1}{2\pi}\int_{-\pi}^\pi f(x-t)D_N(t)dt & \text{Lemma 3(a)/2}
+        \\ &= \frac{1}{2\pi}\int_{-\pi}^\pi (f(x) - f(x - t))D_N(t) dt & \text{Theorem \ref{thm:6.12}}
+        \\ &= \frac{1}{2\pi}\int_{-\pi}^\pi (f(x) - f(x - t))\cos(Nt)dt & \text{Lemma 2(a)}
+        \\ &+ \frac{1}{2\pi}\int_{-\pi}^\pi (f(x) - f(x-t))\cot(\frac{1}{2}t)\sin(Nt)dt 
+    \end{align*}
+    The first term is easy; by the Riemann-Lebesgue Lemma (see the example after Theorem \ref{thm:8.12}), since $f(x) - f(x - t)$ is Riemann integrable, we have that the first term goes to $0$ as $N \rightarrow \infty$. For the second term, we show that $(f(x) - f(x-t))\cot(\frac{1}{2}t)$ is Riemann-integrable and then use the Riemann-Lebesegue Lemma again. We have that:
+    \begin{align*}
+        (f(x) - f(x-t))\cot(\frac{1}{2}t) = \frac{f(x) - f(x-t)}{t} \frac{\frac{t}{2}}{\sin(\frac{t}{2})}2\cos(\frac{t}{2})
+    \end{align*}
+    where $\frac{f(x) - f(x-t)}{t}$ is bounded by $M$ by the Lipschitz continuity assumption at $x$, $\frac{\frac{t}{2}}{\sin(\frac{t}{2})} \rightarrow 1$ as $t \rightarrow 0$ and is bounded and continuous, and $2\cos(\frac{t}{2})$ is of course continuous. Hence, $(f(x) - f(x-t))\cot(\frac{1}{2}t)$ is Riemann Integrable, and we conclude that the second term also goes to $0$ as $N \rightarrow \infty$. Hence $\lim_{N \rightarrow \infty}f(x) - s_N(x) = 0$. \qed
+\end{nproof}
+
+\begin{ntheorem}{}{}
+    The partial sum $s_N$ is linear in $f$.
+\end{ntheorem}
+\begin{nproof}
+    Recall the definition that $s_N(f;x) = \sum_{n=-N}^N \avg{f, \phi_n}\phi_n(x)$. Using the linearity of the inner product in the first argument, we then have that:
+    \begin{align*}
+        s_N(af + bg; x) &= \sum_{n=-N}^N \avg{af + bg, \phi_n}\phi_n(x)
+        \\ &= a\sum_{n=-N}^N \avg{f, \phi_n} + b\sum_{n = -N}^N \avg{g, \phi_n}\phi_n(x)
+        \\ &= as_N(f;x) + bs_N(g;x)
+    \end{align*}
+    so $s_N$ is linear in $f$ as claimed. \qed
+\end{nproof}
+\noindent With linearity established, we give a corollary of Theorem \ref{thm:8.14}.
+
+\begin{ncorollary}{}{}
+    \begin{enumerate}
+        \item If $f(x) = 0$ for all $x \in (x_0 - \e, x_0 + \e)$ then $s_N(f;x) \rightarrow 0$ for all such $x$ (the Theorem can be immediately applied as $\abs{f(x + t) - f(x)} < M\abs{t}$ is satisfied for all constant $x$).
+        \item If $f(x) = g(x)$ for all $x \in (x_0 - \e, x_0 + \e)$ then by the linearity of $s_N$ in $f$ we have that $s_N(f;x) - s_N(g;x) \rightarrow 0$ for all such $x$.
+    \end{enumerate}
+\end{ncorollary}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=1.5]
+        \draw[-latex, very thick] (0, 0) -- (2, 0);
+        \draw[-latex, very thick] (0, 0) -- (0, 2);
+        \draw[-latex, very thick] (2.5, 0) -- (4.5, 0);
+        \draw[-latex, very thick] (2.5, 0) -- (2.5, 2);
+        \draw[] (0.9, 0) -- (0.9, -0.15);
+        \node[below] at (0.9, -0.15) {$\pi$};
+        \draw[] (1.8, 0) -- (1.8, -0.15);
+        \node[below] at (1.8, -0.15) {$2\pi$};
+        \draw[] (3.4, 0) -- (3.4, -0.15);
+        \node[below] at (3.4, -0.15) {$\pi$};
+        \draw[] (4.3, 0) -- (4.3, -0.15);
+        \node[below] at (4.3, -0.15) {$2\pi$};
+        \draw[blue, thick] (0, 0) -- (0.9, 0) -- (1.35, 1) -- (1.8, 0);
+        \draw[blue, thick] (2.5, 0) -- (3.4, 0) -- (3.7, 1) -- (4, 1) -- (4.3, 0);
+    \end{tikzpicture}
+    
+    \caption{Two functions to which we can apply the above corollary. The two functions have different Fourier series, but both series converge to zero on $[0, \pi]$. This is very different behaviour from power series, see for example Theorem \ref{thm:8.5}. This corollary/example shows off the ``localization principle'' of Fourier series.}
+    \label{fig58}
+\end{figure}
+
+\begin{theorem}{}{8.15}
+    If $f$ is continuous and has period $2\pi$, then for all $\e > 0$ there exists a trigonometric polynomial $P(x) = \sum_{n=-N}^N a_ne^{inx}$ such that $\sup_{x \in \RR}\abs{f(x) - P(x)} < \e$.
+\end{theorem}
+\noindent Note that the above theorem does \emph{not} imply that Fourier series converge uniformly.
+
+\begin{nproof}
+    Let $T = \set{z \in \CC: \abs{z} = 1}$ (i.e. the unit circle in the complex plane). $T$ is compact. Define $F: T \mapsto \CC$ by $F(e^{ix}) = F(x)$. By the periodicity of $f$, $F$ is well defined. Let $\A$ be the set of trig polynomials $\sum_{n=-N}^N a_nz^n$ with $z \in T$ and $a_n \in \CC$. We show that $\A$ satisfies the conditions for the (complex) Stone-Weierstrass theorem to be applied. $\A$ is closed under addition and multiplication (as is easily verified by condidering the sum/products of finite sums). $\A$ vanishes at no point in $T$ as $1 \in \A$. $\A$ separates points in $T$ as $f(x) = x \in \A$. $\A$ is self-adjoint as if $\sum_{n=-N}^N a_nz_n \in \A$:
+    \begin{align*}
+        \overline{\sum_{n=-N}^N a_nz_n,} = \sum_{n=-N}^N \overline{a_n}\overline{z}^n = \sum_{n=-N}^N \overline{a_n}z^{-n} = \sum_{m=-N}^N \overline{a_m}z^{m} \in \A
+    \end{align*}
+    where we let $m = -n$. Hence, by the Stone-Weierstrass theorem (Theorem \ref{thm:7.33}) there exists $P \in \A$ such that $\abs{F(z) - P(z)} < \e$ for all $z \in T$. Write $P(z) = \sum_{n=-N}^N a_nz^n$ and set $P(x) = P(e^{ix}) = \sum_{n=-N}^N a_ne^{inx}$. Then, we have that $\abs{f(x) - p(x)} = \abs{F(e^{ix}) - P(e^{ix})} < \e$. for all $x \in \RR$. \qed
+\end{nproof}
+
+\noindent Note that problem 8.15 gives an explicit sequence of trigonometric polynomials that converge uniformly to $f$. 
+
+As a point of notation for the next theorem, for $\set{c_n}_{n \in \ZZ}$ and $\set{\gamma_n}_{n \in \ZZ}$, let $(c, \gamma) = \sum_{n=-N}^N c_n\overline{\gamma_n}$. Note that there is no guarantee that this sum converges. Furthermore, let us review the notation that we have already established. $\avg{f, g} = \frac{1}{2\pi}\int_{-\pi}^\pi f(x)\overline{g(x)}dx$, $\norm{f}_2 = \sqrt{\avg{f, f}}$ (when the integral converges), $\phi_n(x) = e^{inx}$. $s_N(f;x) = \sum_{n=-N}^N \avg{f, \phi_n}\phi_n$. 
+
+\begin{ntheorem}{: Cauchy Shwartz Inequality for Norms (Problem 6.10)}{}
+    $\abs{\avg{f, g}} \leq \norm{f}_2\norm{g}_2$.
+\end{ntheorem}
+
+\begin{ntheorem}{: Minkowski Inequality (Problem 6.11)}{}
+    $\norm{f + g}_2 \leq \norm{f}_2 + \norm{g}_2$, and $\norm{f - g}_2 \leq \norm{f - h}_2 + \norm{h - g}_2$.
+\end{ntheorem}
+
+\begin{ntheorem}{ (Problem 6.12)}{}
+    For $f \in \R[-\pi, \pi]$ and $\e > 0$, there exists a continuous (in fact, piecewise linear) function $h$ such that $\norm{f - h}_2 < \e$.
+\end{ntheorem}
+
+\begin{nproof}
+    Left as an exercise. Solutions to the problems can be found at \url{https://minds.wisconsin.edu/bitstream/handle/1793/67009/rudin%20ch%206.pdf?sequence=6&isAllowed=y}. \qed
+\end{nproof}
+
+\begin{theorem}{Parseval's Relation \& The Bessel Equality}{8.16}
+    For $f, g \in \R[-\pi, \pi]$, let $c_n = \avg{f, \phi_n}$ and $\gamma_n = \avg{g, \phi_n}$. Then $\lim_{N \rightarrow \infty}\norm{f - s_N(t)} = 0$ (Convergence of partial Fourier series to $F$ in $L_2$). Furthermore, $\avg{f, g} = (c, \gamma)$ (Parseval's Relation) and in particular $\norm{f}_2^2 = (c, c)$. I.e. $\frac{1}{2\pi}\int_{-\pi}^\pi \abs{f(x)}^2dx = \sum_{n=-\infty}^\infty \abs{c_n}^2$ (Bessel Equality).
+\end{theorem}
+
+\begin{nproof}
+    Let $\e > 0$. Choose a continuous $h$ such that $\norm{f- h}_2 < \frac{\e}{3}$ (Problem 6.12). Then:
+    \begin{align*}
+        \norm{s_N(f;x) - f}_2 \leq \norm{s_N(f;x) - s_N(h;x)}_2 + \norm{s_N(h;x) - h}_2 + \norm{h - f}_2.
+    \end{align*}
+    We have that the third term is less than $\frac{\e}{3}$ by assumption. For the first term, by the linearity of $s_N$ we have that $\norm{s_N(f;x) - s_N(h;x)} = \norm{s_N(f - h)}_2 \leq \norm{f-h}_2 < \frac{\e}{3}$ (using Bessel's Inequality). For the second term, by Theorem \ref{thm:8.15} we have that there exists a trigonometric polynomial $P$ such that $\norm{h - P}_\infty < \frac{\e}{3}$. But, $\norm{h - P}_2 \leq \norm{h - P}_\infty < \frac{\e}{3}$. Say $\deg P = N_0$. By Theorem \ref{thm:8.11}, if $N \geq N_0$ then:
+    \begin{align*}
+        \norm{s_N(h;x) - h}_2 \leq \norm{p - h}_2 < \frac{\e}{3}
+    \end{align*}
+    as ``the best $L_2$ approximation of $f$ by $\sum_{n= -N}^N a_n\phi_n$ is $s_N(f;x)$''. But then we have that:
+    \begin{align*}
+        \norm{s_N(f;x) - s_N(h;x)} < \frac{\e}{3} + \frac{\e}{3} + \frac{\e}{3} = \e
+    \end{align*}
+    if $N \geq N_0$ so $\lim_{N \rightarrow \infty}\norm{s_N(f;x) - f}_2 = 0$. This proves the first claim.
+
+    For Parseval's Relation, we observe that $\avg{s_N(f;x), g} = \sum_{n=-N}^N c_n \avg{\phi_n, g} = \sum_{n=-N}^N c_n \overline{\gamma_n}$. So:
+    \begin{align*}
+        \abs{\avg{f, g} - \sum_{n=-N}^N c_n \overline{\gamma_n}} = \abs{\avg{f - s_N(f;x), g}} \leq \norm{f - s_N(f;x)}_2\norm{g}_2
+    \end{align*}
+    where we use the Cauchy-Shwartz inequality for the last inequality. We then have that $\lim_{N \rightarrow \infty}\norm{s_N(f;x) - f}_2 = 0$ by the previous part of the theorem, proving the Parseval relation. To obtain the Bessel equality, let $g = f$ in Parseval's relation.
+
+    We expand on a detail in the proof; we show that $\sum_{n=-\infty}^\infty \abs{c_n\overline{\gamma_n}}$ converges, as if we can show absolute convergence then taking the $n \rightarrow \infty$ limit of $\sum_{n=-N}^N c_n\overline{\gamma_n}$ is justified. To see that this is the case, observe that:
+    \begin{align*}
+        \sum_{n=-\infty}^\infty \abs{c_n\overline{\gamma_n}} = (\abs{c_n}, \abs{\gamma_n}) \leq \sqrt{(c, c)}\sqrt{(\gamma, \gamma)} \leq \norm{f}_2\norm{g}_2.
+    \end{align*}
+    Hence, since $\sum_{n=-N}^N \abs{c_n\overline{\gamma_n}}$ is bounded and monotonic in $N$, the series converges and the infinite sum is equal to the symmetric limit; that is, the absolute convergenceof the sum implies that $\sum_{n=0}^\infty c_n\overline{\gamma_n}$ and $\sum_{n=0}^{-\infty}c_n\overline{\gamma_n}$ converge individually. \qed
+\end{nproof}
