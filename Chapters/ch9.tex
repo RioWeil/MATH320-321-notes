@@ -457,5 +457,35 @@ where again, $A\v{h}$ is the ``best linear approximation'' to $\v{f}(\v{x} + \v{
 \noindent As a remark, note that coming up with $\gv{\phi}$ in the above first part of the proof is quite difficult/inspired; this is definitely not a simple proof to come up with! After this first part, we have shown the existence of an open $U \ni \v{a}$ such that $\v{f}: U \mapsto V$ is a bijection. Note that we need $V$ to be open for the proof of the second part of the theorem, as we need the derivative (which we only defined on open sets) to make sense.
 
 \begin{nblank}{Proof of (2)}
-    We show that $\v{g} = \v{f}^{-1}: V \mapsto U$ is in $C^1(V)$.
+    We show that $\v{g} = \v{f}^{-1}: V \mapsto U$ is in $C^1(V)$. Let $\v{y} \in V$. Then, $\v{y} = \v{f}(\v{x})$ sor some unique $\v{x}$. Since $U$ is open, take $\v{k}$ small enough such that $\v{y} + \v{k} \in V$. Say, $\v{y} + \v{k} = f(\v{x}_{\v{k}})$ where $\v{x}_{\v{K}} \in U$. Let $S = \v{f}'(\v{x})$ and $T = S^{-1}$. Note that $(\v{f}'(\v{x}))^{-1}$ exists by a continuity argument ($\v{f}'(\v{x})$ is close to $\v{f}'(\v{a})$ and $\v{f}'(\v{a})$ is invertible; see Rudin 9.8). Consider the expression:
+    \begin{align*}
+        \frac{\abs{\v{g}(\v{y} + \v{k}) - \v{g}(\v{y}) - T(\v{k})}}{\abs{\v{k}}}.
+    \end{align*}
+    We want to show that this goes to zero as $\v{k} \rightarrow \v{0}$. The idea is that somehow, we will turn this ratio into the derivative of $\v{f}$. Doing some algebra, we have that:
+    \begin{align*}
+        \v{g}(\v{y} + \v{k}) - \v{g}(\v{y}) - T(\v{k}) = \v{g}(\v{f}(\v{x}_{\v{k}})) - \v{g}(\v{f}(\v{y})) - T\v{k} &= \v{x}_{\v{k}} - \v{x} - T\v{k} 
+        \\ &= -T\left((\v{f}(\v{x}_{\v{k}}) - \v{f}(\v{x})) - S(\v{x}_{\v{k}} - \v{x})\right)
+    \end{align*}
+    Taking the norm of both sides, we have:
+    \begin{align*}
+        \abs{\v{g}(\v{y} + \v{k}) - \v{g}(\v{y}) - T(\v{k})} \leq \norm{T}\abs{\v{f}(\v{x}_{\v{k}}) - \v{f}(\v{x}) - S(\v{x}_{\v{k}} - \v{x})}
+    \end{align*}
+    Note that $\v{f}(\v{x}_{\v{k}}) - \v{f}(\v{x}) = \v{k}$. Also, we want to prove $\abs{\v{x}_\v{k} - \v{x}} \leq 2\norm{A^{-1}}\abs{\v{k}}$. Next, we have that:
+    \begin{align*}
+        \gv{\phi}_\v{y}(\v{x}_\v{k}) - \gv{\phi}_\v{y}(\v{x}) = \v{x}_\v{k} - \v{x} + A^{-1}(\v{f}(\v{x}) - \v{f}(\v{x}_\v{k}))
+    \end{align*}
+    So therefore:
+    \begin{align*}
+        \v{x}_\v{k} - \v{x} = \gv{\phi}_\v{y} - \gv{\phi}_\v{y} + A^{-1}\v{k} \implies \abs{\v{x}_\v{k} - \v{x}} &\leq \abs{\gv{\phi}_\v{y} - \gv{\phi}_\v{y}} + \norm{A^{-1}}\abs{\v{k}}
+        \\ &\leq \frac{1}{2}\abs{\v{x}_\v{k} - \v{x}} + \norm{A^{-1}}\abs{\v{k}}
+    \end{align*}
+    where in the last inequality we use the result from step 1 of the proof ($\gv{\phi}$ is a contraction with constant $\frac{1}{2}$). From this, we obtauin that $\abs{\v{x}_\v{k} - \v{x}} \leq 2\norm{A^{-1}}\abs{\v{k}}$ (as we wanted!) and hence $\frac{1}{\abs{\v{k}}} \leq \frac{2\norm{A^{-1}}}{\abs{\v{x}_\v{k} - \v{x}}}$.We therefore have that:
+    \begin{align*}
+        \abs{\v{g}(\v{y} + \v{k}) - \v{g}(\v{y}) - T\v{k}} &\leq \frac{2\norm{A^{-1}}}{\abs{\v{x}_\v{k} - \v{x}}}\norm{T}\abs{\v{f}(\v{x}_\v{k}) - \v{f}(\v{x}) - S(\v{x}_\v{k} - \v{x})} 
+        \\ &= 2\norm{A^{-1}}\norm{T}\frac{\abs{\v{f}(\v{x}_\v{k}) - \v{f}(\v{x}) - S(\v{x}_\v{k} - \v{x})}}{\abs{\v{x}_\v{k} - \v{x}}}
+    \end{align*}
+    Now, let $\v{k} \rightarrow \v{0}$. Then, $\v{x}_\v{k} - \v{x} \rightarrow \v{0}$, so the RHS goes to $0$ as $S$ is $\v{f}'$ and hence this is just the definition of the derivative. Continuity follows from the fact that when you move an operator in a continuous way, so too does its image. \qed
 \end{nblank}
+\begin{center}
+    \textbf{THE END}
+\end{center}
