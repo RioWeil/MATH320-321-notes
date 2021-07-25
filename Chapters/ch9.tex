@@ -479,7 +479,7 @@ where again, $A\v{h}$ is the ``best linear approximation'' to $\v{f}(\v{x} + \v{
         \v{x}_\v{k} - \v{x} = \gv{\phi}_\v{y} - \gv{\phi}_\v{y} + A^{-1}\v{k} \implies \abs{\v{x}_\v{k} - \v{x}} &\leq \abs{\gv{\phi}_\v{y} - \gv{\phi}_\v{y}} + \norm{A^{-1}}\abs{\v{k}}
         \\ &\leq \frac{1}{2}\abs{\v{x}_\v{k} - \v{x}} + \norm{A^{-1}}\abs{\v{k}}
     \end{align*}
-    where in the last inequality we use the result from step 1 of the proof ($\gv{\phi}$ is a contraction with constant $\frac{1}{2}$). From this, we obtauin that $\abs{\v{x}_\v{k} - \v{x}} \leq 2\norm{A^{-1}}\abs{\v{k}}$ (as we wanted!) and hence $\frac{1}{\abs{\v{k}}} \leq \frac{2\norm{A^{-1}}}{\abs{\v{x}_\v{k} - \v{x}}}$.We therefore have that:
+    where in the last inequality we use the result from step 1 of the proof ($\gv{\phi}$ is a contraction with constant $\frac{1}{2}$). From this, we obtain that $\abs{\v{x}_\v{k} - \v{x}} \leq 2\norm{A^{-1}}\abs{\v{k}}$ (as we wanted!) and hence $\frac{1}{\abs{\v{k}}} \leq \frac{2\norm{A^{-1}}}{\abs{\v{x}_\v{k} - \v{x}}}$.We therefore have that:
     \begin{align*}
         \abs{\v{g}(\v{y} + \v{k}) - \v{g}(\v{y}) - T\v{k}} &\leq \frac{2\norm{A^{-1}}}{\abs{\v{x}_\v{k} - \v{x}}}\norm{T}\abs{\v{f}(\v{x}_\v{k}) - \v{f}(\v{x}) - S(\v{x}_\v{k} - \v{x})} 
         \\ &= 2\norm{A^{-1}}\norm{T}\frac{\abs{\v{f}(\v{x}_\v{k}) - \v{f}(\v{x}) - S(\v{x}_\v{k} - \v{x})}}{\abs{\v{x}_\v{k} - \v{x}}}
