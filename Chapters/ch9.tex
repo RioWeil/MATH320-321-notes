@@ -125,7 +125,7 @@ where again, $A\v{h}$ is the ``best linear approximation'' to $\v{f}(\v{x} + \v{
     If $\v{f}'(\v{x})$ exists, then $\v{f}$ is continuous at $\v{x}$.
 \end{ntheorem}
 \begin{nproof}
-    $\lim_{\v{h} \rightarrow 0}\v{f}(\v{x} + \v{h}) = \lim_{\v{h} \rightarrow 0}\left(\v{f}(x) + \v{f}'(x)\v{h} + O(\v{h})\right) = \v{f}(x)$.
+    $\lim_{\v{h} \rightarrow 0}\v{f}(\v{x} + \v{h}) = \lim_{\v{h} \rightarrow 0}\left(\v{f}(\v{x}) + \v{f}'(\v{x})\v{h} + O(\v{h})\right) = \v{f}(\v{x})$.
 \end{nproof}
 
 \begin{ndef}{: Norm of a linear map}{}
@@ -206,7 +206,7 @@ where again, $A\v{h}$ is the ``best linear approximation'' to $\v{f}(\v{x} + \v{
 \end{ndef}
 
 \begin{ndef}{: Function Components}{}
-    Let $\v{f}: \RR^n \mapsto \RR^m$. We can then write $\v{f}(\v{x}) = s\sum_{i=1}^m f_i(\v{x})\v{u}_i$. So, $\v{f} = (f_1, \ldots, f_n)$ where $f_i$ is the $i$th \textbf{component} of $\v{f}$. Hence, $f_i: \RR^n \mapsto \RR$. 
+    Let $\v{f}: \RR^n \mapsto \RR^m$. We can then write $\v{f}(\v{x}) = \sum_{i=1}^m f_i(\v{x})\v{u}_i$. So, $\v{f} = (f_1, \ldots, f_n)$ where $f_i$ is the $i$th \textbf{component} of $\v{f}$. Hence, $f_i: \RR^n \mapsto \RR$. 
 \end{ndef}
 
 \begin{definition}{Partial Derivatives}{9.16}
@@ -234,8 +234,8 @@ where again, $A\v{h}$ is the ``best linear approximation'' to $\v{f}(\v{x} + \v{
     \end{align*}
     In other words, that $f_i(\v{x} + t\v{e}_j) = f_i(\v{x}) + A_{ij}t + O(t)$, which identifies $A_{ij}$ as $\pd{f_i}{x_j}$. To this end, let $\e(t) = f_i(\v{x} + t\v{e}_j) - f_i(\v{x}) - A_{ij}t$. We then have that:
     \begin{align*}
-        \abs{\e(t)} &= \abs{\v{u}_i(\v{f}(x + t\v{e}_j) - \v{f}(x) - A(t\v{e}_j))} & \text{(Linearity to say $A_{ij}t = A(t\v{e}_j)$)}
-        \\ &\leq \abs{\v{u}_j}\abs{\v{f}(x + t\v{e}_j) - \v{f}(\v{x}) - A(t\v{e}_j)} & \text{(Cauchy-Shwartz inequality on $\RR^n$)}
+        \abs{\e(t)} &= \abs{\v{u}_i(\v{f}(\v{x} + t\v{e}_j) - \v{f}(\v{x}) - A(t\v{e}_j))} & \text{(Linearity to say $A_{ij}t = A(t\v{e}_j)$)}
+        \\ &\leq \abs{\v{u}_j}\abs{\v{f}(\v{x} + t\v{e}_j) - \v{f}(\v{x}) - A(t\v{e}_j)} & \text{(Cauchy-Shwartz inequality on $\RR^n$)}
         \\ &= \abs{\v{f}(\v{x} + t\v{e}_j) - \v{f}(\v{x}) - A(t\v{e}_j)} & \text{$\v{u}_i$ is of unit length}
         \\ &\in O(t\v{e}_j) \text{ and therefore } O(t) & \text{(Definition of derivative)}
     \end{align*}
