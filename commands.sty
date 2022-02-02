@@ -22,27 +22,12 @@
 \tcbuselibrary{theorems}
 
 \renewcommand{\labelenumi}{(\alph{enumi})} % Use letters for enumerate
-% \DeclareMathOperator{\Sample}{Sample}
-
 \let\vaccent=\v % rename builtin command \v{} to \vaccent{}
 \renewcommand{\v}[1]{\ensuremath{\mathbf{#1}}} % for vectors
-\newcommand{\gv}[1]{\ensuremath{\mbox{\boldmath$ #1 $}}} 
-% for vectors of Greek letters
-\newcommand{\uv}[1]{\ensuremath{\mathbf{\hat{#1}}}} % for unit vector
-\newcommand{\avg}[1]{\left< #1 \right>} % for average
-
-\newcommand{\bicon}{\Leftrightarrow}
-\newcommand{\imply}{\Rightarrow}
+\newcommand{\gv}[1]{\ensuremath{\mbox{\boldmath$ #1 $}}} % for vectors of greek letters
+\newcommand{\avg}[1]{\langle #1 \rangle}
 \newcommand{\pset}[1]{\mathcal{P}({#1})}
-\newcommand{\rel}{\mathrel{R}}
-\newcommand{\nrel}{\not \mathrel{R}}
-
 \newcommand{\linf}{\lim_{n \rightarrow \infty}}
-
-\renewcommand{\=}[1]{\stackrel{#1}{=}} % for putting numbers above
-
-\providecommand{\wave}[1]{\v{\tilde{#1}}}
-\providecommand{\fr}{\frac}
 \providecommand{\RR}{\mathbb{R}}
 \providecommand{\NN}{\mathbb{N}}
 \providecommand{\ZZ}{\mathbb{Z}}
